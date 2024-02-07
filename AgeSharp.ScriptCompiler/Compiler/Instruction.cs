@@ -41,12 +41,12 @@ namespace AgeSharp.ScriptCompiler.Compiler
         }
     }
 
-    public class JumpZero : Instruction
+    public class JumpIfZero : Instruction
     {
         public string Goal { get; }
         public string LabelId { get; }
 
-        public JumpZero(string goal, string label_id)
+        public JumpIfZero(string goal, string label_id)
         {
             Goal = goal;
             LabelId = label_id;

@@ -35,7 +35,7 @@ namespace AgeSharp.ScriptCompiler.Compiler
 
                     rule.Labels.Add(label.Id);
                 }
-                else if (instruction is JumpZero jump)
+                else if (instruction is JumpIfZero jump)
                 {
                     if (rule.Actions.Count > 0)
                     {

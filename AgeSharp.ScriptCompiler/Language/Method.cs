@@ -1,6 +1,7 @@
 ﻿using AgeSharp.ScriptCompiler.Language.Statements;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AgeSharp.ScriptCompiler.Language
@@ -17,7 +18,7 @@ namespace AgeSharp.ScriptCompiler.Language
         {
             Name = name;
             ReturnType = return_type;
-            Parameters = parameters;
+            Parameters = parameters.ToList();
             Block = new Block(script, null);
             Block.Scope.Variables.AddRange(Parameters);
         }
