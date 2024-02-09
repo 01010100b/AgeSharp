@@ -10,6 +10,6 @@ namespace AgeSharp.Scripting.Language
 {
     public abstract class Statement : Validated
     {
-        public abstract IEnumerable<Block> GetBlocks();
+        public abstract IEnumerable<Block> GetContainedBlocks();
     }
 }

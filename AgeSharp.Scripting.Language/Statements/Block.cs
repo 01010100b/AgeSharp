@@ -24,7 +24,7 @@ namespace AgeSharp.Scripting.Language.Statements
 
         public Block CreateChild() => new(Script, this);
 
-        public override IEnumerable<Block> GetBlocks()
+        public override IEnumerable<Block> GetContainedBlocks()
         {
             yield return this;
         }
@@ -33,7 +33,7 @@ namespace AgeSharp.Scripting.Language.Statements
         {
             foreach (var statement in Statements)
             {
-                foreach (var block in statement.GetBlocks())
+                foreach (var block in statement.GetContainedBlocks())
                 {
                     yield return block;
                 }
