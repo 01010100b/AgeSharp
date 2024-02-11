@@ -11,6 +11,8 @@ namespace AgeSharp.Scripting.Language
     {
         public Scope? Parent { get; }
         public IEnumerable<Variable> Variables { get; } = new List<Variable>();
+        public int Size => Variables.Sum(x => x.Size);
+        public int FullSize => GetAllScopedVariables().Sum(x => x.Size);
 
         internal Scope(Scope? parent) : base()
         {

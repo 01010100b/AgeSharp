@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deimos", "Deimos\Deimos.csproj", "{EB4564DD-7C26-4F07-940E-86E4EB72C7E2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgeSharp.Scripting.Language", "AgeSharp.Scripting.Language\AgeSharp.Scripting.Language.csproj", "{9C6B1615-30B5-4592-A629-E7832BB83EEE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgeSharp.Scripting.Tool", "AgeSharp.Scripting.Tool\AgeSharp.Scripting.Tool.csproj", "{8CB66E00-AF31-463A-AD5A-980564F5AD25}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgeSharp.Scripting.Compiler", "AgeSharp.Scripting.Compiler\AgeSharp.Scripting.Compiler.csproj", "{9A7F530D-51CF-4447-8FDF-07D04F55311D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{CE6D8F44-CB9D-4AE2-B723-CC09ABA59FBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deimos", "Deimos\Deimos.csproj", "{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,26 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB4564DD-7C26-4F07-940E-86E4EB72C7E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB4564DD-7C26-4F07-940E-86E4EB72C7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB4564DD-7C26-4F07-940E-86E4EB72C7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB4564DD-7C26-4F07-940E-86E4EB72C7E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C6B1615-30B5-4592-A629-E7832BB83EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C6B1615-30B5-4592-A629-E7832BB83EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C6B1615-30B5-4592-A629-E7832BB83EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C6B1615-30B5-4592-A629-E7832BB83EEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CB66E00-AF31-463A-AD5A-980564F5AD25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CB66E00-AF31-463A-AD5A-980564F5AD25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CB66E00-AF31-463A-AD5A-980564F5AD25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CB66E00-AF31-463A-AD5A-980564F5AD25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A7F530D-51CF-4447-8FDF-07D04F55311D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A7F530D-51CF-4447-8FDF-07D04F55311D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A7F530D-51CF-4447-8FDF-07D04F55311D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A7F530D-51CF-4447-8FDF-07D04F55311D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE6D8F44-CB9D-4AE2-B723-CC09ABA59FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE6D8F44-CB9D-4AE2-B723-CC09ABA59FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE6D8F44-CB9D-4AE2-B723-CC09ABA59FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE6D8F44-CB9D-4AE2-B723-CC09ABA59FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

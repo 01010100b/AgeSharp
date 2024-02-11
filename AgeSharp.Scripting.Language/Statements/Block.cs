@@ -13,16 +13,17 @@ namespace AgeSharp.Scripting.Language.Statements
         public Scope Scope { get; }
         public List<Statement> Statements { get; } = [];
 
-        private readonly Script Script;
-
-        internal Block(Script script, Block? parent)
+        public Block(Block parent)
         {
-            Script = script;
             Parent = parent;
-            Scope = parent is null ? new(script.GlobalScope) : new(parent.Scope);
+            Scope = new(parent.Scope);
         }
 
-        public Block CreateChild() => new(Script, this);
+        public Block(Script script)
+        {
+            Parent = null;
+            Scope = new(script.GlobalScope);
+        }
 
         public override IEnumerable<Block> GetContainedBlocks()
         {

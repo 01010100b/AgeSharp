@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler
 {
-    internal class Address
+    internal class Address(int base_goal, bool ref_base, int offset_goal, bool ref_offset)
     {
-        public int Base { get; set; }
-        public bool RefBase { get; set; }
-        public int Offset { get; set; }
-        public bool RefOffset { get; set; }
+        public int BaseGoal { get; } = base_goal;
+        public bool RefBase { get; } = ref_base;
+        public int OffsetGoal { get; } = offset_goal;
+        public bool RefOffset { get; } = ref_offset;
     }
 }

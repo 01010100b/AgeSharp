@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class LabelInstruction() : Instruction
+    internal class LabelInstruction : Instruction
     {
         public string Label { get; } = Guid.NewGuid().ToString();
     }

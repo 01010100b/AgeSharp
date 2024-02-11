@@ -14,8 +14,13 @@ namespace AgeSharp.Scripting.Compiler
         public Script CreateScript()
         {
             var script = new Script();
+            var args = new object[] { script };
 
-            var assembly = GetType().Assembly;
+            foreach (var type in GetType().Assembly.GetTypes().Where(x => x.IsAssignableTo(typeof(Intrinsic))))
+            {
+                var intrinsic = (Intrinsic)Activator.CreateInstance(type, args)!;
+                script.AddMethod(intrinsic);
+            }
 
             return script;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class IndirectJumpInstruction(int goal) : Instruction
+    internal class JumpIndirectInstruction(int goal) : Instruction
     {
         public int Goal { get; } = goal;
     }

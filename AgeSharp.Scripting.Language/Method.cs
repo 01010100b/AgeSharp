@@ -9,17 +9,15 @@ namespace AgeSharp.Scripting.Language
 {
     public class Method : Validated
     {
-        public string Name { get; }
-        public Type? ReturnType { get; }
+        public string Name { get; set; }
+        public Type? ReturnType { get; set; } = null;
         public IEnumerable<Variable> Parameters { get; } = new List<Variable>();
         public Block Block { get; }
-        public Scope Scope => Block.Scope;
 
-        public Method(Script script, string name, Type? return_type) : base()
+        public Method(Script script) : base()
         {
-            Name = name;
-            ReturnType = return_type;
-            Block = new(script, null);
+            Name = GetType().Name;
+            Block = new(script);
         }
 
         public void AddParameter(Variable parameter)
@@ -58,6 +56,14 @@ namespace AgeSharp.Scripting.Language
             foreach (var block in GetAllBlocks())
             {
                 block.Validate();
+
+                foreach (var variable in block.Scope.Variables.Where(x => !Parameters.Contains(x)))
+                {
+                    if (variable.IsRef)
+                    {
+                        throw new Exception($"Variable {variable.Name} is ref but not method parameter.");
+                    }
+                }
             }
         }
     }

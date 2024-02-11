@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class CommandInstruction(string command, bool disable = false) : Instruction
+    internal class CommandInstruction(string command, bool disable_self = false) : Instruction
     {
         public string Command { get; } = command;
-        public bool Disable { get; } = disable;
+        public bool DisableSelf { get; } = disable_self;
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,8 +14,76 @@ namespace AgeSharp.Scripting.Compiler.Rules
         private Settings Settings { get; } = settings;
 
         public List<Rule> Compile()
-        {
-            throw new NotImplementedException();
+        { 
+            var rules = new List<Rule>();
+            var current = new Rule();
+
+            foreach (var instruction in Instructions)
+            {
+                if (current.Commands >= Settings.MaxRuleCommands)
+                {
+                    rules.Add(current);
+                    current = new();
+                }
+
+                if (instruction is LabelInstruction label)
+                {
+                    if (!current.IsEmpty)
+                    {
+                        rules.Add(current);
+                        current = new();
+                    }
+
+                    current.Labels.Add(label.Label);
+                }
+                else if (instruction is CommandInstruction command)
+                {
+                    if (command.DisableSelf)
+                    {
+                        if (!current.IsEmpty)
+                        {
+                            rules.Add(current);
+                            current = new();
+                        }
+
+                        current.Actions.Add(command.Command);
+                        current.Actions.Add("disable-self");
+                        rules.Add(current);
+                        current = new();
+                    }
+
+                    current.Actions.Add(command.Command);
+                }
+                else if (instruction is JumpInstruction jump)
+                {
+                    current.Actions.Add($"up-jump-direct c: {jump.Label}");
+                    rules.Add(current);
+                    current = new();
+                }
+                else if (instruction is JumpIndirectInstruction ji)
+                {
+                    current.Actions.Add($"up-jump-direct g: {ji.Goal}");
+                    rules.Add(current);
+                    current = new();
+                }
+                else if (instruction is JumpIfZero jz)
+                {
+                    rules.Add(current);
+                    current = new();
+                    current.Facts.Add($"up-compare-goal {jz.Goal} c:= 0");
+                    current.Actions.Add($"up-jump-direct c: {jz.Label}");
+                    rules.Add(current);
+                    current = new();
+                }
+                else
+                {
+                    throw new Exception($"Instruction {instruction.GetType().Name} not recognized.");
+                }
+            }
+
+            rules.Add(current);
+
+            return rules;
         }
     }
 }

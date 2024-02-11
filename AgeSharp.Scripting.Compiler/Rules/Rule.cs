@@ -12,25 +12,10 @@ namespace AgeSharp.Scripting.Compiler.Rules
         public List<string> Labels { get; } = [];
         public List<string> Facts { get; } = [];
         public List<string> Actions { get; } = [];
-        public int Commands => Math.Max(1, Facts.Count) + Actions.Count;
-
-        public bool IsAlwaysTrue()
-        {
-            if (Facts.Count == 0)
-            {
-                return true;
-            }
-            
-            foreach (var fact in Facts)
-            {
-                if (fact.Contains("up-compare-goal"))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+        public int Commands => Math.Max(1, Facts.Count) + Math.Max(1, Actions.Count);
+        public bool IsEmpty => Facts.Count == 0 && Actions.Count == 0;
+        public bool IsAlwaysTrue => !Facts.Any(x => x.Contains("up-compare-goal"));
+        public bool Jumps => Actions.Count > 0 && Actions[^-1].StartsWith("up-jump-");
 
         public override string ToString()
         {
@@ -41,7 +26,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
                 sb.AppendLine($"; {comment}");
             }
 
-            sb.AppendLine("(");
+            sb.AppendLine("(defrule");
 
             if (Facts.Count == 0)
             {
@@ -57,9 +42,16 @@ namespace AgeSharp.Scripting.Compiler.Rules
 
             sb.AppendLine("=>");
 
-            foreach (var action in Actions)
+            if (Actions.Count == 0)
             {
-                sb.AppendLine($"\t({action})");
+                sb.AppendLine("\t(do-nothing)");
+            }
+            else
+            {
+                foreach (var action in Actions)
+                {
+                    sb.AppendLine($"\t({action})");
+                }
             }
 
             sb.AppendLine(")");
