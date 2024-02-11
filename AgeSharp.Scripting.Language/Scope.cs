@@ -10,19 +10,33 @@ namespace AgeSharp.Scripting.Language
     public class Scope : Validated
     {
         public Scope? Parent { get; }
-        public IReadOnlyList<Variable> Variables { get; } = new List<Variable>();
+        public IEnumerable<Variable> Variables { get; } = new List<Variable>();
 
         internal Scope(Scope? parent) : base()
         {
             Parent = parent;
         }
 
-        public Variable CreateVariable(string name, Type type, bool is_ref)
+        public void AddVariable(Variable variable)
         {
-            var variable = new Variable(this, name, type, is_ref);
-            ((List<Variable>)Variables).Add(variable);
+            if (GetAllScopedVariables().Select(x => x.Name).Contains(variable.Name)) throw new Exception($"Variable {variable.Name} already in scope.");
 
-            return variable;
+            ((List<Variable>)Variables).Add(variable);
+        }
+
+        public IEnumerable<Variable> GetAllScopedVariables()
+        {
+            var current = this;
+
+            while (current is not null)
+            {
+                foreach (var variable in current.Variables)
+                {
+                    yield return variable;
+                }
+
+                current = current.Parent;
+            }
         }
 
         public override void Validate()

@@ -14,7 +14,7 @@ namespace AgeSharp.Scripting.Language
         public bool IsRef { get; }
         public int Size => IsRef ? 1 : Type.Size;
 
-        internal Variable(Scope scope, string name, Type type, bool is_ref) : base()
+        public Variable(Scope scope, string name, Type type, bool is_ref) : base()
         {
             Scope = scope;
             Name = name;

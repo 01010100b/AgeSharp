@@ -12,7 +12,7 @@ namespace AgeSharp.Scripting.Compiler
         public int StackPtr { get; }
         public int RegisterCount { get; }
 
-        public void Compile(Script script, Settings settings)
+        public Memory(Script script, Settings settings)
         {
 
         }
@@ -21,5 +21,7 @@ namespace AgeSharp.Scripting.Compiler
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

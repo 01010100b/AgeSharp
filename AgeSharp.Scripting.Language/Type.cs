@@ -15,7 +15,7 @@ namespace AgeSharp.Scripting.Language
         public override void Validate()
         {
             ValidateName(Name);
-            if (Size < 1) throw new Exception($"Type {Name} has size {Size} <= 0.");
+            if (Size <= 0) throw new Exception($"Type {Name} has size {Size} <= 0.");
         }
     }
 }

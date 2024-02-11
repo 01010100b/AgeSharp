@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Rules
 {
-    internal class RuleCompiler
+    internal class RuleCompiler(IEnumerable<Instruction> instructions, Settings settings)
     {
-        public List<Rule> Compile(IReadOnlyList<Instruction> instructions, Settings settings)
+        private IEnumerable<Instruction> Instructions { get; } = instructions.ToList();
+        private Settings Settings { get; } = settings;
+
+        public List<Rule> Compile()
         {
             throw new NotImplementedException();
         }

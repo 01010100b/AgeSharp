@@ -24,14 +24,13 @@ namespace AgeSharp.Scripting.Compiler
         {
             Validate(script, settings);
 
-            var memory = new Memory();
-            memory.Compile(script, settings);
+            var memory = new Memory(script, settings);
 
-            var instruction_compiler = new InstructionCompiler();
-            var instructions = instruction_compiler.Compile(script, memory, settings);
+            var instruction_compiler = new InstructionCompiler(script, memory, settings);
+            var instructions = instruction_compiler.Compile();
 
-            var rule_compiler = new RuleCompiler();
-            var rules = rule_compiler.Compile(instructions, settings);
+            var rule_compiler = new RuleCompiler(instructions, settings);
+            var rules = rule_compiler.Compile();
 
             var result = new CompilationResult(script, settings, memory, instructions, rules);
 

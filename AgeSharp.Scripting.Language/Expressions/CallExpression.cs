@@ -11,7 +11,12 @@ namespace AgeSharp.Scripting.Language.Expressions
         public Method Method { get; } = method;
         public override Type? Type => Method.ReturnType;
         public string? Literal { get; } = literal;
-        public List<Expression> Arguments { get; } = [];
+        public IEnumerable<Expression> Arguments { get; } = new List<Expression>();
+
+        public void AddArgument(Expression argument)
+        {
+            ((List<Expression>)Arguments).Add(argument);
+        }
 
         public override void Validate()
         {

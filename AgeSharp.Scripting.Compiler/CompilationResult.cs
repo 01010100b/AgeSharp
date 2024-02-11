@@ -15,11 +15,11 @@ namespace AgeSharp.Scripting.Compiler
         public int RuleCount => Rules.Count;
         public int CommandCount => Rules.Sum(x => x.Commands);
 
-        internal Script Script { get; }
-        internal Settings Settings { get; }
-        internal Memory Memory { get; }
-        internal IReadOnlyList<Instruction> Instructions { get; }
-        internal IReadOnlyList<Rule> Rules { get; }
+        private Script Script { get; }
+        private Settings Settings { get; }
+        private Memory Memory { get; }
+        private IReadOnlyList<Instruction> Instructions { get; }
+        private IReadOnlyList<Rule> Rules { get; }
 
         internal CompilationResult(Script script, Settings settings, Memory memory, IReadOnlyList<Instruction> instructions, IReadOnlyList<Rule> rules)
         {

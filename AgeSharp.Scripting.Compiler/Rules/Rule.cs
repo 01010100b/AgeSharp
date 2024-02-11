@@ -8,6 +8,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
 {
     internal class Rule
     {
+        public List<string> Comments { get; } = [];
         public List<string> Labels { get; } = [];
         public List<string> Facts { get; } = [];
         public List<string> Actions { get; } = [];
@@ -34,6 +35,12 @@ namespace AgeSharp.Scripting.Compiler.Rules
         public override string ToString()
         {
             var sb = new StringBuilder();
+            
+            foreach (var comment in Comments)
+            {
+                sb.AppendLine($"; {comment}");
+            }
+
             sb.AppendLine("(");
 
             if (Facts.Count == 0)

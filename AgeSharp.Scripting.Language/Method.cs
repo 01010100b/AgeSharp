@@ -11,23 +11,20 @@ namespace AgeSharp.Scripting.Language
     {
         public string Name { get; }
         public Type? ReturnType { get; }
-        public IReadOnlyList<Variable> Parameters { get; } = new List<Variable>();
+        public IEnumerable<Variable> Parameters { get; } = new List<Variable>();
         public Block Block { get; }
         public Scope Scope => Block.Scope;
 
-        internal Method(Script script, string name, Type? return_type) : base()
+        public Method(Script script, string name, Type? return_type) : base()
         {
             Name = name;
             ReturnType = return_type;
             Block = new(script, null);
         }
 
-        public Variable CreateParameter(string name, Type type, bool is_ref)
+        public void AddParameter(Variable parameter)
         {
-            var variable = Scope.CreateVariable(name, type, is_ref);
-            ((List<Variable>)Parameters).Add(variable);
-
-            return variable;
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Block> GetAllBlocks()
