@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgeSharp.Scripting.Language;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Rules
 {
-    internal class Rule
+    internal class Rule : Validated
     {
         public List<string> Comments { get; } = [];
         public List<string> Labels { get; } = [];
@@ -16,6 +17,10 @@ namespace AgeSharp.Scripting.Compiler.Rules
         public bool IsEmpty => Facts.Count == 0 && Actions.Count == 0;
         public bool IsAlwaysTrue => !Facts.Any(x => x.Contains("up-compare-goal"));
         public bool Jumps => Actions.Count > 0 && Actions[^-1].StartsWith("up-jump-");
+
+        public override void Validate()
+        {
+        }
 
         public override string ToString()
         {

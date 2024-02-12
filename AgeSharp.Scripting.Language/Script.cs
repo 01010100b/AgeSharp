@@ -12,8 +12,8 @@ namespace AgeSharp.Scripting.Language
     public class Script : Validated
     {
         public Scope GlobalScope { get; } = new(null);
-        public IEnumerable<Type> Types { get; } = new List<Type>();
-        public IEnumerable<Method> Methods { get; } = new List<Method>();
+        public IReadOnlyList<Type> Types { get; } = new List<Type>();
+        public IReadOnlyList<Method> Methods { get; } = new List<Method>();
         public Method? EntryPoint { get; private set; } = null;
         public IEnumerable<Scope> Scopes => Methods.SelectMany(x => x.GetAllBlocks().Select(x => x.Scope)).Append(GlobalScope);
         public IEnumerable<Variable> Variables => Scopes.SelectMany(x => x.Variables);
@@ -44,6 +44,20 @@ namespace AgeSharp.Scripting.Language
             }
         }
 
+        public ArrayType GetOrAddArrayType(Type element_type, int length)
+        {
+            var name = ArrayType.GetArrayTypeName(element_type, length);
+            var type = Types.OfType<ArrayType>().SingleOrDefault(x => x.Name == name);
+
+            if (type is null)
+            {
+                type = new(element_type, length);
+                AddType(type);
+            }
+
+            return type;
+        }
+
         public override void Validate()
         {
             GlobalScope.Validate();
@@ -59,9 +73,8 @@ namespace AgeSharp.Scripting.Language
             }
 
             if (EntryPoint is null) throw new Exception("No entry point.");
-            if (EntryPoint.ReturnType is not null) throw new Exception($"Entry point {EntryPoint.Name} has non-void return type.");
+            if (EntryPoint.ReturnType != PrimitiveType.Void) throw new Exception($"Entry point {EntryPoint.Name} has non-void return type.");
             if (EntryPoint.Parameters.Any()) throw new Exception($"Entry point {EntryPoint.Name} has parameters.");
-
         }
     }
 }

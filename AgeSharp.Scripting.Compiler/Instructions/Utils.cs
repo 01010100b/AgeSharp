@@ -8,18 +8,13 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 {
     internal static class Utils
     {
-        private static string MemCpyLabel { get; } = Guid.NewGuid().ToString();
+        private static LabelInstruction MemCpyLabel { get; } = new();
 
-        public static List<Instruction> Clear(int from, int to, int value = 0)
+        public static List<Instruction> Clear(int from, int length, int value = 0)
         {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+
             var instructions = new List<Instruction>();
-
-            var length = to - from;
-
-            if (length <= 0)
-            {
-                return instructions;
-            }
 
             while (length > 0)
             {
@@ -31,19 +26,70 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             return instructions;
         }
 
-        public static List<Instruction> GetPointer(Address address, int goal)
+        public static List<Instruction> GetPointer(Memory memory, Address address, int goal)
         {
-            throw new NotImplementedException();
+            var instructions = new List<Instruction>();
+
+            if (address.IsRef)
+            {
+                instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:= {address.Goal}"));
+            }
+            else
+            {
+                instructions.Add(new CommandInstruction($"up-modify-goal {goal} c:= {address.Goal}"));
+            }
+
+            if (address.IsArrayAccess)
+            {
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} g:= {address.Offset}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} c:* {address.IndexStride}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} c:+ 1"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:+ {memory.AddressingGoal}"));
+            }
+            else if (address.Offset > 0)
+            {
+                instructions.Add(new CommandInstruction($"up-modify-goal {goal} c:+ {address.Offset}"));
+            }
+
+            return instructions;
         }
 
         public static List<Instruction> MemCpy(Memory memory, Address from, Address to, int length)
         {
-            throw new NotImplementedException();
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+
+            var instructions = new List<Instruction>();
+            var label_return = new LabelInstruction();
+
+            instructions.AddRange(GetPointer(memory, from, memory.MemCpy0));
+            instructions.AddRange(GetPointer(memory, to, memory.MemCpy1));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy2} c:= {length}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} c:= {label_return.Label}"));
+            instructions.Add(new JumpInstruction(MemCpyLabel));
+            instructions.Add(label_return);
+
+            return instructions;
         }
 
         public static List<Instruction> CompileMemCpy(Memory memory)
         {
-            throw new NotImplementedException();
+            var instructions = new List<Instruction>() { MemCpyLabel };
+            var label_repeat = new LabelInstruction();
+            var label_end = new LabelInstruction();
+
+            instructions.Add(label_repeat);
+            instructions.Add(new JumpConditional(memory.MemCpy2, "==", 0, label_end));
+            instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.MemCpy0} {memory.MemCpy3}"));
+            instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.MemCpy1} g: {memory.MemCpy3}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy0} c:+ 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy1} c:+ 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy2} c:- 1"));
+            instructions.Add(new JumpInstruction(label_repeat));
+
+            instructions.Add(label_end);
+            instructions.Add(new JumpIndirectInstruction(memory.AddressingGoal));
+
+            return instructions;
         }
     }
 }

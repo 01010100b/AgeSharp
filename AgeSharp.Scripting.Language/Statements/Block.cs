@@ -7,23 +7,10 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Statements
 {
-    public class Block : Statement
+    public class Block(Scope scope) : Statement
     {
-        public Block? Parent { get; }
-        public Scope Scope { get; }
+        public override Scope Scope { get; } = new(scope);
         public List<Statement> Statements { get; } = [];
-
-        public Block(Block parent)
-        {
-            Parent = parent;
-            Scope = new(parent.Scope);
-        }
-
-        public Block(Script script)
-        {
-            Parent = null;
-            Scope = new(script.GlobalScope);
-        }
 
         public override IEnumerable<Block> GetContainedBlocks()
         {
@@ -45,9 +32,12 @@ namespace AgeSharp.Scripting.Language.Statements
         {
             Scope.Validate();
 
-            foreach (var statement in Statements)
+            for (int i = 0; i < Statements.Count; i++)
             {
+                var statement = Statements[i];
                 statement.Validate();
+
+                if (statement is ReturnStatement && i != Statements.Count - 1) throw new NotSupportedException($"Return statement not last statement of block.");
             }
         }
     }

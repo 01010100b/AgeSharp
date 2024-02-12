@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AgeSharp.Scripting.Compiler\AgeSharp.Scripting.Compiler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="per\" />
+  </ItemGroup>
+
 </Project>

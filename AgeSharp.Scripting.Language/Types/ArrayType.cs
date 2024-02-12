@@ -17,10 +17,9 @@ namespace AgeSharp.Scripting.Language.Types
 
         public override void Validate()
         {
-            base.Validate();
-
-            ElementType.Validate();
-            if (Length < 1) throw new Exception($"Array type {Name} has length < 1.");
+            if (Length < 1) throw new NotSupportedException($"Array type {Name} has length < 1.");
+            if (ElementType == PrimitiveType.Void) throw new NotSupportedException($"Array {Name} has element type Void.");
+            if (ElementType is ArrayType) throw new NotSupportedException($"Array {Name} has element type array.");
         }
     }
 }

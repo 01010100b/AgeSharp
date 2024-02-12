@@ -9,7 +9,7 @@ namespace AgeSharp.Scripting.Language.Types
     public class CompoundType(string name) : Type(name)
     {
         public override int Size => Fields.Sum(x => x.Type.Size);
-        public IEnumerable<Field> Fields { get; } = new List<Field>();
+        public IReadOnlyList<Field> Fields { get; } = new List<Field>();
 
         public void AddField(Field field)
         {
@@ -37,9 +37,13 @@ namespace AgeSharp.Scripting.Language.Types
 
         public override void Validate()
         {
-            base.Validate();
-
+            ValidateName(Name);
             if (!Fields.Any()) throw new Exception($"CompoundType {Name} has no fields.");
+
+            foreach (var field in Fields)
+            {
+                field.Validate();
+            }
         }
     }
 }

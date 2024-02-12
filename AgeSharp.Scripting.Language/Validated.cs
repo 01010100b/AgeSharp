@@ -8,11 +8,11 @@ namespace AgeSharp.Scripting.Language
 {
     public abstract class Validated
     {
-        public abstract void Validate();
-
-        protected void ValidateName(string name)
+        public static void ValidateName(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new Exception($"Invalid name {name}.");
         }
+
+        public abstract void Validate();
     }
 }

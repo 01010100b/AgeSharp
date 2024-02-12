@@ -12,10 +12,17 @@ namespace AgeSharp.Scripting.Language
         public string Name { get; } = name;
         public abstract int Size { get; }
 
-        public override void Validate()
+        public void ValidateAssignment(Type to, bool to_isref)
         {
-            ValidateName(Name);
-            if (Size <= 0) throw new Exception($"Type {Name} has size {Size} <= 0.");
+            if (!to_isref)
+            {
+                if (this != to) throw new NotSupportedException($"Can not assign {Name} to {to.Name}.");
+            }
+            else if (this != to)
+            {
+                if (this is not ArrayType af || to is not ArrayType at) throw new NotSupportedException($"Ref assign from {Name} to {to.Name} with not both being arrays.");
+                if (af.ElementType != at.ElementType) throw new NotSupportedException($"Ref array assign from {Name} to {to.Name} with different element types.");
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace AgeSharp.Scripting.Language.Expressions
         public Variable Variable { get; }
         public Expression? Index { get; }
         public IReadOnlyList<Field>? Fields { get; }
-        public override Type? Type => GetExpressionType();
+        public override Type Type => GetExpressionType();
 
         public AccessorExpression(Variable variable) : base()
         {
@@ -30,13 +30,36 @@ namespace AgeSharp.Scripting.Language.Expressions
 
         public AccessorExpression(Variable variable, IEnumerable<Field> fields)
         {
+            if (variable.Type is not CompoundType) throw new NotSupportedException($"Field access when {variable.Name} is not compound type.");
+
             Variable = variable;
             Fields = fields.ToList();
         }
 
+        public override IEnumerable<Variable> GetReferencedVariables()
+        {
+            yield return Variable;
+
+            if (Index is not null)
+            {
+                foreach (var variable in Index.GetReferencedVariables())
+                {
+                    yield return variable;
+                }
+            }
+        }
+
         public override void Validate()
         {
-            throw new NotImplementedException();
+            if (Index is not null)
+            {
+                Index.Validate();
+                if (Index.Type != PrimitiveType.Int) throw new NotSupportedException($"Accessor index does not have type Int.");
+            }
+            else if (Fields is not null)
+            {
+                if (Fields.Count == 0) throw new NotSupportedException($"Accessor has no fields.");
+            }
         }
 
         private Type GetExpressionType()

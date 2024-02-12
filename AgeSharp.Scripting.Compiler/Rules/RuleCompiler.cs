@@ -38,25 +38,11 @@ namespace AgeSharp.Scripting.Compiler.Rules
                 }
                 else if (instruction is CommandInstruction command)
                 {
-                    if (command.DisableSelf)
-                    {
-                        if (!current.IsEmpty)
-                        {
-                            rules.Add(current);
-                            current = new();
-                        }
-
-                        current.Actions.Add(command.Command);
-                        current.Actions.Add("disable-self");
-                        rules.Add(current);
-                        current = new();
-                    }
-
                     current.Actions.Add(command.Command);
                 }
                 else if (instruction is JumpInstruction jump)
                 {
-                    current.Actions.Add($"up-jump-direct c: {jump.Label}");
+                    current.Actions.Add($"up-jump-direct c: {jump.Label.Label}");
                     rules.Add(current);
                     current = new();
                 }
@@ -66,18 +52,18 @@ namespace AgeSharp.Scripting.Compiler.Rules
                     rules.Add(current);
                     current = new();
                 }
-                else if (instruction is JumpIfZero jz)
+                else if (instruction is JumpConditional jc)
                 {
                     rules.Add(current);
                     current = new();
-                    current.Facts.Add($"up-compare-goal {jz.Goal} c:= 0");
-                    current.Actions.Add($"up-jump-direct c: {jz.Label}");
+                    current.Facts.Add($"up-compare-goal {jc.Goal} c:{jc.Comparison} {jc.Value}");
+                    current.Actions.Add($"up-jump-direct c: {jc.Label.Label}");
                     rules.Add(current);
                     current = new();
                 }
                 else
                 {
-                    throw new Exception($"Instruction {instruction.GetType().Name} not recognized.");
+                    throw new NotSupportedException($"Instruction {instruction.GetType().Name} not recognized.");
                 }
             }
 

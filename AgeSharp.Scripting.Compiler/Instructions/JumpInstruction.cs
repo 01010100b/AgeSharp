@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class JumpInstruction(string label) : Instruction
+    internal class JumpInstruction(LabelInstruction label) : Instruction
     {
-        public string Label { get; } = label;
+        public LabelInstruction Label { get; } = label;
+
+        public override void Validate()
+        {
+        }
     }
 }

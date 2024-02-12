@@ -8,6 +8,17 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
+        var result = Tests.Run();
+        var per = result.GetPer();
+        var file = Path.Combine(FROM, "Deimos.per");
+
+        if (File.Exists(file))
+        {
+            File.Delete(file);
+        }
+
+        File.WriteAllText(file, per);
+
         Publish(FROM, TO);
     }
 

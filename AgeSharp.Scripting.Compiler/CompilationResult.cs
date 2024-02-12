@@ -14,6 +14,7 @@ namespace AgeSharp.Scripting.Compiler
     {
         public int RuleCount => Rules.Count;
         public int CommandCount => Rules.Sum(x => x.Commands);
+        public IEnumerable<string> InstructionStream => Instructions.Select(x => x.ToString());
 
         private Script Script { get; }
         private Settings Settings { get; }

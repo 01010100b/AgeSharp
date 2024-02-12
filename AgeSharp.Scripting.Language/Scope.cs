@@ -10,7 +10,7 @@ namespace AgeSharp.Scripting.Language
     public class Scope : Validated
     {
         public Scope? Parent { get; }
-        public IEnumerable<Variable> Variables { get; } = new List<Variable>();
+        public IReadOnlyList<Variable> Variables { get; } = new List<Variable>();
         public int Size => Variables.Sum(x => x.Size);
         public int FullSize => GetAllScopedVariables().Sum(x => x.Size);
 
@@ -21,7 +21,7 @@ namespace AgeSharp.Scripting.Language
 
         public void AddVariable(Variable variable)
         {
-            if (GetAllScopedVariables().Select(x => x.Name).Contains(variable.Name)) throw new Exception($"Variable {variable.Name} already in scope.");
+            if (GetAllScopedVariables().Select(x => x.Name).Contains(variable.Name)) throw new NotSupportedException($"Variable {variable.Name} already in scope.");
 
             ((List<Variable>)Variables).Add(variable);
         }
@@ -40,6 +40,8 @@ namespace AgeSharp.Scripting.Language
                 current = current.Parent;
             }
         }
+
+        public bool IsInScope(Variable variable) => GetAllScopedVariables().Contains(variable);
 
         public override void Validate()
         {

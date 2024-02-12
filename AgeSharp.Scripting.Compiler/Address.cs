@@ -1,16 +1,31 @@
-﻿using System;
+﻿using AgeSharp.Scripting.Language;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler
 {
-    internal class Address(int base_goal, bool ref_base, int offset_goal, bool ref_offset)
+    internal class Address
     {
-        public int BaseGoal { get; } = base_goal;
-        public bool RefBase { get; } = ref_base;
-        public int OffsetGoal { get; } = offset_goal;
-        public bool RefOffset { get; } = ref_offset;
+        public int Goal { get; }
+        public bool IsRef { get; }
+        public int Offset { get; }
+        public int IndexStride { get; }
+        public bool IsArrayAccess => IndexStride > 0; // in this case Offset is a goal holding the index
+
+        public Address(int goal, bool is_ref, int offset = 0, int index_stride = 0)
+        {
+            Goal = goal;
+            IsRef = is_ref;
+            Offset = offset;
+            IndexStride = index_stride;
+
+            Debug.Assert(Goal >= 1 && Goal <= 512);
+            Debug.Assert(Offset >= 0);
+            Debug.Assert(IndexStride >= 0);
+        }
     }
 }
