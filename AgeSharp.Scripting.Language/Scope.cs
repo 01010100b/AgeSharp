@@ -9,12 +9,17 @@ namespace AgeSharp.Scripting.Language
 {
     public class Scope : Validated
     {
-        public Scope? Parent { get; }
+        public Scope? Parent { get; private set; }
         public IReadOnlyList<Variable> Variables { get; } = new List<Variable>();
         public int Size => Variables.Sum(x => x.Size);
         public int FullSize => GetAllScopedVariables().Sum(x => x.Size);
 
         internal Scope(Scope? parent) : base()
+        {
+            Parent = parent;
+        }
+
+        public void Rebase(Scope parent)
         {
             Parent = parent;
         }

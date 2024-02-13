@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Statements
 {
-    public class ReturnStatement(Expression? expression, Block block) : Statement
+    public class ReturnStatement : Statement
     {
-        public override Scope Scope { get; } = block.Scope;
-        public Expression? Expression { get; } = expression;
+        public override Scope Scope { get; }
+        public Expression? Expression { get; }
+
+        public ReturnStatement(Scope scope, Expression? expression) : base()
+        {
+            Scope = scope;
+            Expression = expression;
+        }
 
         public override IEnumerable<Block> GetContainedBlocks() => Enumerable.Empty<Block>();
 

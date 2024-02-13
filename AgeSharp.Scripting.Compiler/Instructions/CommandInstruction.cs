@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class CommandInstruction(string command) : Instruction
+    internal class CommandInstruction : Instruction
     {
-        public string Command { get; } = command;
+        public string Command { get; }
 
-        public override void Validate()
+        public CommandInstruction(string command) : base()
         {
+            Command = command;
         }
     }
 }

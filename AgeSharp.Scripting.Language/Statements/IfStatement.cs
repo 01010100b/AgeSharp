@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Statements
 {
-    public class IfStatement(Expression condition, Block block) : Statement
+    public class IfStatement : Statement
     {
-        public override Scope Scope { get; } = block.Scope;
-        public Expression Condition { get; } = condition;
-        public Block WhenTrue { get; } = new(block.Scope);
-        public Block WhenFalse { get; } = new(block.Scope);
+        public override Scope Scope { get; }
+        public Expression Condition { get; }
+        public Block WhenTrue { get; }
+        public Block WhenFalse { get; }
+
+        public IfStatement(Scope scope, Expression condition) : base()
+        {
+            Scope = scope;
+            Condition = condition;
+            WhenTrue = new(scope);
+            WhenFalse = new(scope);
+        }
 
         public override IEnumerable<Block> GetContainedBlocks()
         {

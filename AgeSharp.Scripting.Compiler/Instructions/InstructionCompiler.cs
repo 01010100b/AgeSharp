@@ -32,10 +32,12 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             var instructions = new List<Instruction>();
             var label_postinit = new LabelInstruction();
 
-            instructions.Add(new JumpConditional(Memory.MaxStackSpaceUsed, ">=", 0, label_postinit));
+            instructions.Add(new JumpFactInstruction(Memory.MaxStackSpaceUsed, ">=", 0, label_postinit));
             instructions.AddRange(Utils.Clear(Settings.MinGoal, Settings.MaxGoal - Settings.MinGoal + 1));
             instructions.AddRange(InitializeArrays(Script.GlobalScope));
+
             instructions.Add(label_postinit);
+            instructions.AddRange(Utils.Clear(Memory.RegisterBase, Memory.RegisterCount));
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:= {Memory.InitialStackPtr}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.RegisterBase} c:= {LabelEnd.Label}"));
 
@@ -90,7 +92,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     var label_end = new LabelInstruction();
 
                     instructions.AddRange(CompileExpression(method, new Address(Memory.ConditionGoal, false), ifs.Condition));
-                    instructions.Add(new JumpConditional(Memory.ConditionGoal, "==", 0, label_false));
+                    instructions.Add(new JumpFactInstruction(Memory.ConditionGoal, "==", 0, label_false));
                     instructions.AddRange(CompileBlock(method, ifs.WhenTrue, label_break, label_continue));
                     instructions.Add(new JumpInstruction(label_end));
                     instructions.Add(label_false);
@@ -106,7 +108,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     instructions.AddRange(CompileBlock(method, loop.Prefix, null, null));
                     instructions.Add(label_repeat);
                     instructions.AddRange(CompileExpression(method, new Address(Memory.ConditionGoal, false), loop.Condition));
-                    instructions.Add(new JumpConditional(Memory.ConditionGoal, "==", 0, label_end));
+                    instructions.Add(new JumpFactInstruction(Memory.ConditionGoal, "==", 0, label_end));
                     instructions.AddRange(CompileBlock(method, loop.Block, label_end, label_repeat));
                     instructions.AddRange(CompileBlock(method, loop.Postfix, null, null));
                     instructions.Add(label_end);
@@ -192,7 +194,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     }
                     else if (arg is AccessorExpression arga)
                     {
-                        if (arga.Index is not null || arga.Fields is not null) throw new NotSupportedException($"Method {call.Method.Name} call with parameter {par.Name} not const or var.");
+                        if (!arga.IsVariableAccess) throw new NotSupportedException($"Method {call.Method.Name} call with parameter {par.Name} not const or var.");
 
                         var argaddr = Memory.GetAddress(arga.Variable);
 
@@ -242,6 +244,8 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
         private List<Instruction> InitializeArrays(Scope scope)
         {
+            // first goal of array is length
+
             var instructions = new List<Instruction>();
 
             foreach (var array in scope.Variables.Where(x => x.Type is ArrayType && !x.IsRef))
@@ -260,12 +264,12 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         {
             var addr = Memory.GetAddress(accessor.Variable);
 
-            if (accessor.Fields is not null)
+            if (accessor.IsStructAccess)
             {
                 var offset = 0;
                 var type = accessor.Variable.Type;
 
-                foreach (var field in accessor.Fields)
+                foreach (var field in accessor.Fields!)
                 {
                     offset += ((CompoundType)type).GetOffset(field);
                     type = field.Type;
@@ -273,7 +277,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
                 addr = new(addr.Goal, addr.IsRef, offset);
             }
-            else if (accessor.Index is not null)
+            else if (accessor.IsArrayAccess)
             {
                 var size = ((ArrayType)accessor.Variable.Type).ElementType.Size;
 
@@ -281,22 +285,18 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 {
                     addr = new(addr.Goal, addr.IsRef, 1 + ce.Value * size);
                 }
-                else if (accessor.Index is AccessorExpression ae)
+                else if (accessor.Index is AccessorExpression ai)
                 {
-                    if (ae.Index is not null || ae.Fields is not null) throw new NotSupportedException($"Index access to {accessor.Variable.Name} with recursive index.");
+                    if (!ai.IsVariableAccess) throw new NotSupportedException($"Index access to {accessor.Variable.Name} with recursive index.");
 
-                    var vaddr = Memory.GetAddress(ae.Variable);
+                    var vaddr = Memory.GetAddress(ai.Variable);
 
                     addr = new(addr.Goal, addr.IsRef, vaddr.Goal, size);
                 }
                 else
                 {
-                    throw new NotSupportedException($"Indexed access not allowed with index {accessor.Index.GetType().Name}.");
+                    throw new NotSupportedException($"Indexed access not allowed with index {accessor.Index!.GetType().Name}.");
                 }
-            }
-            else
-            {
-                throw new NotSupportedException($"Failed to get address for accessor of variable {accessor.Variable.Name}.");
             }
 
             Debug.Assert(addr.Goal > 0);

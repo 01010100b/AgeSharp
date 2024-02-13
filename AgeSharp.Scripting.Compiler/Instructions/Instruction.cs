@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal abstract class Instruction : Validated
+    internal abstract class Instruction
     {
         public override string ToString()
         {

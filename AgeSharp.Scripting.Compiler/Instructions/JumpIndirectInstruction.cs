@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class JumpIndirectInstruction(int goal) : Instruction
+    internal class JumpIndirectInstruction : Instruction
     {
-        public int Goal { get; } = goal;
+        public int Goal { get; }
 
-        public override void Validate()
+        public JumpIndirectInstruction(int goal) : base()
         {
-            Debug.Assert(Goal >= 1 && Goal <= 512);
+            Debug.Assert(goal >= 1 && goal <= 512);
+            Goal = goal;
         }
     }
 }

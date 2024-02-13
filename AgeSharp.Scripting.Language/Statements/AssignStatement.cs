@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Statements
 {
-    public class AssignStatement(AccessorExpression? left, Expression right, Block block) : Statement
+    public class AssignStatement : Statement
     {
-        public override Scope Scope { get; } = block.Scope;
-        public AccessorExpression? Left { get; } = left;
-        public Expression Right { get; } = right;
+        public override Scope Scope { get; }
+        public AccessorExpression? Left { get; }
+        public Expression Right { get; }
+
+        public AssignStatement(Scope scope, AccessorExpression? left, Expression right) : base()
+        {
+            Scope = scope;
+            Left = left;
+            Right = right;
+        }
 
         public override IEnumerable<Block> GetContainedBlocks() => Enumerable.Empty<Block>();
 
@@ -21,7 +28,7 @@ namespace AgeSharp.Scripting.Language.Statements
             if (Left is not null)
             {
                 ValidateExpression(Left);
-                Left.Type.ValidateAssignment(Right.Type, Left.Variable.IsRef);
+                Right.Type.ValidateAssignment(Left.Type, Left.Variable.IsRef);
 
                 if (Left.Variable.IsRef && Left.Type != Right.Type)
                 {

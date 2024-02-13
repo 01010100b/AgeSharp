@@ -78,7 +78,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             var label_end = new LabelInstruction();
 
             instructions.Add(label_repeat);
-            instructions.Add(new JumpConditional(memory.MemCpy2, "==", 0, label_end));
+            instructions.Add(new JumpFactInstruction(memory.MemCpy2, "==", 0, label_end));
             instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.MemCpy0} {memory.MemCpy3}"));
             instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.MemCpy1} g: {memory.MemCpy3}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy0} c:+ 1"));

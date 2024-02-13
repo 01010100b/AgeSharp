@@ -14,12 +14,11 @@ namespace AgeSharp.Scripting.Language
         public bool IsRef { get; }
         public int Size => IsRef ? 1 : Type.Size;
 
-        public Variable(Scope scope, string name, Type type, bool is_ref)
+        public Variable(string name, Type type, bool is_ref)
         {
             Name = name;
             Type = type;
             IsRef = is_ref;
-            scope.AddVariable(this);
         }
 
         public bool CanAssign(Type type)

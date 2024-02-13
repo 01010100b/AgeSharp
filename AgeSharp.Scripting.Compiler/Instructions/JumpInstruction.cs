@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class JumpInstruction(LabelInstruction label) : Instruction
+    internal class JumpInstruction : Instruction
     {
-        public LabelInstruction Label { get; } = label;
+        public LabelInstruction Label { get; }
 
-        public override void Validate()
+        public JumpInstruction(LabelInstruction label) : base()
         {
+            Label = label;
         }
     }
 }

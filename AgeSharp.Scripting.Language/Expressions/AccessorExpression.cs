@@ -14,6 +14,10 @@ namespace AgeSharp.Scripting.Language.Expressions
         public IReadOnlyList<Field>? Fields { get; }
         public override Type Type => GetExpressionType();
 
+        public bool IsVariableAccess => !IsArrayAccess && !IsStructAccess;
+        public bool IsArrayAccess => Index is not null;
+        public bool IsStructAccess => Fields is not null;
+
         public AccessorExpression(Variable variable) : base()
         {
             Variable = variable;

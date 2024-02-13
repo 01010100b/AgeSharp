@@ -21,10 +21,12 @@ namespace Deimos
 
             var main = new Method(script) { Name = "Main" };
             script.AddMethod(main, true);
-            var va = new Variable(main.Block.Scope, "a", PrimitiveType.Int, false);
-            var vb = new Variable(main.Block.Scope, "b", script.GetOrAddArrayType(PrimitiveType.Int, 4), false);
+            var va = new Variable("a", PrimitiveType.Int, false);
+            main.Block.Scope.AddVariable(va);
+            var vb = new Variable("b", script.GetOrAddArrayType(PrimitiveType.Int, 4), false);
+            main.Block.Scope.AddVariable(vb);
 
-            main.Block.Statements.Add(new ReturnStatement(null, main.Block));
+            main.Block.Statements.Add(new ReturnStatement(main.Block.Scope, null));
             var result = compiler.Compile(script, settings);
 
             var lines = new List<string>();

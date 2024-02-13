@@ -16,10 +16,10 @@ namespace AgeSharp.Scripting.Language.Statements
         public Block Block { get; }
         public Block Postfix { get; }
 
-        public LoopStatement(Expression condition, Block block) : base()
+        public LoopStatement(Scope scope, Expression condition) : base()
         {
             Condition = condition;
-            ScopingBlock = new(block.Scope); 
+            ScopingBlock = new(scope); 
             Prefix = new(ScopingBlock.Scope);
             Block = new(ScopingBlock.Scope);
             Postfix = new(ScopingBlock.Scope);

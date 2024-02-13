@@ -52,12 +52,16 @@ namespace AgeSharp.Scripting.Compiler.Rules
                     rules.Add(current);
                     current = new();
                 }
-                else if (instruction is JumpConditional jc)
+                else if (instruction is JumpFactInstruction jf)
                 {
-                    rules.Add(current);
-                    current = new();
-                    current.Facts.Add($"up-compare-goal {jc.Goal} c:{jc.Comparison} {jc.Value}");
-                    current.Actions.Add($"up-jump-direct c: {jc.Label.Label}");
+                    if (!current.IsEmpty)
+                    {
+                        rules.Add(current);
+                        current = new();
+                    }
+                    
+                    current.Facts.Add(jf.Fact);
+                    current.Actions.Add($"up-jump-direct c: {jf.Label.Label}");
                     rules.Add(current);
                     current = new();
                 }

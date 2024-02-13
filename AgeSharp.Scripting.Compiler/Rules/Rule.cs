@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Rules
 {
-    internal class Rule : Validated
+    internal class Rule
     {
         public List<string> Comments { get; } = [];
         public List<string> Labels { get; } = [];
@@ -15,12 +15,8 @@ namespace AgeSharp.Scripting.Compiler.Rules
         public List<string> Actions { get; } = [];
         public int Commands => Math.Max(1, Facts.Count) + Math.Max(1, Actions.Count);
         public bool IsEmpty => Facts.Count == 0 && Actions.Count == 0;
-        public bool IsAlwaysTrue => !Facts.Any(x => x.Contains("up-compare-goal"));
-        public bool Jumps => Actions.Count > 0 && Actions[^-1].StartsWith("up-jump-");
-
-        public override void Validate()
-        {
-        }
+        public bool IsAlwaysTrue => Facts.Count == 0;
+        public bool Jumps => Actions.Any(x => x.StartsWith("up-jump-"));
 
         public override string ToString()
         {
