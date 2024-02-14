@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgeSharp.Scripting.Compiler
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deimos", "Deimos\Deimos.csproj", "{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeSharp.Scripting.SharpParser", "AgeSharp.Scripting.SharpParser\AgeSharp.Scripting.SharpParser.csproj", "{1E39F4FE-6253-4AF8-8B8B-F681D2AC8264}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeSharp.Scripting.SharpParser", "AgeSharp.Scripting.SharpParser\AgeSharp.Scripting.SharpParser.csproj", "{4FD492A6-AAC7-4F0E-9ABD-98A364B7843C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDDBC5E4-E867-40AC-AF3C-CA65AF86A6C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E39F4FE-6253-4AF8-8B8B-F681D2AC8264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E39F4FE-6253-4AF8-8B8B-F681D2AC8264}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E39F4FE-6253-4AF8-8B8B-F681D2AC8264}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E39F4FE-6253-4AF8-8B8B-F681D2AC8264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD492A6-AAC7-4F0E-9ABD-98A364B7843C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD492A6-AAC7-4F0E-9ABD-98A364B7843C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD492A6-AAC7-4F0E-9ABD-98A364B7843C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD492A6-AAC7-4F0E-9ABD-98A364B7843C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

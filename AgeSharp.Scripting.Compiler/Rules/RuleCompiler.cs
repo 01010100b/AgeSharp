@@ -67,13 +67,26 @@ namespace AgeSharp.Scripting.Compiler.Rules
                 }
                 else
                 {
-                    throw new NotSupportedException($"Instruction {instruction.GetType().Name} not recognized.");
+                    throw new NotImplementedException($"Instruction {instruction.GetType().Name} not recognized.");
                 }
             }
 
             rules.Add(current);
 
+            rules = Optimize(rules);
+            Validate(rules);
+
             return rules;
+        }
+
+        private List<Rule> Optimize(List<Rule> rules)
+        {
+            return rules;
+        }
+
+        private void Validate(IEnumerable<Rule> rules)
+        {
+
         }
     }
 }

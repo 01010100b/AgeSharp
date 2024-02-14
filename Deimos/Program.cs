@@ -1,14 +1,19 @@
-﻿namespace Deimos;
+﻿using AgeSharp.Scripting.Compiler;
+using AgeSharp.Scripting.SharpParser;
+using System.Diagnostics;
+
+namespace Deimos;
 
 class Program
 {
+    const string SOURCE = @"F:\Repos\01010100b\AgeSharp\Deimos\Source";
     const string FROM = @"F:\Repos\01010100b\AgeSharp\Deimos\per";
     const string TO = @"F:\SteamLibrary\steamapps\common\AoE2DE\resources\_common\ai";
 
     static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
-        var result = Tests.Run();
+        var result = GetCompilation(SOURCE);
         var per = result.GetPer();
         var file = Path.Combine(FROM, "Deimos.per");
 
@@ -20,6 +25,24 @@ class Program
         File.WriteAllText(file, per);
 
         Publish(FROM, TO);
+        OpenDebugFile(result);
+    }
+
+    private static CompilationResult GetCompilation(string folder)
+    {
+        var sources = new List<string>();
+
+        foreach (var file in Directory.EnumerateFiles(folder, "*.cs", SearchOption.AllDirectories))
+        {
+            sources.Add(File.ReadAllText(file));
+        }
+
+        var parser = new Parser();
+        var script = parser.Parse(sources);
+        var compiler = new ScriptCompiler();
+        var result = compiler.Compile(script, new());
+
+        return result;
     }
 
     private static void Publish(string from, string to)
@@ -43,35 +66,42 @@ class Program
             File.Create(ai);
         }
 
-        var stack = new Stack<string>();
-        stack.Push(from);
-
-        while (stack.Count > 0)
+        foreach (var file in Directory.EnumerateFiles(from, "*.*", SearchOption.AllDirectories))
         {
-            var current = stack.Pop();
-            var dest = Path.Combine(to, Path.GetRelativePath(from, current));
+            var dest = Path.Combine(to, Path.GetRelativePath(from, file));
 
-            if (!Directory.Exists(dest))
+            if (File.Exists(dest))
             {
-                Directory.CreateDirectory(dest);
+                File.Delete(dest);
             }
 
-            foreach (var file in Directory.EnumerateFiles(current))
-            {
-                var o = Path.Combine(to, Path.GetRelativePath(from, file));
-
-                if (File.Exists(o))
-                {
-                    File.Delete(o);
-                }
-
-                File.Copy(file, o);
-            }
-
-            foreach (var dir in Directory.EnumerateDirectories(current))
-            {
-                stack.Push(dir);
-            }
+            File.Copy(file, dest);
         }
+    }
+
+    private static void OpenDebugFile(CompilationResult result)
+    {
+        var lines = new List<string>();
+        var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "debug.txt");
+
+        if (File.Exists(file))
+        {
+            File.Delete(file);
+        }
+
+        lines.Add(@"### INSTRUCTIONS ###");
+        lines.Add("");
+        lines.Add("");
+        lines.AddRange(result.InstructionStream);
+        lines.Add("");
+        lines.Add("");
+        lines.Add("### PER ###");
+        lines.Add("");
+        lines.Add("");
+        lines.Add(result.GetPer());
+        
+        File.WriteAllLines(file, lines);
+        var psinfo = new ProcessStartInfo() { FileName = file, UseShellExecute = true };
+        Process.Start(psinfo);
     }
 }

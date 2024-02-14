@@ -15,9 +15,9 @@ namespace Deimos
     {
         public static CompilationResult Run()
         {
-            var compiler = new Compiler();
-            var script = compiler.CreateScript();
+            var script = ScriptCompiler.CreateScript();
             var settings = new Settings();
+            var compiler = new ScriptCompiler();
 
             var main = new Method(script) { Name = "Main" };
             script.AddMethod(main, true);

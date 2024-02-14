@@ -125,7 +125,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 }
                 else
                 {
-                    throw new NotSupportedException($"Statement {statement.GetType().Name} not recognized.");
+                    throw new NotImplementedException($"Statement {statement.GetType().Name} not recognized.");
                 }
             }
 
@@ -238,7 +238,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
             else
             {
-                throw new NotSupportedException($"Expression {expression.GetType().Name} not recognized.");
+                throw new NotImplementedException($"Expression {expression.GetType().Name} not recognized.");
             }
         }
 

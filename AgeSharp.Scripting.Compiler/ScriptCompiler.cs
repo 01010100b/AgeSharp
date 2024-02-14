@@ -13,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler
 {
-    public class Compiler
+    public class ScriptCompiler
     {
-        public Script CreateScript()
+        public static Script CreateScript()
         {
             var script = new Script();
             var args = new object[] { script };
 
-            foreach (var type in GetType().Assembly.GetTypes().Where(x => x.IsAssignableTo(typeof(Intrinsic)) && !x.IsAbstract))
+            foreach (var type in typeof(ScriptCompiler).Assembly.GetTypes().Where(x => x.IsAssignableTo(typeof(Intrinsic)) && !x.IsAbstract))
             {
                 var intrinsic = (Intrinsic)Activator.CreateInstance(type, args)!;
                 script.AddMethod(intrinsic);

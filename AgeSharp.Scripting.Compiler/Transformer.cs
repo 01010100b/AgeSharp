@@ -109,7 +109,7 @@ namespace AgeSharp.Scripting.Compiler
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException($"Statement {statement.GetType().Name} not recognized.");
             }
         }
 
@@ -190,7 +190,7 @@ namespace AgeSharp.Scripting.Compiler
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException($"Expression {expression.GetType().Name} not recognized.");
             }
         }
 
