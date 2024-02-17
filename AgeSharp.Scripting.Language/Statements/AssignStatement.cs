@@ -38,5 +38,17 @@ namespace AgeSharp.Scripting.Language.Statements
 
             ValidateExpression(Right);
         }
+
+        public override string ToString()
+        {
+            if (Left is not null)
+            {
+                return $"{Left} = {Right};";
+            }
+            else
+            {
+                return $"{Right};";
+            }
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace AgeSharp.Scripting.Language.Types
             if (Type == PrimitiveType.Void) throw new NotSupportedException($"Field {Type.Name}.{Name} has type Void.");
             if (Type is ArrayType) throw new NotSupportedException($"Field {Name} has type array.");
         }
+
+        public override string ToString()
+        {
+            return $"{Type.Name} {Name}";
+        }
     }
 }

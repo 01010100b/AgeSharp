@@ -58,5 +58,33 @@ namespace AgeSharp.Scripting.Compiler
 
             return per;
         }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine(@"### SCRIPT ###");
+            sb.AppendLine("");
+            sb.AppendLine("");
+            sb.AppendLine(Script.ToString());
+
+            sb.AppendLine(@"### INSTRUCTIONS ###");
+            sb.AppendLine("");
+            sb.AppendLine("");
+
+            foreach (var instruction in Instructions)
+            {
+                sb.AppendLine(instruction.ToString());
+            }
+
+            sb.AppendLine("");
+            sb.AppendLine("");
+            sb.AppendLine("### PER ###");
+            sb.AppendLine("");
+            sb.AppendLine("");
+            sb.AppendLine(GetPer());
+
+            return sb.ToString();
+        }
     }
 }

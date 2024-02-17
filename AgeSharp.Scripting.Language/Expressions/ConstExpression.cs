@@ -23,5 +23,17 @@ namespace AgeSharp.Scripting.Language.Expressions
             if (Type is not PrimitiveType) throw new Exception($"Const expression of non-primitive type {Type.Name}.");
             if (Type == PrimitiveType.Bool && Value != 0 && Value != 1) throw new Exception($"Bool const not 0 or 1.");
         }
+
+        public override string ToString()
+        {
+            if (Type == PrimitiveType.Int)
+            {
+                return Value.ToString();
+            }
+            else
+            {
+                return Value == 1 ? "true" : "false";
+            }
+        }
     }
 }

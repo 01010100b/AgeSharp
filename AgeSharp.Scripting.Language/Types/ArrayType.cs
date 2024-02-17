@@ -21,5 +21,10 @@ namespace AgeSharp.Scripting.Language.Types
             if (ElementType == PrimitiveType.Void) throw new NotSupportedException($"Array {Name} has element type Void.");
             if (ElementType is ArrayType) throw new NotSupportedException($"Array {Name} has element type array.");
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

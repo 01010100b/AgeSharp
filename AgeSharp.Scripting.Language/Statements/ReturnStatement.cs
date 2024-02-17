@@ -26,5 +26,10 @@ namespace AgeSharp.Scripting.Language.Statements
                 ValidateExpression(Expression);
             }
         }
+
+        public override string ToString()
+        {
+            return Expression is null ? "return;" : $"return {Expression};";
+        }
     }
 }

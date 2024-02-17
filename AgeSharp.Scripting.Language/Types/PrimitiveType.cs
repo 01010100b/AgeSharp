@@ -22,5 +22,10 @@ namespace AgeSharp.Scripting.Language.Types
         {
             Size = size;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

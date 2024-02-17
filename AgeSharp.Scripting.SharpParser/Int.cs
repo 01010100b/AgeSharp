@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.SharpParser
 {
-    [AgeType]
     public readonly struct Int
     {
+        public static implicit operator Int(int value) => throw new Exception();
+
+        public static implicit operator int(Int value) => throw new Exception();
     }
 }

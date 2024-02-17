@@ -45,5 +45,21 @@ namespace AgeSharp.Scripting.Language.Types
                 field.Validate();
             }
         }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine(Name);
+            sb.AppendLine("{");
+
+            foreach (var field in Fields)
+            {
+                sb.AppendLine($"\t{field};");
+            }
+
+            sb.AppendLine("}");
+
+            return sb.ToString();
+        }
     }
 }

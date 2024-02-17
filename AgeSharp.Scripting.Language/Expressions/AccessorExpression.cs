@@ -66,19 +66,43 @@ namespace AgeSharp.Scripting.Language.Expressions
             }
         }
 
+        public override string ToString()
+        {
+            if (IsVariableAccess)
+            {
+                return Variable.Name;
+            }
+            else if (IsArrayAccess)
+            {
+                return $"{Variable.Name}[{Index}]";
+            }
+            else
+            {
+                var sb = new StringBuilder();
+                sb.Append(Variable.Name);
+
+                foreach (var field in Fields!)
+                {
+                    sb.Append($".{field.Name}");
+                }
+
+                return sb.ToString();
+            }
+        }
+
         private Type GetExpressionType()
         {
-            if (Index is null && Fields is null)
+            if (IsVariableAccess)
             {
                 return Variable.Type;
             }
-            else if (Fields is null)
+            else if (IsArrayAccess)
             {
                 return ((ArrayType)Variable.Type).ElementType;
             }
             else
             {
-                return Fields[^-1].Type;
+                return Fields![^1].Type;
             }
         }
     }

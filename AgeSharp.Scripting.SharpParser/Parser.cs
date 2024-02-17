@@ -33,8 +33,8 @@ namespace AgeSharp.Scripting.SharpParser
 
             var int_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Int")!;
             var bool_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Bool")!;
-            parse.Types.Add(int_type, PrimitiveType.Int);
-            parse.Types.Add(bool_type, PrimitiveType.Bool);
+            parse.AddType(int_type, PrimitiveType.Int);
+            parse.AddType(bool_type, PrimitiveType.Bool);
 
             TypeParser.Parse(parse);
             GlobalsParser.Parse(parse);

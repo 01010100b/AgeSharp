@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.SharpParser
 {
-    [AgeType]
     public readonly struct Bool
     {
     }

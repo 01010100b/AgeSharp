@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Statements
@@ -39,6 +40,31 @@ namespace AgeSharp.Scripting.Language.Statements
 
                 if (statement is ReturnStatement && i != Statements.Count - 1) throw new NotSupportedException($"Return statement not last statement of block.");
             }
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+
+            foreach (var local in Scope.Variables)
+            {
+                sb.AppendLine($"\t{local}");
+            }
+
+            foreach (var statement in Statements)
+            {
+                var lines = Regex.Split(statement.ToString()!, "\r|\n|\r\n");
+
+                foreach (var line in lines.Where(x => !string.IsNullOrWhiteSpace(x)))
+                {
+                    sb.AppendLine($"\t{line}");
+                }
+            }
+
+            sb.AppendLine("}");
+
+            return sb.ToString();
         }
     }
 }

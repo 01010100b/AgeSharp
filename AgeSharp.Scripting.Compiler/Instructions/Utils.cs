@@ -41,10 +41,10 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
             if (address.IsArrayAccess)
             {
-                instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} g:= {address.Offset}"));
-                instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} c:* {address.IndexStride}"));
-                instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} c:+ 1"));
-                instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:+ {memory.AddressingGoal}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} g:= {address.Offset}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} c:* {address.IndexStride}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} c:+ 1"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:+ {memory.Sp4}"));
             }
             else if (address.Offset > 0)
             {
@@ -61,10 +61,10 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             var instructions = new List<Instruction>();
             var label_return = new LabelInstruction();
 
-            instructions.AddRange(GetPointer(memory, from, memory.MemCpy0));
-            instructions.AddRange(GetPointer(memory, to, memory.MemCpy1));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy2} c:= {length}"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.AddressingGoal} c:= {label_return.Label}"));
+            instructions.AddRange(GetPointer(memory, from, memory.Sp0));
+            instructions.AddRange(GetPointer(memory, to, memory.Sp1));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp2} c:= {length}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} c:= {label_return.Label}"));
             instructions.Add(new JumpInstruction(MemCpyLabel));
             instructions.Add(label_return);
 
@@ -78,16 +78,16 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             var label_end = new LabelInstruction();
 
             instructions.Add(label_repeat);
-            instructions.Add(new JumpFactInstruction(memory.MemCpy2, "==", 0, label_end));
-            instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.MemCpy0} {memory.MemCpy3}"));
-            instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.MemCpy1} g: {memory.MemCpy3}"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy0} c:+ 1"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy1} c:+ 1"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.MemCpy2} c:- 1"));
+            instructions.Add(new JumpFactInstruction(memory.Sp2, "==", 0, label_end));
+            instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Sp0} {memory.Sp3}"));
+            instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.Sp1} g: {memory.Sp3}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp0} c:+ 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp1} c:+ 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp2} c:- 1"));
             instructions.Add(new JumpInstruction(label_repeat));
 
             instructions.Add(label_end);
-            instructions.Add(new JumpIndirectInstruction(memory.AddressingGoal));
+            instructions.Add(new JumpIndirectInstruction(memory.Sp4));
 
             return instructions;
         }

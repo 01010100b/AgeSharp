@@ -21,16 +21,16 @@ namespace AgeSharp.Scripting.Language
             IsRef = is_ref;
         }
 
-        public bool CanAssign(Type type)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Validate()
         {
             ValidateName(Name);
 
             if (Type == PrimitiveType.Void) throw new NotSupportedException($"Variable {Name} has type Void.");
+        }
+
+        public override string ToString()
+        {
+            return $"{(IsRef ? "ref " : "")}{Type.Name} {Name};";
         }
     }
 }

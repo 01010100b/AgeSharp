@@ -42,5 +42,26 @@ namespace AgeSharp.Scripting.Language.Expressions
                 arg.Type.ValidateAssignment(par.Type, par.IsRef);
             }
         }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append($"{Method.ShortName}(");
+
+            for (int i = 0; i < Arguments.Count; i++)
+            {
+                var argument = Arguments[i];
+                sb.Append(argument.ToString());
+
+                if (i < Arguments.Count - 1)
+                {
+                    sb.Append(", ");
+                }
+            }
+
+            sb.Append(")");
+
+            return sb.ToString();
+        }
     }
 }

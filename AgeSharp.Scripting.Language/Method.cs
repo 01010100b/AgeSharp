@@ -14,6 +14,8 @@ namespace AgeSharp.Scripting.Language
         public Type ReturnType { get; set; } = PrimitiveType.Void;
         public IReadOnlyList<Variable> Parameters { get; } = new List<Variable>();
         public Block Block { get; }
+        public bool ReturnsVoid => ReturnType == PrimitiveType.Void;
+        public string ShortName => GetShortName();
 
         public Method(Script script) : base()
         {
@@ -70,6 +72,42 @@ namespace AgeSharp.Scripting.Language
                     }
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"{ReturnType.Name} {ShortName}(");
+
+            for (int i = 0; i < Parameters.Count; i++)
+            {
+                var parameter = Parameters[i];
+                sb.Append($"{(parameter.IsRef ? "ref " : "")}{parameter.Type.Name} {parameter.Name}");
+
+                if (i < Parameters.Count - 1)
+                {
+                    sb.Append(", ");
+                }
+            }
+
+            sb.AppendLine(")");
+            sb.AppendLine(Block.ToString());
+
+            return sb.ToString();
+        }
+
+        private string GetShortName()
+        {
+            var name = Name;
+            var index = Name.IndexOf('(');
+
+            if (index > 0)
+            {
+                name = Name[..index];
+            }
+
+            return name;
         }
     }
 }

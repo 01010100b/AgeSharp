@@ -184,7 +184,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
                 for (int i = 0; i < call.Method.Parameters.Count; i++)
                 {
-                    var par = method.Parameters[i];
+                    var par = call.Method.Parameters[i];
                     var arg = call.Arguments[i];
                     var addr = Memory.GetAddress(par);
 
@@ -215,7 +215,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     }
                     else
                     {
-                        throw new NotSupportedException($"Method {call.Method} call with paramter {par.Name} not const or var.");
+                        throw new NotSupportedException($"Method {call.Method} call with parameter {par.Name} not const or var.");
                     }
                 }
 

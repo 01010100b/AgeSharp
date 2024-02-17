@@ -81,26 +81,14 @@ class Program
 
     private static void OpenDebugFile(CompilationResult result)
     {
-        var lines = new List<string>();
         var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "debug.txt");
 
         if (File.Exists(file))
         {
             File.Delete(file);
         }
-
-        lines.Add(@"### INSTRUCTIONS ###");
-        lines.Add("");
-        lines.Add("");
-        lines.AddRange(result.InstructionStream);
-        lines.Add("");
-        lines.Add("");
-        lines.Add("### PER ###");
-        lines.Add("");
-        lines.Add("");
-        lines.Add(result.GetPer());
         
-        File.WriteAllLines(file, lines);
+        File.WriteAllText(file, result.ToString());
         var psinfo = new ProcessStartInfo() { FileName = file, UseShellExecute = true };
         Process.Start(psinfo);
     }

@@ -76,5 +76,27 @@ namespace AgeSharp.Scripting.Language
             if (EntryPoint.ReturnType != PrimitiveType.Void) throw new Exception($"Entry point {EntryPoint.Name} has non-void return type.");
             if (EntryPoint.Parameters.Any()) throw new Exception($"Entry point {EntryPoint.Name} has parameters.");
         }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            foreach (var type in Types.OfType<CompoundType>())
+            {
+                sb.AppendLine(type.ToString());
+            }
+
+            foreach (var global in GlobalScope.Variables)
+            {
+                sb.AppendLine(global.ToString());
+            }
+
+            foreach (var method in Methods)
+            {
+                sb.AppendLine($"{(method == EntryPoint ? "@entry " : "")}{method}");
+            }
+
+            return sb.ToString();
+        }
     }
 }

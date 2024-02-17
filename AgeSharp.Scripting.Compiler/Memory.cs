@@ -16,11 +16,11 @@ namespace AgeSharp.Scripting.Compiler
         public int StackPtr { get; }
         public int ConditionGoal { get; }
         public int ExpressionGoal { get; }
-        public int AddressingGoal { get; }
-        public int MemCpy3 { get; }
-        public int MemCpy2 { get; }
-        public int MemCpy1 { get; }
-        public int MemCpy0 { get; }
+        public int Sp4 { get; }
+        public int Sp3 { get; }
+        public int Sp2 { get; }
+        public int Sp1 { get; }
+        public int Sp0 { get; }
         public int CallResultCount { get; }
         public int CallResultBase { get; }
         public int RegisterCount { get; }
@@ -44,11 +44,11 @@ namespace AgeSharp.Scripting.Compiler
             StackPtr = goal--;
             ConditionGoal = goal--;
             ExpressionGoal = goal--;
-            AddressingGoal = goal--;
-            MemCpy3 = goal--;
-            MemCpy2 = goal--;
-            MemCpy1 = goal--;
-            MemCpy0 = goal--;
+            Sp4 = goal--;
+            Sp3 = goal--;
+            Sp2 = goal--;
+            Sp1 = goal--;
+            Sp0 = goal--;
 
             goal -= CallResultCount;
             CallResultBase = goal;
