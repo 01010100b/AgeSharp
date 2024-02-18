@@ -12,7 +12,6 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
         var result = GetCompilation(SOURCE);
         var per = result.GetPer();
         var file = Path.Combine(FROM, "Deimos.per");

@@ -35,6 +35,15 @@ namespace AgeSharp.Scripting.SharpParser
             var bool_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Bool")!;
             parse.AddType(int_type, PrimitiveType.Int);
             parse.AddType(bool_type, PrimitiveType.Bool);
+            
+            var intrinsics = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Intrinsics")!;
+            
+            foreach (var intrinsic in intrinsics.GetMembers().OfType<IMethodSymbol>())
+            {
+                Debug.WriteLine($"intr method {intrinsic.Name}");
+                var method = script.Methods.Single(x => x.Name == intrinsic.Name);
+                parse.AddMethod(intrinsic, method);
+            }
 
             TypeParser.Parse(parse);
             GlobalsParser.Parse(parse);

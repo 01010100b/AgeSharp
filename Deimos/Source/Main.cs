@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
 namespace Deimos.Source
 {
@@ -20,6 +21,7 @@ namespace Deimos.Source
             Int c;
             c = 2;
             Fibonacci(a[c]);
+            ChatDataToSelf("my message %d", 2);
             return;
         }
 

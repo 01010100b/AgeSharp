@@ -21,6 +21,11 @@ namespace AgeSharp.Scripting.Compiler
         public int Sp2 { get; }
         public int Sp1 { get; }
         public int Sp0 { get; }
+        public int Intr4 { get; }
+        public int Intr3 {  get; }
+        public int Intr2 { get; }
+        public int Intr1 { get; }
+        public int Intr0 { get; }
         public int CallResultCount { get; }
         public int CallResultBase { get; }
         public int RegisterCount { get; }
@@ -49,6 +54,11 @@ namespace AgeSharp.Scripting.Compiler
             Sp2 = goal--;
             Sp1 = goal--;
             Sp0 = goal--;
+            Intr4 = goal--;
+            Intr3 = goal--;
+            Intr2 = goal--;
+            Intr1 = goal--;
+            Intr0 = goal--;
 
             goal -= CallResultCount;
             CallResultBase = goal;

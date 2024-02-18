@@ -166,7 +166,7 @@ namespace AgeSharp.Scripting.SharpParser
                 }
                 else
                 {
-                    throw new NotSupportedException($"Operation {op.GetType().Name} not supported.");
+                    throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
                 }
             }
         }
@@ -221,10 +221,32 @@ namespace AgeSharp.Scripting.SharpParser
                 var method = parse.GetMethod(call.TargetMethod);
                 var callexpr = new CallExpression(method);
 
-                foreach (var argop in call.Arguments)
+                for (int i = 0; i < call.Arguments.Length; i++)
                 {
-                    var arg = ParseExpression(argop, parse);
-                    callexpr.AddArgument(arg);
+                    var argop = call.Arguments[i];
+
+                    if (argop.Value.Type!.SpecialType == SpecialType.System_String)
+                    {
+                        Debug.WriteLine($"argop {argop.Value} {argop.Value.Type}");
+
+                        if (argop.Value is ILiteralOperation literal)
+                        {
+                            if (i != 0) throw new NotSupportedException($"Call to method {method.Name} with string literal not as first argument.");
+                            if (!literal.ConstantValue.HasValue) throw new NotSupportedException($"String literal must be constant.");
+                            
+                            var lit = (string)literal.ConstantValue.Value!;
+                            callexpr = new CallExpression(method, lit);
+                        }
+                        else
+                        {
+                            throw new NotSupportedException($"String literal argument {argop.Value.GetType().Name} not supported.");
+                        }
+                    }
+                    else
+                    {
+                        var arg = ParseExpression(argop, parse);
+                        callexpr.AddArgument(arg);
+                    }
                 }
 
                 return callexpr;
@@ -235,7 +257,7 @@ namespace AgeSharp.Scripting.SharpParser
             }
             else
             {
-                throw new NotImplementedException($"Not implemented expression {expression} {expression.GetType().Name}");
+                throw new NotSupportedException($"Expression {expression} {expression.GetType().Name} not supported.");
             }
         }
 
