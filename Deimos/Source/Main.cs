@@ -10,27 +10,33 @@ namespace Deimos.Source
 {
     public class Main
     {
-        const int S = 2;
-
         [AgeMethod(EntryPoint = true)]
         public static void EntryPoint()
         {
-            Int[] a = new Int[S + 1];
-            Int[] x = new Int[S + 1];
-            Int b;
-            Int c;
-            c = 2;
-            Fibonacci(a[c]);
-            ChatDataToSelf("my message %d", 2);
-            return;
+            Int a;
+            a = 17;
+            ChatDataToSelf("t0 %d", a);
+            Test1(ref a);
+        }
+        
+        [AgeMethod]
+        public static void Test1(ref Int a)
+        {
+            ChatDataToSelf("t1 %d", a);
+            Test2(ref a);
         }
 
         [AgeMethod]
-        public static Int Fibonacci(Int i)
+        public static void Test2(ref Int a)
         {
-            Int a, b, fa, fb;
-            b = i;
-            return S * 3 + 1;
+            ChatDataToSelf("t2 %d", a);
+            Test3(a);
+        }
+
+        [AgeMethod]
+        public static void Test3(Int a)
+        {
+            ChatDataToSelf("t3 %d", a);
         }
     }
 }

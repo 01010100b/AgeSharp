@@ -11,26 +11,23 @@ namespace AgeSharp.Scripting.Language
     {
         public string Name { get; }
         public Type Type { get; }
-        public bool IsRef { get; }
-        public int Size => IsRef ? 1 : Type.Size;
+        public int Size => Type.Size;
 
-        public Variable(string name, Type type, bool is_ref)
+        public Variable(string name, Type type)
         {
             Name = name;
             Type = type;
-            IsRef = is_ref;
         }
 
         public override void Validate()
         {
             ValidateName(Name);
-
             if (Type == PrimitiveType.Void) throw new NotSupportedException($"Variable {Name} has type Void.");
         }
 
         public override string ToString()
         {
-            return $"{(IsRef ? "ref " : "")}{Type.Name} {Name};";
+            return $"{Type.Name} {Name};";
         }
     }
 }

@@ -31,18 +31,43 @@ namespace AgeSharp.Scripting.SharpParser
             var script = ScriptCompiler.CreateScript();
             var parse = new Parse(script, compilation);
 
-            var int_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Int")!;
-            var bool_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Bool")!;
+            var int_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Int");
+            var bool_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Bool");
+            Debug.Assert(int_type is not null);
+            Debug.Assert(bool_type is not null);
             parse.AddType(int_type, PrimitiveType.Int);
             parse.AddType(bool_type, PrimitiveType.Bool);
             
-            var intrinsics = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Intrinsics")!;
+            var intrinsics = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Intrinsics");
+            Debug.Assert(intrinsics is not null);
             
             foreach (var intrinsic in intrinsics.GetMembers().OfType<IMethodSymbol>())
             {
-                Debug.WriteLine($"intr method {intrinsic.Name}");
                 var method = script.Methods.Single(x => x.Name == intrinsic.Name);
                 parse.AddMethod(intrinsic, method);
+            }
+
+            foreach (var op in int_type.GetMembers().OfType<IMethodSymbol>())
+            {
+                Debug.WriteLine($"int op {op} {op.GetType().Name}");
+                var name = op.ToString()!;
+
+                if (name.Contains("operator <("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "LessThan"));
+                }
+                else if (name.Contains("operator >("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "GreaterThan"));
+                }
+                else if (name.Contains("operator +("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Add"));
+                }
+                else if (name.Contains("operator -("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Sub"));
+                }
             }
 
             TypeParser.Parse(parse);

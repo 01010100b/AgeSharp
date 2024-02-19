@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgeSharp.Scripting.Language.Types;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -66,8 +67,8 @@ namespace AgeSharp.Scripting.Language
             foreach (var variable in Variables)
             {
                 variable.Validate();
-                if (in_scope.Contains(variable.Name)) throw new Exception($"Variable {variable.Name} already in scope.");
-                if (Parent is null && variable.IsRef) throw new Exception($"Global variable {variable.Name} is ref.");
+                if (in_scope.Contains(variable.Name)) throw new NotSupportedException($"Variable {variable.Name} already in scope.");
+                if (Parent is null && variable.Type is RefType) throw new NotSupportedException($"Global variable {variable.Name} is ref.");
             }
         }
     }

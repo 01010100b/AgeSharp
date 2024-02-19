@@ -58,7 +58,7 @@ namespace AgeSharp.Scripting.Language
             }
 
             if (Block.Statements.Count == 0) throw new NotSupportedException($"Method {Name} has no statements.");
-            if (Block.Statements[^1] is not ReturnStatement) throw new NotSupportedException($"Last statement of method {Name} is not return statement.");
+            if (ReturnsVoid && Block.Statements[^1] is not ReturnStatement) throw new NotSupportedException($"Last statement of method {Name} is not return statement.");
 
             foreach (var block in GetAllBlocks())
             {
@@ -66,7 +66,7 @@ namespace AgeSharp.Scripting.Language
 
                 foreach (var variable in block.Scope.Variables.Where(x => !Parameters.Contains(x)))
                 {
-                    if (variable.IsRef)
+                    if (variable.Type is RefType)
                     {
                         throw new Exception($"Variable {variable.Name} is ref but not method parameter.");
                     }
@@ -83,7 +83,7 @@ namespace AgeSharp.Scripting.Language
             for (int i = 0; i < Parameters.Count; i++)
             {
                 var parameter = Parameters[i];
-                sb.Append($"{(parameter.IsRef ? "ref " : "")}{parameter.Type.Name} {parameter.Name}");
+                sb.Append($"{parameter.Type.Name} {parameter.Name}");
 
                 if (i < Parameters.Count - 1)
                 {

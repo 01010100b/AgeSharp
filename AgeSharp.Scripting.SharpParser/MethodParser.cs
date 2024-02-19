@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -72,7 +73,8 @@ namespace AgeSharp.Scripting.SharpParser
             foreach (var parameter in symbol.Parameters)
             {
                 var pname = parameter.Name;
-                var isref = parameter.Type.SpecialType == SpecialType.System_Array;
+                var type = parse.GetType(parameter.Type);
+                var isref = type is ArrayType;
                 
                 if (parameter.HasExplicitDefaultValue) throw new NotSupportedException($"Method {name} parameter {pname} has default value.");
 
@@ -84,8 +86,12 @@ namespace AgeSharp.Scripting.SharpParser
                     case RefKind.Out: throw new NotSupportedException($"Method {name} parameter {pname} is out parameter.");
                 }
 
-                var type = parse.GetType(parameter.Type);
-                var v = new Variable(pname, type, isref);
+                if (isref)
+                {
+                    type = parse.Script.GetRefType(type);
+                }
+                
+                var v = new Variable(pname, type);
                 method.AddParameter(v);
                 parse.AddParameter(parameter, v);
             }
@@ -103,16 +109,19 @@ namespace AgeSharp.Scripting.SharpParser
 
             if (syntax.Body is not null)
             {
-                ParseBlock((IBlockOperation)model.GetOperation(syntax.Body)!, method.Block, model, parse);
+                ParseBlock((IBlockOperation)model.GetOperation(syntax.Body)!, method.Block, parse);
             }
 
-            if (method.Block.Statements.Count == 0 && method.ReturnsVoid)
+            if (method.ReturnsVoid)
             {
-                method.Block.Statements.Add(new ReturnStatement(method.Block.Scope, null));
+                if (method.Block.Statements.Count == 0 || method.Block.Statements[^1] is not ReturnStatement)
+                {
+                    method.Block.Statements.Add(new ReturnStatement(method.Block.Scope, null));
+                }
             }
         }
 
-        private static void ParseBlock(IBlockOperation operation, Block block, SemanticModel model, Parse parse)
+        private static void ParseBlock(IBlockOperation operation, Block block, Parse parse)
         {
             foreach (var local in operation.Operations.OfType<IVariableDeclarationGroupOperation>())
             {
@@ -121,53 +130,99 @@ namespace AgeSharp.Scripting.SharpParser
 
             foreach (var op in operation.Operations.Where(x => x is not IVariableDeclarationGroupOperation))
             {
-                if (op is IBlockOperation blockop)
-                {
-                    var bb = new Block(block.Scope);
-                    ParseBlock(blockop, bb, model, parse);
-                    block.Statements.Add(bb);
-                }
-                else if (op is IReturnOperation ret)
-                {
-                    if (ret.ReturnedValue is not null)
-                    {
-                        Debug.WriteLine($"ret {ret.ReturnedValue} {ret.ReturnedValue.GetType().Name}");
-                        var expression = ParseExpression(ret.ReturnedValue, parse);
-                        block.Statements.Add(new ReturnStatement(block.Scope, expression));
-                    }
-                    else
-                    {
-                        block.Statements.Add(new ReturnStatement(block.Scope, null));
-                    }
-                }
-                else if (op is IExpressionStatementOperation exprst)
-                {
-                    if (exprst.Operation is IAssignmentOperation assign)
-                    {
-                        if (assign is not ISimpleAssignmentOperation) throw new NotSupportedException($"Assign {assign} is not simple assignment.");
+                ParseStatement(op, block, parse);
+            }
+        }
 
-                        var target = (AccessorExpression)ParseExpression(assign.Target, parse);
-                        var value = ParseExpression(assign.Value, parse);
-                        block.Statements.Add(new AssignStatement(block.Scope, target, value));
-                    }
-                    else if (exprst.Operation is IInvocationOperation invoke)
-                    {
-                        var right = ParseExpression(invoke, parse);
-                        block.Statements.Add(new AssignStatement(block.Scope, null, right));
-                    }
-                    else
-                    {
-                        throw new NotSupportedException($"Expression statement {exprst.Operation} not recognized.");
-                    }
-                }
-                else if (op is IInvocationOperation call)
+        private static void ParseStatement(IOperation op, Block block, Parse parse)
+        {
+            if (op is IBlockOperation blockop)
+            {
+                var bb = new Block(block.Scope);
+                ParseBlock(blockop, bb, parse);
+                block.Statements.Add(bb);
+            }
+            else if (op is IReturnOperation ret)
+            {
+                if (ret.ReturnedValue is not null)
                 {
-                    
+                    var expression = ParseExpression(ret.ReturnedValue, parse);
+                    block.Statements.Add(new ReturnStatement(block.Scope, expression));
                 }
                 else
                 {
-                    throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
+                    block.Statements.Add(new ReturnStatement(block.Scope, null));
                 }
+            }
+            else if (op is IExpressionStatementOperation exprst)
+            {
+                if (exprst.Operation is IAssignmentOperation assign)
+                {
+                    if (assign is ISimpleAssignmentOperation simple)
+                    {
+                        var target = (AccessorExpression)ParseExpression(simple.Target, parse);
+                        var value = ParseExpression(simple.Value, parse);
+                        block.Statements.Add(new AssignStatement(block.Scope, target, value));
+                    }
+                    else if (assign is ICompoundAssignmentOperation compound)
+                    {
+                        var target = (AccessorExpression)ParseExpression(compound.Target, parse);
+                        var value = ParseExpression(compound.Value, parse);
+                        var method = parse.GetMethod(compound.OperatorMethod!);
+                        var callexpr = new CallExpression(method);
+                        callexpr.AddArgument(target);
+                        callexpr.AddArgument(value);
+                        block.Statements.Add(new AssignStatement(block.Scope, target, callexpr));
+                    }
+                    else
+                    {
+                        throw new NotSupportedException($"Assign {assign} not supported.");
+                    }
+                }
+                else if (exprst.Operation is IInvocationOperation invoke)
+                {
+                    var right = ParseExpression(invoke, parse);
+                    block.Statements.Add(new AssignStatement(block.Scope, null, right));
+                }
+                else
+                {
+                    throw new NotSupportedException($"Expression statement {exprst.Operation} not recognized.");
+                }
+            }
+            else if (op is IConditionalOperation conditional)
+            {
+                var condition = ParseExpression(conditional.Condition, parse);
+                var ifs = new IfStatement(block.Scope, condition);
+
+                if (conditional.WhenTrue is not null)
+                {
+                    if (conditional.WhenTrue is IBlockOperation wt)
+                    {
+                        ParseBlock(wt, ifs.WhenTrue, parse);
+                    }
+                    else
+                    {
+                        ParseStatement(conditional.WhenTrue, ifs.WhenTrue, parse);
+                    }
+                }
+
+                if (conditional.WhenFalse is not null)
+                {
+                    if (conditional.WhenFalse is IBlockOperation wf)
+                    {
+                        ParseBlock(wf, ifs.WhenFalse, parse);
+                    }
+                    else
+                    {
+                        ParseStatement(conditional.WhenFalse, ifs.WhenFalse, parse);
+                    }
+                }
+
+                block.Statements.Add(ifs);
+            }
+            else
+            {
+                throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
             }
         }
 
@@ -185,13 +240,13 @@ namespace AgeSharp.Scripting.SharpParser
                 }
                 else
                 {
-                    throw new NotSupportedException($"Const of type {expression.Type!.Name}");
+                    throw new NotSupportedException($"Const of type {expression.Type!.Name}.");
                 }
             }
             else if (expression is IConversionOperation conversion)
             {
                 if (!conversion.Conversion.IsUserDefined) throw new NotSupportedException($"Conversion {conversion} not supported.");
-                EnsureInternal(conversion.OperatorMethod!);
+                if (!parse.IsInternal(conversion.OperatorMethod!)) throw new NotSupportedException($"Conversion {conversion} not supported.");
 
                 return ParseExpression(conversion.Operand, parse);
             }
@@ -207,15 +262,6 @@ namespace AgeSharp.Scripting.SharpParser
 
                 return new AccessorExpression(variable);
             }
-            else if (expression is IArrayElementReferenceOperation arr)
-            {
-                if (arr.Indices.Length != 1) throw new NotSupportedException($"Array indexing with not exactly 1 index.");
-                
-                var v = ((AccessorExpression)ParseExpression(arr.ArrayReference, parse)).Variable;
-                var index = ParseExpression(arr.Indices.Single(), parse);
-
-                return new AccessorExpression(v, index);
-            }
             else if (expression is IInvocationOperation call)
             {
                 var method = parse.GetMethod(call.TargetMethod);
@@ -227,8 +273,6 @@ namespace AgeSharp.Scripting.SharpParser
 
                     if (argop.Value.Type!.SpecialType == SpecialType.System_String)
                     {
-                        Debug.WriteLine($"argop {argop.Value} {argop.Value.Type}");
-
                         if (argop.Value is ILiteralOperation literal)
                         {
                             if (i != 0) throw new NotSupportedException($"Call to method {method.Name} with string literal not as first argument.");
@@ -255,6 +299,32 @@ namespace AgeSharp.Scripting.SharpParser
             {
                 return ParseExpression(arg.Value, parse);
             }
+            else if (expression is IBinaryOperation bin)
+            {
+                var method = parse.GetMethod(bin.OperatorMethod!);
+                var callexpr = new CallExpression(method);
+                callexpr.AddArgument(ParseExpression(bin.LeftOperand, parse));
+                callexpr.AddArgument(ParseExpression(bin.RightOperand, parse));
+
+                return callexpr;
+            }
+            else if (expression is IPropertyReferenceOperation prop)
+            {
+                var v = ((AccessorExpression)ParseExpression(prop.Instance!, parse)).Variable;
+
+                if (v.Type is ArrayType)
+                {
+                    if (prop.Property.ToString()!.Contains(">.this[AgeSharp.Scripting.SharpParser.Int]"))
+                    {
+                        var index = ParseExpression(prop.Arguments.Single(), parse);
+
+                        return new AccessorExpression(v, index);
+                    }
+                    
+                }
+
+                throw new NotSupportedException($"Property reference {prop} not supported.");
+            }
             else
             {
                 throw new NotSupportedException($"Expression {expression} {expression.GetType().Name} not supported.");
@@ -268,46 +338,29 @@ namespace AgeSharp.Scripting.SharpParser
                 var local = variable.Symbol;
                 var init = variable.GetVariableInitializer();
                 var name = local.Name;
-                var type = local.Type;
-                
-                if (type is IArrayTypeSymbol arr)
+                var type = parse.GetType(local.Type);
+
+                if (type is ArrayType)
                 {
                     if (init is null) throw new NotSupportedException($"Array {name} without init.");
+                    if (init.Value is not IConversionOperation conversion) throw new NotSupportedException($"Array {name} init not conversion.");
+                    if (conversion.Operand is not IObjectCreationOperation creation) throw new NotSupportedException($"Array {name} init not object creation.");
 
-                    if (init.Value is IArrayCreationOperation creation)
-                    {
-                        if (creation.DimensionSizes.Length != 1) throw new NotSupportedException($"Array {name} does not have exactly 1 dimension.");
-
-                        var size = creation.DimensionSizes.Single();
-                        if (!size.ConstantValue.HasValue) throw new NotSupportedException($"Array {name} init does not have constant length.");
-
-                        var length = (int)size.ConstantValue.Value!;
-                        var t = parse.GetType(type, length);
-                        var v = new Variable(name, t, false);
-                        block.Scope.AddVariable(v);
-                        parse.AddLocal(local, v);
-                    }
-                    else
-                    {
-                        throw new NotSupportedException($"Array {name} init {init.Value} not recognized.");
-                    }
+                    var arg = creation.Arguments.Single().Value;
+                    if (arg is not IConversionOperation argconv) throw new NotSupportedException($"Array {name} arg is not conversion.");
+                    if (!argconv.Operand.ConstantValue.HasValue) throw new NotSupportedException($"Array {name} init without const length.");
+                    var length = (int)argconv.Operand.ConstantValue.Value!;
+                    type = parse.GetType(local.Type, length);
                 }
                 else
                 {
                     if (init is not null) throw new NotSupportedException($"Non-array local {name} has init.");
-                    var t = parse.GetType(type);
-                    var v = new Variable(name, t, false);
-                    block.Scope.AddVariable(v);
-                    parse.AddLocal(local, v);
                 }
-            }
-        }
 
-        private static void EnsureInternal(ISymbol symbol)
-        {
-            var namesp = symbol.ContainingNamespace;
-            if (namesp is null) throw new Exception($"Symbol {symbol} has no namespace.");
-            if (namesp.Name != "SharpParser") throw new Exception($"Symbol {symbol} is not internal.");
+                var v = new Variable(name, type);
+                block.Scope.AddVariable(v);
+                parse.AddLocal(local, v);
+            }
         }
     }
 }

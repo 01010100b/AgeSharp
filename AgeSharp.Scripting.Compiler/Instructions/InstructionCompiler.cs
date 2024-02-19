@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Type = AgeSharp.Scripting.Language.Type;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
@@ -91,7 +92,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     var label_false = new LabelInstruction();
                     var label_end = new LabelInstruction();
 
-                    instructions.AddRange(CompileExpression(method, new Address(Memory.ConditionGoal, false), ifs.Condition));
+                    instructions.AddRange(CompileExpression(method, new Address(PrimitiveType.Bool, Memory.ConditionGoal, false), ifs.Condition));
                     instructions.Add(new JumpFactInstruction(Memory.ConditionGoal, "==", 0, label_false));
                     instructions.AddRange(CompileBlock(method, ifs.WhenTrue, label_break, label_continue));
                     instructions.Add(new JumpInstruction(label_end));
@@ -107,7 +108,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     instructions.AddRange(InitializeArrays(loop.Scope));
                     instructions.AddRange(CompileBlock(method, loop.Prefix, null, null));
                     instructions.Add(label_repeat);
-                    instructions.AddRange(CompileExpression(method, new Address(Memory.ConditionGoal, false), loop.Condition));
+                    instructions.AddRange(CompileExpression(method, new Address(PrimitiveType.Bool, Memory.ConditionGoal, false), loop.Condition));
                     instructions.Add(new JumpFactInstruction(Memory.ConditionGoal, "==", 0, label_end));
                     instructions.AddRange(CompileBlock(method, loop.Block, label_end, label_repeat));
                     instructions.AddRange(CompileBlock(method, loop.Postfix, null, null));
@@ -117,7 +118,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 {
                     if (ret.Expression is not null)
                     {
-                        var result = new Address(Memory.CallResultBase, false);
+                        var result = new Address(ret.Expression.Type, Memory.CallResultBase, false);
                         instructions.AddRange(CompileExpression(method, result, ret.Expression));
                     }
 
@@ -156,7 +157,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 }
 
                 var address = GetAddress(ae);
-                instructions.AddRange(Utils.MemCpy(Memory, address, result, ae.Type!.Size));
+                instructions.AddRange(Utils.Assign(Memory, address, result));
 
                 return instructions;
             }
@@ -170,14 +171,14 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 }
 
                 // push registers to stack
-                var callee_registercount = Memory.GetRegisterCount(method);
-                var called_registercount = Memory.GetRegisterCount(call.Method);
-                var registers_addr = new Address(Memory.RegisterBase, false);
-                var stack_addr = new Address(Memory.StackPtr, true);
+                var caller_registercount = Memory.GetRegisterCount(method);
+                var callee_registercount = Memory.GetRegisterCount(call.Method);
+                var registers_addr = new Address(PrimitiveType.Void, Memory.RegisterBase, false);
+                var stack_addr = new Address(PrimitiveType.Void, Memory.StackPtr, true);
                 var label_return = new LabelInstruction();
 
-                instructions.AddRange(Utils.MemCpy(Memory, registers_addr, stack_addr, callee_registercount));
-                instructions.AddRange(Utils.Clear(Memory.RegisterBase, called_registercount));
+                instructions.AddRange(Utils.MemCpy(Memory, registers_addr, stack_addr, caller_registercount));
+                instructions.AddRange(Utils.Clear(Memory.RegisterBase, callee_registercount));
 
                 // set parameters
                 instructions.Add(new CommandInstruction($"up-modify-goal {Memory.RegisterBase} c:= {label_return.Label}"));
@@ -201,17 +202,10 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                         if (!Script.GlobalScope.Variables.Contains(arga.Variable))
                         {
                             // local variables are now on stack, so interpret addr as offset from stackptr
-                            argaddr = new(Memory.StackPtr, true, argaddr.Goal - Memory.RegisterBase);
+                            argaddr = new(argaddr.Type, Memory.StackPtr, true, argaddr.Goal - Memory.RegisterBase);
                         }
 
-                        if (par.IsRef)
-                        {
-                            instructions.AddRange(Utils.GetPointer(Memory, argaddr, addr.Goal));
-                        }
-                        else
-                        {
-                            instructions.AddRange(Utils.MemCpy(Memory, argaddr, addr, par.Type.Size));
-                        }
+                        instructions.AddRange(Utils.Assign(Memory, argaddr, addr));
                     }
                     else
                     {
@@ -220,17 +214,17 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 }
 
                 // increment stackptr and jump
-                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:+ {callee_registercount}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:+ {caller_registercount}"));
                 instructions.Add(new JumpInstruction(MethodLabels[call.Method]));
 
                 // return
                 instructions.Add(label_return);
-                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:- {callee_registercount}"));
-                instructions.AddRange(Utils.MemCpy(Memory, stack_addr, registers_addr, callee_registercount));
+                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:- {caller_registercount}"));
+                instructions.AddRange(Utils.MemCpy(Memory, stack_addr, registers_addr, caller_registercount));
                 
                 if (result is not null)
                 {
-                    var result_addr = new Address(Memory.CallResultBase, false);
+                    var result_addr = new Address(result.Type, Memory.CallResultBase, false);
                     instructions.AddRange(Utils.MemCpy(Memory, result_addr, result, call.Method.ReturnType.Size));
                 }
 
@@ -248,7 +242,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
             var instructions = new List<Instruction>();
 
-            foreach (var array in scope.Variables.Where(x => x.Type is ArrayType && !x.IsRef))
+            foreach (var array in scope.Variables.Where(x => x.Type is ArrayType))
             {
                 var addr = Memory.GetAddress(array);
                 var length = ((ArrayType)array.Type).Length;
@@ -275,15 +269,16 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     type = field.Type;
                 }
 
-                addr = new(addr.Goal, addr.IsRef, offset);
+                addr = new(type, addr.Goal, addr.IsRef, offset);
             }
             else if (accessor.IsArrayAccess)
             {
-                var size = ((ArrayType)accessor.Variable.Type).ElementType.Size;
+                var type = ((ArrayType)accessor.Variable.Type).ElementType;
+                var size = type.Size;
 
                 if (accessor.Index is ConstExpression ce)
                 {
-                    addr = new(addr.Goal, addr.IsRef, 1 + ce.Value * size);
+                    addr = new(type, addr.Goal, addr.IsRef, 1 + ce.Value * size);
                 }
                 else if (accessor.Index is AccessorExpression ai)
                 {
@@ -291,7 +286,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
                     var vaddr = Memory.GetAddress(ai.Variable);
 
-                    addr = new(addr.Goal, addr.IsRef, vaddr.Goal, size);
+                    addr = new(type, addr.Goal, addr.IsRef, vaddr.Goal, size);
                 }
                 else
                 {

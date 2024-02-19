@@ -12,17 +12,51 @@ namespace AgeSharp.Scripting.Language
         public string Name { get; } = name;
         public abstract int Size { get; }
 
-        public void ValidateAssignment(Type to, bool to_isref)
+        public void ValidateAssignmentFrom(Type from)
         {
-            if (!to_isref)
+            if (this == from)
             {
-                if (this != to) throw new NotSupportedException($"Can not assign {Name} to {to.Name}.");
+                return;
             }
-            else if (this != to)
+
+            if (this is RefType rtt)
             {
-                if (this is not ArrayType af || to is not ArrayType at) throw new NotSupportedException($"Ref assign from {Name} to {to.Name} with not both being arrays.");
-                if (af.ElementType != at.ElementType) throw new NotSupportedException($"Ref array assign from {Name} to {to.Name} with different element types.");
+                if (rtt.ReferencedType == from)
+                {
+                    return;
+                }
+
+                if (rtt.ReferencedType is ArrayType at)
+                {
+                    if (from is ArrayType af)
+                    {
+                        if (at.ElementType == af.ElementType)
+                        {
+                            return;
+                        }
+                    }
+
+                    if (from is RefType rtf)
+                    {
+                        if (rtf.ReferencedType is ArrayType raf)
+                        {
+                            if (at.ElementType == raf.ElementType)
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
             }
+            else if (from is RefType rtf)
+            {
+                if (this == rtf.ReferencedType)
+                {
+                    return;
+                }
+            }
+
+            throw new NotSupportedException($"Can not assign type {from.Name} to type {Name}.");
         }
     }
 }

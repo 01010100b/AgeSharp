@@ -26,27 +26,62 @@ namespace AgeSharp.Scripting.SharpParser
 
         public void AddType(ITypeSymbol symbol, Type type)
         {
-            if (symbol.TypeKind == TypeKind.Array)
+            if (symbol is not INamedTypeSymbol named)
             {
-                return;
+                throw new NotSupportedException($"Type {symbol.Name} is not named type.");
             }
 
-            Types.Add(symbol, type);
+            if (!IsArrayType(named))
+            {
+                Types.Add(symbol, type);
+            }
         }
 
         public Type GetType(ITypeSymbol symbol, int length = 1)
         {
-            if (symbol.TypeKind == TypeKind.Array)
+            if (symbol is not INamedTypeSymbol named)
             {
-                var arr = (IArrayTypeSymbol)symbol;
-                var etype = GetType(arr.ElementType);
+                throw new NotSupportedException($"Type {symbol.Name} is not named type.");
+            }
 
-                return Script.GetOrAddArrayType(etype, length);
+            if (IsArrayType(named))
+            {
+                var etype = named.TypeArguments.Single();
+                
+                if (etype is not INamedTypeSymbol enamed)
+                {
+                    throw new NotSupportedException($"Array type {symbol.Name} when element type {etype.Name} is not named type.");
+                }
+
+                if (enamed.IsGenericType)
+                {
+                    throw new NotSupportedException($"Array type {symbol.Name} with generic element type {etype.Name}.");
+                }
+
+                return Script.GetArrayType(GetType(etype), length);
             }
             else
             {
-                return Types[symbol];
+                return Types[named];
             }
+        }
+
+        private bool IsArrayType(INamedTypeSymbol symbol)
+        {
+            if (!symbol.IsGenericType)
+            {
+                return false;
+            }
+            else if (!IsInternal(symbol))
+            {
+                return false;
+            }
+            else if (symbol.Name != "Array")
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public void AddGlobal(IFieldSymbol symbol, Variable variable)
@@ -87,6 +122,23 @@ namespace AgeSharp.Scripting.SharpParser
         public Variable GetLocal(ILocalSymbol symbol)
         {
             return Locals[symbol];
+        }
+
+        public bool IsInternal(ISymbol symbol)
+        {
+            var namesp = symbol.ContainingNamespace;
+            if (namesp is null)
+            {
+                return false;
+            }
+            else if (namesp.Name != "SharpParser")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

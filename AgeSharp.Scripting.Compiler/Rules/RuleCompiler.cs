@@ -65,6 +65,19 @@ namespace AgeSharp.Scripting.Compiler.Rules
                     rules.Add(current);
                     current = new();
                 }
+                else if (instruction is CommandFactInstruction cf)
+                {
+                    if (!current.IsEmpty)
+                    {
+                        rules.Add(current);
+                        current = new();
+                    }
+
+                    current.Facts.Add(cf.Fact);
+                    current.Actions.Add(cf.Command);
+                    rules.Add(current);
+                    current = new();
+                }
                 else
                 {
                     throw new NotImplementedException($"Instruction {instruction.GetType().Name} not recognized.");

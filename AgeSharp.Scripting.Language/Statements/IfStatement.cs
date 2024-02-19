@@ -34,5 +34,16 @@ namespace AgeSharp.Scripting.Language.Statements
             
             ValidateExpression(Condition);
         }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"if ({Condition})");
+            sb.AppendLine(WhenTrue.ToString());
+            sb.AppendLine("else");
+            sb.AppendLine(WhenFalse.ToString());
+
+            return sb.ToString();
+        }
     }
 }

@@ -161,7 +161,7 @@ namespace AgeSharp.Scripting.Compiler
             if (expression is AccessorExpression access)
             {
                 Debug.Assert(access.Index is not null);
-                var vi = new Variable("var-" + Guid.NewGuid().ToString(), PrimitiveType.Int, false);
+                var vi = new Variable("var-" + Guid.NewGuid().ToString(), PrimitiveType.Int);
                 block.Scope.AddVariable(vi);
                 block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), access.Index!));
 
@@ -180,7 +180,7 @@ namespace AgeSharp.Scripting.Compiler
                         continue;
                     }
 
-                    var va = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type, false);
+                    var va = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type);
                     block.Scope.AddVariable(va);
                     block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(va), arg));
                     cn.AddArgument(new AccessorExpression(va));

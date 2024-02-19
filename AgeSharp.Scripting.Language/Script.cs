@@ -44,7 +44,7 @@ namespace AgeSharp.Scripting.Language
             }
         }
 
-        public ArrayType GetOrAddArrayType(Type element_type, int length)
+        public ArrayType GetArrayType(Type element_type, int length)
         {
             var name = ArrayType.GetArrayTypeName(element_type, length);
             var type = Types.OfType<ArrayType>().SingleOrDefault(x => x.Name == name);
@@ -52,6 +52,19 @@ namespace AgeSharp.Scripting.Language
             if (type is null)
             {
                 type = new(element_type, length);
+                AddType(type);
+            }
+
+            return type;
+        }
+
+        public RefType GetRefType(Type referenced_type)
+        {
+            var type = Types.OfType<RefType>().SingleOrDefault(x => x.ReferencedType == referenced_type);
+
+            if (type is null)
+            {
+                type = new(referenced_type);
                 AddType(type);
             }
 
@@ -91,7 +104,7 @@ namespace AgeSharp.Scripting.Language
                 sb.AppendLine(global.ToString());
             }
 
-            foreach (var method in Methods)
+            foreach (var method in Methods.Where(x => x.Block.Statements.Count > 0))
             {
                 sb.AppendLine($"{(method == EntryPoint ? "@entry " : "")}{method}");
             }

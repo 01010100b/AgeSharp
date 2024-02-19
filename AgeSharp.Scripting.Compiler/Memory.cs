@@ -32,9 +32,10 @@ namespace AgeSharp.Scripting.Compiler
         public int RegisterBase { get; }
         public int GlobalCount { get; }
         public int GlobalBase { get; }
-        public int StackLimit => GlobalBase;
         public int InitialStackPtr { get; }
-        
+
+        public int StackLimit => GlobalBase;
+
         private Dictionary<Variable, Address> VariableAddresses { get; } = [];
 
         public Memory(Script script, Settings settings)
@@ -78,6 +79,7 @@ namespace AgeSharp.Scripting.Compiler
             if (VariableAddresses.TryGetValue(variable, out var address))
             {
                 Debug.Assert(address.Goal > 0);
+                Debug.Assert(!address.IsRef);
                 Debug.Assert(address.Offset == 0);
                 Debug.Assert(address.IndexStride == 0);
 
@@ -120,7 +122,7 @@ namespace AgeSharp.Scripting.Compiler
 
                     foreach (var variable in scope.Variables)
                     {
-                        var addr = new Address(GlobalBase + offset, false);
+                        var addr = new Address(variable.Type, GlobalBase + offset, false);
                         VariableAddresses.Add(variable, addr);
                         offset += variable.Size;
                     }
@@ -131,7 +133,7 @@ namespace AgeSharp.Scripting.Compiler
 
                     foreach (var variable in scope.Variables)
                     {
-                        var addr = new Address(RegisterBase + 1 + offset, false);
+                        var addr = new Address(variable.Type, RegisterBase + 1 + offset, false);
                         VariableAddresses.Add(variable, addr);
                         offset += variable.Size;
                     }

@@ -15,13 +15,13 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics
 
         public ChatDataToSelf(Script script) : base(script)
         {
-            AddParameter(new("data", Int, false));
+            AddParameter(new("data", Int));
         }
 
         protected override List<Instruction> CompileCall(Memory memory, Address? result, CallExpression call)
         {
             var instructions = new List<Instruction>();
-            instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0, false));
+            instructions.AddRange(GetArgument(memory, call.Arguments[0], Int, memory.Intr0, false));
             instructions.Add(new CommandInstruction($"up-chat-data-to-self \"{call.Literal}\" g: {memory.Intr0}"));
 
             return instructions;

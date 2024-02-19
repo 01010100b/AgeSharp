@@ -39,7 +39,7 @@ namespace AgeSharp.Scripting.Language.Expressions
                 var arg = Arguments[i];
                 var par = Method.Parameters[i];
 
-                arg.Type.ValidateAssignment(par.Type, par.IsRef);
+                par.Type.ValidateAssignmentFrom(arg.Type);
             }
         }
 
@@ -47,6 +47,16 @@ namespace AgeSharp.Scripting.Language.Expressions
         {
             var sb = new StringBuilder();
             sb.Append($"{Method.ShortName}(");
+
+            if (Literal is not null)
+            {
+                sb.Append($"\"{Literal}\"");
+
+                if (Arguments.Count > 0)
+                {
+                    sb.Append(", ");
+                }
+            }
 
             for (int i = 0; i < Arguments.Count; i++)
             {

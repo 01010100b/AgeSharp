@@ -53,7 +53,7 @@ class Program
             name = Path.GetFileNameWithoutExtension(file);
         }
 
-        if (string.IsNullOrEmpty(name))
+        if (string.IsNullOrWhiteSpace(name))
         {
             throw new Exception("Per not found.");
         }

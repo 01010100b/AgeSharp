@@ -43,7 +43,7 @@ namespace AgeSharp.Scripting.Compiler
 
         protected abstract List<Instruction> CompileCall(Memory memory, Address? result, CallExpression call);
 
-        protected List<Instruction> GetArgument(Memory memory, Expression argument, int goal, bool req_const)
+        protected List<Instruction> GetArgument(Memory memory, Expression argument, Type type, int goal, bool req_const = false)
         {
             var instructions = new List<Instruction>();
 
@@ -57,9 +57,9 @@ namespace AgeSharp.Scripting.Compiler
                 if (!ae.IsVariableAccess) throw new NotSupportedException($"Argument {argument} for intrinsic {Name} is not variable access.");
 
                 var from = memory.GetAddress(ae.Variable);
-                var to = new Address(goal, false);
+                var to = new Address(type, goal, false);
 
-                instructions.AddRange(Utils.MemCpy(memory, from, to, ae.Type.Size));
+                instructions.AddRange(Utils.Assign(memory, from, to));
             }
             else
             {

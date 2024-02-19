@@ -28,12 +28,7 @@ namespace AgeSharp.Scripting.Language.Statements
             if (Left is not null)
             {
                 ValidateExpression(Left);
-                Right.Type.ValidateAssignment(Left.Type, Left.Variable.IsRef);
-
-                if (Left.Variable.IsRef && Left.Type != Right.Type)
-                {
-                    if (Left.Index is not null || Left.Fields is not null) throw new NotSupportedException($"Assign statement type mismatch.");
-                }
+                Left.Type.ValidateAssignmentFrom(Right.Type);
             }
 
             ValidateExpression(Right);

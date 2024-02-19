@@ -10,6 +10,10 @@ namespace AgeSharp.Scripting.SharpParser
     {
         public static implicit operator Int(int value) => throw new Exception();
 
-        public static implicit operator int(Int value) => throw new Exception();
+        //public static implicit operator int(Int value) => throw new Exception();
+        public static Bool operator <(Int a, Int b) => throw new Exception();
+        public static Bool operator >(Int a, Int b) => throw new Exception();
+        public static Int operator +(Int a, Int b) => throw new Exception();
+        public static Int operator -(Int a, Int b) => throw new Exception();
     }
 }
