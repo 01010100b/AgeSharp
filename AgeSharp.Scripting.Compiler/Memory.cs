@@ -16,6 +16,7 @@ namespace AgeSharp.Scripting.Compiler
         public int StackPtr { get; }
         public int ConditionGoal { get; }
         public int ExpressionGoal { get; }
+        public int Sp5 { get; }
         public int Sp4 { get; }
         public int Sp3 { get; }
         public int Sp2 { get; }
@@ -28,21 +29,21 @@ namespace AgeSharp.Scripting.Compiler
         public int Intr0 { get; }
         public int CallResultCount { get; }
         public int CallResultBase { get; }
-        public int RegisterCount { get; }
-        public int RegisterBase { get; }
-        public int GlobalCount { get; }
-        public int GlobalBase { get; }
+        public int RegistersCount { get; }
+        public int RegistersBase { get; }
+        public int GlobalsCount { get; }
+        public int GlobalsBase { get; }
         public int InitialStackPtr { get; }
 
-        public int StackLimit => GlobalBase;
+        public int StackLimit => GlobalsBase;
 
         private Dictionary<Variable, Address> VariableAddresses { get; } = [];
 
         public Memory(Script script, Settings settings)
         {
             CallResultCount = script.Methods.Max(x => x.ReturnType.Size);
-            GlobalCount = script.GlobalScope.Variables.Sum(x => x.Size);
-            RegisterCount = script.Methods.Max(GetRegisterCount);
+            GlobalsCount = script.GlobalScope.Variables.Sum(x => x.Size);
+            RegistersCount = script.Methods.Max(GetRegisterCount);
 
             var goal = settings.MaxGoal;
             Error = goal--;
@@ -50,6 +51,7 @@ namespace AgeSharp.Scripting.Compiler
             StackPtr = goal--;
             ConditionGoal = goal--;
             ExpressionGoal = goal--;
+            Sp5 = goal--;
             Sp4 = goal--;
             Sp3 = goal--;
             Sp2 = goal--;
@@ -63,10 +65,10 @@ namespace AgeSharp.Scripting.Compiler
 
             goal -= CallResultCount;
             CallResultBase = goal;
-            goal -= RegisterCount;
-            RegisterBase = goal;
-            goal -= GlobalCount;
-            GlobalBase = goal;
+            goal -= RegistersCount;
+            RegistersBase = goal;
+            goal -= GlobalsCount;
+            GlobalsBase = goal;
             InitialStackPtr = settings.MinGoal;
 
             if (goal < settings.MinGoal) throw new NotSupportedException("Not enough goal memory.");
@@ -107,7 +109,33 @@ namespace AgeSharp.Scripting.Compiler
                 max = Math.Max(max, 1 + block.Scope.GetAllScopedVariables().Sum(x => x.Size));
             }
 
-            return max - GlobalCount;
+            return max - GlobalsCount;
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"CallResultCount {CallResultCount}");
+            sb.AppendLine($"CallResultBase {CallResultBase}");
+            sb.AppendLine($"RegisterCount {RegistersCount}");
+            sb.AppendLine($"RegisterBase {RegistersBase}");
+            sb.AppendLine($"GlobalsCount {GlobalsCount}");
+            sb.AppendLine($"GlobalsBase {GlobalsBase}");
+            sb.AppendLine($"StackLimit {StackLimit}");
+            sb.AppendLine($"InitialStackPtr {InitialStackPtr}");
+
+            sb.AppendLine($"Globals:");
+            var globals = VariableAddresses
+                .Where(x => x.Value.Goal >= GlobalsBase && x.Value.Goal < GlobalsBase + GlobalsCount)
+                .OrderByDescending(x => x.Value.Goal)
+                .ToList();
+
+            foreach (var global in globals)
+            {
+                sb.AppendLine($"{global.Value.Goal}: {global.Key}");
+            }
+
+            return sb.ToString();
         }
 
         private void SetVariableAddresses(Script script, Settings settings)
@@ -122,7 +150,7 @@ namespace AgeSharp.Scripting.Compiler
 
                     foreach (var variable in scope.Variables)
                     {
-                        var addr = new Address(variable.Type, GlobalBase + offset, false);
+                        var addr = new Address(variable.Type, GlobalsBase + offset, false);
                         VariableAddresses.Add(variable, addr);
                         offset += variable.Size;
                     }
@@ -133,7 +161,7 @@ namespace AgeSharp.Scripting.Compiler
 
                     foreach (var variable in scope.Variables)
                     {
-                        var addr = new Address(variable.Type, RegisterBase + 1 + offset, false);
+                        var addr = new Address(variable.Type, RegistersBase + 1 + offset, false);
                         VariableAddresses.Add(variable, addr);
                         offset += variable.Size;
                     }

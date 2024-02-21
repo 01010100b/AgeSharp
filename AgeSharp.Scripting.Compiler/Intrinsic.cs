@@ -54,9 +54,8 @@ namespace AgeSharp.Scripting.Compiler
             else if (argument is AccessorExpression ae)
             {
                 if (req_const) throw new NotSupportedException($"Argument {argument} for intrinsic {Name} is not const.");
-                if (!ae.IsVariableAccess) throw new NotSupportedException($"Argument {argument} for intrinsic {Name} is not variable access.");
-
-                var from = memory.GetAddress(ae.Variable);
+                
+                var from = Utils.GetAddress(memory, ae);
                 var to = new Address(type, goal, false);
 
                 instructions.AddRange(Utils.Assign(memory, from, to));

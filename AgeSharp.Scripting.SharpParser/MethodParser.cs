@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.Language;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Expressions;
 using AgeSharp.Scripting.Language.Statements;
 using AgeSharp.Scripting.Language.Types;
@@ -65,7 +66,7 @@ namespace AgeSharp.Scripting.SharpParser
         {
             var name = symbol.ToString()!;
             var return_type = symbol.ReturnsVoid ? PrimitiveType.Void : parse.GetType(symbol.ReturnType);
-            if (symbol.ReturnsByRef || symbol.ReturnsByRefReadonly) throw new NotSupportedException($"Method {name} has ref return.");
+            Throw.If<NotSupportedException>(symbol.ReturnsByRef || symbol.ReturnsByRefReadonly, $"Method {name} has ref return.");
             if (return_type is ArrayType) throw new NotSupportedException($"Method {name} returns array.");
 
             var method = new Method(parse.Script) { Name = name, ReturnType = return_type };
@@ -220,6 +221,71 @@ namespace AgeSharp.Scripting.SharpParser
 
                 block.Statements.Add(ifs);
             }
+            else if (op is IForLoopOperation forloop)
+            {
+                Throw.IfNull<NotSupportedException>(forloop.Condition, "For loop without condition.");
+                Throw.If<NotSupportedException>(forloop.ConditionLocals.Any(), "For loop with locals in condition.");
+                Throw.If<NotSupportedException>(forloop.Body is not IBlockOperation, "For loop with body not a block.");
+
+                var scoping_block = new Block(block.Scope);
+
+                // parse variables
+                
+                foreach (var decl in forloop.Before.OfType<IVariableDeclarationGroupOperation>())
+                {
+                    ParseLocal(decl, scoping_block, parse);
+                }
+
+                var condition = ParseExpression(forloop.Condition, parse);
+                var loop = new LoopStatement(scoping_block, condition);
+
+                foreach (var statement in scoping_block.Statements)
+                {
+                    loop.Before.Statements.Add(statement);
+                }
+
+                scoping_block.Statements.Clear();
+                var body = (IBlockOperation)forloop.Body;
+
+                foreach (var decl in body.Operations.OfType<IVariableDeclarationGroupOperation>())
+                {
+                    ParseLocal(decl, loop.Body, parse);
+                }
+                
+                foreach (var decl in forloop.AtLoopBottom.OfType<IVariableDeclarationGroupOperation>())
+                {
+                    ParseLocal(decl, loop.AtLoopBottom, parse);
+                }
+
+                foreach (var v in loop.Body.Scope.Variables.ToList())
+                {
+                    loop.Body.Scope.MoveVariable(v, loop.Scope);
+                }
+
+                foreach (var v in loop.AtLoopBottom.Scope.Variables.ToList())
+                {
+                    loop.AtLoopBottom.Scope.MoveVariable(v, loop.Scope);
+                }
+
+                // parse statements
+
+                foreach (var st in forloop.Before.Where(x => x is not IVariableDeclarationGroupOperation))
+                {
+                    ParseStatement(st, loop.Before, parse);
+                }
+
+                foreach (var st in body.Operations.Where(x => x is not IVariableDeclarationGroupOperation))
+                {
+                    ParseStatement(st, loop.Body, parse);
+                }
+
+                foreach (var st in forloop.AtLoopBottom.Where(x => x is not IVariableDeclarationGroupOperation))
+                {
+                    ParseStatement(st, loop.AtLoopBottom, parse);
+                }
+
+                block.Statements.Add(loop);
+            }
             else
             {
                 throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
@@ -320,10 +386,26 @@ namespace AgeSharp.Scripting.SharpParser
 
                         return new AccessorExpression(v, index);
                     }
-                    
                 }
 
                 throw new NotSupportedException($"Property reference {prop} not supported.");
+            }
+            else if (expression is IUnaryOperation unary)
+            {
+                Throw.IfNull<NotSupportedException>(unary.OperatorMethod, $"Unary {unary} does not have operator method.");
+
+                if (unary.OperatorMethod.ToString() == "AgeSharp.Scripting.SharpParser.Bool.operator true(AgeSharp.Scripting.SharpParser.Bool)")
+                {
+                    return ParseExpression(unary.Operand, parse);
+                }
+                else if (unary.OperatorMethod.ToString() == "AgeSharp.Scripting.SharpParser.Bool.operator false(AgeSharp.Scripting.SharpParser.Bool)")
+                {
+                    throw new NotImplementedException($"Unary false operator not implemented.");
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
             }
             else
             {
@@ -352,14 +434,17 @@ namespace AgeSharp.Scripting.SharpParser
                     var length = (int)argconv.Operand.ConstantValue.Value!;
                     type = parse.GetType(local.Type, length);
                 }
-                else
-                {
-                    if (init is not null) throw new NotSupportedException($"Non-array local {name} has init.");
-                }
 
                 var v = new Variable(name, type);
                 block.Scope.AddVariable(v);
                 parse.AddLocal(local, v);
+
+                if (type is not ArrayType && init is not null)
+                {
+                    var left = new AccessorExpression(v);
+                    var right = ParseExpression(init.Value, parse);
+                    block.Statements.Add(new AssignStatement(block.Scope, left, right));
+                }
             }
         }
     }

@@ -1,0 +1,5 @@
+﻿assign ref to non-ref: copy value from ref
+assign ref to ref: copy pointer itself, like in C#
+assign non-ref to ref: copy value to ref
+assign non-ref to non-ref: copy value
+parameter-assign non-ref to ref: take address of

@@ -32,7 +32,7 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
             instructions.AddRange(GetArgument(memory, call.Arguments[0], Int, memory.Intr0, false));
             instructions.AddRange(GetArgument(memory, call.Arguments[1], Int, memory.Intr1, false));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} g:z/ {memory.Intr1}"));
-            instructions.AddRange(Utils.MemCpy(memory, memory.Intr0, result, Int.Size));
+            instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 
             return instructions;
         }

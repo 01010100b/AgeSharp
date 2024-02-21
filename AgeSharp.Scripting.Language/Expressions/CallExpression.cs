@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Language.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -32,7 +34,7 @@ namespace AgeSharp.Scripting.Language.Expressions
 
         public override void Validate()
         {
-            if (Arguments.Count != Method.Parameters.Count) throw new NotSupportedException($"Call argument count differs from method parameter count.");
+            if (Arguments.Count != Method.Parameters.Count) throw new NotSupportedException($"Call to method {Method.Name} argument count differs from method parameter count.");
 
             for (int i = 0; i < Arguments.Count; i++)
             {
@@ -40,6 +42,14 @@ namespace AgeSharp.Scripting.Language.Expressions
                 var par = Method.Parameters[i];
 
                 par.Type.ValidateAssignmentFrom(arg.Type);
+
+                if (par.Type is RefType)
+                {
+                    if (arg is not AccessorExpression)
+                    {
+                        Throw.Always<NotSupportedException>($"Call to method {Method.Name} when argument {arg} is not a variable accessor and parameter {par} is ref.");
+                    }
+                }
             }
         }
 
@@ -60,8 +70,12 @@ namespace AgeSharp.Scripting.Language.Expressions
 
             for (int i = 0; i < Arguments.Count; i++)
             {
-                var argument = Arguments[i];
-                sb.Append(argument.ToString());
+                if (Method.Parameters[i].Type is RefType)
+                {
+                    sb.Append("ref ");
+                }
+
+                sb.Append(Arguments[i].ToString());
 
                 if (i < Arguments.Count - 1)
                 {

@@ -29,11 +29,16 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
                 return instructions;
             }
 
+            // algorithm by Leif Ericson
+
             instructions.AddRange(GetArgument(memory, call.Arguments[0], Int, memory.Intr0));
             instructions.AddRange(GetArgument(memory, call.Arguments[1], Int, memory.Intr1));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr2} c:= 0"));
-            instructions.Add(new CommandFactInstruction($"up-compare-goal {memory.Intr0} g:== {memory.Intr1}", $"up-modify-goal {memory.Intr2} c:= 1"));
-            instructions.AddRange(Utils.MemCpy(memory, memory.Intr2, result, Bool.Size));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} g:- {memory.Intr1}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:min 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:max -1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:+ 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:mod 2"));
+            instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 
             return instructions;
         }

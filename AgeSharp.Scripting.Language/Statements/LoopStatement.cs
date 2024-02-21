@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgeSharp.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -11,33 +12,54 @@ namespace AgeSharp.Scripting.Language.Statements
     {
         public override Scope Scope => ScopingBlock.Scope;
         public Expression Condition { get; }
-        public Block ScopingBlock { get; } // variables defined in Prefix go here instead
-        public Block Prefix { get; }
-        public Block Block { get; }
-        public Block Postfix { get; }
+        public bool ConditionAtTop { get; }
+        public Block ScopingBlock { get; } // variables defined in other blocks go here instead
+        public Block Before { get; }
+        public Block Body { get; }
+        public Block AtLoopBottom { get; }
 
-        public LoopStatement(Scope scope, Expression condition) : base()
+        public LoopStatement(Block scoping_block, Expression condition, bool condition_at_top = true) : base()
         {
+            Throw.If<NotImplementedException>(!condition_at_top, "Condition at bottom not yet implemented.");
             Condition = condition;
-            ScopingBlock = new(scope); 
-            Prefix = new(ScopingBlock.Scope);
-            Block = new(ScopingBlock.Scope);
-            Postfix = new(ScopingBlock.Scope);
+            ConditionAtTop = condition_at_top;
+            ScopingBlock = scoping_block; 
+            Before = new(ScopingBlock.Scope);
+            Body = new(ScopingBlock.Scope);
+            AtLoopBottom = new(ScopingBlock.Scope);
         }
 
         public override IEnumerable<Block> GetContainedBlocks()
         {
             yield return ScopingBlock;
-            yield return Prefix;
-            yield return Block;
-            yield return Postfix;
+            yield return Before;
+            yield return Body;
+            yield return AtLoopBottom;
         }
 
         public override void Validate()
         {
             ValidateExpression(Condition);
             if (ScopingBlock.Statements.Count > 0) throw new NotSupportedException($"LoopStatement ScopingBlock has statements.");
-            if (Prefix.Scope.Variables.Count > 0) throw new NotSupportedException($"LoopStatement Prefix has variables.");
+            if (Before.Scope.Variables.Count > 0) throw new NotSupportedException($"LoopStatement Prefix has variables.");
+            Throw.If<NotSupportedException>(Body.Scope.Variables.Any(), "LoopStatement body has variables.");
+            Throw.If<NotSupportedException>(AtLoopBottom.Scope.Variables.Any(), "LoopStatement AtLoopBottom has variables.");
+        }
+
+        public override string ToString()
+        {
+            ScopingBlock.Statements.Add(Before);
+            ScopingBlock.Statements.Add(Body);
+            ScopingBlock.Statements.Add(AtLoopBottom);
+
+            var sb = new StringBuilder();
+            sb.AppendLine($"loop ({Condition})");
+            sb.AppendLine(ScopingBlock.ToString());
+
+            ScopingBlock.Statements.Clear();
+
+
+            return sb.ToString();
         }
     }
 }

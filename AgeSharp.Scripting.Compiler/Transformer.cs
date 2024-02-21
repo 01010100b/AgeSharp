@@ -94,11 +94,11 @@ namespace AgeSharp.Scripting.Compiler
             else if (statement is LoopStatement loop)
             {
                 var condition = TransformExpression(loop.Condition, block);
-                var st = new LoopStatement(block.Scope, condition);
+                var st = new LoopStatement(new(block.Scope), condition);
                 move(loop.ScopingBlock, st.ScopingBlock);
-                move(loop.Prefix, st.Prefix);
-                move(loop.Block, st.Block);
-                move(loop.Postfix, st.Postfix);
+                move(loop.Before, st.Before);
+                move(loop.Body, st.Body);
+                move(loop.AtLoopBottom, st.AtLoopBottom);
                 block.Statements.Add(st);
             }
             else if (statement is ReturnStatement ret)
@@ -158,6 +158,8 @@ namespace AgeSharp.Scripting.Compiler
                 return expression;
             }
 
+            Debug.WriteLine($"tranforming {expression}");
+
             if (expression is AccessorExpression access)
             {
                 Debug.Assert(access.Index is not null);
@@ -198,7 +200,14 @@ namespace AgeSharp.Scripting.Compiler
         {
             if (expression is AccessorExpression access && access.IsArrayAccess)
             {
-                if (NeedsArgumentTransform(access.Index!))
+                if (access.Index is AccessorExpression ae)
+                {
+                    if (!ae.IsVariableAccess)
+                    {
+                        return true;
+                    }
+                }
+                else if (access.Index is not ConstExpression)
                 {
                     return true;
                 }
@@ -221,9 +230,19 @@ namespace AgeSharp.Scripting.Compiler
         {
             if (arg is AccessorExpression arga)
             {
-                if (!arga.IsVariableAccess)
+                if (arga.IsArrayAccess)
                 {
-                    return true;
+                    if (arga.Index is AccessorExpression ai)
+                    {
+                        if (!ai.IsVariableAccess)
+                        {
+                            return true;
+                        }
+                    }
+                    else if (arga.Index is not ConstExpression)
+                    {
+                        return true;
+                    }
                 }
             }
             else if (arg is not ConstExpression)

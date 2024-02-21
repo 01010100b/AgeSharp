@@ -58,6 +58,10 @@ namespace AgeSharp.Scripting.SharpParser
                     throw new NotSupportedException($"Array type {symbol.Name} with generic element type {etype.Name}.");
                 }
 
+                if (IsArrayType(enamed))
+                {
+                }
+
                 return Script.GetArrayType(GetType(etype), length);
             }
             else
@@ -127,6 +131,7 @@ namespace AgeSharp.Scripting.SharpParser
         public bool IsInternal(ISymbol symbol)
         {
             var namesp = symbol.ContainingNamespace;
+
             if (namesp is null)
             {
                 return false;

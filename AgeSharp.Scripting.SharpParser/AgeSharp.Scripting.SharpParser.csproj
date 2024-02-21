@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AgeSharp.Common\AgeSharp.Common.csproj" />
     <ProjectReference Include="..\AgeSharp.Scripting.Compiler\AgeSharp.Scripting.Compiler.csproj" />
   </ItemGroup>
 

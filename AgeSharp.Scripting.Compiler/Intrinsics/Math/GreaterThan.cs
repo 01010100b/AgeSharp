@@ -34,7 +34,7 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} g:- {memory.Intr1}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:max 0"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:min 1"));
-            instructions.AddRange(Utils.MemCpy(memory, memory.Intr0, result, Int.Size));
+            instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 
             return instructions;
         }

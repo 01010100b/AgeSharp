@@ -25,6 +25,18 @@ namespace AgeSharp.Scripting.Language
             Parent = parent;
         }
 
+        public Scope GetRoot()
+        {
+            var current = this;
+
+            while (current.Parent is not null)
+            {
+                current = current.Parent;
+            }
+
+            return current;
+        }
+
         public void AddVariable(Variable variable)
         {
             if (GetAllScopedVariables().Select(x => x.Name).Contains(variable.Name)) throw new NotSupportedException($"Variable {variable.Name} already in scope.");
@@ -48,6 +60,12 @@ namespace AgeSharp.Scripting.Language
         }
 
         public bool IsInScope(Variable variable) => GetAllScopedVariables().Contains(variable);
+
+        public void MoveVariable(Variable variable, Scope destination)
+        {
+            ((List<Variable>)Variables).Remove(variable);
+            destination.AddVariable(variable);
+        }
 
         public override void Validate()
         {

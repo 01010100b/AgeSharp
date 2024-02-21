@@ -68,6 +68,13 @@ namespace AgeSharp.Scripting.Compiler
             sb.AppendLine("");
             sb.AppendLine(Script.ToString());
 
+            sb.AppendLine("### MEMORY ###");
+            sb.AppendLine("");
+            sb.AppendLine("");
+            sb.AppendLine(Memory.ToString());
+            sb.AppendLine("");
+            sb.AppendLine("");
+
             sb.AppendLine(@"### INSTRUCTIONS ###");
             sb.AppendLine("");
             sb.AppendLine("");

@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.Language;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Language;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +18,8 @@ namespace AgeSharp.Scripting.Compiler
         public int Offset { get; }
         public int IndexStride { get; }
         public bool IsArrayAccess => IndexStride > 0; // in this case Offset is a goal holding the index
+        public bool IsDirect => !IsRef && !IsArrayAccess;
+        public int DirectGoal => IsDirect ? Goal + Offset : throw new Exception();
 
         public Address(Type type, int goal, bool is_ref, int offset = 0, int index_stride = 0)
         {
