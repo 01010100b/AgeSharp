@@ -158,8 +158,6 @@ namespace AgeSharp.Scripting.Compiler
                 return expression;
             }
 
-            Debug.WriteLine($"tranforming {expression}");
-
             if (expression is AccessorExpression access)
             {
                 Debug.Assert(access.Index is not null);
@@ -182,10 +180,23 @@ namespace AgeSharp.Scripting.Compiler
                         continue;
                     }
 
-                    var va = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type);
-                    block.Scope.AddVariable(va);
-                    block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(va), arg));
-                    cn.AddArgument(new AccessorExpression(va));
+                    if (arg is AccessorExpression ae)
+                    {
+                        Debug.Assert(ae.IsArrayAccess);
+                        Debug.Assert(ae.Index is not null);
+
+                        var vi = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type);
+                        block.Scope.AddVariable(vi);
+                        block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), ae.Index!));
+                        cn.AddArgument(new AccessorExpression(ae.Variable, new AccessorExpression(vi)));
+                    }
+                    else
+                    {
+                        var va = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type);
+                        block.Scope.AddVariable(va);
+                        block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(va), arg));
+                        cn.AddArgument(new AccessorExpression(va));
+                    }
                 }
 
                 return cn;

@@ -328,6 +328,12 @@ namespace AgeSharp.Scripting.SharpParser
 
                 return new AccessorExpression(variable);
             }
+            else if (expression is IFieldReferenceOperation field)
+            {
+                var variable = parse.GetGlobal(field.Field);
+
+                return new AccessorExpression(variable);
+            }
             else if (expression is IInvocationOperation call)
             {
                 var method = parse.GetMethod(call.TargetMethod);

@@ -10,9 +10,14 @@ namespace Deimos.Source
 {
     public class Main
     {
+        [AgeGlobal]
+        public static Int Tick;
+
         [AgeMethod(EntryPoint = true)]
         public static void EntryPoint()
         {
+            ChatDataToSelf("tick %d", Tick);
+
             Array<Int> array = new(10);
             Int a = 3;
             array[a] = 7;
@@ -21,12 +26,17 @@ namespace Deimos.Source
             {
                 for (Int j = 0; j < 3; j += 1)
                 {
-                    Increase(ref array[a], 2);
+                    Increase(ref array[a + 1 - 1], 2);
                 }
             }
 
             ChatDataToSelf("t0 %d", array[a]);
             Test1(ref array[a]);
+
+            Bool b = true;
+            a = (Int)b;
+
+            Tick += 1;
         }
 
         [AgeMethod]

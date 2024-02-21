@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.Language;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Statements;
 using AgeSharp.Scripting.Language.Types;
 using Microsoft.CodeAnalysis;
@@ -58,9 +59,7 @@ namespace AgeSharp.Scripting.SharpParser
                     throw new NotSupportedException($"Array type {symbol.Name} with generic element type {etype.Name}.");
                 }
 
-                if (IsArrayType(enamed))
-                {
-                }
+                Throw.If<NotSupportedException>(IsArrayType(enamed), $"Array type {symbol.Name} with element type also array.");
 
                 return Script.GetArrayType(GetType(etype), length);
             }

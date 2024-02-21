@@ -49,7 +49,6 @@ namespace AgeSharp.Scripting.SharpParser
 
             foreach (var op in int_type.GetMembers().OfType<IMethodSymbol>())
             {
-                Debug.WriteLine($"int op {op} {op.GetType().Name}");
                 var name = op.ToString()!;
 
                 if (name.Contains("operator <("))
