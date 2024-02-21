@@ -104,6 +104,9 @@ namespace AgeSharp.Scripting.Language
                 sb.AppendLine(global.ToString());
             }
 
+            sb.AppendLine("");
+            sb.AppendLine("");
+
             foreach (var method in Methods.Where(x => x.Block.Statements.Count > 0))
             {
                 sb.AppendLine($"{(method == EntryPoint ? "@entry " : "")}{method}");

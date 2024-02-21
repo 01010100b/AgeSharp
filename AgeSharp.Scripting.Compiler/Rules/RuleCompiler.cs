@@ -1,6 +1,8 @@
-﻿using AgeSharp.Scripting.Compiler.Instructions;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Compiler.Instructions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security;
 using System.Text;
@@ -65,7 +67,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
                     rules.Add(current);
                     current = new();
                 }
-                else if (instruction is CommandFactInstruction cf)
+                else if (instruction is RuleInstruction rule)
                 {
                     if (!current.IsEmpty)
                     {
@@ -73,8 +75,10 @@ namespace AgeSharp.Scripting.Compiler.Rules
                         current = new();
                     }
 
-                    current.Facts.Add(cf.Fact);
-                    current.Actions.Add(cf.Command);
+                    Debug.Assert(rule.Commands.Count < Settings.MaxRuleCommands);
+
+                    current.Facts.Add(rule.Fact);
+                    current.Actions.AddRange(rule.Commands);
                     rules.Add(current);
                     current = new();
                 }

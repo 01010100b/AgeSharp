@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
-    internal class CommandFactInstruction : Instruction
+    internal class RuleInstruction : Instruction
     {
         public string Fact { get; }
-        public string Command { get; }
+        public List<string> Commands { get; } = new();
 
-        public CommandFactInstruction(string fact, string command) : base()
+        public RuleInstruction(string fact) : base()
         {
             Fact = fact;
-            Command = command;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         private Memory Memory { get; } = memory;
         private Settings Settings { get; } = settings;
         private Dictionary<Method, LabelInstruction> MethodLabels { get; } = [];
+        private LabelInstruction LabelError { get; } = new();
         private LabelInstruction LabelEnd { get; } = new();
 
         public List<Instruction> Compile()
@@ -51,6 +52,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
 
             instructions.AddRange(Utils.CompileMemCpy(Memory));
+            instructions.Add(LabelError);
             instructions.Add(LabelEnd);
 
             return instructions;
@@ -66,6 +68,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
 
             instructions.Add(MethodLabels[method]);
+            instructions.Add(new CommandInstruction($"up-modify-goal {Memory.MaxStackSpaceUsed} g:max {Memory.StackPtr}"));
             instructions.AddRange(CompileBlock(method, method.Block, null, null));
 
             return instructions;

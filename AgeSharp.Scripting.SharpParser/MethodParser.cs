@@ -33,7 +33,7 @@ namespace AgeSharp.Scripting.SharpParser
                 {
                     var symbol = model.GetDeclaredSymbol(method) ?? throw new Exception($"Can not find symbol for method {method.Identifier.ValueText}.");
                     var attr = symbol.GetAttributes().FirstOrDefault(x => x.AttributeClass!.Name == nameof(AgeMethodAttribute));
-
+                    
                     if (attr is null)
                     {
                         continue;
