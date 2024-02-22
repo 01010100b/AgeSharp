@@ -45,7 +45,7 @@ namespace AgeSharp.Scripting.Compiler
             if (accessor.IsStructAccess)
             {
                 var offset = 0;
-                var type = accessor.Variable.Type;
+                var type = accessor.Variable.ProperType;
 
                 foreach (var field in accessor.Fields!)
                 {
@@ -53,24 +53,25 @@ namespace AgeSharp.Scripting.Compiler
                     type = field.Type;
                 }
 
-                addr = new(type, addr.Goal, false, offset);
+                addr = new(type, addr.Goal, accessor.Variable.Type is RefType, offset);
             }
             else if (accessor.IsArrayAccess)
             {
-                var type = ((ArrayType)accessor.Variable.Type).ElementType;
+                var type = ((ArrayType)accessor.Variable.ProperType).ElementType;
                 var size = type.Size;
 
                 if (accessor.Index is ConstExpression ce)
                 {
-                    addr = new(type, addr.Goal, false, 1 + ce.Value * size);
+                    addr = new(type, addr.Goal, accessor.Variable.Type is RefType, 1 + ce.Value * size);
                 }
                 else if (accessor.Index is AccessorExpression ai)
                 {
                     if (!ai.IsVariableAccess) throw new NotSupportedException($"Index access to {accessor.Variable.Name} with recursive index.");
 
                     var vaddr = memory.GetAddress(ai.Variable);
+                    Debug.Assert(vaddr.IsDirect);
 
-                    addr = new(type, addr.Goal, false, vaddr.Goal, size);
+                    addr = new(type, addr.Goal, accessor.Variable.Type is RefType, vaddr.DirectGoal, size);
                 }
                 else
                 {
@@ -79,7 +80,6 @@ namespace AgeSharp.Scripting.Compiler
             }
 
             Debug.Assert(addr.Goal > 0);
-            Debug.Assert(!addr.IsRef);
             Debug.Assert(addr.Offset >= 0);
             Debug.Assert(addr.IndexStride >= 0);
 

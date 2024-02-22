@@ -330,9 +330,29 @@ namespace AgeSharp.Scripting.SharpParser
             }
             else if (expression is IFieldReferenceOperation field)
             {
-                var variable = parse.GetGlobal(field.Field);
+                if (field.Field.IsStatic)
+                {
+                    var variable = parse.GetGlobal(field.Field);
 
-                return new AccessorExpression(variable);
+                    return new AccessorExpression(variable);
+                }
+                else
+                {
+                    var type = (CompoundType)parse.GetType(field.Field.ContainingType);
+                    var type_field = type.Fields.Single(x => x.Name == field.Field.Name);
+                    var instance = ParseExpression(field.Instance!, parse);
+
+                    if (instance is AccessorExpression ae)
+                    {
+                        Throw.If<NotSupportedException>(!ae.IsVariableAccess, $"Accessor not variable access for field {field}.");
+
+                        return new AccessorExpression(ae.Variable, [type_field]);
+                    }
+                    else
+                    {
+                        throw new NotSupportedException($"Can not parse field access {field}.");
+                    }
+                }
             }
             else if (expression is IInvocationOperation call)
             {
@@ -447,8 +467,9 @@ namespace AgeSharp.Scripting.SharpParser
 
                 if (type is not ArrayType && init is not null)
                 {
-                    var left = new AccessorExpression(v);
                     var right = ParseExpression(init.Value, parse);
+                    Throw.If<NotSupportedException>(right is not ConstExpression, $"Local {type.Name} {name} has non-constant initializer.");
+                    var left = new AccessorExpression(v);
                     block.Statements.Add(new AssignStatement(block.Scope, left, right));
                 }
             }

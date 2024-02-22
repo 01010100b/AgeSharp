@@ -12,6 +12,7 @@ namespace AgeSharp.Scripting.Language
         public string Name { get; }
         public Type Type { get; }
         public int Size => Type.Size;
+        public Type ProperType => Type is RefType rt ? rt.ReferencedType : Type;
 
         public Variable(string name, Type type)
         {

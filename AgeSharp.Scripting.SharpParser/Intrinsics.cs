@@ -9,6 +9,9 @@ namespace AgeSharp.Scripting.SharpParser
     public static class Intrinsics
     {
         public static void ChatDataToSelf(string message, Int data) => throw new Exception();
+        public static Int GetStrategicNumber(Int sn) => throw new Exception();
+        public static void SetStrategicNumber(Int sn, Int value) => throw new Exception();
+        public static void XsScriptCall(string script) => throw new Exception();
 
         // Math
         public static Bool Equals(Int a, Int b) => throw new Exception();

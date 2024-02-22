@@ -64,31 +64,33 @@ namespace AgeSharp.Scripting.Compiler
             var sb = new StringBuilder();
 
             sb.AppendLine(@"### SCRIPT ###");
-            sb.AppendLine("");
-            sb.AppendLine("");
+            sb.AppendLine();
+            sb.AppendLine();
             sb.AppendLine(Script.ToString());
 
             sb.AppendLine("### MEMORY ###");
-            sb.AppendLine("");
-            sb.AppendLine("");
+            sb.AppendLine();
+            sb.AppendLine();
             sb.AppendLine(Memory.ToString());
-            sb.AppendLine("");
-            sb.AppendLine("");
+            sb.AppendLine();
+            sb.AppendLine();
 
             sb.AppendLine(@"### INSTRUCTIONS ###");
-            sb.AppendLine("");
-            sb.AppendLine("");
+            sb.AppendLine();
+            sb.AppendLine();
 
             foreach (var instruction in Instructions)
             {
                 sb.AppendLine(instruction.ToString());
             }
 
-            sb.AppendLine("");
-            sb.AppendLine("");
+            sb.AppendLine();
+            sb.AppendLine();
             sb.AppendLine("### PER ###");
-            sb.AppendLine("");
-            sb.AppendLine("");
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine($"Using {RuleCount:N0} rules and {CommandCount:N0} commands");
+            sb.AppendLine();
             sb.AppendLine(GetPer());
 
             return sb.ToString();

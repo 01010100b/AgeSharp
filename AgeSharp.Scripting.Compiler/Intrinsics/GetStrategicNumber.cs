@@ -1,23 +1,23 @@
-﻿using AgeSharp.Scripting.Compiler.Instructions;
-using AgeSharp.Scripting.Language.Expressions;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Compiler.Instructions;
 using AgeSharp.Scripting.Language;
+using AgeSharp.Scripting.Language.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
+namespace AgeSharp.Scripting.Compiler.Intrinsics
 {
-    internal class Mod : Intrinsic
+    internal class GetStrategicNumber : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public Mod(Script script) : base(script)
+        public GetStrategicNumber(Script script) : base(script)
         {
-            AddParameter(new("a", Int));
-            AddParameter(new("b", Int));
             ReturnType = Int;
+            AddParameter(new("sn", Int));
         }
 
         protected override List<Instruction> CompileCall(Memory memory, Address? result, CallExpression call)
@@ -29,9 +29,9 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
                 return instructions;
             }
 
-            instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
-            instructions.AddRange(GetArgument(memory, call.Arguments[1], memory.Intr1));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} g:mod {memory.Intr1}"));
+            Throw.If<NotSupportedException>(call.Arguments[0] is not ConstExpression, $"Method {Name} call with first argument not const.");
+            var ce = (ConstExpression)call.Arguments[0];
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} s:= {ce.Value}"));
             instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 
             return instructions;

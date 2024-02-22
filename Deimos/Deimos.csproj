@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="per\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AgeSharp.Scripting.SharpParser\AgeSharp.Scripting.SharpParser.csproj" />
   </ItemGroup>
 

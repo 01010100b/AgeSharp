@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.Language.Types;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Language.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace AgeSharp.Scripting.Language.Expressions
 
         public AccessorExpression(Variable variable, IEnumerable<Field> fields)
         {
-            if (variable.Type is not CompoundType) throw new NotSupportedException($"Field access when {variable.Name} is not compound type.");
+            Throw.If<NotSupportedException>(variable.ProperType is not CompoundType, $"Field access when {variable.Name} is not compound type.");
 
             Variable = variable;
             Fields = fields.ToList();

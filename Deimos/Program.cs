@@ -1,6 +1,7 @@
 ﻿using AgeSharp.Scripting.Compiler;
 using AgeSharp.Scripting.SharpParser;
 using System.Diagnostics;
+using System.Text;
 
 namespace Deimos;
 
@@ -14,6 +15,13 @@ class Program
     {
         var result = GetCompilation(SOURCE);
         var per = result.GetPer();
+
+        var sb = new StringBuilder();
+        sb.AppendLine("(include \"..\\ai\\Deimos.xs\")");
+        sb.AppendLine();
+        sb.AppendLine(per);
+        per = sb.ToString();
+
         var file = Path.Combine(FROM, "Deimos.per");
 
         if (File.Exists(file))
@@ -68,6 +76,12 @@ class Program
         foreach (var file in Directory.EnumerateFiles(from, "*.*", SearchOption.AllDirectories))
         {
             var dest = Path.Combine(to, Path.GetRelativePath(from, file));
+            var dir = Path.GetDirectoryName(dest)!;
+
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
 
             if (File.Exists(dest))
             {

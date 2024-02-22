@@ -96,7 +96,7 @@ namespace AgeSharp.Scripting.Language
 
             foreach (var type in Types.OfType<CompoundType>())
             {
-                sb.AppendLine(type.ToString());
+                sb.AppendLine($"struct {type}");
             }
 
             foreach (var global in GlobalScope.Variables)

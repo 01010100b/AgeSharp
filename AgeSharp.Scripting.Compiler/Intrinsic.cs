@@ -43,7 +43,7 @@ namespace AgeSharp.Scripting.Compiler
 
         protected abstract List<Instruction> CompileCall(Memory memory, Address? result, CallExpression call);
 
-        protected List<Instruction> GetArgument(Memory memory, Expression argument, Type type, int goal, bool req_const = false)
+        protected List<Instruction> GetArgument(Memory memory, Expression argument, int goal)
         {
             var instructions = new List<Instruction>();
 
@@ -53,9 +53,8 @@ namespace AgeSharp.Scripting.Compiler
             }
             else if (argument is AccessorExpression ae)
             {
-                if (req_const) throw new NotSupportedException($"Argument {argument} for intrinsic {Name} is not const.");
-                
                 var from = Utils.GetAddress(memory, ae);
+                var type = from.Type is RefType rt ? rt.ReferencedType : from.Type;
                 var to = new Address(type, goal, false);
 
                 instructions.AddRange(Utils.Assign(memory, from, to));

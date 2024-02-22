@@ -31,8 +31,8 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
 
             // algorithm by Leif Ericson
 
-            instructions.AddRange(GetArgument(memory, call.Arguments[0], Int, memory.Intr0));
-            instructions.AddRange(GetArgument(memory, call.Arguments[1], Int, memory.Intr1));
+            instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
+            instructions.AddRange(GetArgument(memory, call.Arguments[1], memory.Intr1));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} g:- {memory.Intr1}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:min 1"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:max -1"));

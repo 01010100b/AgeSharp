@@ -55,7 +55,6 @@ namespace AgeSharp.Scripting.SharpParser
                     {
                         Throw.IfNull<NotSupportedException>(syntax.Initializer, $"Global {field} is array without initializer.");
                         var init = (IFieldInitializerOperation)model.GetOperation(syntax.Initializer)!;
-                        Debug.WriteLine($"init {init}");
 
                         var value = init.Value;
 

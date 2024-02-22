@@ -29,8 +29,8 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
                 return instructions;
             }
 
-            instructions.AddRange(GetArgument(memory, call.Arguments[0], Int, memory.Intr0, false));
-            instructions.AddRange(GetArgument(memory, call.Arguments[1], Int, memory.Intr1, false));
+            instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
+            instructions.AddRange(GetArgument(memory, call.Arguments[1], memory.Intr1));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr1} g:- {memory.Intr0}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr1} c:max 0"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr1} c:min 1"));
