@@ -4,6 +4,7 @@ using AgeSharp.Scripting.Language;
 using Type = AgeSharp.Scripting.Language.Type;
 using AgeSharp.Scripting.Language.Expressions;
 using System.Diagnostics;
+using AgeSharp.Scripting.Compiler.Intrinsics.Math;
 
 namespace AgeSharp.Scripting.Compiler
 {
@@ -19,7 +20,7 @@ namespace AgeSharp.Scripting.Compiler
 
             while (length > 0)
             {
-                if (length >= 4 && from >= 41 && from < 508)
+                if (length >= 4 && from >= 41 && from < 508 && value == 0)
                 {
                     instructions.Add(new CommandInstruction($"up-setup-cost-data 1 {from}"));
                     from += 4;
@@ -53,7 +54,7 @@ namespace AgeSharp.Scripting.Compiler
                     type = field.Type;
                 }
 
-                addr = new(type, addr.Goal, accessor.Variable.Type is RefType, offset);
+                addr = new(type, addr.Goal, false, offset);
             }
             else if (accessor.IsArrayAccess)
             {
@@ -62,7 +63,7 @@ namespace AgeSharp.Scripting.Compiler
 
                 if (accessor.Index is ConstExpression ce)
                 {
-                    addr = new(type, addr.Goal, accessor.Variable.Type is RefType, 1 + ce.Value * size);
+                    addr = new(type, addr.Goal, false, 1 + ce.Value * size);
                 }
                 else if (accessor.Index is AccessorExpression ai)
                 {
@@ -71,7 +72,7 @@ namespace AgeSharp.Scripting.Compiler
                     var vaddr = memory.GetAddress(ai.Variable);
                     Debug.Assert(vaddr.IsDirect);
 
-                    addr = new(type, addr.Goal, accessor.Variable.Type is RefType, vaddr.DirectGoal, size);
+                    addr = new(type, addr.Goal, false, vaddr.DirectGoal, size);
                 }
                 else
                 {
@@ -80,6 +81,7 @@ namespace AgeSharp.Scripting.Compiler
             }
 
             Debug.Assert(addr.Goal > 0);
+            Debug.Assert(!addr.IsRef);
             Debug.Assert(addr.Offset >= 0);
             Debug.Assert(addr.IndexStride >= 0);
 
@@ -94,37 +96,68 @@ namespace AgeSharp.Scripting.Compiler
             return Assign(memory, from, to);
         }
 
-        public static List<Instruction> Assign(Memory memory, Address from, Address to)
+        public static List<Instruction> Assign(Memory memory, Address from, Address to, bool ref_assign = false)
         {
+            // uses Utils5-Utils6
+
             to.Type.ValidateAssignmentFrom(from.Type);
 
             var instructions = new List<Instruction>();
 
-            if (from.Type is RefType)
+            if (from.Type is RefType frt)
             {
-                if (to.Type is RefType)
+                if (to.Type is RefType trt)
                 {
-                    instructions.AddRange(MemCpy(memory, from, to, 1));
+                    ref_assign |= frt.ReferencedType is ArrayType || trt.ReferencedType is ArrayType;
+
+                    if (ref_assign)
+                    {
+                        // copy pointer
+                        instructions.AddRange(MemCpy(memory, from, to, 1));
+                    }
+                    else
+                    {
+                        // copy value
+                        instructions.AddRange(GetPointer(memory, from, memory.Utils5));
+                        instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Utils5} {memory.Utils5}"));
+                        instructions.AddRange(GetPointer(memory, to, memory.Utils6));
+                        instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Utils6} {memory.Utils6}"));
+                        var fromaddr = new Address(frt.ReferencedType, memory.Utils5, true);
+                        var toaddr = new Address(trt.ReferencedType, memory.Utils6, true);
+                        instructions.AddRange(MemCpy(memory, fromaddr, toaddr, toaddr.Type.Size));
+                    }
                 }
                 else
                 {
-                    instructions.AddRange(GetPointer(memory, from, memory.Sp5));
-                    instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Sp5} {memory.Sp5}"));
-                    var ptraddr = new Address(PrimitiveType.Void, memory.Sp5, true);
+                    // dereference
+                    instructions.AddRange(GetPointer(memory, from, memory.Utils5));
+                    instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Utils5} {memory.Utils5}"));
+                    var ptraddr = new Address(PrimitiveType.Void, memory.Utils5, true);
                     instructions.AddRange(MemCpy(memory, ptraddr, to, to.Type.Size));
                 }
             }
             else
             {
-                if (to.Type is RefType rt)
+                if (to.Type is RefType trt)
                 {
-                    instructions.AddRange(GetPointer(memory, to, memory.Sp5));
-                    instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Sp5} {memory.Sp5}"));
-                    var ptraddr = new Address(PrimitiveType.Void, memory.Sp5, true);
-                    instructions.AddRange(MemCpy(memory, from, ptraddr, rt.ReferencedType.Size));
+                    if (ref_assign)
+                    {
+                        // take address of
+                        instructions.AddRange(GetPointer(memory, from, to));
+                    }
+                    else
+                    {
+                        // copy value
+                        instructions.AddRange(GetPointer(memory, to, memory.Utils5));
+                        instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Utils5} {memory.Utils5}"));
+                        var ptraddr = new Address(PrimitiveType.Void, memory.Utils5, true);
+                        instructions.AddRange(MemCpy(memory, from, ptraddr, trt.ReferencedType.Size));
+                    }
+                    
                 }
                 else
                 {
+                    // copy value
                     instructions.AddRange(MemCpy(memory, from, to, to.Type.Size));
                 }
             }
@@ -134,6 +167,8 @@ namespace AgeSharp.Scripting.Compiler
 
         public static List<Instruction> GetPointer(Memory memory, Address address, int goal)
         {
+            // uses Utils4
+
             var instructions = new List<Instruction>();
 
             if (address.IsRef)
@@ -147,10 +182,10 @@ namespace AgeSharp.Scripting.Compiler
 
             if (address.IsArrayAccess)
             {
-                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} g:= {address.Offset}"));
-                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} c:* {address.IndexStride}"));
-                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} c:+ 1"));
-                instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:+ {memory.Sp4}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils4} g:= {address.Offset}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils4} c:* {address.IndexStride}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils4} c:+ 1"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:+ {memory.Utils4}"));
             }
             else if (address.Offset > 0)
             {
@@ -164,9 +199,9 @@ namespace AgeSharp.Scripting.Compiler
         {
             var instructions = new List<Instruction>();
 
-            instructions.AddRange(GetPointer(memory, address, memory.Sp0));
-            instructions.AddRange(GetPointer(memory, pointer, memory.Sp1));
-            instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.Sp1} g: {memory.Sp0}"));
+            instructions.AddRange(GetPointer(memory, address, memory.Utils0));
+            instructions.AddRange(GetPointer(memory, pointer, memory.Utils1));
+            instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.Utils1} g: {memory.Utils0}"));
 
             return instructions;
         }
@@ -177,10 +212,12 @@ namespace AgeSharp.Scripting.Compiler
 
             return MemCpy(memory, from, to, length);
         }
-
-        // ignores the types of the adresses
+        
         public static List<Instruction> MemCpy(Memory memory, Address from, Address to, int length)
         {
+            // ignores the types of the adresses
+            // uses Utils0-Utils4
+
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
 
             var instructions = new List<Instruction>();
@@ -204,28 +241,28 @@ namespace AgeSharp.Scripting.Compiler
                 }
             }
 
-            instructions.AddRange(GetPointer(memory, from, memory.Sp0));
-            instructions.AddRange(GetPointer(memory, to, memory.Sp1));
+            instructions.AddRange(GetPointer(memory, from, memory.Utils0));
+            instructions.AddRange(GetPointer(memory, to, memory.Utils1));
             
             if (length < 5)
             {
                 for (int i = 0; i < length; i++)
                 {
-                    instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Sp0} {memory.Sp3}"));
-                    instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.Sp1} g: {memory.Sp3}"));
+                    instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Utils0} {memory.Utils3}"));
+                    instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.Utils1} g: {memory.Utils3}"));
 
                     if (i < length - 1)
                     {
-                        instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp0} c:+ 1"));
-                        instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp1} c:+ 1"));
+                        instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils0} c:+ 1"));
+                        instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils1} c:+ 1"));
                     }
                 }
 
                 return instructions;
             }
 
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp2} c:= {length}"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp4} c:= {label_return.Label}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} c:= {length}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils4} c:= {label_return.Label}"));
             instructions.Add(new JumpInstruction(MemCpyLabel));
             instructions.Add(label_return);
 
@@ -239,16 +276,16 @@ namespace AgeSharp.Scripting.Compiler
             var label_end = new LabelInstruction();
 
             instructions.Add(label_repeat);
-            instructions.Add(new JumpFactInstruction(memory.Sp2, "==", 0, label_end));
-            instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Sp0} {memory.Sp3}"));
-            instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.Sp1} g: {memory.Sp3}"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp0} c:+ 1"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp1} c:+ 1"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Sp2} c:- 1"));
+            instructions.Add(new JumpFactInstruction(memory.Utils2, "==", 0, label_end));
+            instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {memory.Utils0} {memory.Utils3}"));
+            instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {memory.Utils1} g: {memory.Utils3}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils0} c:+ 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils1} c:+ 1"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} c:- 1"));
             instructions.Add(new JumpInstruction(label_repeat));
 
             instructions.Add(label_end);
-            instructions.Add(new JumpIndirectInstruction(memory.Sp4));
+            instructions.Add(new JumpIndirectInstruction(memory.Utils4));
 
             return instructions;
         }

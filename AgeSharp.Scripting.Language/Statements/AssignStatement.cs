@@ -14,12 +14,14 @@ namespace AgeSharp.Scripting.Language.Statements
         public override Scope Scope { get; }
         public AccessorExpression? Left { get; }
         public Expression Right { get; }
+        public bool IsRefAssign { get; }
 
-        public AssignStatement(Scope scope, AccessorExpression? left, Expression right) : base()
+        public AssignStatement(Scope scope, AccessorExpression? left, Expression right, bool is_ref_assign) : base()
         {
             Scope = scope;
             Left = left;
             Right = right;
+            IsRefAssign = is_ref_assign;
         }
 
         public override IEnumerable<Block> GetContainedBlocks() => Enumerable.Empty<Block>();
@@ -33,6 +35,8 @@ namespace AgeSharp.Scripting.Language.Statements
             }
 
             ValidateExpression(Right);
+
+            Throw.If<NotSupportedException>(IsRefAssign && Right is not AccessorExpression, $"Ref assign with value not accessor expression");
         }
 
         public override string ToString()

@@ -7,8 +7,6 @@ namespace AgeSharp.Common
 {
     public static class Throw
     {
-        [DoesNotReturn]
-        public static void Always<T>(string message) where T : Exception => If<T>(true, message);
         public static void IfNull<T>([NotNull] object? obj, string message) where T : Exception => If<T>(obj is null, message);
         public static void IfNotNull<T>(object? obj, string message) where T : Exception => If<T>(obj is not null, message);
 

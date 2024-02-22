@@ -1,5 +1,5 @@
 const int _GROUP_ARG0 = 450;
-const int _GROUP_DATA_SIZE = 1;
+const int _GROUP_DATA_SIZE = 2;
 const int _GROUP_IDS_LENGTH = 100000;
 
 int _Group_Ids = -1;

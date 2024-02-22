@@ -18,6 +18,8 @@ namespace AgeSharp.Scripting.Compiler
         public static Script CreateScript()
         {
             var script = new Script();
+            script.AddType(BuiltinTypes.SearchState);
+
             var args = new object[] { script };
 
             foreach (var type in typeof(ScriptCompiler).Assembly.GetTypes().Where(x => x.IsAssignableTo(typeof(Intrinsic)) && !x.IsAbstract))

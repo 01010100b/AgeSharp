@@ -33,11 +33,14 @@ namespace AgeSharp.Scripting.SharpParser
 
             var int_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Int");
             var bool_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Bool");
+            var search_state_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.SearchState");
             Debug.Assert(int_type is not null);
             Debug.Assert(bool_type is not null);
+            Debug.Assert(search_state_type is not null);
             parse.AddType(int_type, PrimitiveType.Int);
             parse.AddType(bool_type, PrimitiveType.Bool);
-            
+            parse.AddType(search_state_type, BuiltinTypes.SearchState);
+
             var intrinsics = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Intrinsics");
             Debug.Assert(intrinsics is not null);
             
@@ -51,13 +54,29 @@ namespace AgeSharp.Scripting.SharpParser
             {
                 var name = op.ToString()!;
 
-                if (name.Contains("operator <("))
+                if (name.Contains("operator ==("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Equals"));
+                }
+                else if (name.Contains("operator !=("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "NotEquals"));
+                }
+                else if (name.Contains("operator <("))
                 {
                     parse.AddMethod(op, script.Methods.Single(x => x.Name == "LessThan"));
                 }
                 else if (name.Contains("operator >("))
                 {
                     parse.AddMethod(op, script.Methods.Single(x => x.Name == "GreaterThan"));
+                }
+                else if (name.Contains("operator <=("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "LessThanOrEquals"));
+                }
+                else if (name.Contains("operator >=("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "GreaterThanOrEquals"));
                 }
                 else if (name.Contains("operator +("))
                 {
@@ -66,6 +85,26 @@ namespace AgeSharp.Scripting.SharpParser
                 else if (name.Contains("operator -("))
                 {
                     parse.AddMethod(op, script.Methods.Single(x => x.Name == "Sub"));
+                }
+                else if (name.Contains("operator ++("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Increment"));
+                }
+                else if (name.Contains("operator --("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Decrement"));
+                }
+                else if (name.Contains("operator *("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Mul"));
+                }
+                else if (name.Contains("operator /("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Div"));
+                }
+                else if (name.Contains("operator %("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "Mod"));
                 }
             }
 

@@ -54,18 +54,12 @@ class Program
 
     private static void Publish(string from, string to)
     {
-        var name = "";
-
-        foreach (var file in Directory.EnumerateFiles(from, "*.per"))
+        if (!Directory.Exists(to))
         {
-            name = Path.GetFileNameWithoutExtension(file);
+            Directory.CreateDirectory(to);
         }
 
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            throw new Exception("Per not found.");
-        }
-
+        var name = Path.GetFileNameWithoutExtension(Directory.EnumerateFiles(from, "*.per").Single());
         var ai = Path.Combine(to, name + ".ai");
 
         if (!File.Exists(ai))

@@ -16,12 +16,13 @@ namespace AgeSharp.Scripting.Compiler
         public int StackPtr { get; }
         public int ConditionGoal { get; }
         public int ExpressionGoal { get; }
-        public int Sp5 { get; }
-        public int Sp4 { get; }
-        public int Sp3 { get; }
-        public int Sp2 { get; }
-        public int Sp1 { get; }
-        public int Sp0 { get; }
+        public int Utils6 { get; }
+        public int Utils5 { get; }
+        public int Utils4 { get; }
+        public int Utils3 { get; }
+        public int Utils2 { get; }
+        public int Utils1 { get; }
+        public int Utils0 { get; }
         public int Intr4 { get; }
         public int Intr3 {  get; }
         public int Intr2 { get; }
@@ -51,12 +52,13 @@ namespace AgeSharp.Scripting.Compiler
             StackPtr = goal--;
             ConditionGoal = goal--;
             ExpressionGoal = goal--;
-            Sp5 = goal--;
-            Sp4 = goal--;
-            Sp3 = goal--;
-            Sp2 = goal--;
-            Sp1 = goal--;
-            Sp0 = goal--;
+            Utils6 = goal--;
+            Utils5 = goal--;
+            Utils4 = goal--;
+            Utils3 = goal--;
+            Utils2 = goal--;
+            Utils1 = goal--;
+            Utils0 = goal--;
             Intr4 = goal--;
             Intr3 = goal--;
             Intr2 = goal--;

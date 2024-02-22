@@ -14,6 +14,7 @@ namespace Deimos.Source
         private const int ARG0 = 450;
 
         public Int Type;
+        public Int UpdateRate;
 
         [AgeMethod]
         public static void Initialize()
@@ -45,6 +46,7 @@ namespace Deimos.Source
 
             Group group;
             group.Type = GetStrategicNumber(ARG0);
+            group.UpdateRate = GetStrategicNumber(ARG0 + 1);
 
             return group;
         }
@@ -54,6 +56,7 @@ namespace Deimos.Source
         {
             SetStrategicNumber(ARG0, id);
             SetStrategicNumber(ARG0 + 1, group.Type);
+            SetStrategicNumber(ARG0 + 2, group.UpdateRate);
             XsScriptCall("Group_SetGroup");
         }
 
@@ -74,7 +77,7 @@ namespace Deimos.Source
             XsScriptCall("Group_SetGroupId");
         }
 
-        public static void SearchLocalGroupObjects(Int id)
+        public static SearchState SearchLocalGroupObjects(Int id)
         {
             throw new NotImplementedException();
         }

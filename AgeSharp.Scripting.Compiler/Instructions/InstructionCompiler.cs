@@ -16,6 +16,9 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 {
     internal class InstructionCompiler(Script script, Memory memory, Settings settings)
     {
+        private const int ERROR_NONE = 0;
+        private const int ERROR_STACKOVERFLOW = 1;
+
         private Script Script { get; } = script;
         private Memory Memory { get; } = memory;
         private Settings Settings { get; } = settings;
@@ -40,10 +43,11 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             instructions.AddRange(InitializeArrays(Script.GlobalScope));
 
             instructions.Add(label_postinit);
+            instructions.Add(new JumpFactInstruction($"up-compare-goal {Memory.Error} c:> {ERROR_NONE}", LabelError));
+            
             instructions.AddRange(Utils.Clear(Memory.RegistersBase, Memory.RegistersCount));
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:= {Memory.InitialStackPtr}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.RegistersBase} c:= {LabelEnd.Label}"));
-
             instructions.AddRange(CompileMethod(Script.EntryPoint!));
 
             foreach (var method in Script.Methods.Where(x => x != Script.EntryPoint))
@@ -52,7 +56,11 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
 
             instructions.AddRange(Utils.CompileMemCpy(Memory));
+
             instructions.Add(LabelError);
+            instructions.Add(new RuleInstruction($"up-compare-goal {Memory.Error} c:== {ERROR_STACKOVERFLOW}",
+                ["chat-to-all \"ERROR: STACK OVERFLOW\""]));
+
             instructions.Add(LabelEnd);
 
             return instructions;
@@ -69,6 +77,12 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
             instructions.Add(MethodLabels[method]);
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.MaxStackSpaceUsed} g:max {Memory.StackPtr}"));
+            instructions.Add(new RuleInstruction($"up-compare-goal {Memory.MaxStackSpaceUsed} c:> {Memory.StackLimit}",
+                [
+                    $"up-modify-goal {Memory.Error} c:= {ERROR_STACKOVERFLOW}",
+                    $"up-jump-direct c: {LabelError.Label}"
+                ]));
+
             instructions.AddRange(CompileBlock(method, method.Block, null, null));
 
             return instructions;
@@ -89,7 +103,18 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 {
                     var result = assign.Left is not null ? Utils.GetAddress(Memory, assign.Left) : null;
 
-                    instructions.AddRange(CompileExpression(method, result, assign.Right));
+                    if (assign.IsRefAssign)
+                    {
+                        Throw.IfNull<NotSupportedException>(result, $"Ref assign to null target.");
+                        var address = Utils.GetAddress(Memory, (AccessorExpression)assign.Right);
+                        instructions.AddRange(Utils.Assign(Memory, address, result, true));
+                    }
+                    else
+                    {
+                        instructions.AddRange(CompileExpression(method, result, assign.Right));
+                    }
+
+                    
                 }
                 else if (statement is IfStatement ifs)
                 {
@@ -236,15 +261,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                             }
                         }
 
-                        if (par.Type is RefType && arga.Variable.Type is not RefType)
-                        {
-                            // take address of
-                            instructions.AddRange(Utils.GetPointer(Memory, argaddr, addr));
-                        }
-                        else
-                        {
-                            instructions.AddRange(Utils.Assign(Memory, argaddr, addr));
-                        }
+                        instructions.AddRange(Utils.Assign(Memory, argaddr, addr, true));
                     }
                     else
                     {

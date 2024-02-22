@@ -163,7 +163,7 @@ namespace AgeSharp.Scripting.SharpParser
                     {
                         var target = (AccessorExpression)ParseExpression(simple.Target, parse);
                         var value = ParseExpression(simple.Value, parse);
-                        block.Statements.Add(new AssignStatement(block.Scope, target, value));
+                        block.Statements.Add(new AssignStatement(block.Scope, target, value, simple.IsRef));
                     }
                     else if (assign is ICompoundAssignmentOperation compound)
                     {
@@ -173,7 +173,7 @@ namespace AgeSharp.Scripting.SharpParser
                         var callexpr = new CallExpression(method);
                         callexpr.AddArgument(target);
                         callexpr.AddArgument(value);
-                        block.Statements.Add(new AssignStatement(block.Scope, target, callexpr));
+                        block.Statements.Add(new AssignStatement(block.Scope, target, callexpr, false));
                     }
                     else
                     {
@@ -183,7 +183,13 @@ namespace AgeSharp.Scripting.SharpParser
                 else if (exprst.Operation is IInvocationOperation invoke)
                 {
                     var right = ParseExpression(invoke, parse);
-                    block.Statements.Add(new AssignStatement(block.Scope, null, right));
+                    block.Statements.Add(new AssignStatement(block.Scope, null, right, false));
+                }
+                else if (exprst.Operation is IIncrementOrDecrementOperation incr)
+                {
+                    var left = (AccessorExpression)ParseExpression(incr.Target, parse);
+                    var right = ParseExpression(incr, parse);
+                    block.Statements.Add(new AssignStatement(block.Scope, left, right, false));
                 }
                 else
                 {
@@ -286,6 +292,7 @@ namespace AgeSharp.Scripting.SharpParser
 
                 block.Statements.Add(loop);
             }
+            
             else
             {
                 throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
@@ -344,9 +351,18 @@ namespace AgeSharp.Scripting.SharpParser
 
                     if (instance is AccessorExpression ae)
                     {
-                        Throw.If<NotSupportedException>(!ae.IsVariableAccess, $"Accessor not variable access for field {field}.");
-
-                        return new AccessorExpression(ae.Variable, [type_field]);
+                        if (ae.IsVariableAccess)
+                        {
+                            return new AccessorExpression(ae.Variable, [type_field]);
+                        }
+                        else if (ae.IsStructAccess)
+                        {
+                            return new AccessorExpression(ae.Variable, ae.Fields!.Append(type_field));
+                        }
+                        else
+                        {
+                            throw new NotSupportedException($"Accessor not variable access for field {field}.");
+                        }
                     }
                     else
                     {
@@ -397,6 +413,14 @@ namespace AgeSharp.Scripting.SharpParser
                 var callexpr = new CallExpression(method);
                 callexpr.AddArgument(ParseExpression(bin.LeftOperand, parse));
                 callexpr.AddArgument(ParseExpression(bin.RightOperand, parse));
+
+                return callexpr;
+            }
+            else if (expression is IIncrementOrDecrementOperation incr)
+            {
+                var method = parse.GetMethod(incr.OperatorMethod!);
+                var callexpr = new CallExpression(method);
+                callexpr.AddArgument(ParseExpression(incr.Target, parse));
 
                 return callexpr;
             }
@@ -470,7 +494,7 @@ namespace AgeSharp.Scripting.SharpParser
                     var right = ParseExpression(init.Value, parse);
                     Throw.If<NotSupportedException>(right is not ConstExpression, $"Local {type.Name} {name} has non-constant initializer.");
                     var left = new AccessorExpression(v);
-                    block.Statements.Add(new AssignStatement(block.Scope, left, right));
+                    block.Statements.Add(new AssignStatement(block.Scope, left, right, false));
                 }
             }
         }

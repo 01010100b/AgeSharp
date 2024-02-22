@@ -12,49 +12,41 @@ namespace Deimos.Source
     {
         [AgeGlobal]
         public static Int Tick;
-        [AgeGlobal]
-        public static Array<Int> Stuff = new(10);
 
         [AgeMethod(EntryPoint = true)]
         public static void EntryPoint()
         {
-            if (Tick < 1)
+            Int timestamp;
+            timestamp = GetPreciseTime(0);
+
+            if (Tick == 0)
             {
                 Initialize();
-                
-                Group.CreateGroup();
-                Group.CreateGroup();
-                Group g;
-                g = Group.GetGroup(0);
-                g.Type = 17;
-                Group.SetGroup(0, g);
-                g = Group.GetGroup(1);
-                g.Type = 23;
-                Group.SetGroup(1, g);
             }
 
-            Group group;
-            Group group1;
-            group = Group.GetGroup(0);
-            group1 = Group.GetGroup(1);
+            Test();
 
-            ChatDataToSelf("groups %d", Group.GetGroupCount());
-            ChatGroupType(ref group);
-            ChatGroupType(ref group1);
+            timestamp = GetPreciseTime(timestamp);
 
-            Tick += 1;
+            if (true)
+            {
+                ChatDataToSelf("Tick %d", Tick);
+                ChatDataToSelf("Duration %d", timestamp);
+            }
+
+            Tick++;
+        }
+
+        [AgeMethod]
+        private static void Test()
+        {
+            Int a;
         }
 
         [AgeMethod]
         private static void Initialize()
         {
             Group.Initialize();
-        }
-
-        [AgeMethod]
-        private static void ChatGroupType(ref Group group)
-        {
-            ChatDataToSelf("group type %d", group.Type);
         }
     }
 }

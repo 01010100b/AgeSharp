@@ -80,7 +80,7 @@ namespace AgeSharp.Scripting.Compiler
             {
                 var left = assign.Left is not null ? (AccessorExpression)TransformExpression(assign.Left, block) : null;
                 var right = TransformExpression(assign.Right, block);
-                var st = new AssignStatement(block.Scope, left, right);
+                var st = new AssignStatement(block.Scope, left, right, assign.IsRefAssign);
                 block.Statements.Add(st);
             }
             else if (statement is IfStatement ifs)
@@ -163,7 +163,7 @@ namespace AgeSharp.Scripting.Compiler
                 Debug.Assert(access.Index is not null);
                 var vi = new Variable("var-" + Guid.NewGuid().ToString(), PrimitiveType.Int);
                 block.Scope.AddVariable(vi);
-                block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), access.Index!));
+                block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), access.Index!, false));
 
                 return new AccessorExpression(access.Variable, new AccessorExpression(vi));
             }
@@ -187,14 +187,14 @@ namespace AgeSharp.Scripting.Compiler
 
                         var vi = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type);
                         block.Scope.AddVariable(vi);
-                        block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), ae.Index!));
+                        block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), ae.Index!, false));
                         cn.AddArgument(new AccessorExpression(ae.Variable, new AccessorExpression(vi)));
                     }
                     else
                     {
                         var va = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type);
                         block.Scope.AddVariable(va);
-                        block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(va), arg));
+                        block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(va), arg, false));
                         cn.AddArgument(new AccessorExpression(va));
                     }
                 }

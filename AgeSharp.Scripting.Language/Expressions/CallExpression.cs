@@ -47,7 +47,7 @@ namespace AgeSharp.Scripting.Language.Expressions
                 {
                     if (arg is not AccessorExpression)
                     {
-                        Throw.Always<NotSupportedException>($"Call to method {Method.Name} when argument {arg} is not a variable accessor and parameter {par} is ref.");
+                        throw new NotSupportedException($"Call to method {Method.Name} when argument {arg} is not a variable accessor and parameter {par} is ref.");
                     }
                 }
             }
