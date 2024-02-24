@@ -13,6 +13,8 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int GetPreciseTime(Int previous) => throw new Exception();
         public static Int GetStrategicNumber(Int sn) => throw new Exception();
         public static void SetStrategicNumber(Int sn, Int value) => throw new Exception();
+        public static Int GetStrategicNumber(StrategicNumber sn) => throw new Exception();
+        public static Int SetStrategicNumber(StrategicNumber sn, Int value) => throw new Exception();
         public static void XsScriptCall(string script) => throw new Exception();
 
         // Math

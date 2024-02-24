@@ -52,6 +52,7 @@ namespace Deimos.Source
         private static void Initialize()
         {
             Group.Initialize();
+            Memory.Initialize();
         }
     }
 }

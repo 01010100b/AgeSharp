@@ -86,15 +86,13 @@ namespace Deimos.Source
         {
             FullResetSearch();
             FindLocal(-1, 240);
-            SearchState search_state;
-            search_state = GetSearchState();
+            SearchState search_state = GetSearchState();
 
             for (Int i = 0; i < search_state.LocalTotal; i++)
             {
                 SetTargetObject(SearchSource.LOCAL, i);
                 Int data = GetObjectData(ObjectData.ID);
-                Int group;
-                group = GetGroupId(data);
+                Int group = GetGroupId(data);
 
                 if (group != id)
                 {

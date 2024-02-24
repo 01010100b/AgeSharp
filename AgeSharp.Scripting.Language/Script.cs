@@ -94,22 +94,23 @@ namespace AgeSharp.Scripting.Language
         {
             var sb = new StringBuilder();
 
-            foreach (var type in Types.OfType<CompoundType>())
+            foreach (var type in Types.OfType<CompoundType>().OrderBy(x => x.Name))
             {
                 sb.AppendLine($"struct {type}");
             }
 
-            foreach (var global in GlobalScope.Variables)
+            foreach (var global in GlobalScope.Variables.OrderBy(x => x.Name))
             {
                 sb.AppendLine(global.ToString());
             }
 
             sb.AppendLine("");
             sb.AppendLine("");
+            sb.AppendLine($"@entry {EntryPoint!}");
 
-            foreach (var method in Methods.Where(x => x.Block.Statements.Count > 0))
+            foreach (var method in Methods.Where(x => x != EntryPoint && x.Block.Statements.Count > 0).OrderBy(x => x.Name))
             {
-                sb.AppendLine($"{(method == EntryPoint ? "@entry " : "")}{method}");
+                sb.AppendLine(method.ToString());
             }
 
             return sb.ToString();

@@ -28,10 +28,10 @@ namespace AgeSharp.Scripting.Compiler
         public int Intr2 { get; }
         public int Intr1 { get; }
         public int Intr0 { get; }
-        public int CallResultCount { get; }
-        public int CallResultBase { get; }
         public int RegistersCount { get; }
         public int RegistersBase { get; }
+        public int CallResultCount { get; }
+        public int CallResultBase { get; }
         public int GlobalsCount { get; }
         public int GlobalsBase { get; }
         public int InitialStackPtr { get; }
@@ -66,10 +66,10 @@ namespace AgeSharp.Scripting.Compiler
             Intr1 = goal--;
             Intr0 = goal--;
 
-            goal -= CallResultCount;
-            CallResultBase = goal;
             goal -= RegistersCount;
             RegistersBase = goal;
+            goal -= CallResultCount;
+            CallResultBase = goal;
             goal -= GlobalsCount;
             GlobalsBase = goal;
             InitialStackPtr = settings.MinGoal;
@@ -118,10 +118,10 @@ namespace AgeSharp.Scripting.Compiler
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"CallResultCount {CallResultCount}");
-            sb.AppendLine($"CallResultBase {CallResultBase}");
             sb.AppendLine($"RegisterCount {RegistersCount}");
             sb.AppendLine($"RegisterBase {RegistersBase}");
+            sb.AppendLine($"CallResultCount {CallResultCount}");
+            sb.AppendLine($"CallResultBase {CallResultBase}");
             sb.AppendLine($"GlobalsCount {GlobalsCount}");
             sb.AppendLine($"GlobalsBase {GlobalsBase}");
             sb.AppendLine($"StackLimit {StackLimit}");

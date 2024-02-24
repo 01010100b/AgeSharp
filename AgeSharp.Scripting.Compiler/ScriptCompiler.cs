@@ -18,7 +18,12 @@ namespace AgeSharp.Scripting.Compiler
         public static Script CreateScript()
         {
             var script = new Script();
-            script.AddType(BuiltinTypes.SearchState);
+
+            foreach (var prop in typeof(BuiltinTypes).GetProperties())
+            {
+                var type = (CompoundType)prop.GetValue(null)!;
+                script.AddType(type);
+            }
 
             var args = new object[] { script };
 

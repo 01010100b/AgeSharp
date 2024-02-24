@@ -65,6 +65,8 @@ namespace AgeSharp.Scripting.SharpParser
             }
             else if (Types.TryGetValue(named, out var type))
             {
+                Debug.Assert(Script.Types.Contains(type));
+
                 return type;
             }
             else
@@ -100,6 +102,8 @@ namespace AgeSharp.Scripting.SharpParser
         {
             if (Globals.TryGetValue(symbol, out var global))
             {
+                Debug.Assert(Script.GlobalScope.Variables.Contains(global));
+
                 return global;
             }
             else
@@ -117,6 +121,8 @@ namespace AgeSharp.Scripting.SharpParser
         {
             if (Methods.TryGetValue(symbol, out var method))
             {
+                Debug.Assert(Script.Methods.Contains(method));
+
                 return method;
             }
             else
