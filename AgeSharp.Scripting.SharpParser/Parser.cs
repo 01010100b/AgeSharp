@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.Compiler;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Compiler;
 using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Types;
 using Microsoft.CodeAnalysis;
@@ -26,6 +27,7 @@ namespace AgeSharp.Scripting.SharpParser
 
             var references = GetNetCoreReferences();
             references.Add(MetadataReference.CreateFromFile(typeof(Parser).Assembly.Location));
+            references.Add(MetadataReference.CreateFromFile(typeof(SearchSource).Assembly.Location));
             
             var compilation = CSharpCompilation.Create("MyCompilation", trees, references);
             var script = ScriptCompiler.CreateScript();

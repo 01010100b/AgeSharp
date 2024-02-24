@@ -26,7 +26,7 @@ namespace AgeSharp.Scripting.Language.Expressions
 
         public AccessorExpression(Variable variable, Expression index)
         {
-            if (variable.Type is not ArrayType) throw new Exception($"Indexed access when {variable.Name} is not array.");
+            if (variable.Type.ProperType is not ArrayType) throw new Exception($"Indexed access when {variable.Name} is not array.");
             if (index.Type != PrimitiveType.Int) throw new Exception($"Indexed access to {variable.Name} when index is not int.");
 
             Variable = variable;
@@ -35,7 +35,7 @@ namespace AgeSharp.Scripting.Language.Expressions
 
         public AccessorExpression(Variable variable, IEnumerable<Field> fields)
         {
-            Throw.If<NotSupportedException>(variable.ProperType is not CompoundType, $"Field access when {variable.Name} is not compound type.");
+            Throw.If<NotSupportedException>(variable.Type.ProperType is not CompoundType, $"Field access when {variable.Name} is not compound type.");
 
             Variable = variable;
             Fields = fields.ToList();
@@ -64,6 +64,10 @@ namespace AgeSharp.Scripting.Language.Expressions
             else if (Fields is not null)
             {
                 if (Fields.Count == 0) throw new NotSupportedException($"Accessor has no fields.");
+
+                var type = Variable.Type.ProperType;
+                var field = Fields[0];
+                var field_type = field.Type;
             }
         }
 
@@ -99,7 +103,14 @@ namespace AgeSharp.Scripting.Language.Expressions
             }
             else if (IsArrayAccess)
             {
-                return ((ArrayType)Variable.Type).ElementType;
+                if (Index is ConstExpression ci && ci.Value == -1)
+                {
+                    return PrimitiveType.Int;
+                }
+                else
+                {
+                    return ((ArrayType)Variable.Type.ProperType).ElementType;
+                }
             }
             else
             {

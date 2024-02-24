@@ -1,4 +1,5 @@
 ﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Compiler.Intrinsics.Math;
 using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Expressions;
 using AgeSharp.Scripting.Language.Statements;
@@ -30,7 +31,9 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         {
             MethodLabels.Clear();
 
-            foreach (var method in Script.Methods.Where(x => x is not Intrinsic))
+            var methods = GetMethodsToCompile().ToList();
+
+            foreach (var method in methods)
             {
                 MethodLabels.Add(method, new());
             }
@@ -47,10 +50,10 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             
             instructions.AddRange(Utils.Clear(Memory.RegistersBase, Memory.RegistersCount));
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:= {Memory.InitialStackPtr}"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {Memory.RegistersBase} c:= {LabelEnd.Label}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {Memory.ReturnAddressGoal} c:= {LabelEnd.Label}"));
             instructions.AddRange(CompileMethod(Script.EntryPoint!));
 
-            foreach (var method in Script.Methods.Where(x => x != Script.EntryPoint))
+            foreach (var method in methods.Where(x => x != Script.EntryPoint))
             {
                 instructions.AddRange(CompileMethod(method));
             }
@@ -86,6 +89,32 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             instructions.AddRange(CompileBlock(method, method.Block, null, null));
 
             return instructions;
+        }
+
+        private IEnumerable<Method> GetMethodsToCompile()
+        {
+            var methods = new HashSet<Method>() { Script.EntryPoint! };
+            var stack = new Stack<Method>();
+            stack.Push(Script.EntryPoint!);
+
+            while (stack.Count > 0)
+            {
+                var method = stack.Pop();
+
+                foreach (var expression in method.GetAllBlocks().SelectMany(x => x.Statements).SelectMany(x => x.GetContainedExpressions()))
+                {
+                    if (expression is CallExpression call && call.Method is not Intrinsic)
+                    {
+                        if (!methods.Contains(call.Method))
+                        {
+                            methods.Add(call.Method);
+                            stack.Push(call.Method);
+                        }
+                    }
+                }
+            }
+
+            return methods;
         }
 
         private List<Instruction> CompileBlock(Method method, Block block, LabelInstruction? label_break, LabelInstruction? label_continue)
@@ -154,7 +183,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                         instructions.AddRange(CompileExpression(method, result, ret.Expression));
                     }
 
-                    instructions.Add(new JumpIndirectInstruction(Memory.RegistersBase));
+                    instructions.Add(new JumpIndirectInstruction(Memory.ReturnAddressGoal));
                 }
                 else
                 {
@@ -169,7 +198,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         {
             var instructions = new List<Instruction>();
 
-            if (expression is ConstExpression ce)
+            if (expression is ConstExpression constexpr)
             {
                 if (result is null)
                 {
@@ -183,11 +212,11 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {Memory.ExpressionGoal} {Memory.ExpressionGoal}"));
                 }
 
-                instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {Memory.ExpressionGoal} c: {ce.Value}"));
+                instructions.Add(new CommandInstruction($"up-set-indirect-goal g: {Memory.ExpressionGoal} c: {constexpr.Value}"));
 
                 return instructions;
             }
-            else if (expression is AccessorExpression ae)
+            if (expression is AccessorExpression ae)
             {
                 if (result is null)
                 {
@@ -219,54 +248,11 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 instructions.AddRange(Utils.Clear(Memory.RegistersBase, callee_registercount));
 
                 // set parameters
-                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.RegistersBase} c:= {label_return.Label}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.ReturnAddressGoal} c:= {label_return.Label}"));
 
                 for (int i = 0; i < call.Method.Parameters.Count; i++)
                 {
-                    var par = call.Method.Parameters[i];
-                    var arg = call.Arguments[i];
-                    var addr = Memory.GetAddress(par);
-
-                    par.Type.ValidateAssignmentFrom(arg.Type);
-
-                    if (arg is ConstExpression argc)
-                    {
-                        Throw.If<NotSupportedException>(par.Type is RefType, $"Can not assign const to ref parameter {par.Name}");
-                        instructions.Add(new CommandInstruction($"up-modify-goal {addr.Goal} c:= {argc.Value}"));
-                    }
-                    else if (arg is AccessorExpression arga)
-                    {
-                        var argaddr = Utils.GetAddress(Memory, arga);
-                        Debug.Assert(!argaddr.IsRef);
-
-                        if (!Script.GlobalScope.Variables.Contains(arga.Variable))
-                        {
-                            // local variables are now on stack, so interpret addr as offset from stackptr
-
-                            if (argaddr.IsDirect)
-                            {
-                                argaddr = new(argaddr.Type, Memory.StackPtr, true, argaddr.DirectGoal - Memory.RegistersBase);
-                            }
-                            else
-                            {
-                                var indaddr = new Address(PrimitiveType.Int, Memory.StackPtr, true, argaddr.Offset - Memory.RegistersBase);
-                                instructions.AddRange(Utils.GetPointer(Memory, indaddr, Memory.ExpressionGoal));
-                                instructions.Add(new CommandInstruction($"up-get-indirect-goal g: {Memory.ExpressionGoal} {Memory.ExpressionGoal}"));
-                                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.ExpressionGoal} c:* {argaddr.IndexStride}"));
-                                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.ExpressionGoal} c:+ 1"));
-                                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.ExpressionGoal} c:+ {argaddr.Goal - Memory.RegistersBase}"));
-                                instructions.Add(new CommandInstruction($"up-modify-goal {Memory.ExpressionGoal} g:+ {Memory.StackPtr}"));
-                                argaddr = new(argaddr.Type, Memory.ExpressionGoal, true);
-                                //Throw.Always<NotSupportedException>($"Method {call.Method.Name} called with parameter {par.Name} being variable array access.");
-                            }
-                        }
-
-                        instructions.AddRange(Utils.Assign(Memory, argaddr, addr, true));
-                    }
-                    else
-                    {
-                        throw new NotSupportedException($"Method {call.Method} call with parameter {par.Name} not const or var.");
-                    }
+                    instructions.AddRange(AssignArgumentToParameter(call.Arguments[i], call.Method.Parameters[i]));
                 }
 
                 // increment stackptr and jump
@@ -292,6 +278,52 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
         }
 
+        private List<Instruction> AssignArgumentToParameter(Expression argument, Variable parameter)
+        {
+            var instructions = new List<Instruction>();
+            var par_addr = Memory.GetAddress(parameter);
+
+            if (argument is ConstExpression argc)
+            {
+                Throw.If<NotSupportedException>(parameter.Type is RefType, $"Can not assign const to ref parameter {parameter.Name}");
+                instructions.Add(new CommandInstruction($"up-modify-goal {par_addr.Goal} c:= {argc.Value}"));
+            }
+            else if (argument is not AccessorExpression)
+            {
+                throw new NotSupportedException($"Method call with parameter {parameter.Name} not const or var.");
+            }
+
+            var ae = (AccessorExpression)argument;
+
+            var arg_addr = Utils.GetAddress(Memory, ae);
+            Debug.Assert(arg_addr.IsDirect);
+
+            if (Script.GlobalScope.Variables.Contains(ae.Variable))
+            {
+                instructions.AddRange(Utils.Assign(Memory, arg_addr, par_addr, true));
+            }
+            else
+            {
+                // local variables are now on stack, so interpret addr as offset from stackptr
+
+                arg_addr = new(arg_addr.Type, Memory.StackPtr, true, arg_addr.DirectGoal - Memory.RegistersBase);
+                instructions.AddRange(Utils.Assign(Memory, arg_addr, par_addr, true));
+
+                if (parameter.Type is RefType)
+                {
+                    // if pointing to register, point to stack
+                    var goal = par_addr.DirectGoal;
+                    instructions.Add(new RuleInstruction($"up-compare-goal {goal} c:>= {Memory.RegistersBase}",
+                    [
+                        $"up-modify-goal {goal} c:- {Memory.RegistersBase}",
+                        $"up-modify-goal {goal} g:+ {Memory.StackPtr}"
+                    ]));
+                }
+            }
+
+            return instructions;
+        }
+
         private List<Instruction> InitializeArrays(Scope scope)
         {
             // first goal of array is length
@@ -303,8 +335,8 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 var addr = Memory.GetAddress(array);
                 var length = ((ArrayType)array.Type).Length;
 
-                Debug.Assert(!addr.IsRef);
-                instructions.Add(new CommandInstruction($"up-modify-goal {addr.Goal} c:= {length}"));
+                Debug.Assert(addr.IsDirect);
+                instructions.Add(new CommandInstruction($"up-modify-goal {addr.DirectGoal} c:= {length}"));
             }
 
             return instructions;

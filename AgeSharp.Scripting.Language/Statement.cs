@@ -13,6 +13,7 @@ namespace AgeSharp.Scripting.Language
     {
         public abstract Scope Scope { get; }
         public abstract IEnumerable<Block> GetContainedBlocks();
+        public abstract IEnumerable<Expression> GetContainedExpressions();
 
         protected void ValidateExpression(Expression expression)
         {

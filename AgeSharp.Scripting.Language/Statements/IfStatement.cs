@@ -28,6 +28,11 @@ namespace AgeSharp.Scripting.Language.Statements
             yield return WhenFalse;
         }
 
+        public override IEnumerable<Expression> GetContainedExpressions()
+        {
+            yield return Condition;
+        }
+
         public override void Validate()
         {
             if (Condition.Type is null || Condition.Type != PrimitiveType.Bool) throw new NotSupportedException($"If condition does not have type Bool.");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,14 @@ namespace AgeSharp.Scripting.Language.Statements
         }
 
         public override IEnumerable<Block> GetContainedBlocks() => Enumerable.Empty<Block>();
+
+        public override IEnumerable<Expression> GetContainedExpressions()
+        {
+            if (Expression is not null)
+            {
+                yield return Expression;
+            }
+        }
 
         public override void Validate()
         {

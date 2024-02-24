@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgeSharp.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,5 +31,13 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int Mod(Int a, Int b) => throw new Exception();
         public static Int Max(Int a, Int b) => throw new Exception();
         public static Int Min(Int a, Int b) => throw new Exception();
+
+        // DUC
+        public static void FullResetSearch() => throw new Exception();
+        public static void FindLocal(Int id, Int count) => throw new Exception();
+        public static SearchState GetSearchState() => throw new Exception();
+        public static void SetTargetObject(SearchSource search_source, Int index) => throw new Exception();
+        public static Int GetObjectData(ObjectData data) => throw new Exception();
+        public static void RemoveObjects(string comparison, SearchSource search_source, ObjectData data, Int value) => throw new Exception();
     }
 }

@@ -74,7 +74,7 @@ namespace AgeSharp.Scripting.SharpParser
                             value = conv2.Operand;
                         }
 
-                        Throw.If<NotSupportedException>(!value.ConstantValue.HasValue, $"Global {field} initialized with argument not a compile-time constant.");
+                        Throw.If<NotSupportedException>(!value.ConstantValue.HasValue, $"Global array {field} initialized with argument not a compile-time constant.");
                         var length = (int)value.ConstantValue.Value!;
                         field_type = parse.GetType(field.Type, length);
                     }

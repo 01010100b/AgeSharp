@@ -238,16 +238,19 @@
 (defrule
 	(up-compare-goal 512 c:> 0)
 =>
-	(up-jump-direct c: 57)
+	(up-jump-direct c: 34)
 )
 
 ; 13
 (defrule
 	(true)
 =>
-	(up-setup-cost-data 1 489)
+	(up-setup-cost-data 1 478)
+	(up-setup-cost-data 1 482)
+	(up-setup-cost-data 1 486)
+	(up-modify-goal 490 c:= 0)
 	(up-modify-goal 510 c:= 1)
-	(up-modify-goal 489 c:= 58)
+	(up-modify-goal 478 c:= 35)
 )
 
 ; 14
@@ -259,10 +262,10 @@
 
 ; 15
 (defrule
-	(up-compare-goal 511 c:> 488)
+	(up-compare-goal 511 c:> 477)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
+	(up-jump-direct c: 34)
 )
 
 ; 16
@@ -271,8 +274,8 @@
 =>
 	(up-modify-goal 496 c:= 0)
 	(up-get-precise-time 496 497)
-	(up-modify-goal 490 g:= 497)
-	(up-modify-goal 496 g:= 488)
+	(up-modify-goal 479 g:= 497)
+	(up-modify-goal 496 g:= 477)
 	(up-modify-goal 497 c:= 0)
 	(up-modify-goal 496 g:- 497)
 	(up-modify-goal 496 c:min 1)
@@ -293,7 +296,9 @@
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 489)
+	(up-modify-goal 496 c:= 0)
+	(up-chat-data-to-self "Initializing..." g: 496)
+	(up-modify-goal 501 c:= 478)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
@@ -301,10 +306,10 @@
 	(up-modify-goal 502 c:+ 1)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 489 c:= 19)
+	(up-modify-goal 478 c:= 0)
+	(up-modify-goal 478 c:= 19)
 	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 50)
+	(up-jump-direct c: 24)
 )
 
 ; 19
@@ -313,7 +318,7 @@
 =>
 	(up-modify-goal 510 c:- 2)
 	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 489)
+	(up-modify-goal 502 c:= 478)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:+ 1)
@@ -327,90 +332,80 @@
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 489)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 490 c:= 0)
-	(up-modify-goal 489 c:= 21)
-	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 46)
-)
-
-; 21
-(defrule
-	(true)
-=>
-	(up-modify-goal 510 c:- 2)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 489)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 496 g:= 490)
+	(up-modify-goal 496 g:= 479)
 	(up-get-precise-time 496 497)
-	(up-modify-goal 490 g:= 497)
+	(up-modify-goal 479 g:= 497)
 	(up-modify-goal 508 c:= 509)
 	(up-set-indirect-goal g: 508 c: 1)
 )
 
-; 22
+; 21
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 24)
+	(up-jump-direct c: 23)
+)
+
+; 22
+(defrule
+	(true)
+=>
+	(up-modify-goal 496 g:= 477)
+	(up-chat-data-to-self "Tick %d" g: 496)
+	(up-modify-goal 496 g:= 479)
+	(up-chat-data-to-self "Duration %d" g: 496)
+	(up-jump-direct c: 23)
 )
 
 ; 23
 (defrule
 	(true)
 =>
-	(up-modify-goal 496 g:= 488)
-	(up-chat-data-to-self "Tick %d" g: 496)
-	(up-modify-goal 496 g:= 490)
-	(up-chat-data-to-self "Duration %d" g: 496)
-	(up-jump-direct c: 24)
+	(up-modify-goal 496 g:= 477)
+	(up-modify-goal 496 c:+ 1)
+	(up-modify-goal 477 g:= 496)
+	(up-jump-direct g: 478)
 )
 
 ; 24
 (defrule
 	(true)
 =>
-	(up-modify-goal 496 g:= 488)
-	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 488 g:= 496)
-	(up-jump-direct g: 489)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 25
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 477)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 34)
 )
 
 ; 26
 (defrule
-	(up-compare-goal 511 c:> 488)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
+	(up-modify-goal 501 c:= 478)
+	(up-modify-goal 502 g:= 510)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 478 c:= 0)
+	(up-modify-goal 478 c:= 27)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 28)
 )
 
 ; 27
 (defrule
 	(true)
 =>
-	(xs-script-call "Group_Initialize")
-	(up-jump-direct g: 489)
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 478)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-jump-direct g: 478)
 )
 
 ; 28
@@ -422,260 +417,28 @@
 
 ; 29
 (defrule
-	(up-compare-goal 511 c:> 488)
+	(up-compare-goal 511 c:> 477)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
+	(up-jump-direct c: 34)
 )
 
 ; 30
 (defrule
 	(true)
 =>
-	(xs-script-call "Group_GetGroupCount")
-	(up-modify-goal 496 s:= 450)
-	(up-modify-goal 493 g:= 496)
-	(up-jump-direct g: 489)
+	(xs-script-call "Group_Initialize")
+	(up-jump-direct g: 478)
 )
 
 ; 31
 (defrule
-	(true)
+	(up-compare-goal 503 c:== 0)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-jump-direct c: 33)
 )
 
 ; 32
-(defrule
-	(up-compare-goal 511 c:> 488)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
-)
-
-; 33
-(defrule
-	(true)
-=>
-	(xs-script-call "Group_CreateGroup")
-	(up-modify-goal 496 s:= 450)
-	(up-modify-goal 493 g:= 496)
-	(up-jump-direct g: 489)
-)
-
-; 34
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 35
-(defrule
-	(up-compare-goal 511 c:> 488)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
-)
-
-; 36
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 490)
-	(up-modify-sn 450 g:= 496)
-	(xs-script-call "Group_GetGroup")
-	(up-modify-goal 496 s:= 450)
-	(up-modify-goal 491 g:= 496)
-	(up-modify-goal 496 s:= 451)
-	(up-modify-goal 492 g:= 496)
-	(up-modify-goal 493 g:= 491)
-	(up-modify-goal 494 g:= 492)
-	(up-jump-direct g: 489)
-)
-
-; 37
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 38
-(defrule
-	(up-compare-goal 511 c:> 488)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
-)
-
-; 39
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 490)
-	(up-modify-sn 450 g:= 496)
-	(up-modify-goal 496 g:= 491)
-	(up-modify-sn 451 g:= 496)
-	(up-modify-goal 496 g:= 492)
-	(up-modify-sn 452 g:= 496)
-	(xs-script-call "Group_SetGroup")
-	(up-jump-direct g: 489)
-)
-
-; 40
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 41
-(defrule
-	(up-compare-goal 511 c:> 488)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
-)
-
-; 42
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 490)
-	(up-modify-sn 450 g:= 496)
-	(xs-script-call "Group_GetGroupId")
-	(up-modify-goal 496 s:= 450)
-	(up-modify-goal 493 g:= 496)
-	(up-jump-direct g: 489)
-)
-
-; 43
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 44
-(defrule
-	(up-compare-goal 511 c:> 488)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
-)
-
-; 45
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 490)
-	(up-modify-sn 450 g:= 496)
-	(up-modify-goal 496 g:= 491)
-	(up-modify-sn 451 g:= 496)
-	(xs-script-call "Group_SetGroupId")
-	(up-jump-direct g: 489)
-)
-
-; 46
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 47
-(defrule
-	(up-compare-goal 511 c:> 488)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
-)
-
-; 48
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 489)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 490 c:= 0)
-	(up-modify-goal 489 c:= 49)
-	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 46)
-)
-
-; 49
-(defrule
-	(true)
-=>
-	(up-modify-goal 510 c:- 2)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 489)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-jump-direct g: 489)
-)
-
-; 50
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 51
-(defrule
-	(up-compare-goal 511 c:> 488)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 57)
-)
-
-; 52
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 489)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 489 c:= 53)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 25)
-)
-
-; 53
-(defrule
-	(true)
-=>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 489)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-jump-direct g: 489)
-)
-
-; 54
-(defrule
-	(up-compare-goal 503 c:== 0)
-=>
-	(up-jump-direct c: 56)
-)
-
-; 55
 (defrule
 	(true)
 =>
@@ -684,24 +447,24 @@
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:+ 1)
 	(up-modify-goal 503 c:- 1)
-	(up-jump-direct c: 54)
+	(up-jump-direct c: 31)
 )
 
-; 56
+; 33
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 505)
 )
 
-; 57
+; 34
 (defrule
 	(up-compare-goal 512 c:== 1)
 =>
 	(chat-to-all "ERROR: STACK OVERFLOW")
 )
 
-; 58
+; 35
 (defrule
 	(true)
 =>

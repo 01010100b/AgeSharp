@@ -18,15 +18,15 @@ namespace AgeSharp.Scripting.Language.Statements
         public Block Body { get; }
         public Block AtLoopBottom { get; }
 
-        public LoopStatement(Block scoping_block, Expression condition, bool condition_at_top = true) : base()
+        public LoopStatement(Block scoping_block, Expression condition, Block before, Block body, Block at_loop_bottom, bool condition_at_top = true) : base()
         {
             Throw.If<NotImplementedException>(!condition_at_top, "Condition at bottom not yet implemented.");
             Condition = condition;
             ConditionAtTop = condition_at_top;
             ScopingBlock = scoping_block; 
-            Before = new(ScopingBlock.Scope);
-            Body = new(ScopingBlock.Scope);
-            AtLoopBottom = new(ScopingBlock.Scope);
+            Before = before;
+            Body = body;
+            AtLoopBottom = at_loop_bottom;
         }
 
         public override IEnumerable<Block> GetContainedBlocks()
@@ -35,6 +35,11 @@ namespace AgeSharp.Scripting.Language.Statements
             yield return Before;
             yield return Body;
             yield return AtLoopBottom;
+        }
+
+        public override IEnumerable<Expression> GetContainedExpressions()
+        {
+            yield return Condition;
         }
 
         public override void Validate()

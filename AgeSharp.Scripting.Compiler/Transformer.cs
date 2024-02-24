@@ -25,13 +25,13 @@ namespace AgeSharp.Scripting.Compiler
 
                     foreach (var block in method.GetAllBlocks())
                     {
-                        changed |= TransformBlock(block);
+                        changed |= TransformBlock(script, block);
                     }
                 }
             }
         }
 
-        private static bool TransformBlock(Block block)
+        private static bool TransformBlock(Script script, Block block)
         {
             var changed = false;
 
@@ -45,7 +45,7 @@ namespace AgeSharp.Scripting.Compiler
                 }
 
                 var bb = new Block(block.Scope);
-                TransformStatement(statement, bb);
+                TransformStatement(script, statement, bb);
                 block.Statements[i] = bb;
                 changed = true;
             }
@@ -53,7 +53,7 @@ namespace AgeSharp.Scripting.Compiler
             return changed;
         }
 
-        private static void TransformStatement(Statement statement, Block block)
+        private static void TransformStatement(Script script, Statement statement, Block block)
         {
             static void move(Block from, Block to)
             {
@@ -78,14 +78,14 @@ namespace AgeSharp.Scripting.Compiler
 
             if (statement is AssignStatement assign)
             {
-                var left = assign.Left is not null ? (AccessorExpression)TransformExpression(assign.Left, block) : null;
-                var right = TransformExpression(assign.Right, block);
+                var left = assign.Left is not null ? (AccessorExpression)TransformExpression(script, assign.Left, block) : null;
+                var right = TransformExpression(script, assign.Right, block);
                 var st = new AssignStatement(block.Scope, left, right, assign.IsRefAssign);
                 block.Statements.Add(st);
             }
             else if (statement is IfStatement ifs)
             {
-                var condition = TransformExpression(ifs.Condition, block);
+                var condition = TransformExpression(script, ifs.Condition, block);
                 var st = new IfStatement(block.Scope, condition);
                 move(ifs.WhenTrue, st.WhenTrue);
                 move(ifs.WhenFalse, st.WhenFalse);
@@ -93,17 +93,23 @@ namespace AgeSharp.Scripting.Compiler
             }
             else if (statement is LoopStatement loop)
             {
-                var condition = TransformExpression(loop.Condition, block);
-                var st = new LoopStatement(new(block.Scope), condition);
-                move(loop.ScopingBlock, st.ScopingBlock);
-                move(loop.Before, st.Before);
-                move(loop.Body, st.Body);
-                move(loop.AtLoopBottom, st.AtLoopBottom);
+                var condition = TransformExpression(script, loop.Condition, block);
+                var scoping_block = new Block(block.Scope);
+                var before = new Block(scoping_block.Scope);
+                var body = new Block(scoping_block.Scope);
+                var atloopbottom = new Block(scoping_block.Scope);
+                
+                move(loop.ScopingBlock, scoping_block);
+                move(loop.Before, before);
+                move(loop.Body, body);
+                move(loop.AtLoopBottom, atloopbottom);
+
+                var st = new LoopStatement(scoping_block, condition, before, body, atloopbottom, loop.ConditionAtTop); ;
                 block.Statements.Add(st);
             }
             else if (statement is ReturnStatement ret)
             {
-                var expression = TransformExpression(ret.Expression!, block);
+                var expression = TransformExpression(script, ret.Expression!, block);
                 var st = new ReturnStatement(block.Scope, expression);
                 block.Statements.Add(st);
             }
@@ -151,7 +157,7 @@ namespace AgeSharp.Scripting.Compiler
             return false;
         }
 
-        private static Expression TransformExpression(Expression expression, Block block)
+        private static Expression TransformExpression(Script script, Expression expression, Block block)
         {
             if (!NeedsExpressionTransform(expression))
             {
@@ -171,9 +177,12 @@ namespace AgeSharp.Scripting.Compiler
             {
                 var cn = new CallExpression(call.Method, call.Literal);
 
-                foreach (var arg in call.Arguments)
+                for (int i = 0; i < call.Arguments.Count; i++)
                 {
-                    if (!NeedsArgumentTransform(arg))
+                    var arg = call.Arguments[i];
+                    var ref_par = call.Method.Parameters[i].Type is RefType;
+
+                    if (!NeedsArgumentTransform(arg, ref_par))
                     {
                         cn.AddArgument(arg);
 
@@ -182,13 +191,25 @@ namespace AgeSharp.Scripting.Compiler
 
                     if (arg is AccessorExpression ae)
                     {
-                        Debug.Assert(ae.IsArrayAccess);
-                        Debug.Assert(ae.Index is not null);
+                        if (ref_par)
+                        {
+                            Debug.Assert(!ae.IsVariableAccess);
+                            var type = ae.Type is RefType ? ae.Type : script.GetRefType(ae.Type);
+                            var va = new Variable("var-" + Guid.NewGuid().ToString(), type);
+                            block.Scope.AddVariable(va);
+                            block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(va), ae, true));
+                            cn.AddArgument(new AccessorExpression(va));
+                        }
+                        else
+                        {
+                            Debug.Assert(ae.IsArrayAccess);
+                            Debug.Assert(ae.Index is not null);
 
-                        var vi = new Variable("var-" + Guid.NewGuid().ToString(), arg.Type);
-                        block.Scope.AddVariable(vi);
-                        block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), ae.Index!, false));
-                        cn.AddArgument(new AccessorExpression(ae.Variable, new AccessorExpression(vi)));
+                            var vi = new Variable("var-" + Guid.NewGuid().ToString(), PrimitiveType.Int);
+                            block.Scope.AddVariable(vi);
+                            block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), ae.Index!, false));
+                            cn.AddArgument(new AccessorExpression(ae.Variable, new AccessorExpression(vi)));
+                        }
                     }
                     else
                     {
@@ -225,9 +246,11 @@ namespace AgeSharp.Scripting.Compiler
             }
             else if (expression is CallExpression call)
             {
-                foreach (var arg in call.Arguments)
+                for (int i = 0; i <  call.Arguments.Count; i++)
                 {
-                    if (NeedsArgumentTransform(arg))
+                    var arg = call.Arguments[i];
+
+                    if (NeedsArgumentTransform(arg, call.Method.Parameters[i].Type is RefType))
                     {
                         return true;
                     }
@@ -237,11 +260,15 @@ namespace AgeSharp.Scripting.Compiler
             return false;
         }
 
-        private static bool NeedsArgumentTransform(Expression arg)
+        private static bool NeedsArgumentTransform(Expression arg, bool ref_par = false)
         {
             if (arg is AccessorExpression arga)
             {
-                if (arga.IsArrayAccess)
+                if (ref_par && !arga.IsVariableAccess)
+                {
+                    return true;
+                }
+                else if (arga.IsArrayAccess)
                 {
                     if (arga.Index is AccessorExpression ai)
                     {

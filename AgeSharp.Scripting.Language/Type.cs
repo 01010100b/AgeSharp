@@ -11,6 +11,7 @@ namespace AgeSharp.Scripting.Language
     {
         public string Name { get; } = name;
         public abstract int Size { get; }
+        public Type ProperType => this is RefType rt ? rt.ReferencedType : this;
 
         public void ValidateAssignmentFrom(Type from)
         {

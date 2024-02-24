@@ -1,6 +1,7 @@
 ﻿using AgeSharp.Common;
 using AgeSharp.Scripting.Language.Expressions;
 using AgeSharp.Scripting.Language.Types;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,26 @@ namespace AgeSharp.Scripting.Language.Statements
 
         public override IEnumerable<Block> GetContainedBlocks() => Enumerable.Empty<Block>();
 
+        public override IEnumerable<Expression> GetContainedExpressions()
+        {
+            yield return Right;
+
+            if (Left is not null)
+            {
+                yield return Left;
+            }
+        }
+
         public override void Validate()
         {
             if (Left is not null)
             {
                 ValidateExpression(Left);
                 Left.Type.ValidateAssignmentFrom(Right.Type);
+            }
+            else if (IsRefAssign)
+            {
+                throw new NotSupportedException($"Ref assign to nothing.");
             }
 
             ValidateExpression(Right);
@@ -43,7 +58,7 @@ namespace AgeSharp.Scripting.Language.Statements
         {
             if (Left is not null)
             {
-                return $"{Left} = {Right};";
+                return $"{Left} = {(IsRefAssign ? "ref " : "")}{Right};";
             }
             else
             {

@@ -124,12 +124,7 @@ namespace AgeSharp.Scripting.SharpParser
 
         private static void ParseBlock(IBlockOperation operation, Block block, Parse parse)
         {
-            foreach (var local in operation.Operations.OfType<IVariableDeclarationGroupOperation>())
-            {
-                ParseLocal(local, block, parse);
-            }
-
-            foreach (var op in operation.Operations.Where(x => x is not IVariableDeclarationGroupOperation))
+            foreach (var op in operation.Operations)
             {
                 ParseStatement(op, block, parse);
             }
@@ -137,7 +132,11 @@ namespace AgeSharp.Scripting.SharpParser
 
         private static void ParseStatement(IOperation op, Block block, Parse parse)
         {
-            if (op is IBlockOperation blockop)
+            if (op is IVariableDeclarationGroupOperation vardecl)
+            {
+                ParseLocal(vardecl, block, parse);
+            }
+            else if (op is IBlockOperation blockop)
             {
                 var bb = new Block(block.Scope);
                 ParseBlock(blockop, bb, parse);
@@ -234,65 +233,37 @@ namespace AgeSharp.Scripting.SharpParser
                 Throw.If<NotSupportedException>(forloop.Body is not IBlockOperation, "For loop with body not a block.");
 
                 var scoping_block = new Block(block.Scope);
+                var before = new Block(scoping_block.Scope);
+                var body = new Block(scoping_block.Scope);
+                var atloopbottom = new Block(scoping_block.Scope);
 
-                // parse variables
-                
-                foreach (var decl in forloop.Before.OfType<IVariableDeclarationGroupOperation>())
+                foreach (var operation in forloop.Before)
                 {
-                    ParseLocal(decl, scoping_block, parse);
+                    ParseStatement(operation, before, parse);
+                }
+
+                foreach (var operation in ((IBlockOperation)forloop.Body).Operations)
+                {
+                    ParseStatement(operation, body, parse);
+                }
+
+                foreach (var operation in forloop.AtLoopBottom)
+                {
+                    ParseStatement(operation, atloopbottom, parse);
+                }
+
+                foreach (var scope in new[] { before.Scope, body.Scope, atloopbottom.Scope })
+                {
+                    foreach (var variable in scope.Variables.ToList())
+                    {
+                        scope.MoveVariable(variable, scoping_block.Scope);
+                    }
                 }
 
                 var condition = ParseExpression(forloop.Condition, parse);
-                var loop = new LoopStatement(scoping_block, condition);
-
-                foreach (var statement in scoping_block.Statements)
-                {
-                    loop.Before.Statements.Add(statement);
-                }
-
-                scoping_block.Statements.Clear();
-                var body = (IBlockOperation)forloop.Body;
-
-                foreach (var decl in body.Operations.OfType<IVariableDeclarationGroupOperation>())
-                {
-                    ParseLocal(decl, loop.Body, parse);
-                }
-                
-                foreach (var decl in forloop.AtLoopBottom.OfType<IVariableDeclarationGroupOperation>())
-                {
-                    ParseLocal(decl, loop.AtLoopBottom, parse);
-                }
-
-                foreach (var v in loop.Body.Scope.Variables.ToList())
-                {
-                    loop.Body.Scope.MoveVariable(v, loop.Scope);
-                }
-
-                foreach (var v in loop.AtLoopBottom.Scope.Variables.ToList())
-                {
-                    loop.AtLoopBottom.Scope.MoveVariable(v, loop.Scope);
-                }
-
-                // parse statements
-
-                foreach (var st in forloop.Before.Where(x => x is not IVariableDeclarationGroupOperation))
-                {
-                    ParseStatement(st, loop.Before, parse);
-                }
-
-                foreach (var st in body.Operations.Where(x => x is not IVariableDeclarationGroupOperation))
-                {
-                    ParseStatement(st, loop.Body, parse);
-                }
-
-                foreach (var st in forloop.AtLoopBottom.Where(x => x is not IVariableDeclarationGroupOperation))
-                {
-                    ParseStatement(st, loop.AtLoopBottom, parse);
-                }
-
+                var loop = new LoopStatement(scoping_block, condition, before, body, atloopbottom);
                 block.Statements.Add(loop);
             }
-            
             else
             {
                 throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
@@ -310,6 +281,10 @@ namespace AgeSharp.Scripting.SharpParser
                 else if (expression.Type!.SpecialType == SpecialType.System_Boolean)
                 {
                     return new ConstExpression(PrimitiveType.Bool, (bool)expression.ConstantValue.Value! ? 1 : 0);
+                }
+                else if (expression.Type!.TypeKind == TypeKind.Enum)
+                {
+                    return new ConstExpression(PrimitiveType.Int, (int)expression.ConstantValue.Value!);
                 }
                 else
                 {
@@ -428,11 +403,17 @@ namespace AgeSharp.Scripting.SharpParser
             {
                 var v = ((AccessorExpression)ParseExpression(prop.Instance!, parse)).Variable;
 
-                if (v.Type is ArrayType)
+                if (v.Type.ProperType is ArrayType)
                 {
                     if (prop.Property.ToString()!.Contains(">.this[AgeSharp.Scripting.SharpParser.Int]"))
                     {
                         var index = ParseExpression(prop.Arguments.Single(), parse);
+
+                        return new AccessorExpression(v, index);
+                    }
+                    else if (prop.Property.ToString()!.Contains(">.Length"))
+                    {
+                        var index = new ConstExpression(PrimitiveType.Int, -1);
 
                         return new AccessorExpression(v, index);
                     }
@@ -492,7 +473,6 @@ namespace AgeSharp.Scripting.SharpParser
                 if (type is not ArrayType && init is not null)
                 {
                     var right = ParseExpression(init.Value, parse);
-                    Throw.If<NotSupportedException>(right is not ConstExpression, $"Local {type.Name} {name} has non-constant initializer.");
                     var left = new AccessorExpression(v);
                     block.Statements.Add(new AssignStatement(block.Scope, left, right, false));
                 }

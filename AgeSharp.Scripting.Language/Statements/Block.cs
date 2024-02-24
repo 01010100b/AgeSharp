@@ -18,6 +18,8 @@ namespace AgeSharp.Scripting.Language.Statements
             yield return this;
         }
 
+        public override IEnumerable<Expression> GetContainedExpressions() => Enumerable.Empty<Expression>();
+
         public IEnumerable<Block> GetChildBlocks()
         {
             foreach (var statement in Statements)

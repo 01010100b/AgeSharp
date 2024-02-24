@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.SharpParser;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.SharpParser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Deimos.Source
 {
     public class Main
     {
+        public const int SN_ARG0 = 450;
+
         [AgeGlobal]
         public static Int Tick;
 
@@ -21,10 +24,12 @@ namespace Deimos.Source
 
             if (Tick == 0)
             {
+                ChatDataToSelf("Initializing...", 0);
                 Initialize();
             }
 
-            Test();
+            //Tests.Test();
+            //Run();
 
             timestamp = GetPreciseTime(timestamp);
 
@@ -38,9 +43,9 @@ namespace Deimos.Source
         }
 
         [AgeMethod]
-        private static void Test()
+        private static void Run()
         {
-            Int a;
+
         }
 
         [AgeMethod]

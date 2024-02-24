@@ -15,6 +15,7 @@ namespace AgeSharp.Scripting.Compiler
         public static Type Void => PrimitiveType.Void;
         public static Type Int => PrimitiveType.Int;
         public static Type Bool => PrimitiveType.Bool;
+        public static Type SearchState => BuiltinTypes.SearchState;
 
         public abstract bool HasStringLiteral { get; }
 
@@ -65,6 +66,18 @@ namespace AgeSharp.Scripting.Compiler
             }
 
             return instructions;
+        }
+
+        protected int GetConstArgument(Expression argument)
+        {
+            if (argument is ConstExpression ce)
+            {
+                return ce.Value;
+            }
+            else
+            {
+                throw new NotSupportedException($"Call to method {Name} with argument not const.");
+            }
         }
     }
 }

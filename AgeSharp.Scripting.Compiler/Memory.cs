@@ -37,6 +37,7 @@ namespace AgeSharp.Scripting.Compiler
         public int InitialStackPtr { get; }
 
         public int StackLimit => GlobalsBase;
+        public int ReturnAddressGoal => RegistersBase;
 
         private Dictionary<Variable, Address> VariableAddresses { get; } = [];
 

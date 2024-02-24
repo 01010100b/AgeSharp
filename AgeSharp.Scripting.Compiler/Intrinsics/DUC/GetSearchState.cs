@@ -1,5 +1,4 @@
-﻿using AgeSharp.Common;
-using AgeSharp.Scripting.Compiler.Instructions;
+﻿using AgeSharp.Scripting.Compiler.Instructions;
 using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Expressions;
 using System;
@@ -8,16 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgeSharp.Scripting.Compiler.Intrinsics
+namespace AgeSharp.Scripting.Compiler.Intrinsics.DUC
 {
-    internal class GetStrategicNumber : Intrinsic
+    internal class GetSearchState : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public GetStrategicNumber(Script script) : base(script)
+        public GetSearchState(Script script) : base(script)
         {
-            ReturnType = Int;
-            AddParameter(new("sn", Int));
+            ReturnType = SearchState;
         }
 
         protected override List<Instruction> CompileCall(Memory memory, Address? result, CallExpression call)
@@ -29,8 +27,7 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics
                 return instructions;
             }
 
-            var sn = GetConstArgument(call.Arguments[0]);
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} s:= {sn}"));
+            instructions.Add(new CommandInstruction($"up-get-search-state {memory.Intr0}"));
             instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 
             return instructions;
