@@ -28,7 +28,7 @@ namespace Deimos.Source
                 Initialize();
             }
 
-            //Tests.Test();
+            Tests.Test();
             //Run();
 
             timestamp = GetPreciseTime(timestamp);

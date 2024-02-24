@@ -29,9 +29,28 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
         public List<Instruction> Compile()
         {
-            MethodLabels.Clear();
+            var methods = new HashSet<Method>() { Script.EntryPoint! };
+            var stack = new Stack<Method>();
+            stack.Push(Script.EntryPoint!);
 
-            var methods = GetMethodsToCompile().ToList();
+            while (stack.Count > 0)
+            {
+                var method = stack.Pop();
+
+                foreach (var expression in method.GetAllBlocks().SelectMany(x => x.Statements).SelectMany(x => x.GetContainedExpressions()))
+                {
+                    if (expression is CallExpression call && call.Method is not Intrinsic)
+                    {
+                        if (!methods.Contains(call.Method))
+                        {
+                            methods.Add(call.Method);
+                            stack.Push(call.Method);
+                        }
+                    }
+                }
+            }
+
+            MethodLabels.Clear();
 
             foreach (var method in methods)
             {
@@ -91,32 +110,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             return instructions;
         }
 
-        private IEnumerable<Method> GetMethodsToCompile()
-        {
-            var methods = new HashSet<Method>() { Script.EntryPoint! };
-            var stack = new Stack<Method>();
-            stack.Push(Script.EntryPoint!);
-
-            while (stack.Count > 0)
-            {
-                var method = stack.Pop();
-
-                foreach (var expression in method.GetAllBlocks().SelectMany(x => x.Statements).SelectMany(x => x.GetContainedExpressions()))
-                {
-                    if (expression is CallExpression call && call.Method is not Intrinsic)
-                    {
-                        if (!methods.Contains(call.Method))
-                        {
-                            methods.Add(call.Method);
-                            stack.Push(call.Method);
-                        }
-                    }
-                }
-            }
-
-            return methods;
-        }
-
         private List<Instruction> CompileBlock(Method method, Block block, LabelInstruction? label_break, LabelInstruction? label_continue)
         {
             var instructions = new List<Instruction>();
@@ -142,8 +135,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     {
                         instructions.AddRange(CompileExpression(method, result, assign.Right));
                     }
-
-                    
                 }
                 else if (statement is IfStatement ifs)
                 {
@@ -174,6 +165,16 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     instructions.AddRange(CompileBlock(method, loop.AtLoopBottom, null, null));
                     instructions.Add(new JumpInstruction(label_repeat));
                     instructions.Add(label_end);
+                }
+                else if (statement is ContinueStatement)
+                {
+                    Debug.Assert(label_continue is not null);
+                    instructions.Add(new JumpInstruction(label_continue));
+                }
+                else if (statement is BreakStatement)
+                {
+                    Debug.Assert(label_break is not null);
+                    instructions.Add(new JumpInstruction(label_break));
                 }
                 else if (statement is ReturnStatement ret)
                 {

@@ -264,6 +264,21 @@ namespace AgeSharp.Scripting.SharpParser
                 var loop = new LoopStatement(scoping_block, condition, before, body, atloopbottom);
                 block.Statements.Add(loop);
             }
+            else if (op is IBranchOperation branch)
+            {
+                if (branch.BranchKind == BranchKind.Continue)
+                {
+                    block.Statements.Add(new ContinueStatement(block.Scope));
+                }
+                else if (branch.BranchKind == BranchKind.Break)
+                {
+                    block.Statements.Add(new BreakStatement(block.Scope));
+                }
+                else
+                {
+                    throw new NotSupportedException($"Branch operation {branch.BranchKind} not supported.");
+                }
+            }
             else
             {
                 throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
