@@ -63,9 +63,13 @@ namespace AgeSharp.Scripting.SharpParser
 
                 return Script.GetArrayType(GetType(etype), length);
             }
+            else if (Types.TryGetValue(named, out var type))
+            {
+                return type;
+            }
             else
             {
-                return Types[named];
+                throw new NotSupportedException($"Type {named.Name} not found, possibly missing AgeType attribute.");
             }
         }
 
@@ -94,7 +98,14 @@ namespace AgeSharp.Scripting.SharpParser
 
         public Variable GetGlobal(IFieldSymbol symbol)
         {
-            return Globals[symbol];
+            if (Globals.TryGetValue(symbol, out var global))
+            {
+                return global;
+            }
+            else
+            {
+                throw new NotSupportedException($"Global {symbol.Name} not found, possibly missing AgeGlobal attribute.");
+            }
         }
 
         public void AddMethod(IMethodSymbol symbol, Method method)
@@ -104,7 +115,14 @@ namespace AgeSharp.Scripting.SharpParser
 
         public Method GetMethod(IMethodSymbol symbol)
         {
-            return Methods[symbol];
+            if (Methods.TryGetValue(symbol, out var method))
+            {
+                return method;
+            }
+            else
+            {
+                throw new NotSupportedException($"Method {symbol.Name} not found, possibly missing AgeMethod attribute.");
+            }
         }
 
         public void AddParameter(IParameterSymbol symbol, Variable variable)

@@ -279,6 +279,17 @@ namespace AgeSharp.Scripting.SharpParser
                     throw new NotSupportedException($"Branch operation {branch.BranchKind} not supported.");
                 }
             }
+            else if (op is IThrowOperation thrw)
+            {
+                if (thrw.Exception is not IConversionOperation conv) throw new NotSupportedException($"Throw {thrw.Syntax} not conversion to AgeException.");
+                if (conv.Operand is not IObjectCreationOperation create) throw new NotSupportedException($"Throw {thrw.Syntax} not object creation.");
+                if (create.Type!.ToString() != "AgeSharp.Scripting.SharpParser.AgeException") throw new NotSupportedException($"Throw {thrw.Syntax} not AgeException.");
+                if (create.Arguments.Single().Value is not ILiteralOperation literal) throw new NotSupportedException($"Throw {thrw.Syntax} argument not a string literal.");
+                if (!literal.ConstantValue.HasValue) throw new NotSupportedException($"Throw {thrw.Syntax} argument not a constant.");
+                
+                var message = (string)literal.ConstantValue.Value!;
+                block.Statements.Add(new ThrowStatement(block.Scope, message));
+            }
             else
             {
                 throw new NotSupportedException($"Operation {op} {op.GetType().Name} not supported.");
@@ -471,14 +482,28 @@ namespace AgeSharp.Scripting.SharpParser
                 if (type is ArrayType)
                 {
                     if (init is null) throw new NotSupportedException($"Array {name} without init.");
-                    if (init.Value is not IConversionOperation conversion) throw new NotSupportedException($"Array {name} init not conversion.");
-                    if (conversion.Operand is not IObjectCreationOperation creation) throw new NotSupportedException($"Array {name} init not object creation.");
+                    
+                    if (init.Value is IObjectCreationOperation create)
+                    {
+                        var value = create.Arguments.Single().Value;
+                        if (value is not IConversionOperation conversion) throw new NotSupportedException($"Array {name} init argument not conversion.");
+                        value = conversion.Operand;
 
-                    var arg = creation.Arguments.Single().Value;
-                    if (arg is not IConversionOperation argconv) throw new NotSupportedException($"Array {name} arg is not conversion.");
-                    if (!argconv.Operand.ConstantValue.HasValue) throw new NotSupportedException($"Array {name} init without const length.");
-                    var length = (int)argconv.Operand.ConstantValue.Value!;
-                    type = parse.GetType(local.Type, length);
+                        var length = (int)value.ConstantValue.Value!;
+                        type = parse.GetType(local.Type, length);
+                    }
+                    else
+                    {
+                        if (init.Value is not IConversionOperation conversion) throw new NotSupportedException($"Array {name} init not conversion.");
+                        if (conversion.Operand is not IObjectCreationOperation creation) throw new NotSupportedException($"Array {name} init not object creation.");
+                        var arg = creation.Arguments.Single().Value;
+                        if (arg is not IConversionOperation argconv) throw new NotSupportedException($"Array {name} arg is not conversion.");
+                        if (!argconv.Operand.ConstantValue.HasValue) throw new NotSupportedException($"Array {name} init without const length.");
+
+                        var length = (int)argconv.Operand.ConstantValue.Value!;
+                        type = parse.GetType(local.Type, length);
+                    }
+
                 }
 
                 var v = new Variable(name, type);

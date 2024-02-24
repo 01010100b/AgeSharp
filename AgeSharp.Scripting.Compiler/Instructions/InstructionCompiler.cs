@@ -24,6 +24,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         private Memory Memory { get; } = memory;
         private Settings Settings { get; } = settings;
         private Dictionary<Method, LabelInstruction> MethodLabels { get; } = [];
+        private Dictionary<string, int> ExceptionStrings { get; } = [];
         private LabelInstruction LabelError { get; } = new();
         private LabelInstruction LabelEnd { get; } = new();
 
@@ -47,6 +48,28 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                             stack.Push(call.Method);
                         }
                     }
+                }
+            }
+
+            if (Settings.CompileUnusedMethods)
+            {
+                methods.Clear();
+
+                foreach (var method in Script.Methods.Where(x => x is not Intrinsic))
+                {
+                    methods.Add(method);
+                }
+            }
+
+            ExceptionStrings.Clear();
+            ExceptionStrings.Add("ERROR: STACK OVERFLOW", ERROR_STACKOVERFLOW);
+
+            foreach (var statement in methods.SelectMany(x => x.GetAllBlocks()).SelectMany(x => x.Statements))
+            {
+                if (statement is ThrowStatement thrw)
+                {
+                    var id = Math.Max(100, ExceptionStrings.Values.Max()) + 1;
+                    ExceptionStrings.Add(thrw.Message, id);
                 }
             }
 
@@ -80,8 +103,19 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             instructions.AddRange(Utils.CompileMemCpy(Memory));
 
             instructions.Add(LabelError);
-            instructions.Add(new RuleInstruction($"up-compare-goal {Memory.Error} c:== {ERROR_STACKOVERFLOW}",
-                ["chat-to-all \"ERROR: STACK OVERFLOW\""]));
+
+            foreach (var exception in ExceptionStrings.OrderBy(x => x.Value))
+            {
+                var message = exception.Key;
+                var id = exception.Value;
+
+                instructions.Add(new RuleInstruction($"up-compare-goal {Memory.Error} c:== {id}",
+                [
+                    $"chat-to-all \"{message}\""
+                ]));
+            }
+
+            
 
             instructions.Add(LabelEnd);
 
@@ -100,10 +134,10 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             instructions.Add(MethodLabels[method]);
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.MaxStackSpaceUsed} g:max {Memory.StackPtr}"));
             instructions.Add(new RuleInstruction($"up-compare-goal {Memory.MaxStackSpaceUsed} c:> {Memory.StackLimit}",
-                [
-                    $"up-modify-goal {Memory.Error} c:= {ERROR_STACKOVERFLOW}",
-                    $"up-jump-direct c: {LabelError.Label}"
-                ]));
+            [
+                $"up-modify-goal {Memory.Error} c:= {ERROR_STACKOVERFLOW}",
+                $"up-jump-direct c: {LabelError.Label}"
+            ]));
 
             instructions.AddRange(CompileBlock(method, method.Block, null, null));
 
@@ -185,6 +219,12 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     }
 
                     instructions.Add(new JumpIndirectInstruction(Memory.ReturnAddressGoal));
+                }
+                else if (statement is ThrowStatement thrw)
+                {
+                    var id = ExceptionStrings[thrw.Message];
+                    instructions.Add(new CommandInstruction($"up-modify-goal {Memory.Error} c:= {id}"));
+                    instructions.Add(new JumpInstruction(LabelError));
                 }
                 else
                 {

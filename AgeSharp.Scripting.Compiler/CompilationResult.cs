@@ -89,7 +89,7 @@ namespace AgeSharp.Scripting.Compiler
             sb.AppendLine("### PER ###");
             sb.AppendLine();
             sb.AppendLine();
-            sb.AppendLine($"Using {RuleCount:N0} rules and {CommandCount:N0} commands");
+            sb.AppendLine($"Using {RuleCount:N0} rules and {CommandCount:N0} commands ({CommandCount / (double)RuleCount:N2} commands/rule)");
             sb.AppendLine();
             sb.AppendLine(GetPer());
 

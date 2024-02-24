@@ -1,4 +1,4 @@
-const int _GROUP_DATA_SIZE = 2;
+const int _GROUP_DATA_SIZE = 4;
 const int _GROUP_IDS_LENGTH = 100000;
 
 int _Group_Ids = -1;

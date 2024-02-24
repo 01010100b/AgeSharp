@@ -12,6 +12,7 @@ namespace AgeSharp.Scripting.Compiler
         public int MinGoal { get; set; } = 1;
         public int MaxGoal { get; set; } = 512;
         public int MaxRuleCommands { get; set; } = 16;
+        public bool CompileUnusedMethods { get; set; } = true;
 
         public override void Validate()
         {

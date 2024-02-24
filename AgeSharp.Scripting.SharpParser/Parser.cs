@@ -33,14 +33,13 @@ namespace AgeSharp.Scripting.SharpParser
             var script = ScriptCompiler.CreateScript();
             var parse = new Parse(script, compilation);
 
-            var int_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Int");
-            var bool_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Bool");
-            var search_state_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.SearchState");
-            Debug.Assert(int_type is not null);
-            Debug.Assert(bool_type is not null);
-            Debug.Assert(search_state_type is not null);
+            var int_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Int")!;
+            var bool_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Bool")!;
+            var point_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Point")!;
+            var search_state_type = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.SearchState")!;
             parse.AddType(int_type, PrimitiveType.Int);
             parse.AddType(bool_type, PrimitiveType.Bool);
+            parse.AddType(point_type, BuiltinTypes.Point);
             parse.AddType(search_state_type, BuiltinTypes.SearchState);
 
             var intrinsics = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Intrinsics");

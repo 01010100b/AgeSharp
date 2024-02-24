@@ -45,8 +45,12 @@ namespace AgeSharp.Scripting.Language.Statements
             var sb = new StringBuilder();
             sb.AppendLine($"if ({Condition})");
             sb.AppendLine(WhenTrue.ToString());
-            sb.AppendLine("else");
-            sb.AppendLine(WhenFalse.ToString());
+
+            if (WhenFalse.Statements.Count > 0)
+            {
+                sb.AppendLine("else");
+                sb.AppendLine(WhenFalse.ToString());
+            }
 
             return sb.ToString();
         }

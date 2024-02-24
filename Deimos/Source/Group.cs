@@ -14,6 +14,7 @@ namespace Deimos.Source
     {
         public Int Type;
         public Int UpdateRate;
+        public Point Position;
 
         [AgeMethod]
         public static void Initialize()
@@ -46,6 +47,8 @@ namespace Deimos.Source
             Group group;
             group.Type = GetStrategicNumber(Main.SN_ARG0);
             group.UpdateRate = GetStrategicNumber(Main.SN_ARG0 + 1);
+            group.Position.X = GetStrategicNumber(Main.SN_ARG0 + 2);
+            group.Position.Y = GetStrategicNumber(Main.SN_ARG0 + 3);
 
             return group;
         }
@@ -56,6 +59,8 @@ namespace Deimos.Source
             SetStrategicNumber(Main.SN_ARG0, id);
             SetStrategicNumber(Main.SN_ARG0 + 1, group.Type);
             SetStrategicNumber(Main.SN_ARG0 + 2, group.UpdateRate);
+            SetStrategicNumber(Main.SN_ARG0 + 3, group.Position.X);
+            SetStrategicNumber(Main.SN_ARG0 + 4, group.Position.Y);
             XsScriptCall("Group_SetGroup");
         }
 
