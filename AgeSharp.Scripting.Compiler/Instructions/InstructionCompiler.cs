@@ -66,7 +66,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
             foreach (var statement in methods.SelectMany(x => x.GetAllBlocks()).SelectMany(x => x.Statements))
             {
-                if (statement is ThrowStatement thrw)
+                if (statement is ThrowStatement thrw && !ExceptionStrings.ContainsKey(thrw.Message))
                 {
                     var id = Math.Max(100, ExceptionStrings.Values.Max()) + 1;
                     ExceptionStrings.Add(thrw.Message, id);
@@ -114,8 +114,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     $"chat-to-all \"{message}\""
                 ]));
             }
-
-            
 
             instructions.Add(LabelEnd);
 
@@ -328,6 +326,8 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             {
                 Throw.If<NotSupportedException>(parameter.Type is RefType, $"Can not assign const to ref parameter {parameter.Name}");
                 instructions.Add(new CommandInstruction($"up-modify-goal {par_addr.Goal} c:= {argc.Value}"));
+
+                return instructions;
             }
             else if (argument is not AccessorExpression)
             {

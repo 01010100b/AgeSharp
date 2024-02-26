@@ -6,20 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
-namespace Deimos.Source
+namespace Deimos.Source.Controllers
 {
-    internal class Tests
+    internal class ExterminationController
     {
         [AgeMethod]
-        public static void Test()
+        public static void Update(Group group)
         {
-            Bool a = true;
-            Bool b = false;
-
-            if (a && b)
-            {
-                throw new AgeException("test exception.");
-            }
+            var search_state = Group.SearchLocalGroupObjects(group.Id);
         }
     }
 }

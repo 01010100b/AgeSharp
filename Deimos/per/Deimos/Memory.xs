@@ -9,10 +9,8 @@ void Memory_Initialize()
 
 void Memory_Allocate()
 {
-	int size = -1;
-	size = GetArgument(0);
-	int allocations = -1;
-	allocations = xsArrayGetSize(_Memory_Free);
+	int size = GetArgument(0);
+	int allocations = xsArrayGetSize(_Memory_Free);
 	int free_index = -1;
 	
 	for (i = 0; < allocations)
@@ -35,7 +33,7 @@ void Memory_Allocate()
 		free_index = allocations;
 		xsArrayResizeInt(_Memory_Heap, allocations + 1);
 		xsArrayResizeInt(_Memory_Free, allocations + 1);
-		array = xsArrayCreateInt(size, 0, "_Memory_Heap" + free_index);
+		array = xsArrayCreateInt(size, -1, "_Memory_Heap" + free_index);
 		xsArraySetInt(_Memory_Heap, free_index, array);
 	}
 	else
@@ -46,12 +44,11 @@ void Memory_Allocate()
 		if (allocations < size)
 		{
 			xsArrayResizeInt(array, size);
-			allocations = size;
 		}
 		
-		for (i = 0; < allocations)
+		for (i = 0; < size)
 		{
-			xsArraySetInt(array, i, 0);
+			xsArraySetInt(array, i, -1);
 		}
 	}
 	
@@ -61,31 +58,24 @@ void Memory_Allocate()
 
 void Memory_Free()
 {
-	int ptr = -1;
-	ptr = GetArgument(0);
+	int ptr = GetArgument(0);
 	xsArraySetInt(_Memory_Free, ptr, 1);
 }
 
 void Memory_GetValue()
 {
-	int ptr = -1;
-	int index = -1;
-	ptr = GetArgument(0);
+	int ptr = GetArgument(0);
+	int index = GetArgument(1);
 	ptr = xsArrayGetInt(_Memory_Heap, ptr);
-	index = GetArgument(1);
-	int value = -1;
-	value = xsArrayGetInt(ptr, index);
+	int value = xsArrayGetInt(ptr, index);
 	SetArgument(0, value);
 }
 
 void Memory_SetValue()
 {
-	int ptr = -1;
-	int index = -1;
-	int value = -1;
-	ptr = GetArgument(0);
+	int ptr = GetArgument(0);
+	int index = GetArgument(1);
+	int value = GetArgument(2);
 	ptr = xsArrayGetInt(_Memory_Heap, ptr);
-	index = GetArgument(1);
-	value = GetArgument(2);
 	xsArraySetInt(ptr, index, value);
 }

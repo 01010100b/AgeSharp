@@ -1,4 +1,4 @@
-const int _GROUP_DATA_SIZE = 4;
+const int _GROUP_DATA_SIZE = 8;
 const int _GROUP_IDS_LENGTH = 100000;
 
 int _Group_Ids = -1;
@@ -13,29 +13,24 @@ void Group_Initialize()
 
 void Group_GetGroupCount()
 {
-	int count = -1;
-	count = xsArrayGetSize(_Group_Array);
+	int count = xsArrayGetSize(_Group_Array);
 	SetArgument(0, count);
 }
 
 void Group_CreateGroup()
 {
-	int count = -1;
-	count = xsArrayGetSize(_Group_Array);
+	int count = xsArrayGetSize(_Group_Array);
 	xsArrayResizeInt(_Group_Array, count + 1);
 	
-	int g = -1;
-	g = xsArrayCreateInt(_GROUP_DATA_SIZE, -1, "_Group_Data" + count);
+	int g = xsArrayCreateInt(_GROUP_DATA_SIZE, 0, "_Group_Data" + count);
 	xsArraySetInt(_Group_Array, count, g);
 	SetArgument(0, count);
 }
 
 void Group_GetGroup()
 {
-	int id = -1;
-	id = GetArgument(0);
-	int g = -1;
-	g = xsArrayGetInt(_Group_Array, id);
+	int id = GetArgument(0);
+	int g = xsArrayGetInt(_Group_Array, id);
 	int data = -1;
 	
 	for (i = 0; < _GROUP_DATA_SIZE)
@@ -47,10 +42,8 @@ void Group_GetGroup()
 
 void Group_SetGroup()
 {
-	int id = -1;
-	id = GetArgument(0);
-	int g = -1;
-	g = xsArrayGetInt(_Group_Array, id);
+	int id = GetArgument(0);
+	int g = xsArrayGetInt(_Group_Array, id);
 	int data = -1;
 	
 	for (i = 0; < _GROUP_DATA_SIZE)
@@ -62,18 +55,14 @@ void Group_SetGroup()
 
 void Group_GetGroupId()
 {
-	int object_id = -1;
-	object_id = GetArgument(0);
-	int id = -1;
-	id = xsArrayGetInt(_Group_Ids, object_id);
+	int object_id = GetArgument(0);
+	int id = xsArrayGetInt(_Group_Ids, object_id);
 	SetArgument(0, id);
 }
 
 void Group_SetGroupId()
 {
-	int object_id = -1;
-	object_id = GetArgument(0);
-	int id = -1;
-	id = GetArgument(1);
+	int object_id = GetArgument(0);
+	int id = GetArgument(1);
 	xsArraySetInt(_Group_Ids, object_id, id);
 }

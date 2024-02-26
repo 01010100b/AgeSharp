@@ -4,8 +4,7 @@ const int SN_ARG0 = 450;
 
 int GetArgument(int index = -1)
 {
-	int arg = -1;
-	arg = xsGetStrategicNumber(SN_ARG0 + index);
+	int arg = xsGetStrategicNumber(SN_ARG0 + index);
 	
 	return (arg);
 }

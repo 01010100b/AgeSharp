@@ -12,10 +12,11 @@ namespace AgeSharp.Scripting.Compiler
 {
     internal abstract class Intrinsic : Method
     {
-        public static Type Void => PrimitiveType.Void;
-        public static Type Int => PrimitiveType.Int;
-        public static Type Bool => PrimitiveType.Bool;
-        public static Type SearchState => BuiltinTypes.SearchState;
+        protected static Type Void => PrimitiveType.Void;
+        protected static Type Int => PrimitiveType.Int;
+        protected static Type Bool => PrimitiveType.Bool;
+        protected static Type Point => BuiltinTypes.Point;
+        protected static Type SearchState => BuiltinTypes.SearchState;
 
         public abstract bool HasStringLiteral { get; }
 

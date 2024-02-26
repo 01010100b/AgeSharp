@@ -15,12 +15,13 @@ namespace Deimos.Source
 
         [AgeGlobal]
         public static Int Tick;
+        [AgeGlobal]
+        private static Int Timestamp;
 
         [AgeMethod(EntryPoint = true)]
         public static void EntryPoint()
         {
-            Int timestamp;
-            timestamp = GetPreciseTime(0);
+            Timestamp = GetPreciseTime(0);
 
             if (Tick == 0)
             {
@@ -28,31 +29,39 @@ namespace Deimos.Source
                 Initialize();
             }
 
-            Tests.Test();
-            //Run();
+            //Tests.Test();
+            Run();
 
-            timestamp = GetPreciseTime(timestamp);
+            Timestamp = GetPreciseTime(Timestamp);
 
             if (true)
             {
                 ChatDataToSelf("Tick %d", Tick);
-                ChatDataToSelf("Duration %d", timestamp);
+                ChatDataToSelf("Duration %d", Timestamp);
             }
 
             Tick++;
         }
 
         [AgeMethod]
+        public static Int GetTimePassed()
+        {
+            return GetPreciseTime(Timestamp);
+        }
+
+        [AgeMethod]
         private static void Run()
         {
-
+            Manager.Update();
+            Controller.Update();
         }
 
         [AgeMethod]
         private static void Initialize()
         {
-            Group.Initialize();
             Memory.Initialize();
+            Group.Initialize();
+            Manager.Initialize();
         }
     }
 }

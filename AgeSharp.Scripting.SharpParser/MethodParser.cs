@@ -459,6 +459,14 @@ namespace AgeSharp.Scripting.SharpParser
                 {
                     throw new NotImplementedException($"Unary false operator not implemented.");
                 }
+                else if (unary.OperatorMethod.ToString() == "AgeSharp.Scripting.SharpParser.Bool.operator !(AgeSharp.Scripting.SharpParser.Bool)")
+                {
+                    var method = parse.GetMethod(unary.OperatorMethod!);
+                    var callexpr = new CallExpression(method);
+                    callexpr.AddArgument(ParseExpression(unary.Operand, parse));
+
+                    return callexpr;
+                }
                 else
                 {
                     throw new NotImplementedException();
