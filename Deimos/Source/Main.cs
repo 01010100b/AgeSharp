@@ -60,7 +60,6 @@ namespace Deimos.Source
         private static void Initialize()
         {
             Memory.Initialize();
-            Group.Initialize();
             Manager.Initialize();
             Controller.Initialize();
             Micro.Initialize();

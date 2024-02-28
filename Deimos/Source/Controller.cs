@@ -19,22 +19,7 @@ namespace Deimos.Source
         [AgeMethod]
         public static void Update()
         {
-            var group_count = Group.GetGroupCount();
 
-            for (Int i = 0; i < group_count; i++)
-            {
-                var group = Group.GetGroup(i);
-
-                if (!ShouldUpdate(group.Id, group.UpdateRate))
-                {
-                    continue;
-                }
-
-                if (group.Type == Group.TYPE_EXTERMINATION)
-                {
-                    ExterminationController.Update(group);
-                }
-            }
         }
 
         [AgeMethod]

@@ -14,10 +14,7 @@ namespace Deimos.Source.Managers
         [AgeMethod]
         public static void ManageUngroupedObject(Int id)
         {
-            var group = Manager.GetOrCreateGroup(Group.TYPE_EXTERMINATION, 39);
-            group.UpdateRate = 1;
-            Group.SetGroup(group.Id, group);
-            Group.SetGroupId(id, group.Id);
+
         }
 
         [AgeMethod]

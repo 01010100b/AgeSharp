@@ -67,15 +67,10 @@ class Program
             File.Create(ai);
         }
 
-        foreach (var file in Directory.EnumerateFiles(from, "*.*", SearchOption.AllDirectories))
+        foreach (var file in Directory.EnumerateFiles(from, "*.*"))
         {
             var dest = Path.Combine(to, Path.GetRelativePath(from, file));
             var dir = Path.GetDirectoryName(dest)!;
-
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
 
             if (File.Exists(dest))
             {
@@ -83,6 +78,37 @@ class Program
             }
 
             File.Copy(file, dest);
+        }
+
+        var dirs = new Stack<string>();
+
+        foreach (var dir in Directory.EnumerateDirectories(from))
+        {
+            dirs.Push(dir);
+        }
+
+        while (dirs.Count > 0)
+        {
+            var dir = dirs.Pop();
+            var todir = Path.Combine(to, Path.GetRelativePath(from, dir));
+
+            if (Directory.Exists(todir))
+            {
+                Directory.Delete(todir, true);
+            }
+
+            Directory.CreateDirectory(todir);
+
+            foreach (var file in Directory.EnumerateFiles(dir, "*.*"))
+            {
+                var dest = Path.Combine(todir, Path.GetRelativePath(dir, file));
+                File.Copy(file, dest, true);
+            }
+
+            foreach (var subdir in Directory.EnumerateDirectories(dir))
+            {
+                dirs.Push(subdir);
+            }
         }
     }
 

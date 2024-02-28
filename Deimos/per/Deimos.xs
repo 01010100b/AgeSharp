@@ -15,4 +15,3 @@ void SetArgument(int index = -1, int value = -1)
 }
 
 include "..\ai\Deimos\Memory.xs";
-include "..\ai\Deimos\Group.xs";

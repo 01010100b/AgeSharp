@@ -105,7 +105,7 @@ namespace AgeSharp.Scripting.Compiler
 
             // first register is return addr
 
-            var max = 0;
+            var max = 1;
 
             foreach (var block in method.GetAllBlocks())
             {
