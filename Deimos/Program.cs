@@ -70,7 +70,6 @@ class Program
         foreach (var file in Directory.EnumerateFiles(from, "*.*"))
         {
             var dest = Path.Combine(to, Path.GetRelativePath(from, file));
-            var dir = Path.GetDirectoryName(dest)!;
 
             if (File.Exists(dest))
             {

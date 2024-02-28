@@ -54,7 +54,7 @@ namespace Deimos.Source.Managers
                 }
             }
 
-            throw new AgeException("Invalid index.");
+            throw new AgeException("Invalid player index");
         }
 
         [AgeMethod]

@@ -11,16 +11,20 @@ namespace Deimos.Source.Managers
 {
     internal class MilitaryManager
     {
-        [AgeMethod]
-        public static void ManageUngroupedObject(Int id)
-        {
+        // cmdid MILITARY MONK
 
-        }
+        [AgeGlobal]
+        private readonly static Array<Group> Groups = new(9);
 
         [AgeMethod]
         public static void Initialize()
         {
-
+            for (Int i = 0; i < Groups.Length; i++)
+            {
+                var group = Groups[i];
+                group.Id = i + 1;
+                Groups[i] = group;
+            }
         }
 
         [AgeMethod]

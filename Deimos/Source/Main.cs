@@ -53,16 +53,14 @@ namespace Deimos.Source
         private static void Run()
         {
             Manager.Update();
-            Controller.Update();
         }
 
         [AgeMethod]
         private static void Initialize()
         {
             Memory.Initialize();
+            CustomObjectData.Initialize();
             Manager.Initialize();
-            Controller.Initialize();
-            Micro.Initialize();
         }
     }
 }

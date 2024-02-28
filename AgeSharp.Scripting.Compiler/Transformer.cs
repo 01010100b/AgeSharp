@@ -205,10 +205,21 @@ namespace AgeSharp.Scripting.Compiler
                             Debug.Assert(ae.IsArrayAccess);
                             Debug.Assert(ae.Index is not null);
 
-                            var vi = new Variable("var-" + Guid.NewGuid().ToString(), PrimitiveType.Int);
-                            block.Scope.AddVariable(vi);
-                            block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), ae.Index!, false));
-                            cn.AddArgument(new AccessorExpression(ae.Variable, new AccessorExpression(vi)));
+                            if (ae.Index is AccessorExpression ai && ai.IsVariableAccess)
+                            {
+                                var type = ae.Type;
+                                var va = new Variable("var-" + Guid.NewGuid().ToString(), type);
+                                block.Scope.AddVariable(va);
+                                block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(va), ae, false));
+                                cn.AddArgument(new AccessorExpression(va));
+                            }
+                            else
+                            {
+                                var vi = new Variable("var-" + Guid.NewGuid().ToString(), PrimitiveType.Int);
+                                block.Scope.AddVariable(vi);
+                                block.Statements.Add(new AssignStatement(block.Scope, new AccessorExpression(vi), ae.Index!, false));
+                                cn.AddArgument(new AccessorExpression(ae.Variable, new AccessorExpression(vi)));
+                            }
                         }
                     }
                     else
@@ -270,14 +281,7 @@ namespace AgeSharp.Scripting.Compiler
                 }
                 else if (arga.IsArrayAccess)
                 {
-                    if (arga.Index is AccessorExpression ai)
-                    {
-                        if (!ai.IsVariableAccess)
-                        {
-                            return true;
-                        }
-                    }
-                    else if (arga.Index is not ConstExpression)
+                    if (arga.Index is not ConstExpression)
                     {
                         return true;
                     }

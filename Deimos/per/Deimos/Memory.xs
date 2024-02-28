@@ -65,7 +65,6 @@ void Memory_Free()
 void Memory_GetValue()
 {
 	int ptr = GetArgument(0);
-	xsChatData("from ptr %d", ptr);
 	int index = GetArgument(1);
 	ptr = xsArrayGetInt(_Memory_Heap, ptr);
 	int value = xsArrayGetInt(ptr, index);

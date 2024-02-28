@@ -58,6 +58,7 @@ namespace AgeSharp.Scripting.SharpParser
         public static void TargetPoint(Point point, TargetPointAdjustment adjustment, UnitAction action, UnitFormation formation, UnitStance stance) => throw new Exception();
         public static void CreateGroup(Int index, Int count, Int group) => throw new Exception();
         public static void SetGroup(SearchSource search_source, Int group) => throw new Exception();
+        public static void ModifyGroupFlag(Bool append, Int group) => throw new Exception();
 
         // Players
         public static Int GetPlayerFact(Int player, FactId fact, Int parameter) => throw new Exception();

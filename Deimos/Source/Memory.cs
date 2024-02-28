@@ -14,12 +14,16 @@ namespace Deimos.Source
         public static void Initialize()
         {
             XsScriptCall("Memory_Initialize");
-            ChatDataToSelf("mem init", 0);
         }
 
         [AgeMethod]
         public static Int Allocate(Int size)
         {
+            if (size < 0)
+            {
+                throw new AgeException("Allocation size < 0");
+            }
+
             SetStrategicNumber(Main.SN_ARG0, size);
             XsScriptCall("Memory_Allocate");
 
@@ -36,6 +40,11 @@ namespace Deimos.Source
         [AgeMethod]
         public static Int GetValue(Int pointer, Int index)
         {
+            if (index < 0)
+            {
+                throw new AgeException("Memory index < 0");
+            }
+
             SetStrategicNumber(Main.SN_ARG0, pointer);
             SetStrategicNumber(Main.SN_ARG0 + 1, index);
             XsScriptCall("Memory_GetValue");
@@ -46,6 +55,11 @@ namespace Deimos.Source
         [AgeMethod]
         public static void SetValue(Int pointer, Int index, Int value)
         {
+            if (index < 0)
+            {
+                throw new AgeException("Memory index < 0");
+            }
+
             SetStrategicNumber(Main.SN_ARG0, pointer);
             SetStrategicNumber(Main.SN_ARG0 + 1, index);
             SetStrategicNumber(Main.SN_ARG0 + 2, value);

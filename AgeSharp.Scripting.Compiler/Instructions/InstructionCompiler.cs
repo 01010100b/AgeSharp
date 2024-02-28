@@ -17,16 +17,17 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 {
     internal class InstructionCompiler(Script script, Memory memory, Settings settings)
     {
-        private const int ERROR_NONE = 0;
-        private const int ERROR_STACKOVERFLOW = 1;
+        public const int ERROR_NONE = 0;
+        public const int ERROR_STACKOVERFLOW = 1;
+
+        public static LabelInstruction LabelError { get; } = new();
+        public static LabelInstruction LabelEnd { get; } = new();
 
         private Script Script { get; } = script;
         private Memory Memory { get; } = memory;
         private Settings Settings { get; } = settings;
         private Dictionary<Method, LabelInstruction> MethodLabels { get; } = [];
         private Dictionary<string, int> ExceptionStrings { get; } = [];
-        private LabelInstruction LabelError { get; } = new();
-        private LabelInstruction LabelEnd { get; } = new();
 
         public List<Instruction> Compile()
         {
@@ -62,7 +63,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
 
             ExceptionStrings.Clear();
-            ExceptionStrings.Add("ERROR: STACK OVERFLOW", ERROR_STACKOVERFLOW);
+            ExceptionStrings.Add("STACK OVERFLOW", ERROR_STACKOVERFLOW);
 
             foreach (var statement in methods.SelectMany(x => x.GetAllBlocks()).SelectMany(x => x.Statements))
             {
@@ -111,7 +112,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
                 instructions.Add(new RuleInstruction($"up-compare-goal {Memory.Error} c:== {id}",
                 [
-                    $"chat-to-all \"{message}\""
+                    $"chat-to-all \"ERROR: {message}\""
                 ]));
             }
 
@@ -176,10 +177,18 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     instructions.AddRange(CompileExpression(method, new Address(PrimitiveType.Bool, Memory.ConditionGoal, false), ifs.Condition));
                     instructions.Add(new JumpFactInstruction(Memory.ConditionGoal, "==", 0, label_false));
                     instructions.AddRange(CompileBlock(method, ifs.WhenTrue, label_break, label_continue));
-                    instructions.Add(new JumpInstruction(label_end));
-                    instructions.Add(label_false);
-                    instructions.AddRange(CompileBlock(method, ifs.WhenFalse, label_break, label_continue));
-                    instructions.Add(label_end);
+
+                    if (ifs.WhenFalse.Statements.Any())
+                    {
+                        instructions.Add(new JumpInstruction(label_end));
+                        instructions.Add(label_false);
+                        instructions.AddRange(CompileBlock(method, ifs.WhenFalse, label_break, label_continue));
+                        instructions.Add(label_end);
+                    }
+                    else
+                    {
+                        instructions.Add(label_false);
+                    }
                 }
                 else if (statement is LoopStatement loop)
                 {

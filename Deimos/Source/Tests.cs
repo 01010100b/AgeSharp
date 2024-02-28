@@ -13,9 +13,7 @@ namespace Deimos.Source
         [AgeMethod]
         public static void Test()
         {
-            Group group;
-            group.Id = 7;
-            group.DoStuff();
+
         }
     }
 }

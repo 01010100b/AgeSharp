@@ -14,11 +14,39 @@ namespace Deimos.Source
     internal struct Group
     {
         public Int Id;
+        public Int Type;
+        public Point Position;
 
         [AgeMethod]
-        public void DoStuff()
+        public void AddObject(Int object_id)
         {
-            ChatDataToSelf("id %d", Id);
+            var search_state = GetSearchState();
+
+            if (search_state.LocalTotal >= 240)
+            {
+                throw new AgeException("Group local list full");
+            }
+
+            AddObjectById(SearchSource.LOCAL, object_id);
+            CreateGroup(search_state.LocalTotal, 1, Id);
+            ModifyGroupFlag(true, Id);
+            RemoveObjects("==", SearchSource.LOCAL, ObjectData.INDEX, search_state.LocalTotal);
+        }
+
+        [AgeMethod]
+        public void RemoveObject(Int object_id)
+        {
+            var search_state = GetSearchState();
+
+            if (search_state.LocalTotal >= 240)
+            {
+                throw new AgeException("Group local list full");
+            }
+
+            AddObjectById(SearchSource.LOCAL, object_id);
+            CreateGroup(search_state.LocalTotal, 1, Id);
+            ModifyGroupFlag(false, Id);
+            RemoveObjects("==", SearchSource.LOCAL, ObjectData.INDEX, search_state.LocalTotal);
         }
     }
 }

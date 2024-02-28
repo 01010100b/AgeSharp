@@ -49,7 +49,7 @@ namespace AgeSharp.Scripting.Language.Types
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine(Name);
+            sb.AppendLine($"{Name} (size {Size})");
             sb.AppendLine("{");
 
             foreach (var field in Fields)
