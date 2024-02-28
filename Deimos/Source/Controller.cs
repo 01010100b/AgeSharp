@@ -11,6 +11,12 @@ namespace Deimos.Source
     internal class Controller
     {
         [AgeMethod]
+        public static void Initialize()
+        {
+
+        }
+
+        [AgeMethod]
         public static void Update()
         {
             var group_count = Group.GetGroupCount();

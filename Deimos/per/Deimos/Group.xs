@@ -8,7 +8,6 @@ void Group_Initialize()
 {
 	_Group_Ids = xsArrayCreateInt(_GROUP_IDS_LENGTH, -1, "_Group_Ids");
 	_Group_Array = xsArrayCreateInt(0, -1, "_Group_Array");
-	Memory_Initialize();
 }
 
 void Group_GetGroupCount()

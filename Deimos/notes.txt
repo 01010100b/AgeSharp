@@ -1,0 +1,17 @@
+﻿empty rule (besides incrementing loop counter): 100,000
+Empty functions:
+xs-script-call of an empty function: 22,000
+xs-script-call of a function that calls another empty function: 16,000
+xs-script-call of a function that calls another empty function in a different file: 16,000
+Single actions:
+xs-script-call of a function that uses xsSetGoal to the same amount each time: 15,000
+xs-script-call of a function that just increments an integer variable: 14,000
+xs-script-call of a function that increments an integer variable and uses xsSetGoal to set a goal to this value: 10,000
+Math operations (see code a few posts down):
+.per rule with several math operations: 25,000
+xs-script-call of a function that has several math operations: 3,000
+Loops:
+xs-script-call of a function that runs a for loop 10 times: 1,700
+xs-script-call of a function that runs a while loop 10 times: 1,600
+Chat:
+xs-script-call of a function that chats the same message with xsChatData: 20 to 30 times (results were variable)

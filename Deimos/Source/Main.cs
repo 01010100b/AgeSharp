@@ -18,6 +18,12 @@ namespace Deimos.Source
         [AgeGlobal]
         private static Int Timestamp;
 
+        [AgeMethod]
+        public static Int GetTimePassed()
+        {
+            return GetPreciseTime(Timestamp);
+        }
+
         [AgeMethod(EntryPoint = true)]
         public static void EntryPoint()
         {
@@ -29,7 +35,7 @@ namespace Deimos.Source
                 Initialize();
             }
 
-            //Tests.Test();
+            Tests.Test();
             Run();
 
             Timestamp = GetPreciseTime(Timestamp);
@@ -41,12 +47,6 @@ namespace Deimos.Source
             }
 
             Tick++;
-        }
-
-        [AgeMethod]
-        public static Int GetTimePassed()
-        {
-            return GetPreciseTime(Timestamp);
         }
 
         [AgeMethod]
@@ -62,6 +62,8 @@ namespace Deimos.Source
             Memory.Initialize();
             Group.Initialize();
             Manager.Initialize();
+            Controller.Initialize();
+            Micro.Initialize();
         }
     }
 }

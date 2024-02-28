@@ -11,6 +11,11 @@ namespace AgeSharp.Common
         LOCAL = 1, REMOTE = 2
     }
 
+    public enum SearchOrder
+    {
+        NONE, ASCENDING, DESCENDING
+    }
+
     public enum FactId
     {
         GAME_TIME, POPULATION_CAP, POPULATION_HEADROOM, HOUSING_HEADROOM, IDLE_FARM_COUNT, FOOD_AMOUNT, WOOD_AMOUNT, STONE_AMOUNT,
@@ -317,5 +322,10 @@ namespace AgeSharp.Common
     public enum Resource
     {
         NONE = -1, FOOD, WOOD, STONE, GOLD, DEER = 6, BOAR = 7
+    }
+
+    public enum TargetPointAdjustment
+    {
+        NONE, LEFT, TOP, RIGHT, BOTTOM, MIDDLE, PRECISE
     }
 }

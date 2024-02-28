@@ -13,10 +13,15 @@ namespace AgeSharp.Scripting.Compiler.Rules
         public List<string> Labels { get; } = [];
         public List<string> Facts { get; } = [];
         public List<string> Actions { get; } = [];
-        public int Commands => Math.Max(1, Facts.Count) + Math.Max(1, Actions.Count);
+        public int CommandCount => Math.Max(1, Facts.Count) + Math.Max(1, Actions.Count);
         public bool IsEmpty => Facts.Count == 0 && Actions.Count == 0;
         public bool IsAlwaysTrue => Facts.Count == 0;
         public bool Jumps => Actions.Any(x => x.StartsWith("up-jump-"));
+
+        public void Validate(Settings settings)
+        {
+
+        }
 
         public override string ToString()
         {

@@ -14,28 +14,22 @@ namespace Deimos.Source.Managers
         [AgeMethod]
         public static void ManageUngroupedObject(Int id)
         {
-            var group = Manager.GetOrCreateGroup(Group.TYPE_EXTERMINATION, 100);
+            var group = Manager.GetOrCreateGroup(Group.TYPE_EXTERMINATION, 39);
+            group.UpdateRate = 1;
+            Group.SetGroup(group.Id, group);
             Group.SetGroupId(id, group.Id);
+        }
+
+        [AgeMethod]
+        public static void Initialize()
+        {
+
         }
 
         [AgeMethod]
         public static void Update()
         {
-            var group_count = Group.GetGroupCount();
 
-            for (Int i = 0; i < group_count; i++)
-            {
-                var group = Group.GetGroup(i);
-                var type = group.Type;
-                group.UpdateRate = 1;
-
-                if (type == Group.TYPE_EXTERMINATION)
-                {
-
-                }
-
-                Group.SetGroup(i, group);
-            }
         }
     }
 }

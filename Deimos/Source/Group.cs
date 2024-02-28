@@ -91,27 +91,47 @@ namespace Deimos.Source
         [AgeMethod]
         public static void SetGroupId(Int object_id, Int id)
         {
+            var current = GetGroupId(object_id);
+
+            if (current == id)
+            {
+                return;
+            }
+
+            if (current > -1)
+            {
+                var group = GetGroup(current);
+                group.Count--;
+                SetGroup(current, group);
+            }
+
+            if (id > -1)
+            {
+                var group = GetGroup(id);
+                group.Count++;
+                SetGroup(id, group);
+            }
+
             SetStrategicNumber(Main.SN_ARG0, object_id);
             SetStrategicNumber(Main.SN_ARG0 + 1, id);
             XsScriptCall("Group_SetGroupId");
         }
 
         [AgeMethod]
-        public static SearchState SearchLocalGroupObjects(Int id)
+        public static Int SearchLocalGroupObjects(Int group_id)
         {
-            // fills local search list with objects belonging to group id
-
+            // fill local search list with group objects
             FullResetSearch();
             FindLocal(-1, 240);
-            SearchState search_state = GetSearchState();
+            var search_state = GetSearchState();
 
             for (Int i = 0; i < search_state.LocalTotal; i++)
             {
                 SetTargetObject(SearchSource.LOCAL, i);
-                Int data = GetObjectData(ObjectData.ID);
-                Int group_id = GetGroupId(data);
+                var id = GetObjectData(ObjectData.ID);
+                var group = GetGroupId(id);
 
-                if (group_id != id)
+                if (group != group_id)
                 {
                     RemoveObjects("==", SearchSource.LOCAL, ObjectData.INDEX, i);
                     i--;
@@ -119,11 +139,11 @@ namespace Deimos.Source
                 }
             }
 
-            var group = GetGroup(id);
-            group.Count = search_state.LocalTotal;
-            SetGroup(id, group);
+            var g = GetGroup(group_id);
+            g.Count = search_state.LocalTotal;
+            SetGroup(group_id, g);
 
-            return search_state;
+            return search_state.LocalTotal;
         }
     }
 }

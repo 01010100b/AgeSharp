@@ -22,7 +22,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
 
             foreach (var instruction in Instructions)
             {
-                if (current.Commands >= Settings.MaxRuleCommands)
+                if (current.CommandCount >= Settings.MaxRuleCommands)
                 {
                     rules.Add(current);
                     current = new();
@@ -89,6 +89,11 @@ namespace AgeSharp.Scripting.Compiler.Rules
             }
 
             rules.Add(current);
+
+            foreach (var rule in rules)
+            {
+                rule.Validate(Settings);
+            }
 
             return rules;
         }

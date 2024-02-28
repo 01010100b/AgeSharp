@@ -11,10 +11,9 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         public string Fact { get; }
         public List<string> Commands { get; } = [];
 
-        public RuleInstruction(string fact) : base()
-        {
-            Fact = fact;
-        }
+        public RuleInstruction(string fact) : this(fact, Enumerable.Empty<string>()) { }
+
+        public RuleInstruction(string fact, string command) : this(fact, [command]) { }
 
         public RuleInstruction(string fact, IEnumerable<string> commands) : base()
         {

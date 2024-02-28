@@ -12,20 +12,6 @@ namespace Deimos.Source
 {
     internal class Manager
     {
-
-        [AgeMethod]
-        public static void Initialize()
-        {
-
-        }
-
-        [AgeMethod]
-        public static void Update()
-        {
-            AssignUngroupedObjects();
-            MilitaryManager.Update();
-        }
-
         [AgeMethod]
         public static Group GetOrCreateGroup(Int type, Int max_count)
         {
@@ -62,17 +48,32 @@ namespace Deimos.Source
         }
 
         [AgeMethod]
+        public static void Initialize()
+        {
+            DiplomacyManager.Initialize();
+            MilitaryManager.Initialize();
+        }
+
+        [AgeMethod]
+        public static void Update()
+        {
+            DiplomacyManager.Update();
+            AssignUngroupedObjects();
+            MilitaryManager.Update();
+        }
+
+        [AgeMethod]
         private static void AssignUngroupedObjects()
         {
-            var search_state = Group.SearchLocalGroupObjects(-1);
+            var count = Group.SearchLocalGroupObjects(-1);
 
-            for (Int i = 0; i < search_state.LocalTotal; i++)
+            for (Int i = 0; i < count; i++)
             {
                 SetTargetObject(SearchSource.LOCAL, i);
                 var id = GetObjectData(ObjectData.ID);
-                var data = GetObjectData(ObjectData.CMDID);
+                var cmdid = GetObjectData(ObjectData.CMDID);
 
-                if (data == (int)CmdId.MILITARY)
+                if (cmdid == (int)CmdId.MILITARY || cmdid == (int)CmdId.MONK)
                 {
                     MilitaryManager.ManageUngroupedObject(id);
                 }

@@ -1,6 +1,7 @@
 ﻿using AgeSharp.Scripting.Compiler.Instructions;
 using AgeSharp.Scripting.Compiler.Rules;
 using AgeSharp.Scripting.Language;
+using AgeSharp.Scripting.Language.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace AgeSharp.Scripting.Compiler
     public class CompilationResult
     {
         public int RuleCount => Rules.Count;
-        public int CommandCount => Rules.Sum(x => x.Commands);
+        public int CommandCount => Rules.Sum(x => x.CommandCount);
         public IEnumerable<string> InstructionStream => Instructions.Select(x => x.ToString());
 
         private Script Script { get; }
@@ -72,6 +73,36 @@ namespace AgeSharp.Scripting.Compiler
             sb.AppendLine();
             sb.AppendLine();
             sb.AppendLine(Memory.ToString());
+            sb.AppendLine();
+            sb.AppendLine();
+
+            sb.AppendLine("### INTR CALL COUNTS ###");
+            sb.AppendLine();
+            sb.AppendLine();
+
+            var intrcalls = new Dictionary<Intrinsic, int>();
+
+            foreach (var intr in Script.Methods
+                .SelectMany(x => x.GetAllBlocks())
+                .SelectMany(x => x.Statements)
+                .SelectMany(x => x.GetContainedExpressions())
+                .OfType<CallExpression>()
+                .Select(x => x.Method)
+                .OfType<Intrinsic>())
+            {
+                if (!intrcalls.ContainsKey(intr))
+                {
+                    intrcalls.Add(intr, 0);
+                }
+
+                intrcalls[intr]++;
+            }
+
+            foreach (var kvp in intrcalls.OrderByDescending(x => x.Value))
+            {
+                sb.AppendLine($"{kvp.Key.Name} {kvp.Value}");
+            }
+
             sb.AppendLine();
             sb.AppendLine();
 

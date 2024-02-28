@@ -264,6 +264,34 @@ namespace AgeSharp.Scripting.SharpParser
                 var loop = new LoopStatement(scoping_block, condition, before, body, atloopbottom);
                 block.Statements.Add(loop);
             }
+            else if (op is IWhileLoopOperation whileloop)
+            {
+                Throw.IfNull<NotSupportedException>(whileloop.Condition, "While loop without condition.");
+                Throw.If<NotSupportedException>(whileloop.Body is not IBlockOperation, "While loop with body not a block.");
+                Throw.If<NotSupportedException>(whileloop.ConditionIsUntil, "While loop with until condition not supported.");
+
+                var scoping_block = new Block(block.Scope);
+                var before = new Block(scoping_block.Scope);
+                var body = new Block(scoping_block.Scope);
+                var atloopbottom = new Block(scoping_block.Scope);
+
+                foreach (var operation in ((IBlockOperation)whileloop.Body).Operations)
+                {
+                    ParseStatement(operation, body, parse);
+                }
+
+                foreach (var scope in new[] { before.Scope, body.Scope, atloopbottom.Scope })
+                {
+                    foreach (var variable in scope.Variables.ToList())
+                    {
+                        scope.MoveVariable(variable, scoping_block.Scope);
+                    }
+                }
+
+                var condition = ParseExpression(whileloop.Condition, parse);
+                var loop = new LoopStatement(scoping_block, condition, before, body, atloopbottom);
+                block.Statements.Add(loop);
+            }
             else if (op is IBranchOperation branch)
             {
                 if (branch.BranchKind == BranchKind.Continue)

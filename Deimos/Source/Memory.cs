@@ -14,6 +14,7 @@ namespace Deimos.Source
         public static void Initialize()
         {
             XsScriptCall("Memory_Initialize");
+            ChatDataToSelf("mem init", 0);
         }
 
         [AgeMethod]

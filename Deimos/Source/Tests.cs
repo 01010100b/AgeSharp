@@ -13,13 +13,7 @@ namespace Deimos.Source
         [AgeMethod]
         public static void Test()
         {
-            Bool a = true;
-            Bool b = false;
 
-            if (a && b)
-            {
-                throw new AgeException("test exception.");
-            }
         }
     }
 }

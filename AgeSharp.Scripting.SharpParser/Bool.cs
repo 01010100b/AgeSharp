@@ -12,8 +12,13 @@ namespace AgeSharp.Scripting.SharpParser
         public static explicit operator Int(Bool a) => throw new Exception();
         public static bool operator true(Bool b) => throw new Exception();
         public static bool operator false(Bool b) => throw new Exception();
+        public static Bool operator ==(Bool a, Bool b) => throw new Exception();
+        public static Bool operator !=(Bool a, Bool b) => throw new Exception();
         public static Bool operator &(Bool a, Bool b) => throw new Exception();
         public static Bool operator |(Bool a, Bool b) => throw new Exception();
         public static Bool operator !(Bool a) => throw new Exception();
+
+        public override bool Equals(object? obj) => throw new Exception();
+        public override int GetHashCode() => throw new Exception();
     }
 }
