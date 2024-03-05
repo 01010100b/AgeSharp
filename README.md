@@ -4,7 +4,7 @@ AgeSharp is a set of .NET tools for Age of Empires 2 with a focus on AI scriptin
 
 ## AgeSharp.Scripting
 
-The ```AgeSharp.Scripting``` namespace contains all the tools related to the custom .per compiler. ```AgeSharp.Scripting.Language``` defines an abstract representation of an AI script as an instance of the ```Script``` class. The ```ScriptCompiler``` class in ```AgeSharp.Scripting.Compiler``` can then be used to compile a script to its .per string. The standard included parser is a C# parser based on Roslyn.
+The ```AgeSharp.Scripting``` namespace contains all the tools related to the custom .per compiler. ```AgeSharp.Scripting.Language``` defines an abstract representation of an AI script as an instance of the ```Script``` class. The ```ScriptCompiler``` class in ```AgeSharp.Scripting.Compiler``` can then be used to compile a script to its .per string. The standard included parser is a C# parser based on Roslyn, though it's possible to implement different parsers for different languages as long as they can output a valid instance of the ```Script``` class.
 
 ### AgeSharp.Scripting.SharpParser
 
