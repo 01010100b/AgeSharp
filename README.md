@@ -66,3 +66,8 @@ You can either index an array variable like ```my_group_array[i]``` or a compoun
 + ```switch``` constructs.
 + Delegates, function pointers, and the like. This will likely be added in the future.
 + Generics. This will also likely be added in the future.
++ Parameters can not have default values.
++ The only allowed ```throw``` statement is of the form ```throw new AgeException("my_custom_message");``` where ```my_custom_message``` must be a normal string literal. A throw statement will put a script into an 'exception state' where it will just chat the given message every tick and not do anything else anymore.
++ And probably a bunch more, the parser should throw an approprate exception if you try to do something it can't handle.
+
+Take a look at the ```Deimos``` project for a full example of usage, the C# source code for the script is under the ```Source``` folder.
