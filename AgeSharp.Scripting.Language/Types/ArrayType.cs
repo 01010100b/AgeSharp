@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgeSharp.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,10 @@ namespace AgeSharp.Scripting.Language.Types
 
         public override void Validate()
         {
-            if (Length < 1) throw new NotSupportedException($"Array type {Name} has length < 1.");
-            if (ElementType == PrimitiveType.Void) throw new NotSupportedException($"Array {Name} has element type Void.");
-            if (ElementType is ArrayType) throw new NotSupportedException($"Array {Name} has element type array.");
+            Throw.If<NotSupportedException>(Length < 1, $"Array type {Name} has length < 1.");
+            Throw.If<NotSupportedException>(ElementType == PrimitiveType.Void, $"Array {Name} has void element type.");
+            Throw.If<NotSupportedException>(ElementType is ArrayType, $"Array {Name} has array element type.");
+            Throw.If<NotSupportedException>(ElementType is RefType, $"Array {Name} has ref element type.");
         }
 
         public override string ToString()

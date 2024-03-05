@@ -66,8 +66,14 @@ namespace AgeSharp.Scripting.Language.Expressions
                 if (Fields.Count == 0) throw new NotSupportedException($"Accessor has no fields.");
 
                 var type = Variable.Type.ProperType;
-                var field = Fields[0];
-                var field_type = field.Type;
+
+                for (int i = 0; i < Fields.Count; i++)
+                {
+                    var field = Fields[0];
+                    var ctype = (CompoundType)type;
+                    if (!ctype.Fields.Contains(field)) throw new NotSupportedException($"Accessor when type {type.Name} does not contain field {field.Name}");
+                    type = field.Type;
+                }
             }
         }
 

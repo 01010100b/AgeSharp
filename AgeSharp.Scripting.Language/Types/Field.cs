@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgeSharp.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,9 @@ namespace AgeSharp.Scripting.Language.Types
         public override void Validate()
         {
             ValidateName(Name);
-            if (Type == PrimitiveType.Void) throw new NotSupportedException($"Field {Type.Name}.{Name} has type Void.");
-            if (Type is ArrayType) throw new NotSupportedException($"Field {Name} has array type.");
-            if (Type is RefType) throw new NotSupportedException($"Field {Name} has ref type.");
+            Throw.If<NotSupportedException>(Type == PrimitiveType.Void, $"Field {Type.Name}.{Name} has type Void.");
+            Throw.If<NotSupportedException>(Type is ArrayType, $"Field {Name} has array type.");
+            Throw.If<NotSupportedException>(Type is RefType, $"Field {Name} has ref type.");
         }
 
         public override string ToString()

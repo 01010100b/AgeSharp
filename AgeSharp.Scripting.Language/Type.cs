@@ -19,10 +19,6 @@ namespace AgeSharp.Scripting.Language
             {
                 return;
             }
-            else if (this == PrimitiveType.Int && from == PrimitiveType.Bool)
-            {
-                return;
-            }
 
             if (this is RefType rtt)
             {

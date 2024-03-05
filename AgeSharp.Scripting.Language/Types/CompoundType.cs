@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgeSharp.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace AgeSharp.Scripting.Language.Types
         public override void Validate()
         {
             ValidateName(Name);
-            if (!Fields.Any()) throw new Exception($"CompoundType {Name} has no fields.");
+            Throw.If<NotSupportedException>(!Fields.Any(), $"CompoundType {Name} has no fields.");
 
             foreach (var field in Fields)
             {

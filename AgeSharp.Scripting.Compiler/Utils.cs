@@ -214,13 +214,6 @@ namespace AgeSharp.Scripting.Compiler
             return instructions;
         }
 
-        public static List<Instruction> MemCpy(Memory memory, int from_goal, Address to, int length)
-        {
-            var from = new Address(PrimitiveType.Void, from_goal, false);
-
-            return MemCpy(memory, from, to, length);
-        }
-        
         public static List<Instruction> MemCpy(Memory memory, Address from, Address to, int length)
         {
             // ignores the types of the adresses
@@ -277,8 +270,10 @@ namespace AgeSharp.Scripting.Compiler
             return instructions;
         }
 
-        public static List<Instruction> CompileMemCpy(Memory memory)
+        public static List<Instruction> CompileUtils(Memory memory)
         {
+            // memcpy
+
             var instructions = new List<Instruction>() { MemCpyLabel };
             var label_repeat = new LabelInstruction();
             var label_end = new LabelInstruction();

@@ -35,7 +35,7 @@ namespace AgeSharp.Scripting.Language.Statements
 
         public override void Validate()
         {
-            if (Condition.Type is null || Condition.Type != PrimitiveType.Bool) throw new NotSupportedException($"If condition does not have type Bool.");
+            if (Condition.Type != PrimitiveType.Bool) throw new NotSupportedException($"If condition does not have type Bool.");
             
             ValidateExpression(Condition);
         }

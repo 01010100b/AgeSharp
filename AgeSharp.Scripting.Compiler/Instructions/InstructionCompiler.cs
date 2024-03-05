@@ -101,7 +101,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 instructions.AddRange(CompileMethod(method));
             }
 
-            instructions.AddRange(Utils.CompileMemCpy(Memory));
+            instructions.AddRange(Utils.CompileUtils(Memory));
 
             instructions.Add(LabelError);
 

@@ -8,7 +8,7 @@ The ```AgeSharp.Scripting``` namespace contains all the tools related to the cus
 
 ### AgeSharp.Scripting.SharpParser
 
-This is the standard C# parser. It takes C# source code and produces an instance of the ```Script``` class to be compiled. While having many features, there are also quite some limitations. In particular there is no support for reference types, even implicitly such as with the ```foreach``` construct taking an enumerator. C# source code should be written using ```AgeSharp.Scripting.SharpParser``` as a library, which includes builtin types such as ```Int``` or ```Bool``` as well as available intrinsics in the ```Intrinsics``` class.
+This is the standard C# parser. It takes C# source code and produces an instance of the ```Script``` class to be compiled. While having many features, there are also quite some restrictions. In particular there is no support for reference types, even implicitly such as with the ```foreach``` construct taking an enumerator or things like the ```typeof``` operator returning a reference type. C# source code should be written using ```AgeSharp.Scripting.SharpParser``` as a library, which includes builtin types such as ```Int``` or ```Bool``` as well as available intrinsics in the ```Intrinsics``` class.
 
 #### Types
 
@@ -24,7 +24,7 @@ internal struct Group
 }
 ```
 
-Only instance fields are supported, not properties or other constructs. Arrays can not be fields. 
+Only instance fields are supported, not properties or other constructs. Arrays can not be fields, this restriction may be lifted in the future. 
 
 #### Globals
 
@@ -61,13 +61,13 @@ internal class MyClass
 The only valid methods are either static methods or instance methods on AgeTypes. Parameters can be passed by reference, arrays are always implicitly passed by reference. Local variables have the same restrictions as global variables except that non-array local variables can have initializers. It is not yet possible to define a ref local variable except as a method parameter, but this restriction will be removed in the future. There must be a single entrypoint method marked with ```[AgeMethod(EntryPoint = true)]``` which must return void and may not have any parameters.
 
 Many C# code constructs are available such as ```if, else if, else``` conditions, ```for, while``` loops, ```break, continue``` branches, and assignments and method calls. Notably missing are:
-+ Nested accessors such as ```my_group_array[i].Id```.
-You can either index an array variable like ```my_group_array[i]``` or a compound type field like ```my_group.Id``` but not combined in one expression. You can go as deep as you want with field access though, such as ```my_manager.AttackGroup.Position.X```.
-+ ```switch``` constructs.
++ Nested accessors such as ```my_group_array[i].Id```. You can either index an array variable like ```my_group_array[i]``` or a compound type field like ```my_group.Id``` but not combined in one expression. You can go as deep as you want with field access though, such as ```my_manager.AttackGroup.Position.X```.
++ You can only call other AgeMethods or the intrinsics defined in the ```Intrinsics``` class. The list of available intrinsics is constantly being expanded to include all necessary .per commands.
++ ```switch``` constructs are not supported. Use ```else if``` chains instead.
 + Delegates, function pointers, and the like. This will likely be added in the future.
 + Generics. This will also likely be added in the future.
 + Parameters can not have default values.
-+ The only allowed ```throw``` statement is of the form ```throw new AgeException("my_custom_message");``` where ```my_custom_message``` must be a normal string literal. A throw statement will put a script into an 'exception state' where it will just chat the given message every tick and not do anything else anymore.
-+ And probably a bunch more, the parser should throw an approprate exception if you try to do something it can't handle.
++ The only allowed ```throw``` statement is of the form ```throw new AgeException("my_custom_message");``` where ```my_custom_message``` must be a normal string literal. A throw statement will put a script into an 'exception state' where it will just chat the given message every subsequent tick and not do anything else anymore.
++ And probably a bunch more, the parser should throw an appropriate exception if you try to do something it can't handle.
 
 Take a look at the ```Deimos``` project for a full example of usage, the C# source code for the script is under the ```Source``` folder.

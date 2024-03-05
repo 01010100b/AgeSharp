@@ -45,9 +45,9 @@ namespace AgeSharp.Scripting.Language.Statements
         public override void Validate()
         {
             ValidateExpression(Condition);
-            if (ScopingBlock.Statements.Count > 0) throw new NotSupportedException($"LoopStatement ScopingBlock has statements.");
-            if (Before.Scope.Variables.Count > 0) throw new NotSupportedException($"LoopStatement Prefix has variables.");
-            Throw.If<NotSupportedException>(Body.Scope.Variables.Any(), "LoopStatement body has variables.");
+            Throw.If<NotSupportedException>(ScopingBlock.Statements.Any(), $"LoopStatement ScopingBlock has statements.");
+            Throw.If<NotSupportedException>(Before.Scope.Variables.Any(), $"LoopStatement Before has variables.");
+            Throw.If<NotSupportedException>(Body.Scope.Variables.Any(), "LoopStatement Body has variables.");
             Throw.If<NotSupportedException>(AtLoopBottom.Scope.Variables.Any(), "LoopStatement AtLoopBottom has variables.");
         }
 
