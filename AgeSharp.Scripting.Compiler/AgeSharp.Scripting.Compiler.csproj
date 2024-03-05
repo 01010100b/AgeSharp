@@ -10,4 +10,8 @@
     <ProjectReference Include="..\AgeSharp.Scripting.Language\AgeSharp.Scripting.Language.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="F:\Repos\01010100b\AgeSharp\AgeSharp.Scripting.Compiler\Intrinsics\DUC\.editorconfig" />
+  </ItemGroup>
+
 </Project>

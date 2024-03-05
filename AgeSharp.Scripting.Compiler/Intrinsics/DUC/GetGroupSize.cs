@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics.DUC
 {
-    internal class CreateGroup : Intrinsic
+    internal class GetGroupSize : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public CreateGroup(Script script) : base(script)
+        public GetGroupSize(Script script) : base(script)
         {
-            AddParameter(new("index", Int));
-            AddParameter(new("count", Int));
+            ReturnType = Int;
             AddParameter(new("group", Int));
         }
 
@@ -24,10 +23,14 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.DUC
         {
             var instructions = new List<Instruction>();
 
-            var index = GetConstArgument(call.Arguments[0]);
-            var count = GetConstArgument(call.Arguments[1]);
-            instructions.AddRange(GetArgument(memory, call.Arguments[2], memory.Intr2));
-            instructions.Add(new CommandInstruction($"up-create-group {index} {count} g: {memory.Intr2}"));
+            if (result is null)
+            {
+                return instructions;
+            }
+
+            instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
+            instructions.Add(new CommandInstruction($"up-get-group-size g: {memory.Intr0} {memory.Intr1}"));
+            instructions.AddRange(Utils.Assign(memory, memory.Intr1, result));
 
             return instructions;
         }

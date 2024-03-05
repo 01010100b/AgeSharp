@@ -21,6 +21,18 @@ namespace Deimos.Source.Managers
         }
 
         [AgeMethod]
+        public static Int GetAllyCount()
+        {
+            return GetPlayerCount((int)PlayerStance.ALLY);
+        }
+
+        [AgeMethod]
+        public static Int GetEnemyCount()
+        {
+            return GetPlayerCount((int)PlayerStance.ENEMY);
+        }
+
+        [AgeMethod]
         public static Int GetPlayerCount(Int stance)
         {
             Int count = 0;
@@ -34,6 +46,18 @@ namespace Deimos.Source.Managers
             }
 
             return count;
+        }
+
+        [AgeMethod]
+        public static Int GetAlly(Int index)
+        {
+            return GetPlayer((int)PlayerStance.ALLY, index);
+        }
+
+        [AgeMethod]
+        public static Int GetEnemy(Int index)
+        {
+            return GetPlayer((int)PlayerStance.ENEMY, index);
         }
 
         [AgeMethod]

@@ -46,7 +46,7 @@ namespace AgeSharp.Common
 
     public enum CmdId
     {
-        FLAG, LIVESTOCK_GAIA, CIVILIAN_BUILDING, VILLAGER, MILITARY, TRADE, MONK, TRANSPORT, RELIC, FISHING_SHIP, MILITARY_BUILDING
+        IGNORE = -1, FLAG, LIVESTOCK_GAIA, CIVILIAN_BUILDING, VILLAGER, MILITARY, TRADE, MONK, TRANSPORT, RELIC, FISHING_SHIP, MILITARY_BUILDING
     }
 
     public enum StrategicNumber
@@ -218,6 +218,7 @@ namespace AgeSharp.Common
 
     public enum UnitClass
     {
+        ALL = -1,
         Archer = 900,
         Artifact,
         TradeBoat,

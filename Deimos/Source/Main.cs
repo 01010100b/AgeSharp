@@ -11,12 +11,22 @@ namespace Deimos.Source
 {
     public class Main
     {
+        public const int MAX_LOCAL_LIST = 240;
+        public const int MAX_REMOTE_LIST = 40;
+        public const int MAX_CONTROL_GROUPS = 10;
+        public const int MAX_CONTROL_GROUP_SIZE = 40;
         public const int SN_ARG0 = 450;
 
         [AgeGlobal]
-        public static Int Tick;
+        private static Int Tick;
         [AgeGlobal]
         private static Int Timestamp;
+
+        [AgeMethod]
+        public static Int GetTick()
+        {
+            return Tick;
+        }
 
         [AgeMethod]
         public static Int GetTimePassed()

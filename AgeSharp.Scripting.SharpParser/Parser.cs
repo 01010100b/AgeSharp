@@ -107,6 +107,22 @@ namespace AgeSharp.Scripting.SharpParser
                 {
                     parse.AddMethod(op, script.Methods.Single(x => x.Name == "Mod"));
                 }
+                else if (name.Contains("operator &("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "BitwiseAnd"));
+                }
+                else if (name.Contains("operator |("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "BitwiseOr"));
+                }
+                else if (name.Contains("operator ~("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "BitwiseNot"));
+                }
+                else if (name.Contains("operator ^("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "BitwiseXor"));
+                }
             }
 
             foreach (var op in bool_type.GetMembers().OfType<IMethodSymbol>())

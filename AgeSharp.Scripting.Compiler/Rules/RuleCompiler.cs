@@ -75,9 +75,9 @@ namespace AgeSharp.Scripting.Compiler.Rules
                         current = new();
                     }
 
-                    Debug.Assert(rule.Commands.Count < Settings.MaxRuleCommands);
+                    Debug.Assert(rule.Facts.Count + rule.Commands.Count <= Settings.MaxRuleCommands);
 
-                    current.Facts.Add(rule.Fact);
+                    current.Facts.AddRange(rule.Facts);
                     current.Actions.AddRange(rule.Commands);
                     rules.Add(current);
                     current = new();

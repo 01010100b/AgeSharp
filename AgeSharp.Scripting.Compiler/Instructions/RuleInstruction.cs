@@ -8,17 +8,17 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 {
     internal class RuleInstruction : Instruction
     {
-        public string Fact { get; }
-        public List<string> Commands { get; } = [];
+        public IReadOnlyList<string> Facts { get; }
+        public IReadOnlyList<string> Commands { get; }
 
-        public RuleInstruction(string fact) : this(fact, Enumerable.Empty<string>()) { }
+        public RuleInstruction(string fact, string command) : this([fact], [command]) { }
 
-        public RuleInstruction(string fact, string command) : this(fact, [command]) { }
+        public RuleInstruction(string fact, IEnumerable<string> commands) : this([fact], commands) { }
 
-        public RuleInstruction(string fact, IEnumerable<string> commands) : base()
+        public RuleInstruction(IEnumerable<string> facts, IEnumerable<string> commands) : base()
         {
-            Fact = fact;
-            Commands.AddRange(commands);
+            Facts = facts.ToList();
+            Commands = commands.ToList();
         }
     }
 }
