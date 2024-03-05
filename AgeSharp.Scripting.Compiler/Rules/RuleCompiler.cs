@@ -75,10 +75,10 @@ namespace AgeSharp.Scripting.Compiler.Rules
                         current = new();
                     }
 
-                    Debug.Assert(rule.Facts.Count + rule.Commands.Count <= Settings.MaxRuleCommands);
+                    Debug.Assert(rule.Facts.Count + rule.Actions.Count <= Settings.MaxRuleCommands);
 
                     current.Facts.AddRange(rule.Facts);
-                    current.Actions.AddRange(rule.Commands);
+                    current.Actions.AddRange(rule.Actions);
                     rules.Add(current);
                     current = new();
                 }
@@ -89,11 +89,6 @@ namespace AgeSharp.Scripting.Compiler.Rules
             }
 
             rules.Add(current);
-
-            foreach (var rule in rules)
-            {
-                rule.Validate(Settings);
-            }
 
             return rules;
         }

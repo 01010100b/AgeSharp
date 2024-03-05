@@ -18,11 +18,6 @@ namespace AgeSharp.Scripting.Compiler.Rules
         public bool IsAlwaysTrue => Facts.Count == 0;
         public bool Jumps => Actions.Any(x => x.StartsWith("up-jump-"));
 
-        public void Validate(Settings settings)
-        {
-
-        }
-
         public override string ToString()
         {
             var sb = new StringBuilder();
