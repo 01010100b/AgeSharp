@@ -12,9 +12,7 @@ This is the standard C# parser. It takes C# source code and produces an instance
 
 #### Types
 
-There are several kinds of types: primitive types, array types, and compound types. The type system is closed, any code can only ever refer to types marked as ```AgeType``` or the builtin types, with the exception of the use of ```void``` as a method return type. Some of the builtin types such as ```Int``` and ```Bool``` have appropriate cast operators defined to correspond to the C# ```int``` and ```bool``` types.
-
-Custom compound types can be defined as C# structs marked with the ```AgeType``` attribute. For example:
+There are several kinds of types: primitive types, array types, and compound types. The type system is closed, any code can only ever refer to types marked as ```AgeType``` or the builtin types, with the exception of the use of ```void``` as a method return type. Some of the builtin types such as ```Int``` and ```Bool``` have appropriate cast operators defined to correspond to the C# ```int``` and ```bool``` types. Array types have a ```Length``` field. Custom compound types can be defined as C# structs marked with the ```AgeType``` attribute. For example:
 
 ```
 [AgeType]
@@ -26,7 +24,7 @@ internal struct Group
 }
 ```
 
-Only instance fields are supported, not properties or other constructs. Arrays can not be fields.
+Only instance fields are supported, not properties or other constructs. Arrays can not be fields. 
 
 #### Globals
 
@@ -37,6 +35,34 @@ internal class Main
 {
 	[AgeGlobal]
 	private static Group MyGroup;
+	[AgeGlobal]
+	public static Array<Int> MyArray = new(10);
 }
 ```
 
+Arrays must have an initializer and the length must be a compile-time constant. Other global variables may not have a initializer. All global variables, including all array elements, are initialized to 0.
+
+#### Methods
+
+Methods are defined by marking a method with the ```AgeMethod``` attribute. For example:
+
+```
+internal class MyClass
+{
+	[AgeMethod]
+	public static Int AddId(ref Group group, Int count)
+	{
+		group.Id += count;
+		return group.Id;
+	}
+}
+```
+
+The only valid methods are either static methods or instance methods on AgeTypes. Parameters can be passed by reference, arrays are always implicitly passed by reference. Local variables have the same restrictions as global variables except that non-array local variables can have initializers. It is not yet possible to define a ref local variable except as a method parameter, but this restriction will be removed in the future. There must be a single entrypoint method marked with ```[AgeMethod(EntryPoint = true)]``` which must return void and may not have any parameters.
+
+Many C# code constructs are available such as ```if, else if, else``` conditions, ```for, while``` loops, ```break, continue``` branches, and assignments and method calls. Notably missing are:
++ Nested accessors such as ```my_group_array[i].Id```.
+You can either index an array variable like ```my_group_array[i]``` or a compound type field like ```my_group.Id``` but not combined in one expression. You can go as deep as you want with field access though, such as ```my_manager.AttackGroup.Position.X```.
++ ```switch``` constructs.
++ Delegates, function pointers, and the like. This will likely be added in the future.
++ Generics. This will also likely be added in the future.
