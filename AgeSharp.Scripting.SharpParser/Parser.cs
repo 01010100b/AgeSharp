@@ -123,6 +123,14 @@ namespace AgeSharp.Scripting.SharpParser
                 {
                     parse.AddMethod(op, script.Methods.Single(x => x.Name == "BitwiseXor"));
                 }
+                else if (name.Contains("operator <<("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "ShiftLeft"));
+                }
+                else if (name.Contains("operator >>("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "ShiftRight"));
+                }
             }
 
             foreach (var op in bool_type.GetMembers().OfType<IMethodSymbol>())

@@ -9,14 +9,15 @@ void Memory_Initialize()
 
 void Memory_Allocate()
 {
+	// The memory is not initialized to anything and may contain junk data
+	
 	int size = GetArgument(0);
 	int allocations = xsArrayGetSize(_Memory_Free);
 	int free_index = -1;
 	
 	for (i = 0; < allocations)
 	{
-		int free = -1;
-		free = xsArrayGetInt(_Memory_Free, i);
+		int free = xsArrayGetInt(_Memory_Free, i);
 		
 		if (free == 1)
 		{
@@ -33,7 +34,7 @@ void Memory_Allocate()
 		free_index = allocations;
 		xsArrayResizeInt(_Memory_Heap, allocations + 1);
 		xsArrayResizeInt(_Memory_Free, allocations + 1);
-		array = xsArrayCreateInt(size, 0, "_Memory_Heap" + free_index);
+		array = xsArrayCreateInt(size, -1, "_Memory_Heap" + free_index);
 		xsArraySetInt(_Memory_Heap, free_index, array);
 	}
 	else
@@ -44,11 +45,6 @@ void Memory_Allocate()
 		if (allocations < size)
 		{
 			xsArrayResizeInt(array, size);
-		}
-		
-		for (i = 0; < size)
-		{
-			xsArraySetInt(array, i, 0);
 		}
 	}
 	
@@ -73,13 +69,15 @@ void Memory_GetValue()
 
 void Memory_SetValue()
 {
+	// If index >= size then it will expand the allocated segment, which is not initialized to anything and may contain junk data
+	
 	int ptr = GetArgument(0);
 	int index = GetArgument(1);
 	int value = GetArgument(2);
 	ptr = xsArrayGetInt(_Memory_Heap, ptr);
 	int size = xsArrayGetSize(ptr);
 	
-	if (size < index + 1)
+	if (index >= size)
 	{
 		xsArrayResizeInt(ptr, index + 10);
 	}

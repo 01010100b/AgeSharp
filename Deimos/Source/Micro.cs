@@ -16,6 +16,12 @@ namespace Deimos.Source
         [AgeMethod]
         public static void Retarget(Int id)
         {
+            if (GetRandom(100) < 10)
+            {
+                // forget current target every once in a while
+                CustomObjectData.Set(id, CustomObjectData.TARGET, -1);
+            }
+
             var current_target = CustomObjectData.Get(id, CustomObjectData.TARGET);
             var current_score = GetTargetScore(id, current_target) + CURRENT_TARGET_SCORE;
 

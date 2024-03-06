@@ -26,6 +26,8 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int operator |(Int a, Int b) => throw new Exception();
         public static Int operator ~(Int a) => throw new Exception();
         public static Int operator ^(Int a, Int b) => throw new Exception();
+        public static Int operator <<(Int a, Int count) => throw new Exception();
+        public static Int operator >>(Int a, Int count) => throw new Exception();
 
         public override bool Equals(object? obj) => throw new Exception();
         public override int GetHashCode() => throw new Exception();

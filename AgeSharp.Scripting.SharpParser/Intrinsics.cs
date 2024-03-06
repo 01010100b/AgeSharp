@@ -12,6 +12,7 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int GetConstant(string constant) => throw new Exception();
         public static void ChatDataToSelf(string message, Int data) => throw new Exception();
         public static Int GetPreciseTime(Int previous) => throw new Exception();
+        public static Int GetRandom(Int max) => throw new Exception();
         public static Int GetStrategicNumber(StrategicNumber sn) => throw new Exception();
         public static Int SetStrategicNumber(StrategicNumber sn, Int value) => throw new Exception();
         public static Int GetStrategicNumber(Int sn) => throw new Exception();
@@ -43,6 +44,8 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int BitwiseOr(Int a, Int b) => throw new Exception();
         public static Int BitwiseNot(Int a) => throw new Exception();
         public static Int BitwiseXor(Int a, Int b) => throw new Exception();
+        public static Int ShiftLeft(Int a, Int count) => throw new Exception();
+        public static Int ShiftRight(Int a, Int count) => throw new Exception();
 
         // DUC
         public static void FullResetSearch() => throw new Exception();

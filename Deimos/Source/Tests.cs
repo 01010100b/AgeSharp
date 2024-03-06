@@ -26,25 +26,37 @@ namespace Deimos.Source
         private static void Test0()
         {
             // bitwise operators
+            Int a = 7;
+            Int b = 13;
 
-            if ((7 | 13) != 15)
+            if ((a | b) != 15)
             {
                 throw new AgeException("Fail Test0.0");
             }
 
-            if ((7 & 13) != 5)
+            if ((a & b) != 5)
             {
                 throw new AgeException("Fail Test0.1");
             }
 
-            if ((~7) != -8)
+            if ((~a) != -8)
             {
                 throw new AgeException("Fail Test0.2");
             }
 
-            if ((7 ^ 13) != 10)
+            if ((a ^ b) != 10)
             {
                 throw new AgeException("Fail Test0.3");
+            }
+
+            if ((a << 7) != 896)
+            {
+                throw new AgeException("Fail Test0.4");
+            }
+
+            if ((b >> 1) != 6)
+            {
+                throw new AgeException("Fail Test0.5");
             }
         }
     }
