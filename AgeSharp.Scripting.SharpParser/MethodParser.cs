@@ -354,8 +354,11 @@ namespace AgeSharp.Scripting.SharpParser
             }
             else if (expression is IConversionOperation conversion)
             {
-                if (!conversion.Conversion.IsUserDefined) throw new NotSupportedException($"Conversion {conversion} not supported.");
-                if (!parse.IsInternal(conversion.OperatorMethod!)) throw new NotSupportedException($"Conversion {conversion} not supported.");
+                if (conversion.Type!.SpecialType != SpecialType.System_Int32 && conversion.Operand.Type!.TypeKind != TypeKind.Enum)
+                {
+                    if (!conversion.Conversion.IsUserDefined) throw new NotSupportedException($"Conversion {conversion} not supported.");
+                    if (!parse.IsInternal(conversion.OperatorMethod!)) throw new NotSupportedException($"Conversion {conversion} not supported.");
+                }
 
                 return ParseExpression(method, conversion.Operand, parse);
             }

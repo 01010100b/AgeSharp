@@ -1,6 +1,7 @@
 ﻿using AgeSharp.Common;
 using AgeSharp.Scripting.SharpParser;
 using Deimos.Source.Managers;
+using Deimos.Source.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Deimos.Source.Groups
         [AgeMethod]
         public static void Perform(Group group)
         {
+            // local list must contain group members
+
             if (group.Type != MilitaryManager.GROUP_EXTERMINATION)
             {
                 throw new AgeException("Not extermination group");
@@ -55,7 +58,7 @@ namespace Deimos.Source.Groups
                 {
                     SetTargetObject(SearchSource.LOCAL, j);
                     var id = GetObjectData(ObjectData.ID);
-                    Micro.Retarget(id);
+                    Targeting.Retarget(id);
                 }
             }
         }

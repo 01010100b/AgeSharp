@@ -23,23 +23,23 @@ namespace Deimos.Source.Managers
         [AgeMethod]
         public static Int GetAllyCount()
         {
-            return GetPlayerCount((int)PlayerStance.ALLY);
+            return GetPlayerCount(PlayerStance.ALLY);
         }
 
         [AgeMethod]
         public static Int GetEnemyCount()
         {
-            return GetPlayerCount((int)PlayerStance.ENEMY);
+            return GetPlayerCount(PlayerStance.ENEMY);
         }
 
         [AgeMethod]
-        public static Int GetPlayerCount(Int stance)
+        public static Int GetPlayerCount(PlayerStance stance)
         {
             Int count = 0;
 
             for (Int i = 0; i < PlayerStances.Length; i++)
             {
-                if (PlayerStances[i] == stance)
+                if (PlayerStances[i] == (int)stance)
                 {
                     count++;
                 }
@@ -51,23 +51,23 @@ namespace Deimos.Source.Managers
         [AgeMethod]
         public static Int GetAlly(Int index)
         {
-            return GetPlayer((int)PlayerStance.ALLY, index);
+            return GetPlayer(PlayerStance.ALLY, index);
         }
 
         [AgeMethod]
         public static Int GetEnemy(Int index)
         {
-            return GetPlayer((int)PlayerStance.ENEMY, index);
+            return GetPlayer(PlayerStance.ENEMY, index);
         }
 
         [AgeMethod]
-        public static Int GetPlayer(Int stance, Int index)
+        public static Int GetPlayer(PlayerStance stance, Int index)
         {
             Int count = 0;
 
             for (Int i = 0; i < PlayerStances.Length; i++)
             {
-                if (PlayerStances[i] == stance)
+                if (PlayerStances[i] == (int)stance)
                 {
                     if (count == index)
                     {

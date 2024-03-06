@@ -41,7 +41,6 @@ namespace Deimos.Source
 
             if (Tick == 0)
             {
-                ChatDataToSelf("Initializing...", 0);
                 Initialize();
             }
 

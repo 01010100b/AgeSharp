@@ -1,6 +1,6 @@
 ﻿using AgeSharp.Common;
 using AgeSharp.Scripting.SharpParser;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Deimos.Source.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
-namespace Deimos.Source
+namespace Deimos.Source.Groups
 {
     [AgeType]
     internal struct Group
@@ -34,7 +34,7 @@ namespace Deimos.Source
             }
 
             AddObjectById(SearchSource.LOCAL, object_id);
-            DUC.RotateLocalSearchList(search_state.LocalTotal - 1);
+            DUC.RotateLocalSearchList(search_state.LocalTotal);
             CreateGroup(0, 1, Id);
             ModifyGroupFlag(true, Id);
             RemoveObjects("==", SearchSource.LOCAL, ObjectData.INDEX, 0);
@@ -52,7 +52,7 @@ namespace Deimos.Source
             }
 
             AddObjectById(SearchSource.LOCAL, object_id);
-            DUC.RotateLocalSearchList(search_state.LocalTotal - 1);
+            DUC.RotateLocalSearchList(search_state.LocalTotal);
             CreateGroup(0, 1, Id);
             ModifyGroupFlag(false, Id);
             RemoveObjects("==", SearchSource.LOCAL, ObjectData.INDEX, 0);

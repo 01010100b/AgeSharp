@@ -64,6 +64,7 @@ The only valid methods are either static methods or instance methods of AgeTypes
 
 Many C# code constructs are available such as ```if, else if, else``` conditions, ```for, while``` loops, ```break, continue``` branches, and assignments and method calls. Notable restrictions are:
 + You can only call other AgeMethods or the intrinsics defined in the ```Intrinsics``` class. The list of available intrinsics is constantly being expanded to include all necessary .per commands.
++ Nested accessors such as ```my_group_array[i].Id``` are not supported. You can either index an array variable like ```my_group_array[i]``` or a compound type variable like ```my_group.Id``` but not combined in one expression. You can go as deep as you want with field access though, such as ```my_manager.AttackGroup.Position.X```.
 + You can not assign one array to another if they do not have the same length. Technically arrays of different lengths are considered different types.
 + ```switch``` constructs are not supported. Use ```else if``` chains instead.
 + ```try catch``` constructs are not supported.
@@ -79,6 +80,5 @@ The following are currently still missing but are planned to be added in the fut
 + Global variables with initializers.
 + Defining ref local variables other than method parameters.
 + Operator overloading for custom compound types.
-+ Nested accessors such as ```my_group_array[i].Id``` are not supported. You can either index an array variable like ```my_group_array[i]``` or a compound type variable like ```my_group.Id``` but not combined in one expression. You can go as deep as you want with field access though, such as ```my_manager.AttackGroup.Position.X```.
 
 Take a look at the ```Deimos``` project for a full example of usage, the C# source code for the script is under the ```Source``` folder.

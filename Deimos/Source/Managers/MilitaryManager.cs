@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
@@ -65,6 +64,13 @@ namespace Deimos.Source.Managers
             for (Int i = 0; i < search_state.LocalTotal; i++)
             {
                 SetTargetObject(SearchSource.LOCAL, i);
+
+                if (GetObjectData(ObjectData.RANGE) < 3)
+                {
+                    // only ranged units for now
+                    continue;
+                }
+                
                 var id = GetObjectData(ObjectData.ID);
                 var group_id = GetOrAssignGroup(GROUP_EXTERMINATION, 100);
 

@@ -69,6 +69,10 @@ namespace AgeSharp.Scripting.SharpParser
 
                 return type;
             }
+            else if (named.TypeKind == TypeKind.Enum)
+            {
+                return PrimitiveType.Int;
+            }
             else
             {
                 throw new NotSupportedException($"Type {named.Name} not found, possibly missing AgeType attribute.");

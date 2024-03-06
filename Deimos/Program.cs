@@ -8,7 +8,7 @@ namespace Deimos;
 class Program
 {
     const string SOURCE = @"F:\Repos\01010100b\AgeSharp\Deimos\Source";
-    const string FROM = @"F:\Repos\01010100b\AgeSharp\Deimos\per";
+    const string FROM = @"F:\Repos\01010100b\AgeSharp\Deimos\publish";
     const string TO = @"F:\SteamLibrary\steamapps\common\AoE2DE\resources\_common\ai";
 
     static void Main(string[] args)

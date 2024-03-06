@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
-namespace Deimos.Source
+namespace Deimos.Source.Utils
 {
-    internal class Micro
+    internal class Targeting
     {
         private const int CURRENT_TARGET_SCORE = 300;
 
@@ -23,6 +23,13 @@ namespace Deimos.Source
             }
 
             var current_target = CustomObjectData.Get(id, CustomObjectData.TARGET);
+            
+            if (ObjectExists(current_target) && GetRandom(100) < 75)
+            {
+                // too expensive to retarget everyone every tick
+                return;
+            }
+            
             var current_score = GetTargetScore(id, current_target) + CURRENT_TARGET_SCORE;
 
             var search_state = GetSearchState();

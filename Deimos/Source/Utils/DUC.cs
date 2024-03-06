@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
-namespace Deimos.Source
+namespace Deimos.Source.Utils
 {
     internal class DUC
     {
