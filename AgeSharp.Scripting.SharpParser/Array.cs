@@ -17,7 +17,7 @@ namespace AgeSharp.Scripting.SharpParser
 
         public Array(Int length)
         {
-
+            throw new Exception();
         }
     }
 }

@@ -14,7 +14,7 @@ This is the standard C# parser. It takes C# source code and produces an instance
 
 #### Types
 
-There are several kinds of types: primitive types, array types, and compound types. There are also ref types but these are restricted to method parameters. The type system is closed, any code can only ever refer to types marked as ```AgeType``` or the builtin types, with the exception of the use of ```void``` as a method return type. Some of the builtin types such as ```Int``` and ```Bool``` have appropriate cast and other operators defined to correspond to the C# ```int``` and ```bool``` types. Array types have a special ```Length``` field. Custom compound types can be defined as C# structs marked with the ```AgeType``` attribute. For example:
+There are several kinds of types: primitive types, array types, and compound types. There are also ref types but these are restricted to method parameters. The type system is closed, any code can only ever refer to types marked as ```AgeType``` or the builtin types, with the exception of the use of ```void``` as a method return type. Some of the builtin types such as ```Int``` and ```Bool``` have appropriate cast and other operators defined to correspond to the C# ```int``` and ```bool``` types. Array types have a special readonly ```Length``` field. Custom compound types can be defined as C# structs marked with the ```AgeType``` attribute. For example:
 
 ```
 [AgeType]
@@ -65,6 +65,7 @@ The only valid methods are either static methods or instance methods of AgeTypes
 Many C# code constructs are available such as ```if, else if, else``` conditions, ```for, while``` loops, ```break, continue``` branches, and assignments and method calls. Notable restrictions are:
 + You can only call other AgeMethods or the intrinsics defined in the ```Intrinsics``` class. The list of available intrinsics is constantly being expanded to include all necessary .per commands.
 + Nested accessors such as ```my_group_array[i].Id``` are not supported. You can either index an array variable like ```my_group_array[i]``` or a compound type variable like ```my_group.Id``` but not combined in one expression. You can go as deep as you want with field access though, such as ```my_manager.AttackGroup.Position.X```.
++ You can not define nor call any constructors, with the exception of array constructors which must be used to initialize array variables.
 + You can not assign one array to another if they do not have the same length. Technically arrays of different lengths are considered different types.
 + ```switch``` constructs are not supported. Use ```else if``` chains instead.
 + ```try catch``` constructs are not supported.

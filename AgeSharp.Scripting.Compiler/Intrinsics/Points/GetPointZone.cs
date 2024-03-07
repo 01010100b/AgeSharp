@@ -9,16 +9,14 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
 {
-    internal class CrossTiles : Intrinsic
+    internal class GetPointZone : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public CrossTiles(Script script) : base(script)
+        public GetPointZone(Script script) : base(script)
         {
-            AddParameter(new("a", Point));
-            AddParameter(new("b", Point));
-            AddParameter(new("value", Int));
-            ReturnType = Point;
+            AddParameter(new("point", Point));
+            ReturnType = Int;
         }
 
         protected override List<Instruction> CompileCall(Memory memory, Address? result, CallExpression call)
@@ -31,10 +29,8 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
             }
 
             instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
-            instructions.AddRange(GetArgument(memory, call.Arguments[1], memory.Intr2));
-            instructions.AddRange(GetArgument(memory, call.Arguments[2], memory.Intr4));
-            instructions.Add(new CommandInstruction($"up-cross-tiles {memory.Intr0} {memory.Intr2} g: {memory.Intr4}"));
-            instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
+            instructions.Add(new CommandInstruction($"up-get-point-zone {memory.Intr0} {memory.Intr2}"));
+            instructions.AddRange(Utils.Assign(memory, memory.Intr2, result));
 
             return instructions;
         }

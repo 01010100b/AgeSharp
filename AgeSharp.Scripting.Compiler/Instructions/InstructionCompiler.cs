@@ -314,8 +314,8 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 
                 if (result is not null)
                 {
-                    var call_result_addr = new Address(PrimitiveType.Void, Memory.CallResultBase, false);
-                    instructions.AddRange(Utils.MemCpy(Memory, call_result_addr, result, result.Type.Size));
+                    var call_result_addr = new Address(call.Method.ReturnType, Memory.CallResultBase, false);
+                    instructions.AddRange(Utils.Assign(Memory, call_result_addr, result));
                 }
 
                 return instructions;

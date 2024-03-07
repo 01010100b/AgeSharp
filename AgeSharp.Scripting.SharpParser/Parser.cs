@@ -159,6 +159,36 @@ namespace AgeSharp.Scripting.SharpParser
                 }
             }
 
+            foreach (var op in point_type.GetMembers().OfType<IMethodSymbol>())
+            {
+                var name = op.ToString()!;
+
+                if (name.Contains("operator ==("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "EqualsPoint"));
+                }
+                else if (name.Contains("operator !=("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "NotEqualsPoint"));
+                }
+                else if (name.Contains("operator +("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "AddPoint"));
+                }
+                else if (name.Contains("operator -("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "SubPoint"));
+                }
+                else if (name.Contains("operator *("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "MulPoint"));
+                }
+                else if (name.Contains("operator /("))
+                {
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "DivPoint"));
+                }
+            }
+
             TypeParser.Parse(parse);
             GlobalsParser.Parse(parse);
             MethodParser.Parse(parse);

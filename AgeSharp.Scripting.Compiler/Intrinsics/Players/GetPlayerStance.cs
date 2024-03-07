@@ -31,9 +31,12 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Players
 
             instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
             instructions.Add(new CommandInstruction($"up-modify-sn {(int)StrategicNumber.FOCUS_PLAYER_NUMBER} g:= {memory.Intr0}"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:= {(int)PlayerStance.ALLY}"));
-            instructions.Add(new RuleInstruction($"players-stance focus-player {(int)PlayerStance.NEUTRAL}", $"up-modify-goal {memory.Intr0} c:= {(int)PlayerStance.NEUTRAL}"));
-            instructions.Add(new RuleInstruction($"players-stance focus-player {(int)PlayerStance.ENEMY}", $"up-modify-goal {memory.Intr0} c:= {(int)PlayerStance.ENEMY}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:= {(int)Enum.GetValues<PlayerStance>().First()}"));
+
+            foreach (var stance in Enum.GetValues<PlayerStance>().Skip(1))
+            {
+                instructions.Add(new RuleInstruction($"players-stance focus-player {(int)stance}", $"up-modify-goal {memory.Intr0} c:= {(int)stance}"));
+            }
 
             instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 

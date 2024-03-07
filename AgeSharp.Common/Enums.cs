@@ -329,4 +329,19 @@ namespace AgeSharp.Common
     {
         NONE, LEFT, TOP, RIGHT, BOTTOM, MIDDLE, PRECISE
     }
+
+    public enum ExploredState
+    {
+        NO, ACTIVE = 15, YES = 128
+    }
+
+    public enum GroupType
+    {
+        LAND_ATTACK = 100, LAND_EXPLORE, WATER_ATTACK, WATER_EXPLORE, TRANSPORT_SHIP, FISHING_SHIP, WATER_TRADE, FORWARD_BUILDER, MONK, LAND_TRADE
+    }
+
+    public enum ScoutMethod
+    {
+        CENTER, OPPOSITE, CORNER, ENEMY, BORDER, MIRROR, FLANK
+    }
 }

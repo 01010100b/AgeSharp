@@ -1,6 +1,7 @@
 ﻿using AgeSharp.Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,7 @@ namespace AgeSharp.Scripting.SharpParser
         public static void SetTargetObject(SearchSource search_source, Int index) => throw new Exception();
         public static void SetTargetPoint(Point point) => throw new Exception();
         public static Int GetObjectData(ObjectData data) => throw new Exception();
+        public static Int GetPathDistance(Point point, Bool strict) => throw new Exception();
         public static Bool ObjectExists(Int id) => throw new Exception();
         public static void CleanSearch(SearchSource search_source, ObjectData object_data, SearchOrder search_order) => throw new Exception();
         public static void RemoveObjects(string comparison, SearchSource search_source, ObjectData data, Int value) => throw new Exception();
@@ -77,6 +79,25 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int GetPlayerStance(Int player) => throw new Exception();
 
         // Points
+        public static Bool EqualsPoint(Point a, Point b) => throw new Exception();
+        public static Bool NotEqualsPoint(Point a, Point b) => throw new Exception();
+        public static Point AddPoint(Point a, Point b) => throw new Exception();
+        public static Point SubPoint(Point a, Point b) => throw new Exception();
+        public static Point MulPoint(Point a, Int b) => throw new Exception();
+        public static Point DivPoint(Point a, Int b) => throw new Exception();
+        public static Point GetPointDistance(Point a, Point b) => throw new Exception();
+        public static Point LerpPercent(Point a, Point b, Int percent) => throw new Exception();
+        public static Point LerpTiles(Point a, Point b, Int value) => throw new Exception();
         public static Point CrossTiles(Point a, Point b, Int value) => throw new Exception();
+        public static Point GetPoint(PositionType position_type) => throw new Exception();
+        public static Point BoundPoint(Point point, Bool precise, Int border) => throw new Exception();
+        public static Int GetPointContains(Point point, Int object_id) => throw new Exception();
+        public static Int GetPointElevation(Point point) => throw new Exception();
+        public static Int GetPointTerrain(Point point) => throw new Exception();
+        public static Int GetPointZone(Point point) => throw new Exception();
+        public static ExploredState GetPointExplored(Point point) => throw new Exception();
+        public static void SendFlare(Point point) => throw new Exception();
+        public static Point FindPlayerFlare(Int player) => throw new Exception();
+        public static void SendScout(GroupType group_type, ScoutMethod scout_method) => throw new Exception();
     }
 }

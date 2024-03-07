@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
 {
-    internal class CrossTiles : Intrinsic
+    internal class LerpTiles : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public CrossTiles(Script script) : base(script)
+        public LerpTiles(Script script) : base(script)
         {
             AddParameter(new("a", Point));
             AddParameter(new("b", Point));
@@ -33,7 +33,7 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
             instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
             instructions.AddRange(GetArgument(memory, call.Arguments[1], memory.Intr2));
             instructions.AddRange(GetArgument(memory, call.Arguments[2], memory.Intr4));
-            instructions.Add(new CommandInstruction($"up-cross-tiles {memory.Intr0} {memory.Intr2} g: {memory.Intr4}"));
+            instructions.Add(new CommandInstruction($"up-lerp-tiles {memory.Intr0} {memory.Intr2} g: {memory.Intr4}")); ;
             instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 
             return instructions;

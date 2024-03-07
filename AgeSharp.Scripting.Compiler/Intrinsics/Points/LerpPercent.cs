@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.Compiler.Instructions;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Compiler.Instructions;
 using AgeSharp.Scripting.Language.Expressions;
 using AgeSharp.Scripting.Language;
 using System;
@@ -9,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
 {
-    internal class CrossTiles : Intrinsic
+    internal class LerpPercent : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public CrossTiles(Script script) : base(script)
+        public LerpPercent(Script script) : base(script)
         {
             AddParameter(new("a", Point));
             AddParameter(new("b", Point));
-            AddParameter(new("value", Int));
+            AddParameter(new("percent", Int));
             ReturnType = Point;
         }
 
@@ -33,7 +34,7 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
             instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
             instructions.AddRange(GetArgument(memory, call.Arguments[1], memory.Intr2));
             instructions.AddRange(GetArgument(memory, call.Arguments[2], memory.Intr4));
-            instructions.Add(new CommandInstruction($"up-cross-tiles {memory.Intr0} {memory.Intr2} g: {memory.Intr4}"));
+            instructions.Add(new CommandInstruction($"up-lerp-percent {memory.Intr0} {memory.Intr2} g: {memory.Intr4}")); ;
             instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 
             return instructions;

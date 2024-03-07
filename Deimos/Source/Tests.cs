@@ -19,45 +19,51 @@ namespace Deimos.Source
         [AgeMethod]
         private static void RunSuite()
         {
-            Test0();
+            TestBitwise();
+            TestPoints();
         }
 
         [AgeMethod]
-        private static void Test0()
+        private static void TestBitwise()
         {
-            // bitwise operators
             Int a = 7;
             Int b = 13;
 
             if ((a | b) != 15)
             {
-                throw new AgeException("Fail Test0.0");
+                throw new AgeException("Fail Bitwise 0");
             }
 
             if ((a & b) != 5)
             {
-                throw new AgeException("Fail Test0.1");
+                throw new AgeException("Fail Bitwise 1");
             }
 
             if ((~a) != -8)
             {
-                throw new AgeException("Fail Test0.2");
+                throw new AgeException("Fail Bitwise 2");
             }
 
             if ((a ^ b) != 10)
             {
-                throw new AgeException("Fail Test0.3");
+                throw new AgeException("Fail Bitwise 3");
             }
 
             if ((a << 7) != 896)
             {
-                throw new AgeException("Fail Test0.4");
+                throw new AgeException("Fail Bitwise 4");
             }
 
             if ((b >> 1) != 6)
             {
-                throw new AgeException("Fail Test0.5");
+                throw new AgeException("Fail Bitwise 5");
             }
+        }
+
+        [AgeMethod]
+        private static void TestPoints()
+        {
+            Point a;
         }
     }
 }

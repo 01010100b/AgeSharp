@@ -6,19 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AgeSharp.Common;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
 {
-    internal class CrossTiles : Intrinsic
+    internal class GetPointExplored : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public CrossTiles(Script script) : base(script)
+        public GetPointExplored(Script script) : base(script)
         {
-            AddParameter(new("a", Point));
-            AddParameter(new("b", Point));
-            AddParameter(new("value", Int));
-            ReturnType = Point;
+            AddParameter(new("point", Point));
+            ReturnType = Int;
         }
 
         protected override List<Instruction> CompileCall(Memory memory, Address? result, CallExpression call)
@@ -31,10 +30,15 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Points
             }
 
             instructions.AddRange(GetArgument(memory, call.Arguments[0], memory.Intr0));
-            instructions.AddRange(GetArgument(memory, call.Arguments[1], memory.Intr2));
-            instructions.AddRange(GetArgument(memory, call.Arguments[2], memory.Intr4));
-            instructions.Add(new CommandInstruction($"up-cross-tiles {memory.Intr0} {memory.Intr2} g: {memory.Intr4}"));
-            instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr2} c:= {(int)Enum.GetValues<ExploredState>().First()}"));
+
+            foreach (var state in Enum.GetValues<ExploredState>().Skip(1))
+            {
+                instructions.Add(new RuleInstruction($"up-point-explored {memory.Intr0} g: {(int)state}",
+                    $"up-modify-goal {memory.Intr2} c:= {(int)state}"));
+            }
+
+            instructions.AddRange(Utils.Assign(memory, memory.Intr2, result));
 
             return instructions;
         }
