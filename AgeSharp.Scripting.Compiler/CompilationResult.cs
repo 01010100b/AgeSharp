@@ -35,6 +35,18 @@ namespace AgeSharp.Scripting.Compiler
         public string GetPer()
         {
             var sb = new StringBuilder();
+
+            foreach (var symbol in Settings.SystemSymbols)
+            {
+                sb.AppendLine($"#load-if-defined {symbol}");
+                sb.AppendLine($"(defconst SYM-{symbol} 1)");
+                sb.AppendLine("#end-if");
+                sb.AppendLine($"#load-if-not-defined {symbol}");
+                sb.AppendLine($"(defconst SYM-{symbol} 0)");
+                sb.AppendLine("#end-if");
+                sb.AppendLine();
+            }
+
             var labels = new Dictionary<string, int>();
 
             for (int i = 0; i < Rules.Count; i++)

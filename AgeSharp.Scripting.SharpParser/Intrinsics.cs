@@ -10,6 +10,7 @@ namespace AgeSharp.Scripting.SharpParser
 {
     public static class Intrinsics
     {
+        public static Bool HasSymbol(string symbol) => throw new Exception();
         public static Int GetConstant(string constant) => throw new Exception();
         public static void ChatDataToSelf(string message, Int data) => throw new Exception();
         public static Int GetPreciseTime(Int previous) => throw new Exception();

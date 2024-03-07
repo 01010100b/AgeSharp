@@ -1,5 +1,2007 @@
 (include "..\ai\Deimos.xs")
 
+#load-if-defined DEATH-MATCH
+(defconst SYM-DEATH-MATCH 1)
+#end-if
+#load-if-not-defined DEATH-MATCH
+(defconst SYM-DEATH-MATCH 0)
+#end-if
+
+#load-if-defined RANDOM-MAP
+(defconst SYM-RANDOM-MAP 1)
+#end-if
+#load-if-not-defined RANDOM-MAP
+(defconst SYM-RANDOM-MAP 0)
+#end-if
+
+#load-if-defined REGICIDE
+(defconst SYM-REGICIDE 1)
+#end-if
+#load-if-not-defined REGICIDE
+(defconst SYM-REGICIDE 0)
+#end-if
+
+#load-if-defined KING-OF-THE-HILL
+(defconst SYM-KING-OF-THE-HILL 1)
+#end-if
+#load-if-not-defined KING-OF-THE-HILL
+(defconst SYM-KING-OF-THE-HILL 0)
+#end-if
+
+#load-if-defined WONDER-RACE
+(defconst SYM-WONDER-RACE 1)
+#end-if
+#load-if-not-defined WONDER-RACE
+(defconst SYM-WONDER-RACE 0)
+#end-if
+
+#load-if-defined DEFEND-WONDER
+(defconst SYM-DEFEND-WONDER 1)
+#end-if
+#load-if-not-defined DEFEND-WONDER
+(defconst SYM-DEFEND-WONDER 0)
+#end-if
+
+#load-if-defined TURBO-RANDOM-MAP
+(defconst SYM-TURBO-RANDOM-MAP 1)
+#end-if
+#load-if-not-defined TURBO-RANDOM-MAP
+(defconst SYM-TURBO-RANDOM-MAP 0)
+#end-if
+
+#load-if-defined SUDDEN-DEATH
+(defconst SYM-SUDDEN-DEATH 1)
+#end-if
+#load-if-not-defined SUDDEN-DEATH
+(defconst SYM-SUDDEN-DEATH 0)
+#end-if
+
+#load-if-defined CAPTURE-THE-RELIC
+(defconst SYM-CAPTURE-THE-RELIC 1)
+#end-if
+#load-if-not-defined CAPTURE-THE-RELIC
+(defconst SYM-CAPTURE-THE-RELIC 0)
+#end-if
+
+#load-if-defined BATTLE-ROYALE
+(defconst SYM-BATTLE-ROYALE 1)
+#end-if
+#load-if-not-defined BATTLE-ROYALE
+(defconst SYM-BATTLE-ROYALE 0)
+#end-if
+
+#load-if-defined EMPIRE-WARS
+(defconst SYM-EMPIRE-WARS 1)
+#end-if
+#load-if-not-defined EMPIRE-WARS
+(defconst SYM-EMPIRE-WARS 0)
+#end-if
+
+#load-if-defined TURBO-MODE
+(defconst SYM-TURBO-MODE 1)
+#end-if
+#load-if-not-defined TURBO-MODE
+(defconst SYM-TURBO-MODE 0)
+#end-if
+
+#load-if-defined SUB-GAME-MODE-EMPIRE-WARS
+(defconst SYM-SUB-GAME-MODE-EMPIRE-WARS 1)
+#end-if
+#load-if-not-defined SUB-GAME-MODE-EMPIRE-WARS
+(defconst SYM-SUB-GAME-MODE-EMPIRE-WARS 0)
+#end-if
+
+#load-if-defined SUB-GAME-MODE-SUDDEN-DEATH
+(defconst SYM-SUB-GAME-MODE-SUDDEN-DEATH 1)
+#end-if
+#load-if-not-defined SUB-GAME-MODE-SUDDEN-DEATH
+(defconst SYM-SUB-GAME-MODE-SUDDEN-DEATH 0)
+#end-if
+
+#load-if-defined SUB-GAME-MODE-REGICIDE
+(defconst SYM-SUB-GAME-MODE-REGICIDE 1)
+#end-if
+#load-if-not-defined SUB-GAME-MODE-REGICIDE
+(defconst SYM-SUB-GAME-MODE-REGICIDE 0)
+#end-if
+
+#load-if-defined SUB-GAME-MODE-KING-OF-THE-HILL
+(defconst SYM-SUB-GAME-MODE-KING-OF-THE-HILL 1)
+#end-if
+#load-if-not-defined SUB-GAME-MODE-KING-OF-THE-HILL
+(defconst SYM-SUB-GAME-MODE-KING-OF-THE-HILL 0)
+#end-if
+
+#load-if-defined GAME-SPEED-LOCKED
+(defconst SYM-GAME-SPEED-LOCKED 1)
+#end-if
+#load-if-not-defined GAME-SPEED-LOCKED
+(defconst SYM-GAME-SPEED-LOCKED 0)
+#end-if
+
+#load-if-defined ALL-TECHS-ENABLED
+(defconst SYM-ALL-TECHS-ENABLED 1)
+#end-if
+#load-if-not-defined ALL-TECHS-ENABLED
+(defconst SYM-ALL-TECHS-ENABLED 0)
+#end-if
+
+#load-if-defined LAST-MAN-STANDING
+(defconst SYM-LAST-MAN-STANDING 1)
+#end-if
+#load-if-not-defined LAST-MAN-STANDING
+(defconst SYM-LAST-MAN-STANDING 0)
+#end-if
+
+#load-if-defined DARK-AGE-START
+(defconst SYM-DARK-AGE-START 1)
+#end-if
+#load-if-not-defined DARK-AGE-START
+(defconst SYM-DARK-AGE-START 0)
+#end-if
+
+#load-if-defined FEUDAL-AGE-START
+(defconst SYM-FEUDAL-AGE-START 1)
+#end-if
+#load-if-not-defined FEUDAL-AGE-START
+(defconst SYM-FEUDAL-AGE-START 0)
+#end-if
+
+#load-if-defined CASTLE-AGE-START
+(defconst SYM-CASTLE-AGE-START 1)
+#end-if
+#load-if-not-defined CASTLE-AGE-START
+(defconst SYM-CASTLE-AGE-START 0)
+#end-if
+
+#load-if-defined IMPERIAL-AGE-START
+(defconst SYM-IMPERIAL-AGE-START 1)
+#end-if
+#load-if-not-defined IMPERIAL-AGE-START
+(defconst SYM-IMPERIAL-AGE-START 0)
+#end-if
+
+#load-if-defined POST-IMPERIAL-AGE-START
+(defconst SYM-POST-IMPERIAL-AGE-START 1)
+#end-if
+#load-if-not-defined POST-IMPERIAL-AGE-START
+(defconst SYM-POST-IMPERIAL-AGE-START 0)
+#end-if
+
+#load-if-defined DARK-AGE-END
+(defconst SYM-DARK-AGE-END 1)
+#end-if
+#load-if-not-defined DARK-AGE-END
+(defconst SYM-DARK-AGE-END 0)
+#end-if
+
+#load-if-defined FEUDAL-AGE-END
+(defconst SYM-FEUDAL-AGE-END 1)
+#end-if
+#load-if-not-defined FEUDAL-AGE-END
+(defconst SYM-FEUDAL-AGE-END 0)
+#end-if
+
+#load-if-defined CASTLE-AGE-END
+(defconst SYM-CASTLE-AGE-END 1)
+#end-if
+#load-if-not-defined CASTLE-AGE-END
+(defconst SYM-CASTLE-AGE-END 0)
+#end-if
+
+#load-if-defined IMPERIAL-AGE-END
+(defconst SYM-IMPERIAL-AGE-END 1)
+#end-if
+#load-if-not-defined IMPERIAL-AGE-END
+(defconst SYM-IMPERIAL-AGE-END 0)
+#end-if
+
+#load-if-defined LOW-RESOURCES-START
+(defconst SYM-LOW-RESOURCES-START 1)
+#end-if
+#load-if-not-defined LOW-RESOURCES-START
+(defconst SYM-LOW-RESOURCES-START 0)
+#end-if
+
+#load-if-defined MEDIUM-RESOURCES-START
+(defconst SYM-MEDIUM-RESOURCES-START 1)
+#end-if
+#load-if-not-defined MEDIUM-RESOURCES-START
+(defconst SYM-MEDIUM-RESOURCES-START 0)
+#end-if
+
+#load-if-defined HIGH-RESOURCES-START
+(defconst SYM-HIGH-RESOURCES-START 1)
+#end-if
+#load-if-not-defined HIGH-RESOURCES-START
+(defconst SYM-HIGH-RESOURCES-START 0)
+#end-if
+
+#load-if-defined ULTRA-RESOURCES-START
+(defconst SYM-ULTRA-RESOURCES-START 1)
+#end-if
+#load-if-not-defined ULTRA-RESOURCES-START
+(defconst SYM-ULTRA-RESOURCES-START 0)
+#end-if
+
+#load-if-defined INFINITE-RESOURCES-START
+(defconst SYM-INFINITE-RESOURCES-START 1)
+#end-if
+#load-if-not-defined INFINITE-RESOURCES-START
+(defconst SYM-INFINITE-RESOURCES-START 0)
+#end-if
+
+#load-if-defined RANDOM-RESOURCES-START
+(defconst SYM-RANDOM-RESOURCES-START 1)
+#end-if
+#load-if-not-defined RANDOM-RESOURCES-START
+(defconst SYM-RANDOM-RESOURCES-START 0)
+#end-if
+
+#load-if-defined TINY-MAP
+(defconst SYM-TINY-MAP 1)
+#end-if
+#load-if-not-defined TINY-MAP
+(defconst SYM-TINY-MAP 0)
+#end-if
+
+#load-if-defined SMALL-MAP
+(defconst SYM-SMALL-MAP 1)
+#end-if
+#load-if-not-defined SMALL-MAP
+(defconst SYM-SMALL-MAP 0)
+#end-if
+
+#load-if-defined MEDIUM-MAP
+(defconst SYM-MEDIUM-MAP 1)
+#end-if
+#load-if-not-defined MEDIUM-MAP
+(defconst SYM-MEDIUM-MAP 0)
+#end-if
+
+#load-if-defined NORMAL-MAP
+(defconst SYM-NORMAL-MAP 1)
+#end-if
+#load-if-not-defined NORMAL-MAP
+(defconst SYM-NORMAL-MAP 0)
+#end-if
+
+#load-if-defined LARGE-MAP
+(defconst SYM-LARGE-MAP 1)
+#end-if
+#load-if-not-defined LARGE-MAP
+(defconst SYM-LARGE-MAP 0)
+#end-if
+
+#load-if-defined GIANT-MAP
+(defconst SYM-GIANT-MAP 1)
+#end-if
+#load-if-not-defined GIANT-MAP
+(defconst SYM-GIANT-MAP 0)
+#end-if
+
+#load-if-defined LUDIKRIS-MAP
+(defconst SYM-LUDIKRIS-MAP 1)
+#end-if
+#load-if-not-defined LUDIKRIS-MAP
+(defconst SYM-LUDIKRIS-MAP 0)
+#end-if
+
+#load-if-defined VICTORY-STANDARD
+(defconst SYM-VICTORY-STANDARD 1)
+#end-if
+#load-if-not-defined VICTORY-STANDARD
+(defconst SYM-VICTORY-STANDARD 0)
+#end-if
+
+#load-if-defined VICTORY-CONQUEST
+(defconst SYM-VICTORY-CONQUEST 1)
+#end-if
+#load-if-not-defined VICTORY-CONQUEST
+(defconst SYM-VICTORY-CONQUEST 0)
+#end-if
+
+#load-if-defined VICTORY-TIME-LIMIT
+(defconst SYM-VICTORY-TIME-LIMIT 1)
+#end-if
+#load-if-not-defined VICTORY-TIME-LIMIT
+(defconst SYM-VICTORY-TIME-LIMIT 0)
+#end-if
+
+#load-if-defined VICTORY-SCORE
+(defconst SYM-VICTORY-SCORE 1)
+#end-if
+#load-if-not-defined VICTORY-SCORE
+(defconst SYM-VICTORY-SCORE 0)
+#end-if
+
+#load-if-defined VICTORY-CUSTOM
+(defconst SYM-VICTORY-CUSTOM 1)
+#end-if
+#load-if-not-defined VICTORY-CUSTOM
+(defconst SYM-VICTORY-CUSTOM 0)
+#end-if
+
+#load-if-defined VICTORY-RELICS
+(defconst SYM-VICTORY-RELICS 1)
+#end-if
+#load-if-not-defined VICTORY-RELICS
+(defconst SYM-VICTORY-RELICS 0)
+#end-if
+
+#load-if-defined DIFFICULTY-EASIEST
+(defconst SYM-DIFFICULTY-EASIEST 1)
+#end-if
+#load-if-not-defined DIFFICULTY-EASIEST
+(defconst SYM-DIFFICULTY-EASIEST 0)
+#end-if
+
+#load-if-defined DIFFICULTY-EASY
+(defconst SYM-DIFFICULTY-EASY 1)
+#end-if
+#load-if-not-defined DIFFICULTY-EASY
+(defconst SYM-DIFFICULTY-EASY 0)
+#end-if
+
+#load-if-defined DIFFICULTY-MODERATE
+(defconst SYM-DIFFICULTY-MODERATE 1)
+#end-if
+#load-if-not-defined DIFFICULTY-MODERATE
+(defconst SYM-DIFFICULTY-MODERATE 0)
+#end-if
+
+#load-if-defined DIFFICULTY-HARD
+(defconst SYM-DIFFICULTY-HARD 1)
+#end-if
+#load-if-not-defined DIFFICULTY-HARD
+(defconst SYM-DIFFICULTY-HARD 0)
+#end-if
+
+#load-if-defined DIFFICULTY-HARDEST
+(defconst SYM-DIFFICULTY-HARDEST 1)
+#end-if
+#load-if-not-defined DIFFICULTY-HARDEST
+(defconst SYM-DIFFICULTY-HARDEST 0)
+#end-if
+
+#load-if-defined DIFFICULTY-EXTREME
+(defconst SYM-DIFFICULTY-EXTREME 1)
+#end-if
+#load-if-not-defined DIFFICULTY-EXTREME
+(defconst SYM-DIFFICULTY-EXTREME 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-25
+(defconst SYM-POPULATION-CAP-25 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-25
+(defconst SYM-POPULATION-CAP-25 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-50
+(defconst SYM-POPULATION-CAP-50 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-50
+(defconst SYM-POPULATION-CAP-50 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-75
+(defconst SYM-POPULATION-CAP-75 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-75
+(defconst SYM-POPULATION-CAP-75 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-100
+(defconst SYM-POPULATION-CAP-100 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-100
+(defconst SYM-POPULATION-CAP-100 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-125
+(defconst SYM-POPULATION-CAP-125 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-125
+(defconst SYM-POPULATION-CAP-125 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-150
+(defconst SYM-POPULATION-CAP-150 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-150
+(defconst SYM-POPULATION-CAP-150 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-175
+(defconst SYM-POPULATION-CAP-175 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-175
+(defconst SYM-POPULATION-CAP-175 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-200
+(defconst SYM-POPULATION-CAP-200 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-200
+(defconst SYM-POPULATION-CAP-200 0)
+#end-if
+
+#load-if-defined POPULATION-CAP-EXTENDED
+(defconst SYM-POPULATION-CAP-EXTENDED 1)
+#end-if
+#load-if-not-defined POPULATION-CAP-EXTENDED
+(defconst SYM-POPULATION-CAP-EXTENDED 0)
+#end-if
+
+#load-if-defined UP-GAME-AGE2-X1
+(defconst SYM-UP-GAME-AGE2-X1 1)
+#end-if
+#load-if-not-defined UP-GAME-AGE2-X1
+(defconst SYM-UP-GAME-AGE2-X1 0)
+#end-if
+
+#load-if-defined UP-GAME-AGE2-X2
+(defconst SYM-UP-GAME-AGE2-X2 1)
+#end-if
+#load-if-not-defined UP-GAME-AGE2-X2
+(defconst SYM-UP-GAME-AGE2-X2 0)
+#end-if
+
+#load-if-defined UP-GAME-WK
+(defconst SYM-UP-GAME-WK 1)
+#end-if
+#load-if-not-defined UP-GAME-WK
+(defconst SYM-UP-GAME-WK 0)
+#end-if
+
+#load-if-defined UP-AVAILABLE
+(defconst SYM-UP-AVAILABLE 1)
+#end-if
+#load-if-not-defined UP-AVAILABLE
+(defconst SYM-UP-AVAILABLE 0)
+#end-if
+
+#load-if-defined UP-VERSION-1.5
+(defconst SYM-UP-VERSION-1.5 1)
+#end-if
+#load-if-not-defined UP-VERSION-1.5
+(defconst SYM-UP-VERSION-1.5 0)
+#end-if
+
+#load-if-defined UP-VERSION-1.4
+(defconst SYM-UP-VERSION-1.4 1)
+#end-if
+#load-if-not-defined UP-VERSION-1.4
+(defconst SYM-UP-VERSION-1.4 0)
+#end-if
+
+#load-if-defined UP-VERSION-1.3
+(defconst SYM-UP-VERSION-1.3 1)
+#end-if
+#load-if-not-defined UP-VERSION-1.3
+(defconst SYM-UP-VERSION-1.3 0)
+#end-if
+
+#load-if-defined UP-VERSION-1.2
+(defconst SYM-UP-VERSION-1.2 1)
+#end-if
+#load-if-not-defined UP-VERSION-1.2
+(defconst SYM-UP-VERSION-1.2 0)
+#end-if
+
+#load-if-defined UP-VERSION-1.1
+(defconst SYM-UP-VERSION-1.1 1)
+#end-if
+#load-if-not-defined UP-VERSION-1.1
+(defconst SYM-UP-VERSION-1.1 0)
+#end-if
+
+#load-if-defined DE-AVAILABLE
+(defconst SYM-DE-AVAILABLE 1)
+#end-if
+#load-if-not-defined DE-AVAILABLE
+(defconst SYM-DE-AVAILABLE 0)
+#end-if
+
+#load-if-defined DE-GAME-AGE2
+(defconst SYM-DE-GAME-AGE2 1)
+#end-if
+#load-if-not-defined DE-GAME-AGE2
+(defconst SYM-DE-GAME-AGE2 0)
+#end-if
+
+#load-if-defined DE-GAME-ROME
+(defconst SYM-DE-GAME-ROME 1)
+#end-if
+#load-if-not-defined DE-GAME-ROME
+(defconst SYM-DE-GAME-ROME 0)
+#end-if
+
+#load-if-defined TEAMS-LOCKED
+(defconst SYM-TEAMS-LOCKED 1)
+#end-if
+#load-if-not-defined TEAMS-LOCKED
+(defconst SYM-TEAMS-LOCKED 0)
+#end-if
+
+#load-if-defined TEAM-TOGETHER
+(defconst SYM-TEAM-TOGETHER 1)
+#end-if
+#load-if-not-defined TEAM-TOGETHER
+(defconst SYM-TEAM-TOGETHER 0)
+#end-if
+
+#load-if-defined UP-ALLY-IN-GAME
+(defconst SYM-UP-ALLY-IN-GAME 1)
+#end-if
+#load-if-not-defined UP-ALLY-IN-GAME
+(defconst SYM-UP-ALLY-IN-GAME 0)
+#end-if
+
+#load-if-defined UP-MULTIPLE-ENEMIES
+(defconst SYM-UP-MULTIPLE-ENEMIES 1)
+#end-if
+#load-if-not-defined UP-MULTIPLE-ENEMIES
+(defconst SYM-UP-MULTIPLE-ENEMIES 0)
+#end-if
+
+#load-if-defined UP-TEAM-DISADVANTAGE
+(defconst SYM-UP-TEAM-DISADVANTAGE 1)
+#end-if
+#load-if-not-defined UP-TEAM-DISADVANTAGE
+(defconst SYM-UP-TEAM-DISADVANTAGE 0)
+#end-if
+
+#load-if-defined UP-POCKET-POSITION
+(defconst SYM-UP-POCKET-POSITION 1)
+#end-if
+#load-if-not-defined UP-POCKET-POSITION
+(defconst SYM-UP-POCKET-POSITION 0)
+#end-if
+
+#load-if-defined UP-HUMAN-IN-GAME
+(defconst SYM-UP-HUMAN-IN-GAME 1)
+#end-if
+#load-if-not-defined UP-HUMAN-IN-GAME
+(defconst SYM-UP-HUMAN-IN-GAME 0)
+#end-if
+
+#load-if-defined UP-HUMAN-ALLY
+(defconst SYM-UP-HUMAN-ALLY 1)
+#end-if
+#load-if-not-defined UP-HUMAN-ALLY
+(defconst SYM-UP-HUMAN-ALLY 0)
+#end-if
+
+#load-if-defined UP-HUMAN-ENEMY
+(defconst SYM-UP-HUMAN-ENEMY 1)
+#end-if
+#load-if-not-defined UP-HUMAN-ENEMY
+(defconst SYM-UP-HUMAN-ENEMY 0)
+#end-if
+
+#load-if-defined UP-COMPUTER-ALLY
+(defconst SYM-UP-COMPUTER-ALLY 1)
+#end-if
+#load-if-not-defined UP-COMPUTER-ALLY
+(defconst SYM-UP-COMPUTER-ALLY 0)
+#end-if
+
+#load-if-defined UP-COMPUTER-ENEMY
+(defconst SYM-UP-COMPUTER-ENEMY 1)
+#end-if
+#load-if-not-defined UP-COMPUTER-ENEMY
+(defconst SYM-UP-COMPUTER-ENEMY 0)
+#end-if
+
+#load-if-defined CUSTOM-MAP
+(defconst SYM-CUSTOM-MAP 1)
+#end-if
+#load-if-not-defined CUSTOM-MAP
+(defconst SYM-CUSTOM-MAP 0)
+#end-if
+
+#load-if-defined UP-NOMAD-STYLE
+(defconst SYM-UP-NOMAD-STYLE 1)
+#end-if
+#load-if-not-defined UP-NOMAD-STYLE
+(defconst SYM-UP-NOMAD-STYLE 0)
+#end-if
+
+#load-if-defined UP-MICHI-STYLE
+(defconst SYM-UP-MICHI-STYLE 1)
+#end-if
+#load-if-not-defined UP-MICHI-STYLE
+(defconst SYM-UP-MICHI-STYLE 0)
+#end-if
+
+#load-if-defined UP-NOMAD-RESOURCES
+(defconst SYM-UP-NOMAD-RESOURCES 1)
+#end-if
+#load-if-not-defined UP-NOMAD-RESOURCES
+(defconst SYM-UP-NOMAD-RESOURCES 0)
+#end-if
+
+#load-if-defined UP-GROUPED-BY-TEAM
+(defconst SYM-UP-GROUPED-BY-TEAM 1)
+#end-if
+#load-if-not-defined UP-GROUPED-BY-TEAM
+(defconst SYM-UP-GROUPED-BY-TEAM 0)
+#end-if
+
+#load-if-defined REVEAL-NORMAL
+(defconst SYM-REVEAL-NORMAL 1)
+#end-if
+#load-if-not-defined REVEAL-NORMAL
+(defconst SYM-REVEAL-NORMAL 0)
+#end-if
+
+#load-if-defined REVEAL-EXPLORED
+(defconst SYM-REVEAL-EXPLORED 1)
+#end-if
+#load-if-not-defined REVEAL-EXPLORED
+(defconst SYM-REVEAL-EXPLORED 0)
+#end-if
+
+#load-if-defined REVEAL-ALL-VISIBLE
+(defconst SYM-REVEAL-ALL-VISIBLE 1)
+#end-if
+#load-if-not-defined REVEAL-ALL-VISIBLE
+(defconst SYM-REVEAL-ALL-VISIBLE 0)
+#end-if
+
+#load-if-defined REVEAL-NO-FOG
+(defconst SYM-REVEAL-NO-FOG 1)
+#end-if
+#load-if-not-defined REVEAL-NO-FOG
+(defconst SYM-REVEAL-NO-FOG 0)
+#end-if
+
+#load-if-defined UP-MULTIPLAYER-GAME
+(defconst SYM-UP-MULTIPLAYER-GAME 1)
+#end-if
+#load-if-not-defined UP-MULTIPLAYER-GAME
+(defconst SYM-UP-MULTIPLAYER-GAME 0)
+#end-if
+
+#load-if-defined UP-PROCESS-60FPS
+(defconst SYM-UP-PROCESS-60FPS 1)
+#end-if
+#load-if-not-defined UP-PROCESS-60FPS
+(defconst SYM-UP-PROCESS-60FPS 0)
+#end-if
+
+#load-if-defined UP-SCENARIO-GAME
+(defconst SYM-UP-SCENARIO-GAME 1)
+#end-if
+#load-if-not-defined UP-SCENARIO-GAME
+(defconst SYM-UP-SCENARIO-GAME 0)
+#end-if
+
+#load-if-defined FE-CAMPAIGN-GAME
+(defconst SYM-FE-CAMPAIGN-GAME 1)
+#end-if
+#load-if-not-defined FE-CAMPAIGN-GAME
+(defconst SYM-FE-CAMPAIGN-GAME 0)
+#end-if
+
+#load-if-defined FE-CUSTOM-CAMPAIGN
+(defconst SYM-FE-CUSTOM-CAMPAIGN 1)
+#end-if
+#load-if-not-defined FE-CUSTOM-CAMPAIGN
+(defconst SYM-FE-CUSTOM-CAMPAIGN 0)
+#end-if
+
+#load-if-defined GAIA
+(defconst SYM-GAIA 1)
+#end-if
+#load-if-not-defined GAIA
+(defconst SYM-GAIA 0)
+#end-if
+
+#load-if-defined ARMENIANS-CIV
+(defconst SYM-ARMENIANS-CIV 1)
+#end-if
+#load-if-not-defined ARMENIANS-CIV
+(defconst SYM-ARMENIANS-CIV 0)
+#end-if
+
+#load-if-defined AZTEC-CIV
+(defconst SYM-AZTEC-CIV 1)
+#end-if
+#load-if-not-defined AZTEC-CIV
+(defconst SYM-AZTEC-CIV 0)
+#end-if
+
+#load-if-defined BENGALIS-CIV
+(defconst SYM-BENGALIS-CIV 1)
+#end-if
+#load-if-not-defined BENGALIS-CIV
+(defconst SYM-BENGALIS-CIV 0)
+#end-if
+
+#load-if-defined BERBERS-CIV
+(defconst SYM-BERBERS-CIV 1)
+#end-if
+#load-if-not-defined BERBERS-CIV
+(defconst SYM-BERBERS-CIV 0)
+#end-if
+
+#load-if-defined BRITON-CIV
+(defconst SYM-BRITON-CIV 1)
+#end-if
+#load-if-not-defined BRITON-CIV
+(defconst SYM-BRITON-CIV 0)
+#end-if
+
+#load-if-defined BOHEMIANS-CIV
+(defconst SYM-BOHEMIANS-CIV 1)
+#end-if
+#load-if-not-defined BOHEMIANS-CIV
+(defconst SYM-BOHEMIANS-CIV 0)
+#end-if
+
+#load-if-defined BULGARIANS-CIV
+(defconst SYM-BULGARIANS-CIV 1)
+#end-if
+#load-if-not-defined BULGARIANS-CIV
+(defconst SYM-BULGARIANS-CIV 0)
+#end-if
+
+#load-if-defined BURGUNDIANS-CIV
+(defconst SYM-BURGUNDIANS-CIV 1)
+#end-if
+#load-if-not-defined BURGUNDIANS-CIV
+(defconst SYM-BURGUNDIANS-CIV 0)
+#end-if
+
+#load-if-defined BURMESE-CIV
+(defconst SYM-BURMESE-CIV 1)
+#end-if
+#load-if-not-defined BURMESE-CIV
+(defconst SYM-BURMESE-CIV 0)
+#end-if
+
+#load-if-defined BYZANTINE-CIV
+(defconst SYM-BYZANTINE-CIV 1)
+#end-if
+#load-if-not-defined BYZANTINE-CIV
+(defconst SYM-BYZANTINE-CIV 0)
+#end-if
+
+#load-if-defined CELTIC-CIV
+(defconst SYM-CELTIC-CIV 1)
+#end-if
+#load-if-not-defined CELTIC-CIV
+(defconst SYM-CELTIC-CIV 0)
+#end-if
+
+#load-if-defined CHINESE-CIV
+(defconst SYM-CHINESE-CIV 1)
+#end-if
+#load-if-not-defined CHINESE-CIV
+(defconst SYM-CHINESE-CIV 0)
+#end-if
+
+#load-if-defined CUMANS-CIV
+(defconst SYM-CUMANS-CIV 1)
+#end-if
+#load-if-not-defined CUMANS-CIV
+(defconst SYM-CUMANS-CIV 0)
+#end-if
+
+#load-if-defined DRAVIDIANS-CIV
+(defconst SYM-DRAVIDIANS-CIV 1)
+#end-if
+#load-if-not-defined DRAVIDIANS-CIV
+(defconst SYM-DRAVIDIANS-CIV 0)
+#end-if
+
+#load-if-defined ETHIOPIAN-CIV
+(defconst SYM-ETHIOPIAN-CIV 1)
+#end-if
+#load-if-not-defined ETHIOPIAN-CIV
+(defconst SYM-ETHIOPIAN-CIV 0)
+#end-if
+
+#load-if-defined FRANKISH-CIV
+(defconst SYM-FRANKISH-CIV 1)
+#end-if
+#load-if-not-defined FRANKISH-CIV
+(defconst SYM-FRANKISH-CIV 0)
+#end-if
+
+#load-if-defined GEORGIANS-CIV
+(defconst SYM-GEORGIANS-CIV 1)
+#end-if
+#load-if-not-defined GEORGIANS-CIV
+(defconst SYM-GEORGIANS-CIV 0)
+#end-if
+
+#load-if-defined GOTHIC-CIV
+(defconst SYM-GOTHIC-CIV 1)
+#end-if
+#load-if-not-defined GOTHIC-CIV
+(defconst SYM-GOTHIC-CIV 0)
+#end-if
+
+#load-if-defined GURJARAS-CIV
+(defconst SYM-GURJARAS-CIV 1)
+#end-if
+#load-if-not-defined GURJARAS-CIV
+(defconst SYM-GURJARAS-CIV 0)
+#end-if
+
+#load-if-defined HUN-CIV
+(defconst SYM-HUN-CIV 1)
+#end-if
+#load-if-not-defined HUN-CIV
+(defconst SYM-HUN-CIV 0)
+#end-if
+
+#load-if-defined INCAN-CIV
+(defconst SYM-INCAN-CIV 1)
+#end-if
+#load-if-not-defined INCAN-CIV
+(defconst SYM-INCAN-CIV 0)
+#end-if
+
+#load-if-defined INDIAN-CIV
+(defconst SYM-INDIAN-CIV 1)
+#end-if
+#load-if-not-defined INDIAN-CIV
+(defconst SYM-INDIAN-CIV 0)
+#end-if
+
+#load-if-defined ITALIAN-CIV
+(defconst SYM-ITALIAN-CIV 1)
+#end-if
+#load-if-not-defined ITALIAN-CIV
+(defconst SYM-ITALIAN-CIV 0)
+#end-if
+
+#load-if-defined JAPANESE-CIV
+(defconst SYM-JAPANESE-CIV 1)
+#end-if
+#load-if-not-defined JAPANESE-CIV
+(defconst SYM-JAPANESE-CIV 0)
+#end-if
+
+#load-if-defined KHMER-CIV
+(defconst SYM-KHMER-CIV 1)
+#end-if
+#load-if-not-defined KHMER-CIV
+(defconst SYM-KHMER-CIV 0)
+#end-if
+
+#load-if-defined KOREAN-CIV
+(defconst SYM-KOREAN-CIV 1)
+#end-if
+#load-if-not-defined KOREAN-CIV
+(defconst SYM-KOREAN-CIV 0)
+#end-if
+
+#load-if-defined LITHUANIANS-CIV
+(defconst SYM-LITHUANIANS-CIV 1)
+#end-if
+#load-if-not-defined LITHUANIANS-CIV
+(defconst SYM-LITHUANIANS-CIV 0)
+#end-if
+
+#load-if-defined MAGYAR-CIV
+(defconst SYM-MAGYAR-CIV 1)
+#end-if
+#load-if-not-defined MAGYAR-CIV
+(defconst SYM-MAGYAR-CIV 0)
+#end-if
+
+#load-if-defined MALAY-CIV
+(defconst SYM-MALAY-CIV 1)
+#end-if
+#load-if-not-defined MALAY-CIV
+(defconst SYM-MALAY-CIV 0)
+#end-if
+
+#load-if-defined MALIAN-CIV
+(defconst SYM-MALIAN-CIV 1)
+#end-if
+#load-if-not-defined MALIAN-CIV
+(defconst SYM-MALIAN-CIV 0)
+#end-if
+
+#load-if-defined MAYAN-CIV
+(defconst SYM-MAYAN-CIV 1)
+#end-if
+#load-if-not-defined MAYAN-CIV
+(defconst SYM-MAYAN-CIV 0)
+#end-if
+
+#load-if-defined MONGOL-CIV
+(defconst SYM-MONGOL-CIV 1)
+#end-if
+#load-if-not-defined MONGOL-CIV
+(defconst SYM-MONGOL-CIV 0)
+#end-if
+
+#load-if-defined PERSIAN-CIV
+(defconst SYM-PERSIAN-CIV 1)
+#end-if
+#load-if-not-defined PERSIAN-CIV
+(defconst SYM-PERSIAN-CIV 0)
+#end-if
+
+#load-if-defined POLES-CIV
+(defconst SYM-POLES-CIV 1)
+#end-if
+#load-if-not-defined POLES-CIV
+(defconst SYM-POLES-CIV 0)
+#end-if
+
+#load-if-defined PORTUGUESE-CIV
+(defconst SYM-PORTUGUESE-CIV 1)
+#end-if
+#load-if-not-defined PORTUGUESE-CIV
+(defconst SYM-PORTUGUESE-CIV 0)
+#end-if
+
+#load-if-defined ROMANS-CIV
+(defconst SYM-ROMANS-CIV 1)
+#end-if
+#load-if-not-defined ROMANS-CIV
+(defconst SYM-ROMANS-CIV 0)
+#end-if
+
+#load-if-defined SARACEN-CIV
+(defconst SYM-SARACEN-CIV 1)
+#end-if
+#load-if-not-defined SARACEN-CIV
+(defconst SYM-SARACEN-CIV 0)
+#end-if
+
+#load-if-defined SICILIANS-CIV
+(defconst SYM-SICILIANS-CIV 1)
+#end-if
+#load-if-not-defined SICILIANS-CIV
+(defconst SYM-SICILIANS-CIV 0)
+#end-if
+
+#load-if-defined SLAVIC-CIV
+(defconst SYM-SLAVIC-CIV 1)
+#end-if
+#load-if-not-defined SLAVIC-CIV
+(defconst SYM-SLAVIC-CIV 0)
+#end-if
+
+#load-if-defined SPANISH-CIV
+(defconst SYM-SPANISH-CIV 1)
+#end-if
+#load-if-not-defined SPANISH-CIV
+(defconst SYM-SPANISH-CIV 0)
+#end-if
+
+#load-if-defined TATARS-CIV
+(defconst SYM-TATARS-CIV 1)
+#end-if
+#load-if-not-defined TATARS-CIV
+(defconst SYM-TATARS-CIV 0)
+#end-if
+
+#load-if-defined TEUTONIC-CIV
+(defconst SYM-TEUTONIC-CIV 1)
+#end-if
+#load-if-not-defined TEUTONIC-CIV
+(defconst SYM-TEUTONIC-CIV 0)
+#end-if
+
+#load-if-defined TURKISH-CIV
+(defconst SYM-TURKISH-CIV 1)
+#end-if
+#load-if-not-defined TURKISH-CIV
+(defconst SYM-TURKISH-CIV 0)
+#end-if
+
+#load-if-defined VIETNAMESE-CIV
+(defconst SYM-VIETNAMESE-CIV 1)
+#end-if
+#load-if-not-defined VIETNAMESE-CIV
+(defconst SYM-VIETNAMESE-CIV 0)
+#end-if
+
+#load-if-defined VIKING-CIV
+(defconst SYM-VIKING-CIV 1)
+#end-if
+#load-if-not-defined VIKING-CIV
+(defconst SYM-VIKING-CIV 0)
+#end-if
+
+#load-if-defined ACCLIVITY-MAP
+(defconst SYM-ACCLIVITY-MAP 1)
+#end-if
+#load-if-not-defined ACCLIVITY-MAP
+(defconst SYM-ACCLIVITY-MAP 0)
+#end-if
+
+#load-if-defined ACROPOLIS-MAP
+(defconst SYM-ACROPOLIS-MAP 1)
+#end-if
+#load-if-not-defined ACROPOLIS-MAP
+(defconst SYM-ACROPOLIS-MAP 0)
+#end-if
+
+#load-if-defined AFRICAN-CLEARING-MAP
+(defconst SYM-AFRICAN-CLEARING-MAP 1)
+#end-if
+#load-if-not-defined AFRICAN-CLEARING-MAP
+(defconst SYM-AFRICAN-CLEARING-MAP 0)
+#end-if
+
+#load-if-defined AFTERMATH-MAP
+(defconst SYM-AFTERMATH-MAP 1)
+#end-if
+#load-if-not-defined AFTERMATH-MAP
+(defconst SYM-AFTERMATH-MAP 0)
+#end-if
+
+#load-if-defined ALPINE-LAKES-MAP
+(defconst SYM-ALPINE-LAKES-MAP 1)
+#end-if
+#load-if-not-defined ALPINE-LAKES-MAP
+(defconst SYM-ALPINE-LAKES-MAP 0)
+#end-if
+
+#load-if-defined AMAZON-TUNNEL-MAP
+(defconst SYM-AMAZON-TUNNEL-MAP 1)
+#end-if
+#load-if-not-defined AMAZON-TUNNEL-MAP
+(defconst SYM-AMAZON-TUNNEL-MAP 0)
+#end-if
+
+#load-if-defined ARABIA-MAP
+(defconst SYM-ARABIA-MAP 1)
+#end-if
+#load-if-not-defined ARABIA-MAP
+(defconst SYM-ARABIA-MAP 0)
+#end-if
+
+#load-if-defined ARCHIPELAGO-MAP
+(defconst SYM-ARCHIPELAGO-MAP 1)
+#end-if
+#load-if-not-defined ARCHIPELAGO-MAP
+(defconst SYM-ARCHIPELAGO-MAP 0)
+#end-if
+
+#load-if-defined ARENA-MAP
+(defconst SYM-ARENA-MAP 1)
+#end-if
+#load-if-not-defined ARENA-MAP
+(defconst SYM-ARENA-MAP 0)
+#end-if
+
+#load-if-defined ATACAMA-MAP
+(defconst SYM-ATACAMA-MAP 1)
+#end-if
+#load-if-not-defined ATACAMA-MAP
+(defconst SYM-ATACAMA-MAP 0)
+#end-if
+
+#load-if-defined BALTIC-MAP
+(defconst SYM-BALTIC-MAP 1)
+#end-if
+#load-if-not-defined BALTIC-MAP
+(defconst SYM-BALTIC-MAP 0)
+#end-if
+
+#load-if-defined BLACK-FOREST
+(defconst SYM-BLACK-FOREST 1)
+#end-if
+#load-if-not-defined BLACK-FOREST
+(defconst SYM-BLACK-FOREST 0)
+#end-if
+
+#load-if-defined BOG-ISLANDS-MAP
+(defconst SYM-BOG-ISLANDS-MAP 1)
+#end-if
+#load-if-not-defined BOG-ISLANDS-MAP
+(defconst SYM-BOG-ISLANDS-MAP 0)
+#end-if
+
+#load-if-defined BOGLAND-MAP
+(defconst SYM-BOGLAND-MAP 1)
+#end-if
+#load-if-not-defined BOGLAND-MAP
+(defconst SYM-BOGLAND-MAP 0)
+#end-if
+
+#load-if-defined BUDAPEST-MAP
+(defconst SYM-BUDAPEST-MAP 1)
+#end-if
+#load-if-not-defined BUDAPEST-MAP
+(defconst SYM-BUDAPEST-MAP 0)
+#end-if
+
+#load-if-defined CENOTES-MAP
+(defconst SYM-CENOTES-MAP 1)
+#end-if
+#load-if-not-defined CENOTES-MAP
+(defconst SYM-CENOTES-MAP 0)
+#end-if
+
+#load-if-defined CITYOFLAKES-MAP
+(defconst SYM-CITYOFLAKES-MAP 1)
+#end-if
+#load-if-not-defined CITYOFLAKES-MAP
+(defconst SYM-CITYOFLAKES-MAP 0)
+#end-if
+
+#load-if-defined COASTAL-MAP
+(defconst SYM-COASTAL-MAP 1)
+#end-if
+#load-if-not-defined COASTAL-MAP
+(defconst SYM-COASTAL-MAP 0)
+#end-if
+
+#load-if-defined COASTAL-FOREST-MAP
+(defconst SYM-COASTAL-FOREST-MAP 1)
+#end-if
+#load-if-not-defined COASTAL-FOREST-MAP
+(defconst SYM-COASTAL-FOREST-MAP 0)
+#end-if
+
+#load-if-defined CONTINENTAL-MAP
+(defconst SYM-CONTINENTAL-MAP 1)
+#end-if
+#load-if-not-defined CONTINENTAL-MAP
+(defconst SYM-CONTINENTAL-MAP 0)
+#end-if
+
+#load-if-defined CRATER-MAP
+(defconst SYM-CRATER-MAP 1)
+#end-if
+#load-if-not-defined CRATER-MAP
+(defconst SYM-CRATER-MAP 0)
+#end-if
+
+#load-if-defined CRATER-LAKE-MAP
+(defconst SYM-CRATER-LAKE-MAP 1)
+#end-if
+#load-if-not-defined CRATER-LAKE-MAP
+(defconst SYM-CRATER-LAKE-MAP 0)
+#end-if
+
+#load-if-defined ENCLOSED-MAP
+(defconst SYM-ENCLOSED-MAP 1)
+#end-if
+#load-if-not-defined ENCLOSED-MAP
+(defconst SYM-ENCLOSED-MAP 0)
+#end-if
+
+#load-if-defined ERUPTION-MAP
+(defconst SYM-ERUPTION-MAP 1)
+#end-if
+#load-if-not-defined ERUPTION-MAP
+(defconst SYM-ERUPTION-MAP 0)
+#end-if
+
+#load-if-defined FORTRESS-MAP
+(defconst SYM-FORTRESS-MAP 1)
+#end-if
+#load-if-not-defined FORTRESS-MAP
+(defconst SYM-FORTRESS-MAP 0)
+#end-if
+
+#load-if-defined FOUR-LAKES-MAP
+(defconst SYM-FOUR-LAKES-MAP 1)
+#end-if
+#load-if-not-defined FOUR-LAKES-MAP
+(defconst SYM-FOUR-LAKES-MAP 0)
+#end-if
+
+#load-if-defined FRIGID-LAKE-MAP
+(defconst SYM-FRIGID-LAKE-MAP 1)
+#end-if
+#load-if-not-defined FRIGID-LAKE-MAP
+(defconst SYM-FRIGID-LAKE-MAP 0)
+#end-if
+
+#load-if-defined GHOST-LAKE-MAP
+(defconst SYM-GHOST-LAKE-MAP 1)
+#end-if
+#load-if-not-defined GHOST-LAKE-MAP
+(defconst SYM-GHOST-LAKE-MAP 0)
+#end-if
+
+#load-if-defined GOLD-RUSH-MAP
+(defconst SYM-GOLD-RUSH-MAP 1)
+#end-if
+#load-if-not-defined GOLD-RUSH-MAP
+(defconst SYM-GOLD-RUSH-MAP 0)
+#end-if
+
+#load-if-defined GOLDENPIT-MAP
+(defconst SYM-GOLDENPIT-MAP 1)
+#end-if
+#load-if-not-defined GOLDENPIT-MAP
+(defconst SYM-GOLDENPIT-MAP 0)
+#end-if
+
+#load-if-defined GOLDEN-SWAMP-MAP
+(defconst SYM-GOLDEN-SWAMP-MAP 1)
+#end-if
+#load-if-not-defined GOLDEN-SWAMP-MAP
+(defconst SYM-GOLDEN-SWAMP-MAP 0)
+#end-if
+
+#load-if-defined GREENLAND-MAP
+(defconst SYM-GREENLAND-MAP 1)
+#end-if
+#load-if-not-defined GREENLAND-MAP
+(defconst SYM-GREENLAND-MAP 0)
+#end-if
+
+#load-if-defined HABOOB-MAP
+(defconst SYM-HABOOB-MAP 1)
+#end-if
+#load-if-not-defined HABOOB-MAP
+(defconst SYM-HABOOB-MAP 0)
+#end-if
+
+#load-if-defined HAMBURGER-MAP
+(defconst SYM-HAMBURGER-MAP 1)
+#end-if
+#load-if-not-defined HAMBURGER-MAP
+(defconst SYM-HAMBURGER-MAP 0)
+#end-if
+
+#load-if-defined HIDEOUT-MAP
+(defconst SYM-HIDEOUT-MAP 1)
+#end-if
+#load-if-not-defined HIDEOUT-MAP
+(defconst SYM-HIDEOUT-MAP 0)
+#end-if
+
+#load-if-defined HIGHLAND-MAP
+(defconst SYM-HIGHLAND-MAP 1)
+#end-if
+#load-if-not-defined HIGHLAND-MAP
+(defconst SYM-HIGHLAND-MAP 0)
+#end-if
+
+#load-if-defined HILLFORT-MAP
+(defconst SYM-HILLFORT-MAP 1)
+#end-if
+#load-if-not-defined HILLFORT-MAP
+(defconst SYM-HILLFORT-MAP 0)
+#end-if
+
+#load-if-defined ISLANDS-MAP
+(defconst SYM-ISLANDS-MAP 1)
+#end-if
+#load-if-not-defined ISLANDS-MAP
+(defconst SYM-ISLANDS-MAP 0)
+#end-if
+
+#load-if-defined KAWASAN-MAP
+(defconst SYM-KAWASAN-MAP 1)
+#end-if
+#load-if-not-defined KAWASAN-MAP
+(defconst SYM-KAWASAN-MAP 0)
+#end-if
+
+#load-if-defined KILIMANJARO-MAP
+(defconst SYM-KILIMANJARO-MAP 1)
+#end-if
+#load-if-not-defined KILIMANJARO-MAP
+(defconst SYM-KILIMANJARO-MAP 0)
+#end-if
+
+#load-if-defined LAND-MADNESS-MAP
+(defconst SYM-LAND-MADNESS-MAP 1)
+#end-if
+#load-if-not-defined LAND-MADNESS-MAP
+(defconst SYM-LAND-MADNESS-MAP 0)
+#end-if
+
+#load-if-defined LAND-NOMAD-MAP
+(defconst SYM-LAND-NOMAD-MAP 1)
+#end-if
+#load-if-not-defined LAND-NOMAD-MAP
+(defconst SYM-LAND-NOMAD-MAP 0)
+#end-if
+
+#load-if-defined LOMBARDIA-MAP
+(defconst SYM-LOMBARDIA-MAP 1)
+#end-if
+#load-if-not-defined LOMBARDIA-MAP
+(defconst SYM-LOMBARDIA-MAP 0)
+#end-if
+
+#load-if-defined LOWLAND-MAP
+(defconst SYM-LOWLAND-MAP 1)
+#end-if
+#load-if-not-defined LOWLAND-MAP
+(defconst SYM-LOWLAND-MAP 0)
+#end-if
+
+#load-if-defined MANGROVE-JUNGLE-MAP
+(defconst SYM-MANGROVE-JUNGLE-MAP 1)
+#end-if
+#load-if-not-defined MANGROVE-JUNGLE-MAP
+(defconst SYM-MANGROVE-JUNGLE-MAP 0)
+#end-if
+
+#load-if-defined MARKETPLACE-MAP
+(defconst SYM-MARKETPLACE-MAP 1)
+#end-if
+#load-if-not-defined MARKETPLACE-MAP
+(defconst SYM-MARKETPLACE-MAP 0)
+#end-if
+
+#load-if-defined MEADOW-MAP
+(defconst SYM-MEADOW-MAP 1)
+#end-if
+#load-if-not-defined MEADOW-MAP
+(defconst SYM-MEADOW-MAP 0)
+#end-if
+
+#load-if-defined MEDITERRANEAN-MAP
+(defconst SYM-MEDITERRANEAN-MAP 1)
+#end-if
+#load-if-not-defined MEDITERRANEAN-MAP
+(defconst SYM-MEDITERRANEAN-MAP 0)
+#end-if
+
+#load-if-defined MEGARANDOM-MAP
+(defconst SYM-MEGARANDOM-MAP 1)
+#end-if
+#load-if-not-defined MEGARANDOM-MAP
+(defconst SYM-MEGARANDOM-MAP 0)
+#end-if
+
+#load-if-defined MICHI-MAP
+(defconst SYM-MICHI-MAP 1)
+#end-if
+#load-if-not-defined MICHI-MAP
+(defconst SYM-MICHI-MAP 0)
+#end-if
+
+#load-if-defined MIGRATION-MAP
+(defconst SYM-MIGRATION-MAP 1)
+#end-if
+#load-if-not-defined MIGRATION-MAP
+(defconst SYM-MIGRATION-MAP 0)
+#end-if
+
+#load-if-defined MONGOLIA-MAP
+(defconst SYM-MONGOLIA-MAP 1)
+#end-if
+#load-if-not-defined MONGOLIA-MAP
+(defconst SYM-MONGOLIA-MAP 0)
+#end-if
+
+#load-if-defined MOUNTAIN-PASS-MAP
+(defconst SYM-MOUNTAIN-PASS-MAP 1)
+#end-if
+#load-if-not-defined MOUNTAIN-PASS-MAP
+(defconst SYM-MOUNTAIN-PASS-MAP 0)
+#end-if
+
+#load-if-defined MOUNTAIN-RANGE-MAP
+(defconst SYM-MOUNTAIN-RANGE-MAP 1)
+#end-if
+#load-if-not-defined MOUNTAIN-RANGE-MAP
+(defconst SYM-MOUNTAIN-RANGE-MAP 0)
+#end-if
+
+#load-if-defined MOUNTAIN-RIDGE-MAP
+(defconst SYM-MOUNTAIN-RIDGE-MAP 1)
+#end-if
+#load-if-not-defined MOUNTAIN-RIDGE-MAP
+(defconst SYM-MOUNTAIN-RIDGE-MAP 0)
+#end-if
+
+#load-if-defined NILE-DELTA-MAP
+(defconst SYM-NILE-DELTA-MAP 1)
+#end-if
+#load-if-not-defined NILE-DELTA-MAP
+(defconst SYM-NILE-DELTA-MAP 0)
+#end-if
+
+#load-if-defined NOMAD-MAP
+(defconst SYM-NOMAD-MAP 1)
+#end-if
+#load-if-not-defined NOMAD-MAP
+(defconst SYM-NOMAD-MAP 0)
+#end-if
+
+#load-if-defined NORTHERN-ISLES-MAP
+(defconst SYM-NORTHERN-ISLES-MAP 1)
+#end-if
+#load-if-not-defined NORTHERN-ISLES-MAP
+(defconst SYM-NORTHERN-ISLES-MAP 0)
+#end-if
+
+#load-if-defined OASIS-MAP
+(defconst SYM-OASIS-MAP 1)
+#end-if
+#load-if-not-defined OASIS-MAP
+(defconst SYM-OASIS-MAP 0)
+#end-if
+
+#load-if-defined PACIFIC-ISLANDS-MAP
+(defconst SYM-PACIFIC-ISLANDS-MAP 1)
+#end-if
+#load-if-not-defined PACIFIC-ISLANDS-MAP
+(defconst SYM-PACIFIC-ISLANDS-MAP 0)
+#end-if
+
+#load-if-defined RAVINES-MAP
+(defconst SYM-RAVINES-MAP 1)
+#end-if
+#load-if-not-defined RAVINES-MAP
+(defconst SYM-RAVINES-MAP 0)
+#end-if
+
+#load-if-defined RING-FORTRESS-MAP
+(defconst SYM-RING-FORTRESS-MAP 1)
+#end-if
+#load-if-not-defined RING-FORTRESS-MAP
+(defconst SYM-RING-FORTRESS-MAP 0)
+#end-if
+
+#load-if-defined RIVERS-MAP
+(defconst SYM-RIVERS-MAP 1)
+#end-if
+#load-if-not-defined RIVERS-MAP
+(defconst SYM-RIVERS-MAP 0)
+#end-if
+
+#load-if-defined RUNESTONES-MAP
+(defconst SYM-RUNESTONES-MAP 1)
+#end-if
+#load-if-not-defined RUNESTONES-MAP
+(defconst SYM-RUNESTONES-MAP 0)
+#end-if
+
+#load-if-defined SACRED-SPRINGS-MAP
+(defconst SYM-SACRED-SPRINGS-MAP 1)
+#end-if
+#load-if-not-defined SACRED-SPRINGS-MAP
+(defconst SYM-SACRED-SPRINGS-MAP 0)
+#end-if
+
+#load-if-defined SALT-MARSH-MAP
+(defconst SYM-SALT-MARSH-MAP 1)
+#end-if
+#load-if-not-defined SALT-MARSH-MAP
+(defconst SYM-SALT-MARSH-MAP 0)
+#end-if
+
+#load-if-defined SANDBANK-MAP
+(defconst SYM-SANDBANK-MAP 1)
+#end-if
+#load-if-not-defined SANDBANK-MAP
+(defconst SYM-SANDBANK-MAP 0)
+#end-if
+
+#load-if-defined SCANDANAVIA-MAP
+(defconst SYM-SCANDANAVIA-MAP 1)
+#end-if
+#load-if-not-defined SCANDANAVIA-MAP
+(defconst SYM-SCANDANAVIA-MAP 0)
+#end-if
+
+#load-if-defined SCANDINAVIA-MAP
+(defconst SYM-SCANDINAVIA-MAP 1)
+#end-if
+#load-if-not-defined SCANDINAVIA-MAP
+(defconst SYM-SCANDINAVIA-MAP 0)
+#end-if
+
+#load-if-defined SEIZE-THE-MOUNTAIN-MAP
+(defconst SYM-SEIZE-THE-MOUNTAIN-MAP 1)
+#end-if
+#load-if-not-defined SEIZE-THE-MOUNTAIN-MAP
+(defconst SYM-SEIZE-THE-MOUNTAIN-MAP 0)
+#end-if
+
+#load-if-defined SERENGETI-MAP
+(defconst SYM-SERENGETI-MAP 1)
+#end-if
+#load-if-not-defined SERENGETI-MAP
+(defconst SYM-SERENGETI-MAP 0)
+#end-if
+
+#load-if-defined SOCOTRA-MAP
+(defconst SYM-SOCOTRA-MAP 1)
+#end-if
+#load-if-not-defined SOCOTRA-MAP
+(defconst SYM-SOCOTRA-MAP 0)
+#end-if
+
+#load-if-defined SOCOTRO-MAP
+(defconst SYM-SOCOTRO-MAP 1)
+#end-if
+#load-if-not-defined SOCOTRO-MAP
+(defconst SYM-SOCOTRO-MAP 0)
+#end-if
+
+#load-if-defined STEPPE-MAP
+(defconst SYM-STEPPE-MAP 1)
+#end-if
+#load-if-not-defined STEPPE-MAP
+(defconst SYM-STEPPE-MAP 0)
+#end-if
+
+#load-if-defined TEAM-ISLANDS-MAP
+(defconst SYM-TEAM-ISLANDS-MAP 1)
+#end-if
+#load-if-not-defined TEAM-ISLANDS-MAP
+(defconst SYM-TEAM-ISLANDS-MAP 0)
+#end-if
+
+#load-if-defined TEAM-MOATS-MAP
+(defconst SYM-TEAM-MOATS-MAP 1)
+#end-if
+#load-if-not-defined TEAM-MOATS-MAP
+(defconst SYM-TEAM-MOATS-MAP 0)
+#end-if
+
+#load-if-defined VALLEY-MAP
+(defconst SYM-VALLEY-MAP 1)
+#end-if
+#load-if-not-defined VALLEY-MAP
+(defconst SYM-VALLEY-MAP 0)
+#end-if
+
+#load-if-defined VOLCANIC-ISLAND-MAP
+(defconst SYM-VOLCANIC-ISLAND-MAP 1)
+#end-if
+#load-if-not-defined VOLCANIC-ISLAND-MAP
+(defconst SYM-VOLCANIC-ISLAND-MAP 0)
+#end-if
+
+#load-if-defined YUCATAN-MAP
+(defconst SYM-YUCATAN-MAP 1)
+#end-if
+#load-if-not-defined YUCATAN-MAP
+(defconst SYM-YUCATAN-MAP 0)
+#end-if
+
+#load-if-defined WADE-MAP
+(defconst SYM-WADE-MAP 1)
+#end-if
+#load-if-not-defined WADE-MAP
+(defconst SYM-WADE-MAP 0)
+#end-if
+
+#load-if-defined WATER-NOMAD-MAP
+(defconst SYM-WATER-NOMAD-MAP 1)
+#end-if
+#load-if-not-defined WATER-NOMAD-MAP
+(defconst SYM-WATER-NOMAD-MAP 0)
+#end-if
+
+#load-if-defined WOLF-HILL-MAP
+(defconst SYM-WOLF-HILL-MAP 1)
+#end-if
+#load-if-not-defined WOLF-HILL-MAP
+(defconst SYM-WOLF-HILL-MAP 0)
+#end-if
+
+#load-if-defined CTR_RANDOM-MAP
+(defconst SYM-CTR_RANDOM-MAP 1)
+#end-if
+#load-if-not-defined CTR_RANDOM-MAP
+(defconst SYM-CTR_RANDOM-MAP 0)
+#end-if
+
+#load-if-defined CTR_MONSOON-MAP
+(defconst SYM-CTR_MONSOON-MAP 1)
+#end-if
+#load-if-not-defined CTR_MONSOON-MAP
+(defconst SYM-CTR_MONSOON-MAP 0)
+#end-if
+
+#load-if-defined CTR_PYRAMID-DESCENT-MAP
+(defconst SYM-CTR_PYRAMID-DESCENT-MAP 1)
+#end-if
+#load-if-not-defined CTR_PYRAMID-DESCENT-MAP
+(defconst SYM-CTR_PYRAMID-DESCENT-MAP 0)
+#end-if
+
+#load-if-defined CTR_SPIRAL-MAP
+(defconst SYM-CTR_SPIRAL-MAP 1)
+#end-if
+#load-if-not-defined CTR_SPIRAL-MAP
+(defconst SYM-CTR_SPIRAL-MAP 0)
+#end-if
+
+#load-if-defined BATTLE-ON-THE-ICE-MAP
+(defconst SYM-BATTLE-ON-THE-ICE-MAP 1)
+#end-if
+#load-if-not-defined BATTLE-ON-THE-ICE-MAP
+(defconst SYM-BATTLE-ON-THE-ICE-MAP 0)
+#end-if
+
+#load-if-defined EL-DORADO-MAP
+(defconst SYM-EL-DORADO-MAP 1)
+#end-if
+#load-if-not-defined EL-DORADO-MAP
+(defconst SYM-EL-DORADO-MAP 0)
+#end-if
+
+#load-if-defined FALL-OF-AXUM-MAP
+(defconst SYM-FALL-OF-AXUM-MAP 1)
+#end-if
+#load-if-not-defined FALL-OF-AXUM-MAP
+(defconst SYM-FALL-OF-AXUM-MAP 0)
+#end-if
+
+#load-if-defined FALL-OF-ROME-MAP
+(defconst SYM-FALL-OF-ROME-MAP 1)
+#end-if
+#load-if-not-defined FALL-OF-ROME-MAP
+(defconst SYM-FALL-OF-ROME-MAP 0)
+#end-if
+
+#load-if-defined THE-MAJAPHIT-EMPIRE-MAP
+(defconst SYM-THE-MAJAPHIT-EMPIRE-MAP 1)
+#end-if
+#load-if-not-defined THE-MAJAPHIT-EMPIRE-MAP
+(defconst SYM-THE-MAJAPHIT-EMPIRE-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-AMAZON-MAP
+(defconst SYM-REAL-WORLD-AMAZON-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-AMAZON-MAP
+(defconst SYM-REAL-WORLD-AMAZON-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-ANTARCTICA-MAP
+(defconst SYM-REAL-WORLD-ANTARCTICA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-ANTARCTICA-MAP
+(defconst SYM-REAL-WORLD-ANTARCTICA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-ARAL-SEA-MAP
+(defconst SYM-REAL-WORLD-ARAL-SEA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-ARAL-SEA-MAP
+(defconst SYM-REAL-WORLD-ARAL-SEA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-AUSTRALIA-MAP
+(defconst SYM-REAL-WORLD-AUSTRALIA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-AUSTRALIA-MAP
+(defconst SYM-REAL-WORLD-AUSTRALIA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-BLACK-SEA-MAP
+(defconst SYM-REAL-WORLD-BLACK-SEA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-BLACK-SEA-MAP
+(defconst SYM-REAL-WORLD-BLACK-SEA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-BOHEMIA-MAP
+(defconst SYM-REAL-WORLD-BOHEMIA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-BOHEMIA-MAP
+(defconst SYM-REAL-WORLD-BOHEMIA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-BYZANTIUM-MAP
+(defconst SYM-REAL-WORLD-BYZANTIUM-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-BYZANTIUM-MAP
+(defconst SYM-REAL-WORLD-BYZANTIUM-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-CARIBBEAN-MAP
+(defconst SYM-REAL-WORLD-CARIBBEAN-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-CARIBBEAN-MAP
+(defconst SYM-REAL-WORLD-CARIBBEAN-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-CAUCASUS-MAP
+(defconst SYM-REAL-WORLD-CAUCASUS-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-CAUCASUS-MAP
+(defconst SYM-REAL-WORLD-CAUCASUS-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-CHINA-MAP
+(defconst SYM-REAL-WORLD-CHINA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-CHINA-MAP
+(defconst SYM-REAL-WORLD-CHINA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-ENGLAND-MAP
+(defconst SYM-REAL-WORLD-ENGLAND-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-ENGLAND-MAP
+(defconst SYM-REAL-WORLD-ENGLAND-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-FRANCE-MAP
+(defconst SYM-REAL-WORLD-FRANCE-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-FRANCE-MAP
+(defconst SYM-REAL-WORLD-FRANCE-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-HORN-OF-AFRICA-MAP
+(defconst SYM-REAL-WORLD-HORN-OF-AFRICA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-HORN-OF-AFRICA-MAP
+(defconst SYM-REAL-WORLD-HORN-OF-AFRICA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-INDIA-MAP
+(defconst SYM-REAL-WORLD-INDIA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-INDIA-MAP
+(defconst SYM-REAL-WORLD-INDIA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-INDOCHINA-MAP
+(defconst SYM-REAL-WORLD-INDOCHINA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-INDOCHINA-MAP
+(defconst SYM-REAL-WORLD-INDOCHINA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-INDONESIA-MAP
+(defconst SYM-REAL-WORLD-INDONESIA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-INDONESIA-MAP
+(defconst SYM-REAL-WORLD-INDONESIA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-ITALY-MAP
+(defconst SYM-REAL-WORLD-ITALY-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-ITALY-MAP
+(defconst SYM-REAL-WORLD-ITALY-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-JUTLAND-MAP
+(defconst SYM-REAL-WORLD-JUTLAND-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-JUTLAND-MAP
+(defconst SYM-REAL-WORLD-JUTLAND-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-MADAGASCAR-MAP
+(defconst SYM-REAL-WORLD-MADAGASCAR-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-MADAGASCAR-MAP
+(defconst SYM-REAL-WORLD-MADAGASCAR-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-MALACCA-MAP
+(defconst SYM-REAL-WORLD-MALACCA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-MALACCA-MAP
+(defconst SYM-REAL-WORLD-MALACCA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-MIDEAST-MAP
+(defconst SYM-REAL-WORLD-MIDEAST-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-MIDEAST-MAP
+(defconst SYM-REAL-WORLD-MIDEAST-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-NIPPON-MAP
+(defconst SYM-REAL-WORLD-NIPPON-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-NIPPON-MAP
+(defconst SYM-REAL-WORLD-NIPPON-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-PHILIPPINES-MAP
+(defconst SYM-REAL-WORLD-PHILIPPINES-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-PHILIPPINES-MAP
+(defconst SYM-REAL-WORLD-PHILIPPINES-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-SIBERIA-MAP
+(defconst SYM-REAL-WORLD-SIBERIA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-SIBERIA-MAP
+(defconst SYM-REAL-WORLD-SIBERIA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-SPAIN-MAP
+(defconst SYM-REAL-WORLD-SPAIN-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-SPAIN-MAP
+(defconst SYM-REAL-WORLD-SPAIN-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-STRAIT-OF-MALACCA-MAP
+(defconst SYM-REAL-WORLD-STRAIT-OF-MALACCA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-STRAIT-OF-MALACCA-MAP
+(defconst SYM-REAL-WORLD-STRAIT-OF-MALACCA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-TEXAS-MAP
+(defconst SYM-REAL-WORLD-TEXAS-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-TEXAS-MAP
+(defconst SYM-REAL-WORLD-TEXAS-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-WEST-AFRICA-MAP
+(defconst SYM-REAL-WORLD-WEST-AFRICA-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-WEST-AFRICA-MAP
+(defconst SYM-REAL-WORLD-WEST-AFRICA-MAP 0)
+#end-if
+
+#load-if-defined REAL-WORLD-WORLD-MAP
+(defconst SYM-REAL-WORLD-WORLD-MAP 1)
+#end-if
+#load-if-not-defined REAL-WORLD-WORLD-MAP
+(defconst SYM-REAL-WORLD-WORLD-MAP 0)
+#end-if
+
+#load-if-defined BORDER-STONES-SPECIAL-MAP
+(defconst SYM-BORDER-STONES-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined BORDER-STONES-SPECIAL-MAP
+(defconst SYM-BORDER-STONES-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined CANYONS-SPECIAL-MAP
+(defconst SYM-CANYONS-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined CANYONS-SPECIAL-MAP
+(defconst SYM-CANYONS-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined ENEMY-ARCHIPELAGO-SPECIAL-MAP
+(defconst SYM-ENEMY-ARCHIPELAGO-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined ENEMY-ARCHIPELAGO-SPECIAL-MAP
+(defconst SYM-ENEMY-ARCHIPELAGO-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined ENEMY-ISLANDS-SPECIAL-MAP
+(defconst SYM-ENEMY-ISLANDS-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined ENEMY-ISLANDS-SPECIAL-MAP
+(defconst SYM-ENEMY-ISLANDS-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined FAR-OUT-SPECIAL-MAP
+(defconst SYM-FAR-OUT-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined FAR-OUT-SPECIAL-MAP
+(defconst SYM-FAR-OUT-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined FRONT-LINE-SPECIAL-MAP
+(defconst SYM-FRONT-LINE-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined FRONT-LINE-SPECIAL-MAP
+(defconst SYM-FRONT-LINE-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined HOLY-LINE-SPECIAL-MAP
+(defconst SYM-HOLY-LINE-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined HOLY-LINE-SPECIAL-MAP
+(defconst SYM-HOLY-LINE-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined INNER-CIRCLE-SPECIAL-MAP
+(defconst SYM-INNER-CIRCLE-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined INNER-CIRCLE-SPECIAL-MAP
+(defconst SYM-INNER-CIRCLE-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined JOURNEY-SOUTH-SPECIAL-MAP
+(defconst SYM-JOURNEY-SOUTH-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined JOURNEY-SOUTH-SPECIAL-MAP
+(defconst SYM-JOURNEY-SOUTH-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined JUNGLE-ISLANDS-SPECIAL-MAP
+(defconst SYM-JUNGLE-ISLANDS-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined JUNGLE-ISLANDS-SPECIAL-MAP
+(defconst SYM-JUNGLE-ISLANDS-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined JUNGLE-LANES-SPECIAL-MAP
+(defconst SYM-JUNGLE-LANES-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined JUNGLE-LANES-SPECIAL-MAP
+(defconst SYM-JUNGLE-LANES-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined MOTHERLAND-SPECIAL-MAP
+(defconst SYM-MOTHERLAND-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined MOTHERLAND-SPECIAL-MAP
+(defconst SYM-MOTHERLAND-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined OPEN-PLAINS-SPECIAL-MAP
+(defconst SYM-OPEN-PLAINS-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined OPEN-PLAINS-SPECIAL-MAP
+(defconst SYM-OPEN-PLAINS-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined RING-OF-WATER-SPECIAL-MAP
+(defconst SYM-RING-OF-WATER-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined RING-OF-WATER-SPECIAL-MAP
+(defconst SYM-RING-OF-WATER-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined SNAKE-FOREST-SPECIAL-MAP
+(defconst SYM-SNAKE-FOREST-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined SNAKE-FOREST-SPECIAL-MAP
+(defconst SYM-SNAKE-FOREST-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined SNAKE-PIT-SPECIAL-MAP
+(defconst SYM-SNAKE-PIT-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined SNAKE-PIT-SPECIAL-MAP
+(defconst SYM-SNAKE-PIT-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined SPRAWLING-STREAMS-SPECIAL-MAP
+(defconst SYM-SPRAWLING-STREAMS-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined SPRAWLING-STREAMS-SPECIAL-MAP
+(defconst SYM-SPRAWLING-STREAMS-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined SWIRLING-RIVER-SPECIAL-MAP
+(defconst SYM-SWIRLING-RIVER-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined SWIRLING-RIVER-SPECIAL-MAP
+(defconst SYM-SWIRLING-RIVER-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined THE-EYE-SPECIAL-MAP
+(defconst SYM-THE-EYE-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined THE-EYE-SPECIAL-MAP
+(defconst SYM-THE-EYE-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined TWIN-FORESTS-SPECIAL-MAP
+(defconst SYM-TWIN-FORESTS-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined TWIN-FORESTS-SPECIAL-MAP
+(defconst SYM-TWIN-FORESTS-SPECIAL-MAP 0)
+#end-if
+
+#load-if-defined YIN-YANG-SPECIAL-MAP
+(defconst SYM-YIN-YANG-SPECIAL-MAP 1)
+#end-if
+#load-if-not-defined YIN-YANG-SPECIAL-MAP
+(defconst SYM-YIN-YANG-SPECIAL-MAP 0)
+#end-if
+
 ; 0
 (defrule
 	(up-compare-goal 511 c:>= 0)
