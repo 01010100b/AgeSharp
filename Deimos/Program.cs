@@ -8,7 +8,7 @@ namespace Deimos;
 class Program
 {
     const string SOURCE = @"F:\Repos\01010100b\AgeSharp\Deimos\Source";
-    const string FROM = @"F:\Repos\01010100b\AgeSharp\Deimos\publish";
+    const string FROM = @"F:\Repos\01010100b\AgeSharp\Deimos\ai";
     const string TO = @"F:\SteamLibrary\steamapps\common\AoE2DE\resources\_common\ai";
 
     static void Main(string[] args)
@@ -57,14 +57,6 @@ class Program
         if (!Directory.Exists(to))
         {
             Directory.CreateDirectory(to);
-        }
-
-        var name = Path.GetFileNameWithoutExtension(Directory.EnumerateFiles(from, "*.per").Single());
-        var ai = Path.Combine(to, name + ".ai");
-
-        if (!File.Exists(ai))
-        {
-            File.Create(ai);
         }
 
         foreach (var file in Directory.EnumerateFiles(from, "*.*"))

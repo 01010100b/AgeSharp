@@ -139,11 +139,11 @@ namespace AgeSharp.Scripting.SharpParser
 
                 if (name.Contains("operator ==("))
                 {
-                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "BoolEquals"));
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "EqualsBool"));
                 }
                 else if (name.Contains("operator !=("))
                 {
-                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "BoolNotEquals"));
+                    parse.AddMethod(op, script.Methods.Single(x => x.Name == "NotEqualsBool"));
                 }
                 else if (name.Contains("operator &("))
                 {

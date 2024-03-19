@@ -1,4 +1,6 @@
-﻿empty rule (besides incrementing loop counter): 100,000
+﻿loop timing for 20ms duration:
+
+empty rule (besides incrementing loop counter): 100,000
 Empty functions:
 xs-script-call of an empty function: 22,000
 xs-script-call of a function that calls another empty function: 16,000
@@ -15,3 +17,5 @@ xs-script-call of a function that runs a for loop 10 times: 1,700
 xs-script-call of a function that runs a while loop 10 times: 1,600
 Chat:
 xs-script-call of a function that chats the same message with xsChatData: 20 to 30 times (results were variable)
+
+https://github.com/Tapsa/genieutils

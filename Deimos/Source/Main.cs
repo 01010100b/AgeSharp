@@ -68,7 +68,7 @@ namespace Deimos.Source
         private static void Initialize()
         {
             Memory.Initialize();
-            CustomObjectData.Initialize();
+            CustomObjectDatas.Initialize();
             Manager.Initialize();
         }
     }

@@ -10,6 +10,8 @@ namespace AgeSharp.Scripting.SharpParser
 {
     public static class Intrinsics
     {
+        #region General
+
         public static Bool HasSymbol(string symbol) => throw new Exception();
         public static Int GetConstant(string constant) => throw new Exception();
         public static void ChatDataToSelf(string message, Int data) => throw new Exception();
@@ -21,7 +23,10 @@ namespace AgeSharp.Scripting.SharpParser
         public static void SetStrategicNumber(Int sn, Int value) => throw new Exception();
         public static void XsScriptCall(string script) => throw new Exception();
 
-        // Math
+        #endregion
+
+        #region Math
+        
         public static Bool Equals(Int a, Int b) => throw new Exception();
         public static Bool NotEquals(Int a, Int b) => throw new Exception();
         public static Bool LessThan(Int a, Int b) => throw new Exception();
@@ -37,8 +42,8 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int Mod(Int a, Int b) => throw new Exception();
         public static Int Max(Int a, Int b) => throw new Exception();
         public static Int Min(Int a, Int b) => throw new Exception();
-        public static Bool BoolEquals(Bool a, Bool b) => throw new Exception();
-        public static Bool BoolNotEquals(Bool a, Bool b) => throw new Exception();
+        public static Bool EqualsBool(Bool a, Bool b) => throw new Exception();
+        public static Bool NotEqualsBool(Bool a, Bool b) => throw new Exception();
         public static Bool And(Bool a, Bool b) => throw new Exception();
         public static Bool Or(Bool a, Bool b) => throw new Exception();
         public static Bool Not(Bool a) => throw new Exception();
@@ -49,7 +54,10 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int ShiftLeft(Int a, Int count) => throw new Exception();
         public static Int ShiftRight(Int a, Int count) => throw new Exception();
 
-        // DUC
+        #endregion
+
+        #region DUC
+        
         public static void FullResetSearch() => throw new Exception();
         public static void ResetFilters() => throw new Exception();
         public static void ResetSearch(Bool local_index, Bool local_list, Bool remote_index, Bool remote_list) => throw new Exception();
@@ -75,11 +83,17 @@ namespace AgeSharp.Scripting.SharpParser
         public static Int GetGroupSize(Int group) => throw new Exception();
         public static void ModifyGroupFlag(Bool append, Int group) => throw new Exception();
 
-        // Players
+        #endregion
+
+        #region Players
+        
         public static Int GetPlayerFact(Int player, FactId fact, Int parameter) => throw new Exception();
         public static Int GetPlayerStance(Int player) => throw new Exception();
 
-        // Points
+        #endregion
+
+        #region Points
+        
         public static Bool EqualsPoint(Point a, Point b) => throw new Exception();
         public static Bool NotEqualsPoint(Point a, Point b) => throw new Exception();
         public static Point AddPoint(Point a, Point b) => throw new Exception();
@@ -100,5 +114,7 @@ namespace AgeSharp.Scripting.SharpParser
         public static void SendFlare(Point point) => throw new Exception();
         public static Point FindPlayerFlare(Int player) => throw new Exception();
         public static void SendScout(GroupType group_type, ScoutMethod scout_method) => throw new Exception();
+
+        #endregion
     }
 }

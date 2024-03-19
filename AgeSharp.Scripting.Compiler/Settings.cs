@@ -1,4 +1,5 @@
-﻿using AgeSharp.Scripting.Compiler.Intrinsics;
+﻿using AgeSharp.Common;
+using AgeSharp.Scripting.Compiler.Intrinsics;
 using AgeSharp.Scripting.Language;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler
 {
-    public class Settings : Validated
+    public class Settings
     {
         public int MinGoal { get; set; } = 1;
         public int MaxGoal { get; set; } = 512;
@@ -16,8 +17,12 @@ namespace AgeSharp.Scripting.Compiler
         public bool CompileUnusedMethods { get; set; } = true;
         public List<string> SystemSymbols { get; } = GetStandardSymbols();
 
-        public override void Validate()
+        public void Validate()
         {
+            Throw.If<NotSupportedException>(MinGoal < 1, "MinGoal is smaller than 1.");
+            Throw.If<NotSupportedException>(MaxGoal > 512, "MaxGoal is greater than 512.");
+            Throw.If<NotSupportedException>(MinGoal >= MaxGoal, "MinGoal is greater than or equals to MaxGoal.");
+            Throw.If<NotSupportedException>(MaxRuleCommands < 4, "MaxRuleCommmands is smaller than 4.");
         }
 
         private static List<string> GetStandardSymbols()

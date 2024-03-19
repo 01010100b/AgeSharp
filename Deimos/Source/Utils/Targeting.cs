@@ -19,10 +19,10 @@ namespace Deimos.Source.Utils
             if (GetRandom(100) < 10)
             {
                 // forget current target every once in a while
-                CustomObjectData.Set(id, CustomObjectData.TARGET, -1);
+                CustomObjectDatas.Set(id, CustomObjectData.TARGET, -1);
             }
 
-            var current_target = CustomObjectData.Get(id, CustomObjectData.TARGET);
+            var current_target = CustomObjectDatas.Get(id, CustomObjectData.TARGET);
             
             if (ObjectExists(current_target) && GetRandom(100) < 75)
             {
@@ -34,9 +34,9 @@ namespace Deimos.Source.Utils
 
             var search_state = GetSearchState();
 
-            for (Int t = 0; t < search_state.RemoteTotal; t++)
+            for (Int i = 0; i < search_state.RemoteTotal; i++)
             {
-                SetTargetObject(SearchSource.REMOTE, t);
+                SetTargetObject(SearchSource.REMOTE, i);
                 var target = GetObjectData(ObjectData.ID);
                 var score = GetTargetScore(id, target);
 
@@ -47,7 +47,7 @@ namespace Deimos.Source.Utils
                 }
             }
 
-            CustomObjectData.Set(id, CustomObjectData.TARGET, current_target);
+            CustomObjectDatas.Set(id, CustomObjectData.TARGET, current_target);
         }
 
         [AgeMethod]

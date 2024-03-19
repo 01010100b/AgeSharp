@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
 {
-    internal class BoolNotEquals : Intrinsic
+    internal class EqualsBool : Intrinsic
     {
         public override bool HasStringLiteral => false;
 
-        public BoolNotEquals(Script script) : base(script)
+        public EqualsBool(Script script) : base(script)
         {
             AddParameter(new("a", Bool));
             AddParameter(new("b", Bool));
@@ -36,7 +36,7 @@ namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} g:- {memory.Intr1}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:min 1"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:max -1"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:+ 2"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:+ 1"));
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Intr0} c:mod 2"));
             instructions.AddRange(Utils.Assign(memory, memory.Intr0, result));
 

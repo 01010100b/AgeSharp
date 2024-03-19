@@ -8,35 +8,38 @@ using System.Threading.Tasks;
 
 namespace Deimos.Source
 {
-    internal class CustomObjectData
+    internal enum CustomObjectData
     {
-        public const int TARGET = 0;
+        TARGET
+    }
 
+    internal class CustomObjectDatas
+    {
         private const int CUSTOM_DATAS = 3;
 
         [AgeGlobal]
         private static readonly Array<Int> CustomDataPtrs = new(CUSTOM_DATAS);
 
         [AgeMethod]
-        public static Int Get(Int object_id, Int custom_data)
+        public static Int Get(Int object_id, CustomObjectData custom_data)
         {
-            if (custom_data < 0 || custom_data >= CustomDataPtrs.Length)
+            if (custom_data < 0 || (int)custom_data >= CustomDataPtrs.Length)
             {
                 throw new AgeException("Invalid custom object data");
             }
 
-            return Memory.GetValue(CustomDataPtrs[custom_data], object_id);
+            return Memory.GetValue(CustomDataPtrs[(int)custom_data], object_id);
         }
 
         [AgeMethod]
-        public static void Set(Int object_id, Int custom_data, Int value)
+        public static void Set(Int object_id, CustomObjectData custom_data, Int value)
         {
-            if (custom_data < 0 || custom_data >= CustomDataPtrs.Length)
+            if (custom_data < 0 || (int)custom_data >= CustomDataPtrs.Length)
             {
                 throw new AgeException("Invalid custom object data");
             }
 
-            Memory.SetValue(CustomDataPtrs[custom_data], object_id, value);
+            Memory.SetValue(CustomDataPtrs[(int)custom_data], object_id, value);
         }
 
         [AgeMethod]
