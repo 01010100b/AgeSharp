@@ -23,23 +23,27 @@ namespace Deimos.Source
         [AgeMethod]
         public static Int Get(Int object_id, CustomObjectData custom_data)
         {
-            if (custom_data < 0 || (int)custom_data >= CustomDataPtrs.Length)
+            Int data = (int)custom_data;
+
+            if (data < 0 || data >= CustomDataPtrs.Length)
             {
                 throw new AgeException("Invalid custom object data");
             }
 
-            return Memory.GetValue(CustomDataPtrs[(int)custom_data], object_id);
+            return Memory.GetValue(CustomDataPtrs[data], object_id);
         }
 
         [AgeMethod]
         public static void Set(Int object_id, CustomObjectData custom_data, Int value)
         {
-            if (custom_data < 0 || (int)custom_data >= CustomDataPtrs.Length)
+            Int data = (int)custom_data;
+
+            if (data < 0 || data >= CustomDataPtrs.Length)
             {
                 throw new AgeException("Invalid custom object data");
             }
 
-            Memory.SetValue(CustomDataPtrs[(int)custom_data], object_id, value);
+            Memory.SetValue(CustomDataPtrs[data], object_id, value);
         }
 
         [AgeMethod]
