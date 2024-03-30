@@ -2,2003 +2,1717 @@
 
 #load-if-defined DEATH-MATCH
 (defconst SYM-DEATH-MATCH 1)
-#end-if
-#load-if-not-defined DEATH-MATCH
+#else
 (defconst SYM-DEATH-MATCH 0)
 #end-if
 
 #load-if-defined RANDOM-MAP
 (defconst SYM-RANDOM-MAP 1)
-#end-if
-#load-if-not-defined RANDOM-MAP
+#else
 (defconst SYM-RANDOM-MAP 0)
 #end-if
 
 #load-if-defined REGICIDE
 (defconst SYM-REGICIDE 1)
-#end-if
-#load-if-not-defined REGICIDE
+#else
 (defconst SYM-REGICIDE 0)
 #end-if
 
 #load-if-defined KING-OF-THE-HILL
 (defconst SYM-KING-OF-THE-HILL 1)
-#end-if
-#load-if-not-defined KING-OF-THE-HILL
+#else
 (defconst SYM-KING-OF-THE-HILL 0)
 #end-if
 
 #load-if-defined WONDER-RACE
 (defconst SYM-WONDER-RACE 1)
-#end-if
-#load-if-not-defined WONDER-RACE
+#else
 (defconst SYM-WONDER-RACE 0)
 #end-if
 
 #load-if-defined DEFEND-WONDER
 (defconst SYM-DEFEND-WONDER 1)
-#end-if
-#load-if-not-defined DEFEND-WONDER
+#else
 (defconst SYM-DEFEND-WONDER 0)
 #end-if
 
 #load-if-defined TURBO-RANDOM-MAP
 (defconst SYM-TURBO-RANDOM-MAP 1)
-#end-if
-#load-if-not-defined TURBO-RANDOM-MAP
+#else
 (defconst SYM-TURBO-RANDOM-MAP 0)
 #end-if
 
 #load-if-defined SUDDEN-DEATH
 (defconst SYM-SUDDEN-DEATH 1)
-#end-if
-#load-if-not-defined SUDDEN-DEATH
+#else
 (defconst SYM-SUDDEN-DEATH 0)
 #end-if
 
 #load-if-defined CAPTURE-THE-RELIC
 (defconst SYM-CAPTURE-THE-RELIC 1)
-#end-if
-#load-if-not-defined CAPTURE-THE-RELIC
+#else
 (defconst SYM-CAPTURE-THE-RELIC 0)
 #end-if
 
 #load-if-defined BATTLE-ROYALE
 (defconst SYM-BATTLE-ROYALE 1)
-#end-if
-#load-if-not-defined BATTLE-ROYALE
+#else
 (defconst SYM-BATTLE-ROYALE 0)
 #end-if
 
 #load-if-defined EMPIRE-WARS
 (defconst SYM-EMPIRE-WARS 1)
-#end-if
-#load-if-not-defined EMPIRE-WARS
+#else
 (defconst SYM-EMPIRE-WARS 0)
 #end-if
 
 #load-if-defined TURBO-MODE
 (defconst SYM-TURBO-MODE 1)
-#end-if
-#load-if-not-defined TURBO-MODE
+#else
 (defconst SYM-TURBO-MODE 0)
 #end-if
 
 #load-if-defined SUB-GAME-MODE-EMPIRE-WARS
 (defconst SYM-SUB-GAME-MODE-EMPIRE-WARS 1)
-#end-if
-#load-if-not-defined SUB-GAME-MODE-EMPIRE-WARS
+#else
 (defconst SYM-SUB-GAME-MODE-EMPIRE-WARS 0)
 #end-if
 
 #load-if-defined SUB-GAME-MODE-SUDDEN-DEATH
 (defconst SYM-SUB-GAME-MODE-SUDDEN-DEATH 1)
-#end-if
-#load-if-not-defined SUB-GAME-MODE-SUDDEN-DEATH
+#else
 (defconst SYM-SUB-GAME-MODE-SUDDEN-DEATH 0)
 #end-if
 
 #load-if-defined SUB-GAME-MODE-REGICIDE
 (defconst SYM-SUB-GAME-MODE-REGICIDE 1)
-#end-if
-#load-if-not-defined SUB-GAME-MODE-REGICIDE
+#else
 (defconst SYM-SUB-GAME-MODE-REGICIDE 0)
 #end-if
 
 #load-if-defined SUB-GAME-MODE-KING-OF-THE-HILL
 (defconst SYM-SUB-GAME-MODE-KING-OF-THE-HILL 1)
-#end-if
-#load-if-not-defined SUB-GAME-MODE-KING-OF-THE-HILL
+#else
 (defconst SYM-SUB-GAME-MODE-KING-OF-THE-HILL 0)
 #end-if
 
 #load-if-defined GAME-SPEED-LOCKED
 (defconst SYM-GAME-SPEED-LOCKED 1)
-#end-if
-#load-if-not-defined GAME-SPEED-LOCKED
+#else
 (defconst SYM-GAME-SPEED-LOCKED 0)
 #end-if
 
 #load-if-defined ALL-TECHS-ENABLED
 (defconst SYM-ALL-TECHS-ENABLED 1)
-#end-if
-#load-if-not-defined ALL-TECHS-ENABLED
+#else
 (defconst SYM-ALL-TECHS-ENABLED 0)
 #end-if
 
 #load-if-defined LAST-MAN-STANDING
 (defconst SYM-LAST-MAN-STANDING 1)
-#end-if
-#load-if-not-defined LAST-MAN-STANDING
+#else
 (defconst SYM-LAST-MAN-STANDING 0)
 #end-if
 
 #load-if-defined DARK-AGE-START
 (defconst SYM-DARK-AGE-START 1)
-#end-if
-#load-if-not-defined DARK-AGE-START
+#else
 (defconst SYM-DARK-AGE-START 0)
 #end-if
 
 #load-if-defined FEUDAL-AGE-START
 (defconst SYM-FEUDAL-AGE-START 1)
-#end-if
-#load-if-not-defined FEUDAL-AGE-START
+#else
 (defconst SYM-FEUDAL-AGE-START 0)
 #end-if
 
 #load-if-defined CASTLE-AGE-START
 (defconst SYM-CASTLE-AGE-START 1)
-#end-if
-#load-if-not-defined CASTLE-AGE-START
+#else
 (defconst SYM-CASTLE-AGE-START 0)
 #end-if
 
 #load-if-defined IMPERIAL-AGE-START
 (defconst SYM-IMPERIAL-AGE-START 1)
-#end-if
-#load-if-not-defined IMPERIAL-AGE-START
+#else
 (defconst SYM-IMPERIAL-AGE-START 0)
 #end-if
 
 #load-if-defined POST-IMPERIAL-AGE-START
 (defconst SYM-POST-IMPERIAL-AGE-START 1)
-#end-if
-#load-if-not-defined POST-IMPERIAL-AGE-START
+#else
 (defconst SYM-POST-IMPERIAL-AGE-START 0)
 #end-if
 
 #load-if-defined DARK-AGE-END
 (defconst SYM-DARK-AGE-END 1)
-#end-if
-#load-if-not-defined DARK-AGE-END
+#else
 (defconst SYM-DARK-AGE-END 0)
 #end-if
 
 #load-if-defined FEUDAL-AGE-END
 (defconst SYM-FEUDAL-AGE-END 1)
-#end-if
-#load-if-not-defined FEUDAL-AGE-END
+#else
 (defconst SYM-FEUDAL-AGE-END 0)
 #end-if
 
 #load-if-defined CASTLE-AGE-END
 (defconst SYM-CASTLE-AGE-END 1)
-#end-if
-#load-if-not-defined CASTLE-AGE-END
+#else
 (defconst SYM-CASTLE-AGE-END 0)
 #end-if
 
 #load-if-defined IMPERIAL-AGE-END
 (defconst SYM-IMPERIAL-AGE-END 1)
-#end-if
-#load-if-not-defined IMPERIAL-AGE-END
+#else
 (defconst SYM-IMPERIAL-AGE-END 0)
 #end-if
 
 #load-if-defined LOW-RESOURCES-START
 (defconst SYM-LOW-RESOURCES-START 1)
-#end-if
-#load-if-not-defined LOW-RESOURCES-START
+#else
 (defconst SYM-LOW-RESOURCES-START 0)
 #end-if
 
 #load-if-defined MEDIUM-RESOURCES-START
 (defconst SYM-MEDIUM-RESOURCES-START 1)
-#end-if
-#load-if-not-defined MEDIUM-RESOURCES-START
+#else
 (defconst SYM-MEDIUM-RESOURCES-START 0)
 #end-if
 
 #load-if-defined HIGH-RESOURCES-START
 (defconst SYM-HIGH-RESOURCES-START 1)
-#end-if
-#load-if-not-defined HIGH-RESOURCES-START
+#else
 (defconst SYM-HIGH-RESOURCES-START 0)
 #end-if
 
 #load-if-defined ULTRA-RESOURCES-START
 (defconst SYM-ULTRA-RESOURCES-START 1)
-#end-if
-#load-if-not-defined ULTRA-RESOURCES-START
+#else
 (defconst SYM-ULTRA-RESOURCES-START 0)
 #end-if
 
 #load-if-defined INFINITE-RESOURCES-START
 (defconst SYM-INFINITE-RESOURCES-START 1)
-#end-if
-#load-if-not-defined INFINITE-RESOURCES-START
+#else
 (defconst SYM-INFINITE-RESOURCES-START 0)
 #end-if
 
 #load-if-defined RANDOM-RESOURCES-START
 (defconst SYM-RANDOM-RESOURCES-START 1)
-#end-if
-#load-if-not-defined RANDOM-RESOURCES-START
+#else
 (defconst SYM-RANDOM-RESOURCES-START 0)
 #end-if
 
 #load-if-defined TINY-MAP
 (defconst SYM-TINY-MAP 1)
-#end-if
-#load-if-not-defined TINY-MAP
+#else
 (defconst SYM-TINY-MAP 0)
 #end-if
 
 #load-if-defined SMALL-MAP
 (defconst SYM-SMALL-MAP 1)
-#end-if
-#load-if-not-defined SMALL-MAP
+#else
 (defconst SYM-SMALL-MAP 0)
 #end-if
 
 #load-if-defined MEDIUM-MAP
 (defconst SYM-MEDIUM-MAP 1)
-#end-if
-#load-if-not-defined MEDIUM-MAP
+#else
 (defconst SYM-MEDIUM-MAP 0)
 #end-if
 
 #load-if-defined NORMAL-MAP
 (defconst SYM-NORMAL-MAP 1)
-#end-if
-#load-if-not-defined NORMAL-MAP
+#else
 (defconst SYM-NORMAL-MAP 0)
 #end-if
 
 #load-if-defined LARGE-MAP
 (defconst SYM-LARGE-MAP 1)
-#end-if
-#load-if-not-defined LARGE-MAP
+#else
 (defconst SYM-LARGE-MAP 0)
 #end-if
 
 #load-if-defined GIANT-MAP
 (defconst SYM-GIANT-MAP 1)
-#end-if
-#load-if-not-defined GIANT-MAP
+#else
 (defconst SYM-GIANT-MAP 0)
 #end-if
 
 #load-if-defined LUDIKRIS-MAP
 (defconst SYM-LUDIKRIS-MAP 1)
-#end-if
-#load-if-not-defined LUDIKRIS-MAP
+#else
 (defconst SYM-LUDIKRIS-MAP 0)
 #end-if
 
 #load-if-defined VICTORY-STANDARD
 (defconst SYM-VICTORY-STANDARD 1)
-#end-if
-#load-if-not-defined VICTORY-STANDARD
+#else
 (defconst SYM-VICTORY-STANDARD 0)
 #end-if
 
 #load-if-defined VICTORY-CONQUEST
 (defconst SYM-VICTORY-CONQUEST 1)
-#end-if
-#load-if-not-defined VICTORY-CONQUEST
+#else
 (defconst SYM-VICTORY-CONQUEST 0)
 #end-if
 
 #load-if-defined VICTORY-TIME-LIMIT
 (defconst SYM-VICTORY-TIME-LIMIT 1)
-#end-if
-#load-if-not-defined VICTORY-TIME-LIMIT
+#else
 (defconst SYM-VICTORY-TIME-LIMIT 0)
 #end-if
 
 #load-if-defined VICTORY-SCORE
 (defconst SYM-VICTORY-SCORE 1)
-#end-if
-#load-if-not-defined VICTORY-SCORE
+#else
 (defconst SYM-VICTORY-SCORE 0)
 #end-if
 
 #load-if-defined VICTORY-CUSTOM
 (defconst SYM-VICTORY-CUSTOM 1)
-#end-if
-#load-if-not-defined VICTORY-CUSTOM
+#else
 (defconst SYM-VICTORY-CUSTOM 0)
 #end-if
 
 #load-if-defined VICTORY-RELICS
 (defconst SYM-VICTORY-RELICS 1)
-#end-if
-#load-if-not-defined VICTORY-RELICS
+#else
 (defconst SYM-VICTORY-RELICS 0)
 #end-if
 
 #load-if-defined DIFFICULTY-EASIEST
 (defconst SYM-DIFFICULTY-EASIEST 1)
-#end-if
-#load-if-not-defined DIFFICULTY-EASIEST
+#else
 (defconst SYM-DIFFICULTY-EASIEST 0)
 #end-if
 
 #load-if-defined DIFFICULTY-EASY
 (defconst SYM-DIFFICULTY-EASY 1)
-#end-if
-#load-if-not-defined DIFFICULTY-EASY
+#else
 (defconst SYM-DIFFICULTY-EASY 0)
 #end-if
 
 #load-if-defined DIFFICULTY-MODERATE
 (defconst SYM-DIFFICULTY-MODERATE 1)
-#end-if
-#load-if-not-defined DIFFICULTY-MODERATE
+#else
 (defconst SYM-DIFFICULTY-MODERATE 0)
 #end-if
 
 #load-if-defined DIFFICULTY-HARD
 (defconst SYM-DIFFICULTY-HARD 1)
-#end-if
-#load-if-not-defined DIFFICULTY-HARD
+#else
 (defconst SYM-DIFFICULTY-HARD 0)
 #end-if
 
 #load-if-defined DIFFICULTY-HARDEST
 (defconst SYM-DIFFICULTY-HARDEST 1)
-#end-if
-#load-if-not-defined DIFFICULTY-HARDEST
+#else
 (defconst SYM-DIFFICULTY-HARDEST 0)
 #end-if
 
 #load-if-defined DIFFICULTY-EXTREME
 (defconst SYM-DIFFICULTY-EXTREME 1)
-#end-if
-#load-if-not-defined DIFFICULTY-EXTREME
+#else
 (defconst SYM-DIFFICULTY-EXTREME 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-25
 (defconst SYM-POPULATION-CAP-25 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-25
+#else
 (defconst SYM-POPULATION-CAP-25 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-50
 (defconst SYM-POPULATION-CAP-50 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-50
+#else
 (defconst SYM-POPULATION-CAP-50 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-75
 (defconst SYM-POPULATION-CAP-75 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-75
+#else
 (defconst SYM-POPULATION-CAP-75 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-100
 (defconst SYM-POPULATION-CAP-100 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-100
+#else
 (defconst SYM-POPULATION-CAP-100 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-125
 (defconst SYM-POPULATION-CAP-125 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-125
+#else
 (defconst SYM-POPULATION-CAP-125 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-150
 (defconst SYM-POPULATION-CAP-150 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-150
+#else
 (defconst SYM-POPULATION-CAP-150 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-175
 (defconst SYM-POPULATION-CAP-175 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-175
+#else
 (defconst SYM-POPULATION-CAP-175 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-200
 (defconst SYM-POPULATION-CAP-200 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-200
+#else
 (defconst SYM-POPULATION-CAP-200 0)
 #end-if
 
 #load-if-defined POPULATION-CAP-EXTENDED
 (defconst SYM-POPULATION-CAP-EXTENDED 1)
-#end-if
-#load-if-not-defined POPULATION-CAP-EXTENDED
+#else
 (defconst SYM-POPULATION-CAP-EXTENDED 0)
 #end-if
 
 #load-if-defined UP-GAME-AGE2-X1
 (defconst SYM-UP-GAME-AGE2-X1 1)
-#end-if
-#load-if-not-defined UP-GAME-AGE2-X1
+#else
 (defconst SYM-UP-GAME-AGE2-X1 0)
 #end-if
 
 #load-if-defined UP-GAME-AGE2-X2
 (defconst SYM-UP-GAME-AGE2-X2 1)
-#end-if
-#load-if-not-defined UP-GAME-AGE2-X2
+#else
 (defconst SYM-UP-GAME-AGE2-X2 0)
 #end-if
 
 #load-if-defined UP-GAME-WK
 (defconst SYM-UP-GAME-WK 1)
-#end-if
-#load-if-not-defined UP-GAME-WK
+#else
 (defconst SYM-UP-GAME-WK 0)
 #end-if
 
 #load-if-defined UP-AVAILABLE
 (defconst SYM-UP-AVAILABLE 1)
-#end-if
-#load-if-not-defined UP-AVAILABLE
+#else
 (defconst SYM-UP-AVAILABLE 0)
 #end-if
 
 #load-if-defined UP-VERSION-1.5
 (defconst SYM-UP-VERSION-1.5 1)
-#end-if
-#load-if-not-defined UP-VERSION-1.5
+#else
 (defconst SYM-UP-VERSION-1.5 0)
 #end-if
 
 #load-if-defined UP-VERSION-1.4
 (defconst SYM-UP-VERSION-1.4 1)
-#end-if
-#load-if-not-defined UP-VERSION-1.4
+#else
 (defconst SYM-UP-VERSION-1.4 0)
 #end-if
 
 #load-if-defined UP-VERSION-1.3
 (defconst SYM-UP-VERSION-1.3 1)
-#end-if
-#load-if-not-defined UP-VERSION-1.3
+#else
 (defconst SYM-UP-VERSION-1.3 0)
 #end-if
 
 #load-if-defined UP-VERSION-1.2
 (defconst SYM-UP-VERSION-1.2 1)
-#end-if
-#load-if-not-defined UP-VERSION-1.2
+#else
 (defconst SYM-UP-VERSION-1.2 0)
 #end-if
 
 #load-if-defined UP-VERSION-1.1
 (defconst SYM-UP-VERSION-1.1 1)
-#end-if
-#load-if-not-defined UP-VERSION-1.1
+#else
 (defconst SYM-UP-VERSION-1.1 0)
 #end-if
 
 #load-if-defined DE-AVAILABLE
 (defconst SYM-DE-AVAILABLE 1)
-#end-if
-#load-if-not-defined DE-AVAILABLE
+#else
 (defconst SYM-DE-AVAILABLE 0)
 #end-if
 
 #load-if-defined DE-GAME-AGE2
 (defconst SYM-DE-GAME-AGE2 1)
-#end-if
-#load-if-not-defined DE-GAME-AGE2
+#else
 (defconst SYM-DE-GAME-AGE2 0)
 #end-if
 
 #load-if-defined DE-GAME-ROME
 (defconst SYM-DE-GAME-ROME 1)
-#end-if
-#load-if-not-defined DE-GAME-ROME
+#else
 (defconst SYM-DE-GAME-ROME 0)
 #end-if
 
 #load-if-defined TEAMS-LOCKED
 (defconst SYM-TEAMS-LOCKED 1)
-#end-if
-#load-if-not-defined TEAMS-LOCKED
+#else
 (defconst SYM-TEAMS-LOCKED 0)
 #end-if
 
 #load-if-defined TEAM-TOGETHER
 (defconst SYM-TEAM-TOGETHER 1)
-#end-if
-#load-if-not-defined TEAM-TOGETHER
+#else
 (defconst SYM-TEAM-TOGETHER 0)
 #end-if
 
 #load-if-defined UP-ALLY-IN-GAME
 (defconst SYM-UP-ALLY-IN-GAME 1)
-#end-if
-#load-if-not-defined UP-ALLY-IN-GAME
+#else
 (defconst SYM-UP-ALLY-IN-GAME 0)
 #end-if
 
 #load-if-defined UP-MULTIPLE-ENEMIES
 (defconst SYM-UP-MULTIPLE-ENEMIES 1)
-#end-if
-#load-if-not-defined UP-MULTIPLE-ENEMIES
+#else
 (defconst SYM-UP-MULTIPLE-ENEMIES 0)
 #end-if
 
 #load-if-defined UP-TEAM-DISADVANTAGE
 (defconst SYM-UP-TEAM-DISADVANTAGE 1)
-#end-if
-#load-if-not-defined UP-TEAM-DISADVANTAGE
+#else
 (defconst SYM-UP-TEAM-DISADVANTAGE 0)
 #end-if
 
 #load-if-defined UP-POCKET-POSITION
 (defconst SYM-UP-POCKET-POSITION 1)
-#end-if
-#load-if-not-defined UP-POCKET-POSITION
+#else
 (defconst SYM-UP-POCKET-POSITION 0)
 #end-if
 
 #load-if-defined UP-HUMAN-IN-GAME
 (defconst SYM-UP-HUMAN-IN-GAME 1)
-#end-if
-#load-if-not-defined UP-HUMAN-IN-GAME
+#else
 (defconst SYM-UP-HUMAN-IN-GAME 0)
 #end-if
 
 #load-if-defined UP-HUMAN-ALLY
 (defconst SYM-UP-HUMAN-ALLY 1)
-#end-if
-#load-if-not-defined UP-HUMAN-ALLY
+#else
 (defconst SYM-UP-HUMAN-ALLY 0)
 #end-if
 
 #load-if-defined UP-HUMAN-ENEMY
 (defconst SYM-UP-HUMAN-ENEMY 1)
-#end-if
-#load-if-not-defined UP-HUMAN-ENEMY
+#else
 (defconst SYM-UP-HUMAN-ENEMY 0)
 #end-if
 
 #load-if-defined UP-COMPUTER-ALLY
 (defconst SYM-UP-COMPUTER-ALLY 1)
-#end-if
-#load-if-not-defined UP-COMPUTER-ALLY
+#else
 (defconst SYM-UP-COMPUTER-ALLY 0)
 #end-if
 
 #load-if-defined UP-COMPUTER-ENEMY
 (defconst SYM-UP-COMPUTER-ENEMY 1)
-#end-if
-#load-if-not-defined UP-COMPUTER-ENEMY
+#else
 (defconst SYM-UP-COMPUTER-ENEMY 0)
 #end-if
 
 #load-if-defined CUSTOM-MAP
 (defconst SYM-CUSTOM-MAP 1)
-#end-if
-#load-if-not-defined CUSTOM-MAP
+#else
 (defconst SYM-CUSTOM-MAP 0)
 #end-if
 
 #load-if-defined UP-NOMAD-STYLE
 (defconst SYM-UP-NOMAD-STYLE 1)
-#end-if
-#load-if-not-defined UP-NOMAD-STYLE
+#else
 (defconst SYM-UP-NOMAD-STYLE 0)
 #end-if
 
 #load-if-defined UP-MICHI-STYLE
 (defconst SYM-UP-MICHI-STYLE 1)
-#end-if
-#load-if-not-defined UP-MICHI-STYLE
+#else
 (defconst SYM-UP-MICHI-STYLE 0)
 #end-if
 
 #load-if-defined UP-NOMAD-RESOURCES
 (defconst SYM-UP-NOMAD-RESOURCES 1)
-#end-if
-#load-if-not-defined UP-NOMAD-RESOURCES
+#else
 (defconst SYM-UP-NOMAD-RESOURCES 0)
 #end-if
 
 #load-if-defined UP-GROUPED-BY-TEAM
 (defconst SYM-UP-GROUPED-BY-TEAM 1)
-#end-if
-#load-if-not-defined UP-GROUPED-BY-TEAM
+#else
 (defconst SYM-UP-GROUPED-BY-TEAM 0)
 #end-if
 
 #load-if-defined REVEAL-NORMAL
 (defconst SYM-REVEAL-NORMAL 1)
-#end-if
-#load-if-not-defined REVEAL-NORMAL
+#else
 (defconst SYM-REVEAL-NORMAL 0)
 #end-if
 
 #load-if-defined REVEAL-EXPLORED
 (defconst SYM-REVEAL-EXPLORED 1)
-#end-if
-#load-if-not-defined REVEAL-EXPLORED
+#else
 (defconst SYM-REVEAL-EXPLORED 0)
 #end-if
 
 #load-if-defined REVEAL-ALL-VISIBLE
 (defconst SYM-REVEAL-ALL-VISIBLE 1)
-#end-if
-#load-if-not-defined REVEAL-ALL-VISIBLE
+#else
 (defconst SYM-REVEAL-ALL-VISIBLE 0)
 #end-if
 
 #load-if-defined REVEAL-NO-FOG
 (defconst SYM-REVEAL-NO-FOG 1)
-#end-if
-#load-if-not-defined REVEAL-NO-FOG
+#else
 (defconst SYM-REVEAL-NO-FOG 0)
 #end-if
 
 #load-if-defined UP-MULTIPLAYER-GAME
 (defconst SYM-UP-MULTIPLAYER-GAME 1)
-#end-if
-#load-if-not-defined UP-MULTIPLAYER-GAME
+#else
 (defconst SYM-UP-MULTIPLAYER-GAME 0)
 #end-if
 
 #load-if-defined UP-PROCESS-60FPS
 (defconst SYM-UP-PROCESS-60FPS 1)
-#end-if
-#load-if-not-defined UP-PROCESS-60FPS
+#else
 (defconst SYM-UP-PROCESS-60FPS 0)
 #end-if
 
 #load-if-defined UP-SCENARIO-GAME
 (defconst SYM-UP-SCENARIO-GAME 1)
-#end-if
-#load-if-not-defined UP-SCENARIO-GAME
+#else
 (defconst SYM-UP-SCENARIO-GAME 0)
 #end-if
 
 #load-if-defined FE-CAMPAIGN-GAME
 (defconst SYM-FE-CAMPAIGN-GAME 1)
-#end-if
-#load-if-not-defined FE-CAMPAIGN-GAME
+#else
 (defconst SYM-FE-CAMPAIGN-GAME 0)
 #end-if
 
 #load-if-defined FE-CUSTOM-CAMPAIGN
 (defconst SYM-FE-CUSTOM-CAMPAIGN 1)
-#end-if
-#load-if-not-defined FE-CUSTOM-CAMPAIGN
+#else
 (defconst SYM-FE-CUSTOM-CAMPAIGN 0)
 #end-if
 
 #load-if-defined GAIA
 (defconst SYM-GAIA 1)
-#end-if
-#load-if-not-defined GAIA
+#else
 (defconst SYM-GAIA 0)
 #end-if
 
 #load-if-defined ARMENIANS-CIV
 (defconst SYM-ARMENIANS-CIV 1)
-#end-if
-#load-if-not-defined ARMENIANS-CIV
+#else
 (defconst SYM-ARMENIANS-CIV 0)
 #end-if
 
 #load-if-defined AZTEC-CIV
 (defconst SYM-AZTEC-CIV 1)
-#end-if
-#load-if-not-defined AZTEC-CIV
+#else
 (defconst SYM-AZTEC-CIV 0)
 #end-if
 
 #load-if-defined BENGALIS-CIV
 (defconst SYM-BENGALIS-CIV 1)
-#end-if
-#load-if-not-defined BENGALIS-CIV
+#else
 (defconst SYM-BENGALIS-CIV 0)
 #end-if
 
 #load-if-defined BERBERS-CIV
 (defconst SYM-BERBERS-CIV 1)
-#end-if
-#load-if-not-defined BERBERS-CIV
+#else
 (defconst SYM-BERBERS-CIV 0)
 #end-if
 
 #load-if-defined BRITON-CIV
 (defconst SYM-BRITON-CIV 1)
-#end-if
-#load-if-not-defined BRITON-CIV
+#else
 (defconst SYM-BRITON-CIV 0)
 #end-if
 
 #load-if-defined BOHEMIANS-CIV
 (defconst SYM-BOHEMIANS-CIV 1)
-#end-if
-#load-if-not-defined BOHEMIANS-CIV
+#else
 (defconst SYM-BOHEMIANS-CIV 0)
 #end-if
 
 #load-if-defined BULGARIANS-CIV
 (defconst SYM-BULGARIANS-CIV 1)
-#end-if
-#load-if-not-defined BULGARIANS-CIV
+#else
 (defconst SYM-BULGARIANS-CIV 0)
 #end-if
 
 #load-if-defined BURGUNDIANS-CIV
 (defconst SYM-BURGUNDIANS-CIV 1)
-#end-if
-#load-if-not-defined BURGUNDIANS-CIV
+#else
 (defconst SYM-BURGUNDIANS-CIV 0)
 #end-if
 
 #load-if-defined BURMESE-CIV
 (defconst SYM-BURMESE-CIV 1)
-#end-if
-#load-if-not-defined BURMESE-CIV
+#else
 (defconst SYM-BURMESE-CIV 0)
 #end-if
 
 #load-if-defined BYZANTINE-CIV
 (defconst SYM-BYZANTINE-CIV 1)
-#end-if
-#load-if-not-defined BYZANTINE-CIV
+#else
 (defconst SYM-BYZANTINE-CIV 0)
 #end-if
 
 #load-if-defined CELTIC-CIV
 (defconst SYM-CELTIC-CIV 1)
-#end-if
-#load-if-not-defined CELTIC-CIV
+#else
 (defconst SYM-CELTIC-CIV 0)
 #end-if
 
 #load-if-defined CHINESE-CIV
 (defconst SYM-CHINESE-CIV 1)
-#end-if
-#load-if-not-defined CHINESE-CIV
+#else
 (defconst SYM-CHINESE-CIV 0)
 #end-if
 
 #load-if-defined CUMANS-CIV
 (defconst SYM-CUMANS-CIV 1)
-#end-if
-#load-if-not-defined CUMANS-CIV
+#else
 (defconst SYM-CUMANS-CIV 0)
 #end-if
 
 #load-if-defined DRAVIDIANS-CIV
 (defconst SYM-DRAVIDIANS-CIV 1)
-#end-if
-#load-if-not-defined DRAVIDIANS-CIV
+#else
 (defconst SYM-DRAVIDIANS-CIV 0)
 #end-if
 
 #load-if-defined ETHIOPIAN-CIV
 (defconst SYM-ETHIOPIAN-CIV 1)
-#end-if
-#load-if-not-defined ETHIOPIAN-CIV
+#else
 (defconst SYM-ETHIOPIAN-CIV 0)
 #end-if
 
 #load-if-defined FRANKISH-CIV
 (defconst SYM-FRANKISH-CIV 1)
-#end-if
-#load-if-not-defined FRANKISH-CIV
+#else
 (defconst SYM-FRANKISH-CIV 0)
 #end-if
 
 #load-if-defined GEORGIANS-CIV
 (defconst SYM-GEORGIANS-CIV 1)
-#end-if
-#load-if-not-defined GEORGIANS-CIV
+#else
 (defconst SYM-GEORGIANS-CIV 0)
 #end-if
 
 #load-if-defined GOTHIC-CIV
 (defconst SYM-GOTHIC-CIV 1)
-#end-if
-#load-if-not-defined GOTHIC-CIV
+#else
 (defconst SYM-GOTHIC-CIV 0)
 #end-if
 
 #load-if-defined GURJARAS-CIV
 (defconst SYM-GURJARAS-CIV 1)
-#end-if
-#load-if-not-defined GURJARAS-CIV
+#else
 (defconst SYM-GURJARAS-CIV 0)
 #end-if
 
 #load-if-defined HUN-CIV
 (defconst SYM-HUN-CIV 1)
-#end-if
-#load-if-not-defined HUN-CIV
+#else
 (defconst SYM-HUN-CIV 0)
 #end-if
 
 #load-if-defined INCAN-CIV
 (defconst SYM-INCAN-CIV 1)
-#end-if
-#load-if-not-defined INCAN-CIV
+#else
 (defconst SYM-INCAN-CIV 0)
 #end-if
 
 #load-if-defined INDIAN-CIV
 (defconst SYM-INDIAN-CIV 1)
-#end-if
-#load-if-not-defined INDIAN-CIV
+#else
 (defconst SYM-INDIAN-CIV 0)
 #end-if
 
 #load-if-defined ITALIAN-CIV
 (defconst SYM-ITALIAN-CIV 1)
-#end-if
-#load-if-not-defined ITALIAN-CIV
+#else
 (defconst SYM-ITALIAN-CIV 0)
 #end-if
 
 #load-if-defined JAPANESE-CIV
 (defconst SYM-JAPANESE-CIV 1)
-#end-if
-#load-if-not-defined JAPANESE-CIV
+#else
 (defconst SYM-JAPANESE-CIV 0)
 #end-if
 
 #load-if-defined KHMER-CIV
 (defconst SYM-KHMER-CIV 1)
-#end-if
-#load-if-not-defined KHMER-CIV
+#else
 (defconst SYM-KHMER-CIV 0)
 #end-if
 
 #load-if-defined KOREAN-CIV
 (defconst SYM-KOREAN-CIV 1)
-#end-if
-#load-if-not-defined KOREAN-CIV
+#else
 (defconst SYM-KOREAN-CIV 0)
 #end-if
 
 #load-if-defined LITHUANIANS-CIV
 (defconst SYM-LITHUANIANS-CIV 1)
-#end-if
-#load-if-not-defined LITHUANIANS-CIV
+#else
 (defconst SYM-LITHUANIANS-CIV 0)
 #end-if
 
 #load-if-defined MAGYAR-CIV
 (defconst SYM-MAGYAR-CIV 1)
-#end-if
-#load-if-not-defined MAGYAR-CIV
+#else
 (defconst SYM-MAGYAR-CIV 0)
 #end-if
 
 #load-if-defined MALAY-CIV
 (defconst SYM-MALAY-CIV 1)
-#end-if
-#load-if-not-defined MALAY-CIV
+#else
 (defconst SYM-MALAY-CIV 0)
 #end-if
 
 #load-if-defined MALIAN-CIV
 (defconst SYM-MALIAN-CIV 1)
-#end-if
-#load-if-not-defined MALIAN-CIV
+#else
 (defconst SYM-MALIAN-CIV 0)
 #end-if
 
 #load-if-defined MAYAN-CIV
 (defconst SYM-MAYAN-CIV 1)
-#end-if
-#load-if-not-defined MAYAN-CIV
+#else
 (defconst SYM-MAYAN-CIV 0)
 #end-if
 
 #load-if-defined MONGOL-CIV
 (defconst SYM-MONGOL-CIV 1)
-#end-if
-#load-if-not-defined MONGOL-CIV
+#else
 (defconst SYM-MONGOL-CIV 0)
 #end-if
 
 #load-if-defined PERSIAN-CIV
 (defconst SYM-PERSIAN-CIV 1)
-#end-if
-#load-if-not-defined PERSIAN-CIV
+#else
 (defconst SYM-PERSIAN-CIV 0)
 #end-if
 
 #load-if-defined POLES-CIV
 (defconst SYM-POLES-CIV 1)
-#end-if
-#load-if-not-defined POLES-CIV
+#else
 (defconst SYM-POLES-CIV 0)
 #end-if
 
 #load-if-defined PORTUGUESE-CIV
 (defconst SYM-PORTUGUESE-CIV 1)
-#end-if
-#load-if-not-defined PORTUGUESE-CIV
+#else
 (defconst SYM-PORTUGUESE-CIV 0)
 #end-if
 
 #load-if-defined ROMANS-CIV
 (defconst SYM-ROMANS-CIV 1)
-#end-if
-#load-if-not-defined ROMANS-CIV
+#else
 (defconst SYM-ROMANS-CIV 0)
 #end-if
 
 #load-if-defined SARACEN-CIV
 (defconst SYM-SARACEN-CIV 1)
-#end-if
-#load-if-not-defined SARACEN-CIV
+#else
 (defconst SYM-SARACEN-CIV 0)
 #end-if
 
 #load-if-defined SICILIANS-CIV
 (defconst SYM-SICILIANS-CIV 1)
-#end-if
-#load-if-not-defined SICILIANS-CIV
+#else
 (defconst SYM-SICILIANS-CIV 0)
 #end-if
 
 #load-if-defined SLAVIC-CIV
 (defconst SYM-SLAVIC-CIV 1)
-#end-if
-#load-if-not-defined SLAVIC-CIV
+#else
 (defconst SYM-SLAVIC-CIV 0)
 #end-if
 
 #load-if-defined SPANISH-CIV
 (defconst SYM-SPANISH-CIV 1)
-#end-if
-#load-if-not-defined SPANISH-CIV
+#else
 (defconst SYM-SPANISH-CIV 0)
 #end-if
 
 #load-if-defined TATARS-CIV
 (defconst SYM-TATARS-CIV 1)
-#end-if
-#load-if-not-defined TATARS-CIV
+#else
 (defconst SYM-TATARS-CIV 0)
 #end-if
 
 #load-if-defined TEUTONIC-CIV
 (defconst SYM-TEUTONIC-CIV 1)
-#end-if
-#load-if-not-defined TEUTONIC-CIV
+#else
 (defconst SYM-TEUTONIC-CIV 0)
 #end-if
 
 #load-if-defined TURKISH-CIV
 (defconst SYM-TURKISH-CIV 1)
-#end-if
-#load-if-not-defined TURKISH-CIV
+#else
 (defconst SYM-TURKISH-CIV 0)
 #end-if
 
 #load-if-defined VIETNAMESE-CIV
 (defconst SYM-VIETNAMESE-CIV 1)
-#end-if
-#load-if-not-defined VIETNAMESE-CIV
+#else
 (defconst SYM-VIETNAMESE-CIV 0)
 #end-if
 
 #load-if-defined VIKING-CIV
 (defconst SYM-VIKING-CIV 1)
-#end-if
-#load-if-not-defined VIKING-CIV
+#else
 (defconst SYM-VIKING-CIV 0)
 #end-if
 
 #load-if-defined ACCLIVITY-MAP
 (defconst SYM-ACCLIVITY-MAP 1)
-#end-if
-#load-if-not-defined ACCLIVITY-MAP
+#else
 (defconst SYM-ACCLIVITY-MAP 0)
 #end-if
 
 #load-if-defined ACROPOLIS-MAP
 (defconst SYM-ACROPOLIS-MAP 1)
-#end-if
-#load-if-not-defined ACROPOLIS-MAP
+#else
 (defconst SYM-ACROPOLIS-MAP 0)
 #end-if
 
 #load-if-defined AFRICAN-CLEARING-MAP
 (defconst SYM-AFRICAN-CLEARING-MAP 1)
-#end-if
-#load-if-not-defined AFRICAN-CLEARING-MAP
+#else
 (defconst SYM-AFRICAN-CLEARING-MAP 0)
 #end-if
 
 #load-if-defined AFTERMATH-MAP
 (defconst SYM-AFTERMATH-MAP 1)
-#end-if
-#load-if-not-defined AFTERMATH-MAP
+#else
 (defconst SYM-AFTERMATH-MAP 0)
 #end-if
 
 #load-if-defined ALPINE-LAKES-MAP
 (defconst SYM-ALPINE-LAKES-MAP 1)
-#end-if
-#load-if-not-defined ALPINE-LAKES-MAP
+#else
 (defconst SYM-ALPINE-LAKES-MAP 0)
 #end-if
 
 #load-if-defined AMAZON-TUNNEL-MAP
 (defconst SYM-AMAZON-TUNNEL-MAP 1)
-#end-if
-#load-if-not-defined AMAZON-TUNNEL-MAP
+#else
 (defconst SYM-AMAZON-TUNNEL-MAP 0)
 #end-if
 
 #load-if-defined ARABIA-MAP
 (defconst SYM-ARABIA-MAP 1)
-#end-if
-#load-if-not-defined ARABIA-MAP
+#else
 (defconst SYM-ARABIA-MAP 0)
 #end-if
 
 #load-if-defined ARCHIPELAGO-MAP
 (defconst SYM-ARCHIPELAGO-MAP 1)
-#end-if
-#load-if-not-defined ARCHIPELAGO-MAP
+#else
 (defconst SYM-ARCHIPELAGO-MAP 0)
 #end-if
 
 #load-if-defined ARENA-MAP
 (defconst SYM-ARENA-MAP 1)
-#end-if
-#load-if-not-defined ARENA-MAP
+#else
 (defconst SYM-ARENA-MAP 0)
 #end-if
 
 #load-if-defined ATACAMA-MAP
 (defconst SYM-ATACAMA-MAP 1)
-#end-if
-#load-if-not-defined ATACAMA-MAP
+#else
 (defconst SYM-ATACAMA-MAP 0)
 #end-if
 
 #load-if-defined BALTIC-MAP
 (defconst SYM-BALTIC-MAP 1)
-#end-if
-#load-if-not-defined BALTIC-MAP
+#else
 (defconst SYM-BALTIC-MAP 0)
 #end-if
 
 #load-if-defined BLACK-FOREST
 (defconst SYM-BLACK-FOREST 1)
-#end-if
-#load-if-not-defined BLACK-FOREST
+#else
 (defconst SYM-BLACK-FOREST 0)
 #end-if
 
 #load-if-defined BOG-ISLANDS-MAP
 (defconst SYM-BOG-ISLANDS-MAP 1)
-#end-if
-#load-if-not-defined BOG-ISLANDS-MAP
+#else
 (defconst SYM-BOG-ISLANDS-MAP 0)
 #end-if
 
 #load-if-defined BOGLAND-MAP
 (defconst SYM-BOGLAND-MAP 1)
-#end-if
-#load-if-not-defined BOGLAND-MAP
+#else
 (defconst SYM-BOGLAND-MAP 0)
 #end-if
 
 #load-if-defined BUDAPEST-MAP
 (defconst SYM-BUDAPEST-MAP 1)
-#end-if
-#load-if-not-defined BUDAPEST-MAP
+#else
 (defconst SYM-BUDAPEST-MAP 0)
 #end-if
 
 #load-if-defined CENOTES-MAP
 (defconst SYM-CENOTES-MAP 1)
-#end-if
-#load-if-not-defined CENOTES-MAP
+#else
 (defconst SYM-CENOTES-MAP 0)
 #end-if
 
 #load-if-defined CITYOFLAKES-MAP
 (defconst SYM-CITYOFLAKES-MAP 1)
-#end-if
-#load-if-not-defined CITYOFLAKES-MAP
+#else
 (defconst SYM-CITYOFLAKES-MAP 0)
 #end-if
 
 #load-if-defined COASTAL-MAP
 (defconst SYM-COASTAL-MAP 1)
-#end-if
-#load-if-not-defined COASTAL-MAP
+#else
 (defconst SYM-COASTAL-MAP 0)
 #end-if
 
 #load-if-defined COASTAL-FOREST-MAP
 (defconst SYM-COASTAL-FOREST-MAP 1)
-#end-if
-#load-if-not-defined COASTAL-FOREST-MAP
+#else
 (defconst SYM-COASTAL-FOREST-MAP 0)
 #end-if
 
 #load-if-defined CONTINENTAL-MAP
 (defconst SYM-CONTINENTAL-MAP 1)
-#end-if
-#load-if-not-defined CONTINENTAL-MAP
+#else
 (defconst SYM-CONTINENTAL-MAP 0)
 #end-if
 
 #load-if-defined CRATER-MAP
 (defconst SYM-CRATER-MAP 1)
-#end-if
-#load-if-not-defined CRATER-MAP
+#else
 (defconst SYM-CRATER-MAP 0)
 #end-if
 
 #load-if-defined CRATER-LAKE-MAP
 (defconst SYM-CRATER-LAKE-MAP 1)
-#end-if
-#load-if-not-defined CRATER-LAKE-MAP
+#else
 (defconst SYM-CRATER-LAKE-MAP 0)
 #end-if
 
 #load-if-defined ENCLOSED-MAP
 (defconst SYM-ENCLOSED-MAP 1)
-#end-if
-#load-if-not-defined ENCLOSED-MAP
+#else
 (defconst SYM-ENCLOSED-MAP 0)
 #end-if
 
 #load-if-defined ERUPTION-MAP
 (defconst SYM-ERUPTION-MAP 1)
-#end-if
-#load-if-not-defined ERUPTION-MAP
+#else
 (defconst SYM-ERUPTION-MAP 0)
 #end-if
 
 #load-if-defined FORTRESS-MAP
 (defconst SYM-FORTRESS-MAP 1)
-#end-if
-#load-if-not-defined FORTRESS-MAP
+#else
 (defconst SYM-FORTRESS-MAP 0)
 #end-if
 
 #load-if-defined FOUR-LAKES-MAP
 (defconst SYM-FOUR-LAKES-MAP 1)
-#end-if
-#load-if-not-defined FOUR-LAKES-MAP
+#else
 (defconst SYM-FOUR-LAKES-MAP 0)
 #end-if
 
 #load-if-defined FRIGID-LAKE-MAP
 (defconst SYM-FRIGID-LAKE-MAP 1)
-#end-if
-#load-if-not-defined FRIGID-LAKE-MAP
+#else
 (defconst SYM-FRIGID-LAKE-MAP 0)
 #end-if
 
 #load-if-defined GHOST-LAKE-MAP
 (defconst SYM-GHOST-LAKE-MAP 1)
-#end-if
-#load-if-not-defined GHOST-LAKE-MAP
+#else
 (defconst SYM-GHOST-LAKE-MAP 0)
 #end-if
 
 #load-if-defined GOLD-RUSH-MAP
 (defconst SYM-GOLD-RUSH-MAP 1)
-#end-if
-#load-if-not-defined GOLD-RUSH-MAP
+#else
 (defconst SYM-GOLD-RUSH-MAP 0)
 #end-if
 
 #load-if-defined GOLDENPIT-MAP
 (defconst SYM-GOLDENPIT-MAP 1)
-#end-if
-#load-if-not-defined GOLDENPIT-MAP
+#else
 (defconst SYM-GOLDENPIT-MAP 0)
 #end-if
 
 #load-if-defined GOLDEN-SWAMP-MAP
 (defconst SYM-GOLDEN-SWAMP-MAP 1)
-#end-if
-#load-if-not-defined GOLDEN-SWAMP-MAP
+#else
 (defconst SYM-GOLDEN-SWAMP-MAP 0)
 #end-if
 
 #load-if-defined GREENLAND-MAP
 (defconst SYM-GREENLAND-MAP 1)
-#end-if
-#load-if-not-defined GREENLAND-MAP
+#else
 (defconst SYM-GREENLAND-MAP 0)
 #end-if
 
 #load-if-defined HABOOB-MAP
 (defconst SYM-HABOOB-MAP 1)
-#end-if
-#load-if-not-defined HABOOB-MAP
+#else
 (defconst SYM-HABOOB-MAP 0)
 #end-if
 
 #load-if-defined HAMBURGER-MAP
 (defconst SYM-HAMBURGER-MAP 1)
-#end-if
-#load-if-not-defined HAMBURGER-MAP
+#else
 (defconst SYM-HAMBURGER-MAP 0)
 #end-if
 
 #load-if-defined HIDEOUT-MAP
 (defconst SYM-HIDEOUT-MAP 1)
-#end-if
-#load-if-not-defined HIDEOUT-MAP
+#else
 (defconst SYM-HIDEOUT-MAP 0)
 #end-if
 
 #load-if-defined HIGHLAND-MAP
 (defconst SYM-HIGHLAND-MAP 1)
-#end-if
-#load-if-not-defined HIGHLAND-MAP
+#else
 (defconst SYM-HIGHLAND-MAP 0)
 #end-if
 
 #load-if-defined HILLFORT-MAP
 (defconst SYM-HILLFORT-MAP 1)
-#end-if
-#load-if-not-defined HILLFORT-MAP
+#else
 (defconst SYM-HILLFORT-MAP 0)
 #end-if
 
 #load-if-defined ISLANDS-MAP
 (defconst SYM-ISLANDS-MAP 1)
-#end-if
-#load-if-not-defined ISLANDS-MAP
+#else
 (defconst SYM-ISLANDS-MAP 0)
 #end-if
 
 #load-if-defined KAWASAN-MAP
 (defconst SYM-KAWASAN-MAP 1)
-#end-if
-#load-if-not-defined KAWASAN-MAP
+#else
 (defconst SYM-KAWASAN-MAP 0)
 #end-if
 
 #load-if-defined KILIMANJARO-MAP
 (defconst SYM-KILIMANJARO-MAP 1)
-#end-if
-#load-if-not-defined KILIMANJARO-MAP
+#else
 (defconst SYM-KILIMANJARO-MAP 0)
 #end-if
 
 #load-if-defined LAND-MADNESS-MAP
 (defconst SYM-LAND-MADNESS-MAP 1)
-#end-if
-#load-if-not-defined LAND-MADNESS-MAP
+#else
 (defconst SYM-LAND-MADNESS-MAP 0)
 #end-if
 
 #load-if-defined LAND-NOMAD-MAP
 (defconst SYM-LAND-NOMAD-MAP 1)
-#end-if
-#load-if-not-defined LAND-NOMAD-MAP
+#else
 (defconst SYM-LAND-NOMAD-MAP 0)
 #end-if
 
 #load-if-defined LOMBARDIA-MAP
 (defconst SYM-LOMBARDIA-MAP 1)
-#end-if
-#load-if-not-defined LOMBARDIA-MAP
+#else
 (defconst SYM-LOMBARDIA-MAP 0)
 #end-if
 
 #load-if-defined LOWLAND-MAP
 (defconst SYM-LOWLAND-MAP 1)
-#end-if
-#load-if-not-defined LOWLAND-MAP
+#else
 (defconst SYM-LOWLAND-MAP 0)
 #end-if
 
 #load-if-defined MANGROVE-JUNGLE-MAP
 (defconst SYM-MANGROVE-JUNGLE-MAP 1)
-#end-if
-#load-if-not-defined MANGROVE-JUNGLE-MAP
+#else
 (defconst SYM-MANGROVE-JUNGLE-MAP 0)
 #end-if
 
 #load-if-defined MARKETPLACE-MAP
 (defconst SYM-MARKETPLACE-MAP 1)
-#end-if
-#load-if-not-defined MARKETPLACE-MAP
+#else
 (defconst SYM-MARKETPLACE-MAP 0)
 #end-if
 
 #load-if-defined MEADOW-MAP
 (defconst SYM-MEADOW-MAP 1)
-#end-if
-#load-if-not-defined MEADOW-MAP
+#else
 (defconst SYM-MEADOW-MAP 0)
 #end-if
 
 #load-if-defined MEDITERRANEAN-MAP
 (defconst SYM-MEDITERRANEAN-MAP 1)
-#end-if
-#load-if-not-defined MEDITERRANEAN-MAP
+#else
 (defconst SYM-MEDITERRANEAN-MAP 0)
 #end-if
 
 #load-if-defined MEGARANDOM-MAP
 (defconst SYM-MEGARANDOM-MAP 1)
-#end-if
-#load-if-not-defined MEGARANDOM-MAP
+#else
 (defconst SYM-MEGARANDOM-MAP 0)
 #end-if
 
 #load-if-defined MICHI-MAP
 (defconst SYM-MICHI-MAP 1)
-#end-if
-#load-if-not-defined MICHI-MAP
+#else
 (defconst SYM-MICHI-MAP 0)
 #end-if
 
 #load-if-defined MIGRATION-MAP
 (defconst SYM-MIGRATION-MAP 1)
-#end-if
-#load-if-not-defined MIGRATION-MAP
+#else
 (defconst SYM-MIGRATION-MAP 0)
 #end-if
 
 #load-if-defined MONGOLIA-MAP
 (defconst SYM-MONGOLIA-MAP 1)
-#end-if
-#load-if-not-defined MONGOLIA-MAP
+#else
 (defconst SYM-MONGOLIA-MAP 0)
 #end-if
 
 #load-if-defined MOUNTAIN-PASS-MAP
 (defconst SYM-MOUNTAIN-PASS-MAP 1)
-#end-if
-#load-if-not-defined MOUNTAIN-PASS-MAP
+#else
 (defconst SYM-MOUNTAIN-PASS-MAP 0)
 #end-if
 
 #load-if-defined MOUNTAIN-RANGE-MAP
 (defconst SYM-MOUNTAIN-RANGE-MAP 1)
-#end-if
-#load-if-not-defined MOUNTAIN-RANGE-MAP
+#else
 (defconst SYM-MOUNTAIN-RANGE-MAP 0)
 #end-if
 
 #load-if-defined MOUNTAIN-RIDGE-MAP
 (defconst SYM-MOUNTAIN-RIDGE-MAP 1)
-#end-if
-#load-if-not-defined MOUNTAIN-RIDGE-MAP
+#else
 (defconst SYM-MOUNTAIN-RIDGE-MAP 0)
 #end-if
 
 #load-if-defined NILE-DELTA-MAP
 (defconst SYM-NILE-DELTA-MAP 1)
-#end-if
-#load-if-not-defined NILE-DELTA-MAP
+#else
 (defconst SYM-NILE-DELTA-MAP 0)
 #end-if
 
 #load-if-defined NOMAD-MAP
 (defconst SYM-NOMAD-MAP 1)
-#end-if
-#load-if-not-defined NOMAD-MAP
+#else
 (defconst SYM-NOMAD-MAP 0)
 #end-if
 
 #load-if-defined NORTHERN-ISLES-MAP
 (defconst SYM-NORTHERN-ISLES-MAP 1)
-#end-if
-#load-if-not-defined NORTHERN-ISLES-MAP
+#else
 (defconst SYM-NORTHERN-ISLES-MAP 0)
 #end-if
 
 #load-if-defined OASIS-MAP
 (defconst SYM-OASIS-MAP 1)
-#end-if
-#load-if-not-defined OASIS-MAP
+#else
 (defconst SYM-OASIS-MAP 0)
 #end-if
 
 #load-if-defined PACIFIC-ISLANDS-MAP
 (defconst SYM-PACIFIC-ISLANDS-MAP 1)
-#end-if
-#load-if-not-defined PACIFIC-ISLANDS-MAP
+#else
 (defconst SYM-PACIFIC-ISLANDS-MAP 0)
 #end-if
 
 #load-if-defined RAVINES-MAP
 (defconst SYM-RAVINES-MAP 1)
-#end-if
-#load-if-not-defined RAVINES-MAP
+#else
 (defconst SYM-RAVINES-MAP 0)
 #end-if
 
 #load-if-defined RING-FORTRESS-MAP
 (defconst SYM-RING-FORTRESS-MAP 1)
-#end-if
-#load-if-not-defined RING-FORTRESS-MAP
+#else
 (defconst SYM-RING-FORTRESS-MAP 0)
 #end-if
 
 #load-if-defined RIVERS-MAP
 (defconst SYM-RIVERS-MAP 1)
-#end-if
-#load-if-not-defined RIVERS-MAP
+#else
 (defconst SYM-RIVERS-MAP 0)
 #end-if
 
 #load-if-defined RUNESTONES-MAP
 (defconst SYM-RUNESTONES-MAP 1)
-#end-if
-#load-if-not-defined RUNESTONES-MAP
+#else
 (defconst SYM-RUNESTONES-MAP 0)
 #end-if
 
 #load-if-defined SACRED-SPRINGS-MAP
 (defconst SYM-SACRED-SPRINGS-MAP 1)
-#end-if
-#load-if-not-defined SACRED-SPRINGS-MAP
+#else
 (defconst SYM-SACRED-SPRINGS-MAP 0)
 #end-if
 
 #load-if-defined SALT-MARSH-MAP
 (defconst SYM-SALT-MARSH-MAP 1)
-#end-if
-#load-if-not-defined SALT-MARSH-MAP
+#else
 (defconst SYM-SALT-MARSH-MAP 0)
 #end-if
 
 #load-if-defined SANDBANK-MAP
 (defconst SYM-SANDBANK-MAP 1)
-#end-if
-#load-if-not-defined SANDBANK-MAP
+#else
 (defconst SYM-SANDBANK-MAP 0)
 #end-if
 
 #load-if-defined SCANDANAVIA-MAP
 (defconst SYM-SCANDANAVIA-MAP 1)
-#end-if
-#load-if-not-defined SCANDANAVIA-MAP
+#else
 (defconst SYM-SCANDANAVIA-MAP 0)
 #end-if
 
 #load-if-defined SCANDINAVIA-MAP
 (defconst SYM-SCANDINAVIA-MAP 1)
-#end-if
-#load-if-not-defined SCANDINAVIA-MAP
+#else
 (defconst SYM-SCANDINAVIA-MAP 0)
 #end-if
 
 #load-if-defined SEIZE-THE-MOUNTAIN-MAP
 (defconst SYM-SEIZE-THE-MOUNTAIN-MAP 1)
-#end-if
-#load-if-not-defined SEIZE-THE-MOUNTAIN-MAP
+#else
 (defconst SYM-SEIZE-THE-MOUNTAIN-MAP 0)
 #end-if
 
 #load-if-defined SERENGETI-MAP
 (defconst SYM-SERENGETI-MAP 1)
-#end-if
-#load-if-not-defined SERENGETI-MAP
+#else
 (defconst SYM-SERENGETI-MAP 0)
 #end-if
 
 #load-if-defined SOCOTRA-MAP
 (defconst SYM-SOCOTRA-MAP 1)
-#end-if
-#load-if-not-defined SOCOTRA-MAP
+#else
 (defconst SYM-SOCOTRA-MAP 0)
 #end-if
 
 #load-if-defined SOCOTRO-MAP
 (defconst SYM-SOCOTRO-MAP 1)
-#end-if
-#load-if-not-defined SOCOTRO-MAP
+#else
 (defconst SYM-SOCOTRO-MAP 0)
 #end-if
 
 #load-if-defined STEPPE-MAP
 (defconst SYM-STEPPE-MAP 1)
-#end-if
-#load-if-not-defined STEPPE-MAP
+#else
 (defconst SYM-STEPPE-MAP 0)
 #end-if
 
 #load-if-defined TEAM-ISLANDS-MAP
 (defconst SYM-TEAM-ISLANDS-MAP 1)
-#end-if
-#load-if-not-defined TEAM-ISLANDS-MAP
+#else
 (defconst SYM-TEAM-ISLANDS-MAP 0)
 #end-if
 
 #load-if-defined TEAM-MOATS-MAP
 (defconst SYM-TEAM-MOATS-MAP 1)
-#end-if
-#load-if-not-defined TEAM-MOATS-MAP
+#else
 (defconst SYM-TEAM-MOATS-MAP 0)
 #end-if
 
 #load-if-defined VALLEY-MAP
 (defconst SYM-VALLEY-MAP 1)
-#end-if
-#load-if-not-defined VALLEY-MAP
+#else
 (defconst SYM-VALLEY-MAP 0)
 #end-if
 
 #load-if-defined VOLCANIC-ISLAND-MAP
 (defconst SYM-VOLCANIC-ISLAND-MAP 1)
-#end-if
-#load-if-not-defined VOLCANIC-ISLAND-MAP
+#else
 (defconst SYM-VOLCANIC-ISLAND-MAP 0)
 #end-if
 
 #load-if-defined YUCATAN-MAP
 (defconst SYM-YUCATAN-MAP 1)
-#end-if
-#load-if-not-defined YUCATAN-MAP
+#else
 (defconst SYM-YUCATAN-MAP 0)
 #end-if
 
 #load-if-defined WADE-MAP
 (defconst SYM-WADE-MAP 1)
-#end-if
-#load-if-not-defined WADE-MAP
+#else
 (defconst SYM-WADE-MAP 0)
 #end-if
 
 #load-if-defined WATER-NOMAD-MAP
 (defconst SYM-WATER-NOMAD-MAP 1)
-#end-if
-#load-if-not-defined WATER-NOMAD-MAP
+#else
 (defconst SYM-WATER-NOMAD-MAP 0)
 #end-if
 
 #load-if-defined WOLF-HILL-MAP
 (defconst SYM-WOLF-HILL-MAP 1)
-#end-if
-#load-if-not-defined WOLF-HILL-MAP
+#else
 (defconst SYM-WOLF-HILL-MAP 0)
 #end-if
 
 #load-if-defined CTR_RANDOM-MAP
 (defconst SYM-CTR_RANDOM-MAP 1)
-#end-if
-#load-if-not-defined CTR_RANDOM-MAP
+#else
 (defconst SYM-CTR_RANDOM-MAP 0)
 #end-if
 
 #load-if-defined CTR_MONSOON-MAP
 (defconst SYM-CTR_MONSOON-MAP 1)
-#end-if
-#load-if-not-defined CTR_MONSOON-MAP
+#else
 (defconst SYM-CTR_MONSOON-MAP 0)
 #end-if
 
 #load-if-defined CTR_PYRAMID-DESCENT-MAP
 (defconst SYM-CTR_PYRAMID-DESCENT-MAP 1)
-#end-if
-#load-if-not-defined CTR_PYRAMID-DESCENT-MAP
+#else
 (defconst SYM-CTR_PYRAMID-DESCENT-MAP 0)
 #end-if
 
 #load-if-defined CTR_SPIRAL-MAP
 (defconst SYM-CTR_SPIRAL-MAP 1)
-#end-if
-#load-if-not-defined CTR_SPIRAL-MAP
+#else
 (defconst SYM-CTR_SPIRAL-MAP 0)
 #end-if
 
 #load-if-defined BATTLE-ON-THE-ICE-MAP
 (defconst SYM-BATTLE-ON-THE-ICE-MAP 1)
-#end-if
-#load-if-not-defined BATTLE-ON-THE-ICE-MAP
+#else
 (defconst SYM-BATTLE-ON-THE-ICE-MAP 0)
 #end-if
 
 #load-if-defined EL-DORADO-MAP
 (defconst SYM-EL-DORADO-MAP 1)
-#end-if
-#load-if-not-defined EL-DORADO-MAP
+#else
 (defconst SYM-EL-DORADO-MAP 0)
 #end-if
 
 #load-if-defined FALL-OF-AXUM-MAP
 (defconst SYM-FALL-OF-AXUM-MAP 1)
-#end-if
-#load-if-not-defined FALL-OF-AXUM-MAP
+#else
 (defconst SYM-FALL-OF-AXUM-MAP 0)
 #end-if
 
 #load-if-defined FALL-OF-ROME-MAP
 (defconst SYM-FALL-OF-ROME-MAP 1)
-#end-if
-#load-if-not-defined FALL-OF-ROME-MAP
+#else
 (defconst SYM-FALL-OF-ROME-MAP 0)
 #end-if
 
 #load-if-defined THE-MAJAPHIT-EMPIRE-MAP
 (defconst SYM-THE-MAJAPHIT-EMPIRE-MAP 1)
-#end-if
-#load-if-not-defined THE-MAJAPHIT-EMPIRE-MAP
+#else
 (defconst SYM-THE-MAJAPHIT-EMPIRE-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-AMAZON-MAP
 (defconst SYM-REAL-WORLD-AMAZON-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-AMAZON-MAP
+#else
 (defconst SYM-REAL-WORLD-AMAZON-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-ANTARCTICA-MAP
 (defconst SYM-REAL-WORLD-ANTARCTICA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-ANTARCTICA-MAP
+#else
 (defconst SYM-REAL-WORLD-ANTARCTICA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-ARAL-SEA-MAP
 (defconst SYM-REAL-WORLD-ARAL-SEA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-ARAL-SEA-MAP
+#else
 (defconst SYM-REAL-WORLD-ARAL-SEA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-AUSTRALIA-MAP
 (defconst SYM-REAL-WORLD-AUSTRALIA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-AUSTRALIA-MAP
+#else
 (defconst SYM-REAL-WORLD-AUSTRALIA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-BLACK-SEA-MAP
 (defconst SYM-REAL-WORLD-BLACK-SEA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-BLACK-SEA-MAP
+#else
 (defconst SYM-REAL-WORLD-BLACK-SEA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-BOHEMIA-MAP
 (defconst SYM-REAL-WORLD-BOHEMIA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-BOHEMIA-MAP
+#else
 (defconst SYM-REAL-WORLD-BOHEMIA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-BYZANTIUM-MAP
 (defconst SYM-REAL-WORLD-BYZANTIUM-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-BYZANTIUM-MAP
+#else
 (defconst SYM-REAL-WORLD-BYZANTIUM-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-CARIBBEAN-MAP
 (defconst SYM-REAL-WORLD-CARIBBEAN-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-CARIBBEAN-MAP
+#else
 (defconst SYM-REAL-WORLD-CARIBBEAN-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-CAUCASUS-MAP
 (defconst SYM-REAL-WORLD-CAUCASUS-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-CAUCASUS-MAP
+#else
 (defconst SYM-REAL-WORLD-CAUCASUS-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-CHINA-MAP
 (defconst SYM-REAL-WORLD-CHINA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-CHINA-MAP
+#else
 (defconst SYM-REAL-WORLD-CHINA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-ENGLAND-MAP
 (defconst SYM-REAL-WORLD-ENGLAND-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-ENGLAND-MAP
+#else
 (defconst SYM-REAL-WORLD-ENGLAND-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-FRANCE-MAP
 (defconst SYM-REAL-WORLD-FRANCE-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-FRANCE-MAP
+#else
 (defconst SYM-REAL-WORLD-FRANCE-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-HORN-OF-AFRICA-MAP
 (defconst SYM-REAL-WORLD-HORN-OF-AFRICA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-HORN-OF-AFRICA-MAP
+#else
 (defconst SYM-REAL-WORLD-HORN-OF-AFRICA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-INDIA-MAP
 (defconst SYM-REAL-WORLD-INDIA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-INDIA-MAP
+#else
 (defconst SYM-REAL-WORLD-INDIA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-INDOCHINA-MAP
 (defconst SYM-REAL-WORLD-INDOCHINA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-INDOCHINA-MAP
+#else
 (defconst SYM-REAL-WORLD-INDOCHINA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-INDONESIA-MAP
 (defconst SYM-REAL-WORLD-INDONESIA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-INDONESIA-MAP
+#else
 (defconst SYM-REAL-WORLD-INDONESIA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-ITALY-MAP
 (defconst SYM-REAL-WORLD-ITALY-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-ITALY-MAP
+#else
 (defconst SYM-REAL-WORLD-ITALY-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-JUTLAND-MAP
 (defconst SYM-REAL-WORLD-JUTLAND-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-JUTLAND-MAP
+#else
 (defconst SYM-REAL-WORLD-JUTLAND-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-MADAGASCAR-MAP
 (defconst SYM-REAL-WORLD-MADAGASCAR-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-MADAGASCAR-MAP
+#else
 (defconst SYM-REAL-WORLD-MADAGASCAR-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-MALACCA-MAP
 (defconst SYM-REAL-WORLD-MALACCA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-MALACCA-MAP
+#else
 (defconst SYM-REAL-WORLD-MALACCA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-MIDEAST-MAP
 (defconst SYM-REAL-WORLD-MIDEAST-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-MIDEAST-MAP
+#else
 (defconst SYM-REAL-WORLD-MIDEAST-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-NIPPON-MAP
 (defconst SYM-REAL-WORLD-NIPPON-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-NIPPON-MAP
+#else
 (defconst SYM-REAL-WORLD-NIPPON-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-PHILIPPINES-MAP
 (defconst SYM-REAL-WORLD-PHILIPPINES-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-PHILIPPINES-MAP
+#else
 (defconst SYM-REAL-WORLD-PHILIPPINES-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-SIBERIA-MAP
 (defconst SYM-REAL-WORLD-SIBERIA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-SIBERIA-MAP
+#else
 (defconst SYM-REAL-WORLD-SIBERIA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-SPAIN-MAP
 (defconst SYM-REAL-WORLD-SPAIN-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-SPAIN-MAP
+#else
 (defconst SYM-REAL-WORLD-SPAIN-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-STRAIT-OF-MALACCA-MAP
 (defconst SYM-REAL-WORLD-STRAIT-OF-MALACCA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-STRAIT-OF-MALACCA-MAP
+#else
 (defconst SYM-REAL-WORLD-STRAIT-OF-MALACCA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-TEXAS-MAP
 (defconst SYM-REAL-WORLD-TEXAS-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-TEXAS-MAP
+#else
 (defconst SYM-REAL-WORLD-TEXAS-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-WEST-AFRICA-MAP
 (defconst SYM-REAL-WORLD-WEST-AFRICA-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-WEST-AFRICA-MAP
+#else
 (defconst SYM-REAL-WORLD-WEST-AFRICA-MAP 0)
 #end-if
 
 #load-if-defined REAL-WORLD-WORLD-MAP
 (defconst SYM-REAL-WORLD-WORLD-MAP 1)
-#end-if
-#load-if-not-defined REAL-WORLD-WORLD-MAP
+#else
 (defconst SYM-REAL-WORLD-WORLD-MAP 0)
 #end-if
 
 #load-if-defined BORDER-STONES-SPECIAL-MAP
 (defconst SYM-BORDER-STONES-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined BORDER-STONES-SPECIAL-MAP
+#else
 (defconst SYM-BORDER-STONES-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined CANYONS-SPECIAL-MAP
 (defconst SYM-CANYONS-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined CANYONS-SPECIAL-MAP
+#else
 (defconst SYM-CANYONS-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined ENEMY-ARCHIPELAGO-SPECIAL-MAP
 (defconst SYM-ENEMY-ARCHIPELAGO-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined ENEMY-ARCHIPELAGO-SPECIAL-MAP
+#else
 (defconst SYM-ENEMY-ARCHIPELAGO-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined ENEMY-ISLANDS-SPECIAL-MAP
 (defconst SYM-ENEMY-ISLANDS-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined ENEMY-ISLANDS-SPECIAL-MAP
+#else
 (defconst SYM-ENEMY-ISLANDS-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined FAR-OUT-SPECIAL-MAP
 (defconst SYM-FAR-OUT-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined FAR-OUT-SPECIAL-MAP
+#else
 (defconst SYM-FAR-OUT-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined FRONT-LINE-SPECIAL-MAP
 (defconst SYM-FRONT-LINE-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined FRONT-LINE-SPECIAL-MAP
+#else
 (defconst SYM-FRONT-LINE-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined HOLY-LINE-SPECIAL-MAP
 (defconst SYM-HOLY-LINE-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined HOLY-LINE-SPECIAL-MAP
+#else
 (defconst SYM-HOLY-LINE-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined INNER-CIRCLE-SPECIAL-MAP
 (defconst SYM-INNER-CIRCLE-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined INNER-CIRCLE-SPECIAL-MAP
+#else
 (defconst SYM-INNER-CIRCLE-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined JOURNEY-SOUTH-SPECIAL-MAP
 (defconst SYM-JOURNEY-SOUTH-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined JOURNEY-SOUTH-SPECIAL-MAP
+#else
 (defconst SYM-JOURNEY-SOUTH-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined JUNGLE-ISLANDS-SPECIAL-MAP
 (defconst SYM-JUNGLE-ISLANDS-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined JUNGLE-ISLANDS-SPECIAL-MAP
+#else
 (defconst SYM-JUNGLE-ISLANDS-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined JUNGLE-LANES-SPECIAL-MAP
 (defconst SYM-JUNGLE-LANES-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined JUNGLE-LANES-SPECIAL-MAP
+#else
 (defconst SYM-JUNGLE-LANES-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined MOTHERLAND-SPECIAL-MAP
 (defconst SYM-MOTHERLAND-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined MOTHERLAND-SPECIAL-MAP
+#else
 (defconst SYM-MOTHERLAND-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined OPEN-PLAINS-SPECIAL-MAP
 (defconst SYM-OPEN-PLAINS-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined OPEN-PLAINS-SPECIAL-MAP
+#else
 (defconst SYM-OPEN-PLAINS-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined RING-OF-WATER-SPECIAL-MAP
 (defconst SYM-RING-OF-WATER-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined RING-OF-WATER-SPECIAL-MAP
+#else
 (defconst SYM-RING-OF-WATER-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined SNAKE-FOREST-SPECIAL-MAP
 (defconst SYM-SNAKE-FOREST-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined SNAKE-FOREST-SPECIAL-MAP
+#else
 (defconst SYM-SNAKE-FOREST-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined SNAKE-PIT-SPECIAL-MAP
 (defconst SYM-SNAKE-PIT-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined SNAKE-PIT-SPECIAL-MAP
+#else
 (defconst SYM-SNAKE-PIT-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined SPRAWLING-STREAMS-SPECIAL-MAP
 (defconst SYM-SPRAWLING-STREAMS-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined SPRAWLING-STREAMS-SPECIAL-MAP
+#else
 (defconst SYM-SPRAWLING-STREAMS-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined SWIRLING-RIVER-SPECIAL-MAP
 (defconst SYM-SWIRLING-RIVER-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined SWIRLING-RIVER-SPECIAL-MAP
+#else
 (defconst SYM-SWIRLING-RIVER-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined THE-EYE-SPECIAL-MAP
 (defconst SYM-THE-EYE-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined THE-EYE-SPECIAL-MAP
+#else
 (defconst SYM-THE-EYE-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined TWIN-FORESTS-SPECIAL-MAP
 (defconst SYM-TWIN-FORESTS-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined TWIN-FORESTS-SPECIAL-MAP
+#else
 (defconst SYM-TWIN-FORESTS-SPECIAL-MAP 0)
 #end-if
 
 #load-if-defined YIN-YANG-SPECIAL-MAP
 (defconst SYM-YIN-YANG-SPECIAL-MAP 1)
-#end-if
-#load-if-not-defined YIN-YANG-SPECIAL-MAP
+#else
 (defconst SYM-YIN-YANG-SPECIAL-MAP 0)
 #end-if
 
@@ -2006,7 +1720,7 @@
 (defrule
 	(up-compare-goal 511 c:>= 0)
 =>
-	(up-jump-direct c: 12)
+	(up-jump-direct c: 13)
 )
 
 ; 1
@@ -2234,19 +1948,39 @@
 	(up-modify-goal 510 c:= 0)
 	(up-modify-goal 511 c:= 0)
 	(up-modify-goal 512 c:= 0)
-	(up-modify-goal 432 c:= 8)
-	(up-modify-goal 441 c:= 9)
-	(up-modify-goal 469 c:= 3)
+	(up-setup-cost-data 1 434)
+	(up-setup-cost-data 1 438)
+	(up-modify-goal 442 c:= 0)
+	(up-modify-goal 434 c:= 8)
 )
 
 ; 12
 (defrule
-	(up-compare-goal 512 c:> 0)
+	(true)
 =>
-	(up-jump-direct c: 445)
+	(up-setup-cost-data 1 443)
+	(up-setup-cost-data 1 447)
+	(up-setup-cost-data 1 451)
+	(up-setup-cost-data 1 455)
+	(up-setup-cost-data 1 459)
+	(up-setup-cost-data 1 463)
+	(up-setup-cost-data 1 467)
+	(up-modify-goal 443 c:= 9)
+	(up-modify-goal 471 c:= 0)
+	(up-modify-goal 472 c:= 0)
+	(up-modify-goal 471 c:= 1)
+	(up-modify-goal 473 c:= 0)
+	(up-modify-goal 474 c:= 0)
 )
 
 ; 13
+(defrule
+	(up-compare-goal 512 c:> 0)
+=>
+	(up-jump-direct c: 453)
+)
+
+; 14
 (defrule
 	(true)
 =>
@@ -2255,25 +1989,25 @@
 	(up-setup-cost-data 1 487)
 	(up-setup-cost-data 1 491)
 	(up-modify-goal 510 c:= 1)
-	(up-modify-goal 479 c:= 458)
+	(up-modify-goal 479 c:= 466)
 )
 
-; 14
+; 15
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 15
+; 16
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 16
+; 17
 (defrule
 	(true)
 =>
@@ -2290,61 +2024,42 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 17
+; 18
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 20)
-)
-
-; 18
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 19)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 68)
+	(up-jump-direct c: 21)
 )
 
 ; 19
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 20)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 69)
 )
 
 ; 20
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 21)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 108)
 )
 
 ; 21
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
@@ -2352,10 +2067,29 @@
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 479 c:= 22)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 64)
+	(up-jump-direct c: 109)
 )
 
 ; 22
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 23)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 65)
+)
+
+; 23
 (defrule
 	(true)
 =>
@@ -2371,14 +2105,14 @@
 	(up-set-indirect-goal g: 508 c: 1)
 )
 
-; 23
+; 24
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 25)
+	(up-jump-direct c: 26)
 )
 
-; 24
+; 25
 (defrule
 	(true)
 =>
@@ -2388,7 +2122,7 @@
 	(up-chat-data-to-self "Duration %d" g: 496)
 )
 
-; 25
+; 26
 (defrule
 	(true)
 =>
@@ -2398,26 +2132,31 @@
 	(up-jump-direct g: 479)
 )
 
-; 26
+; 27
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 27
+; 28
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 28
+; 29
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 482 g:= 481)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 496 g:= 482)
 	(up-modify-goal 497 c:= 0)
 	(up-modify-goal 497 g:- 496)
@@ -2425,44 +2164,45 @@
 	(up-modify-goal 497 c:min 1)
 	(up-modify-goal 483 g:= 497)
 	(up-modify-goal 496 g:= 482)
-	(up-modify-goal 497 g:= 469)
+	(up-modify-goal 497 g:= 471)
 	(up-modify-goal 496 g:- 497)
+)
+
+; 30
+(defrule
+	(true)
+=>
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 496 c:max 0)
 	(up-modify-goal 496 c:min 1)
 	(up-modify-goal 484 g:= 496)
 	(up-modify-goal 496 g:= 483)
-)
-
-; 29
-(defrule
-	(true)
-=>
 	(up-modify-goal 497 g:= 484)
 	(up-modify-goal 496 g:max 497)
 	(up-modify-goal 509 g:= 496)
 )
 
-; 30
+; 31
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 32)
-)
-
-; 31
-(defrule
-	(true)
-=>
-	(up-modify-goal 512 c:= 101)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 33)
 )
 
 ; 32
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 469)
+	(up-modify-goal 512 c:= 101)
+	(up-jump-direct c: 453)
+)
+
+; 33
+(defrule
+	(true)
+=>
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 501 c:= 471)
 	(up-modify-goal 505 g:= 482)
 	(up-modify-goal 505 c:* 1)
 	(up-modify-goal 505 c:+ 1)
@@ -2473,18 +2213,18 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 6)
-	(up-modify-goal 505 c:= 33)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 34)
+	(up-jump-direct c: 450)
 )
 
-; 33
+; 34
 (defrule
 	(true)
 =>
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 479 c:= 35)
+	(up-modify-goal 479 c:= 36)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 4)
 	(up-modify-goal 502 c:= 480)
@@ -2498,14 +2238,14 @@
 	(up-modify-goal 510 c:+ 6)
 )
 
-; 34
+; 35
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 96)
+	(up-jump-direct c: 97)
 )
 
-; 35
+; 36
 (defrule
 	(true)
 =>
@@ -2513,11 +2253,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 6)
-	(up-modify-goal 505 c:= 36)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 37)
+	(up-jump-direct c: 450)
 )
 
-; 36
+; 37
 (defrule
 	(true)
 =>
@@ -2525,26 +2265,32 @@
 	(up-jump-direct g: 479)
 )
 
-; 37
+; 38
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 38
+; 39
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 39
+; 40
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 483 g:= 481)
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 485 c:= 0)
 	(up-modify-goal 496 g:= 483)
 	(up-modify-goal 497 c:= 0)
 	(up-modify-goal 497 g:- 496)
@@ -2552,44 +2298,45 @@
 	(up-modify-goal 497 c:min 1)
 	(up-modify-goal 484 g:= 497)
 	(up-modify-goal 496 g:= 483)
-	(up-modify-goal 497 g:= 469)
+	(up-modify-goal 497 g:= 471)
+)
+
+; 41
+(defrule
+	(true)
+=>
 	(up-modify-goal 496 g:- 497)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 496 c:max 0)
 	(up-modify-goal 496 c:min 1)
 	(up-modify-goal 485 g:= 496)
 	(up-modify-goal 496 g:= 484)
-)
-
-; 40
-(defrule
-	(true)
-=>
 	(up-modify-goal 497 g:= 485)
 	(up-modify-goal 496 g:max 497)
 	(up-modify-goal 509 g:= 496)
 )
 
-; 41
+; 42
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 43)
-)
-
-; 42
-(defrule
-	(true)
-=>
-	(up-modify-goal 512 c:= 101)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 44)
 )
 
 ; 43
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 469)
+	(up-modify-goal 512 c:= 101)
+	(up-jump-direct c: 453)
+)
+
+; 44
+(defrule
+	(true)
+=>
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 501 c:= 471)
 	(up-modify-goal 505 g:= 483)
 	(up-modify-goal 505 c:* 1)
 	(up-modify-goal 505 c:+ 1)
@@ -2600,16 +2347,16 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 44)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 45)
+	(up-jump-direct c: 450)
 )
 
-; 44
+; 45
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 46)
+	(up-modify-goal 479 c:= 47)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 5)
 	(up-modify-goal 502 c:= 480)
@@ -2625,17 +2372,17 @@
 	(up-modify-goal 502 c:= 482)
 )
 
-; 45
+; 46
 (defrule
 	(true)
 =>
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 7)
-	(up-jump-direct c: 102)
+	(up-jump-direct c: 103)
 )
 
-; 46
+; 47
 (defrule
 	(true)
 =>
@@ -2643,60 +2390,61 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 47)
-	(up-jump-direct c: 442)
-)
-
-; 47
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
+	(up-modify-goal 505 c:= 48)
+	(up-jump-direct c: 450)
 )
 
 ; 48
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-jump-direct g: 479)
 )
 
 ; 49
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 50
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 0)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 51
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 508 c:= 480)
+	(up-set-indirect-goal g: 508 c: 0)
+)
+
+; 52
+(defrule
+	(true)
+=>
 	(up-modify-goal 496 g:= 480)
-	(up-modify-goal 497 g:= 469)
+	(up-modify-goal 497 g:= 471)
 	(up-modify-goal 497 g:- 496)
 	(up-modify-goal 497 c:max 0)
 	(up-modify-goal 497 c:min 1)
 	(up-modify-goal 509 g:= 497)
 )
 
-; 52
+; 53
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 57)
+	(up-jump-direct c: 58)
 )
 
-; 53
+; 54
 (defrule
 	(true)
 =>
@@ -2710,13 +2458,13 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 479 c:= 54)
+	(up-modify-goal 479 c:= 55)
 	(up-modify-goal 480 c:= 100000)
 	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 87)
+	(up-jump-direct c: 88)
 )
 
-; 54
+; 55
 (defrule
 	(true)
 =>
@@ -2730,14 +2478,14 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:= 475)
-	(up-modify-goal 502 c:= 469)
+	(up-modify-goal 502 c:= 471)
 	(up-modify-goal 505 g:= 480)
 	(up-modify-goal 505 c:* 1)
 	(up-modify-goal 505 c:+ 1)
 	(up-modify-goal 502 g:+ 505)
 )
 
-; 55
+; 56
 (defrule
 	(true)
 =>
@@ -2745,39 +2493,39 @@
 	(up-set-indirect-goal g: 502 g: 504)
 )
 
-; 56
+; 57
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 480 g:= 496)
-	(up-jump-direct c: 51)
-)
-
-; 57
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
+	(up-jump-direct c: 52)
 )
 
 ; 58
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-jump-direct g: 479)
 )
 
 ; 59
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 60
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 61
 (defrule
 	(true)
 =>
@@ -2785,22 +2533,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 61
+; 62
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 62
+; 63
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 63
+; 64
 (defrule
 	(true)
 =>
@@ -2810,22 +2558,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 64
+; 65
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 65
+; 66
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 66
+; 67
 (defrule
 	(true)
 =>
@@ -2834,12 +2582,12 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 67)
+	(up-modify-goal 479 c:= 68)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 79)
+	(up-jump-direct c: 80)
 )
 
-; 67
+; 68
 (defrule
 	(true)
 =>
@@ -2851,53 +2599,33 @@
 	(up-jump-direct g: 479)
 )
 
-; 68
+; 69
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 69
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
 ; 70
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 71)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 84)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 71
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 479 c:= 72)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 48)
+	(up-jump-direct c: 85)
 )
 
 ; 72
@@ -2914,9 +2642,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 479 c:= 73)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 74)
+	(up-jump-direct c: 49)
 )
 
 ; 73
@@ -2928,39 +2657,17 @@
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-jump-direct g: 479)
-)
-
-; 74
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 75
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
-; 76
-(defrule
-	(true)
-=>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 77)
+	(up-modify-goal 479 c:= 74)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 259)
+	(up-jump-direct c: 75)
 )
 
-; 77
+; 74
 (defrule
 	(true)
 =>
@@ -2969,15 +2676,36 @@
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
+	(up-jump-direct g: 479)
+)
+
+; 75
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 76
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 77
+(defrule
+	(true)
+=>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 479 c:= 78)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 282)
+	(up-jump-direct c: 261)
 )
 
 ; 78
@@ -2989,25 +2717,45 @@
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-jump-direct g: 479)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-setup-cost-data 1 479)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 479 c:= 79)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 284)
 )
 
 ; 79
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-jump-direct g: 479)
 )
 
 ; 80
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 81
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 82
 (defrule
 	(true)
 =>
@@ -3017,12 +2765,12 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
 	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 82)
+	(up-modify-goal 479 c:= 83)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 262)
+	(up-jump-direct c: 264)
 )
 
-; 82
+; 83
 (defrule
 	(true)
 =>
@@ -3037,12 +2785,12 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 479 c:= 83)
+	(up-modify-goal 479 c:= 84)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 292)
+	(up-jump-direct c: 294)
 )
 
-; 83
+; 84
 (defrule
 	(true)
 =>
@@ -3054,22 +2802,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 84
+; 85
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 85
+; 86
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 86
+; 87
 (defrule
 	(true)
 =>
@@ -3077,25 +2825,26 @@
 	(up-jump-direct g: 479)
 )
 
-; 87
+; 88
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 88
+; 89
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 89
+; 90
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 497 c:= 0)
 	(up-modify-goal 497 g:- 496)
@@ -3104,22 +2853,22 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 90
+; 91
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 92)
+	(up-jump-direct c: 93)
 )
 
-; 91
+; 92
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 102)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 92
+; 93
 (defrule
 	(true)
 =>
@@ -3131,50 +2880,53 @@
 	(up-jump-direct g: 479)
 )
 
-; 93
+; 94
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 94
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
 ; 95
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 496 g:= 480)
-	(up-modify-sn 450 g:= 496)
-	(xs-script-call "Memory_Free")
-	(up-jump-direct g: 479)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 96
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 496 g:= 480)
+	(up-modify-sn 450 g:= 496)
+	(xs-script-call "Memory_Free")
+	(up-jump-direct g: 479)
 )
 
 ; 97
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 98
 (defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 99
+(defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 497 c:= 0)
 	(up-modify-goal 497 g:- 496)
@@ -3183,22 +2935,22 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 99
+; 100
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 101)
+	(up-jump-direct c: 102)
 )
 
-; 100
+; 101
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 103)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 101
+; 102
 (defrule
 	(true)
 =>
@@ -3212,25 +2964,28 @@
 	(up-jump-direct g: 479)
 )
 
-; 102
+; 103
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 103
+; 104
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 104
+; 105
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 497 c:= 0)
 	(up-modify-goal 497 g:- 496)
@@ -3239,22 +2994,22 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 105
+; 106
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 107)
+	(up-jump-direct c: 108)
 )
 
-; 106
+; 107
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 103)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 107
+; 108
 (defrule
 	(true)
 =>
@@ -3268,22 +3023,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 108
+; 109
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 109
+; 110
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 110
+; 111
 (defrule
 	(true)
 =>
@@ -3292,12 +3047,12 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 111)
+	(up-modify-goal 479 c:= 112)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 112)
+	(up-jump-direct c: 113)
 )
 
-; 111
+; 112
 (defrule
 	(true)
 =>
@@ -3309,22 +3064,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 112
+; 113
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 113
+; 114
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 114
+; 115
 (defrule
 	(true)
 =>
@@ -3333,12 +3088,12 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 115)
+	(up-modify-goal 479 c:= 116)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 117)
+	(up-jump-direct c: 118)
 )
 
-; 115
+; 116
 (defrule
 	(true)
 =>
@@ -3354,12 +3109,12 @@
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 479 c:= 116)
+	(up-modify-goal 479 c:= 117)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 144)
+	(up-jump-direct c: 145)
 )
 
-; 116
+; 117
 (defrule
 	(true)
 =>
@@ -3371,29 +3126,32 @@
 	(up-jump-direct g: 479)
 )
 
-; 117
+; 118
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 118
+; 119
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 119
+; 120
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
 	(up-modify-goal 508 c:= 480)
 	(up-set-indirect-goal g: 508 c: 7)
 	(up-modify-goal 508 c:= 481)
 	(up-set-indirect-goal g: 508 c: 13)
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 497 g:= 481)
 	(up-modify-flag 496 g:+ 497)
@@ -3402,37 +3160,38 @@
 	(up-modify-goal 497 c:= 15)
 	(up-modify-goal 496 g:- 497)
 	(up-modify-goal 496 c:min 1)
-	(up-modify-goal 496 c:max -1)
-	(up-modify-goal 496 c:+ 2)
-	(up-modify-goal 496 c:mod 2)
-)
-
-; 120
-(defrule
-	(true)
-=>
-	(up-modify-goal 509 g:= 496)
 )
 
 ; 121
 (defrule
-	(up-compare-goal 509 c:== 0)
+	(true)
 =>
-	(up-jump-direct c: 123)
+	(up-modify-goal 496 c:max -1)
+	(up-modify-goal 496 c:+ 2)
+	(up-modify-goal 496 c:mod 2)
+	(up-modify-goal 509 g:= 496)
 )
 
 ; 122
 (defrule
-	(true)
+	(up-compare-goal 509 c:== 0)
 =>
-	(up-modify-goal 512 c:= 109)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 124)
 )
 
 ; 123
 (defrule
 	(true)
 =>
+	(up-modify-goal 512 c:= 109)
+	(up-jump-direct c: 453)
+)
+
+; 124
+(defrule
+	(true)
+=>
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 497 g:= 481)
 	(up-modify-goal 498 c:= -1)
@@ -3449,25 +3208,26 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 124
+; 125
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 126)
-)
-
-; 125
-(defrule
-	(true)
-=>
-	(up-modify-goal 512 c:= 108)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 127)
 )
 
 ; 126
 (defrule
 	(true)
 =>
+	(up-modify-goal 512 c:= 108)
+	(up-jump-direct c: 453)
+)
+
+; 127
+(defrule
+	(true)
+=>
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 497 c:= -1)
 	(up-modify-flag 497 g:- 496)
@@ -3482,25 +3242,26 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 127
+; 128
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 129)
-)
-
-; 128
-(defrule
-	(true)
-=>
-	(up-modify-goal 512 c:= 107)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 130)
 )
 
 ; 129
 (defrule
 	(true)
 =>
+	(up-modify-goal 512 c:= 107)
+	(up-jump-direct c: 453)
+)
+
+; 130
+(defrule
+	(true)
+=>
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 497 g:= 481)
 	(up-modify-goal 498 g:= 496)
@@ -3515,41 +3276,42 @@
 	(up-modify-goal 496 g:- 497)
 	(up-modify-goal 496 c:min 1)
 	(up-modify-goal 496 c:max -1)
-	(up-modify-goal 496 c:+ 2)
-)
-
-; 130
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 c:mod 2)
-	(up-modify-goal 509 g:= 496)
 )
 
 ; 131
 (defrule
-	(up-compare-goal 509 c:== 0)
+	(true)
 =>
-	(up-jump-direct c: 133)
+	(up-modify-goal 496 c:+ 2)
+	(up-modify-goal 496 c:mod 2)
+	(up-modify-goal 509 g:= 496)
 )
 
 ; 132
 (defrule
-	(true)
+	(up-compare-goal 509 c:== 0)
 =>
-	(up-modify-goal 512 c:= 106)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 134)
 )
 
 ; 133
 (defrule
 	(true)
 =>
+	(up-modify-goal 512 c:= 106)
+	(up-jump-direct c: 453)
+)
+
+; 134
+(defrule
+	(true)
+=>
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 497 c:= 7)
 )
 
-; 134
+; 135
 (defrule
 	(up-compare-goal 497 c:> 0)
 =>
@@ -3558,7 +3320,7 @@
 	(up-jump-rule -1)
 )
 
-; 135
+; 136
 (defrule
 	(true)
 =>
@@ -3573,30 +3335,31 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 136
+; 137
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 138)
-)
-
-; 137
-(defrule
-	(true)
-=>
-	(up-modify-goal 512 c:= 105)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 139)
 )
 
 ; 138
 (defrule
 	(true)
 =>
+	(up-modify-goal 512 c:= 105)
+	(up-jump-direct c: 453)
+)
+
+; 139
+(defrule
+	(true)
+=>
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 497 c:= 1)
 )
 
-; 139
+; 140
 (defrule
 	(up-compare-goal 497 c:> 0)
 =>
@@ -3605,7 +3368,7 @@
 	(up-jump-rule -1)
 )
 
-; 140
+; 141
 (defrule
 	(true)
 =>
@@ -3620,69 +3383,79 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 141
+; 142
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 143)
-)
-
-; 142
-(defrule
-	(true)
-=>
-	(up-modify-goal 512 c:= 104)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 144)
 )
 
 ; 143
 (defrule
 	(true)
 =>
-	(up-jump-direct g: 479)
+	(up-modify-goal 512 c:= 104)
+	(up-jump-direct c: 453)
 )
 
 ; 144
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-jump-direct g: 479)
 )
 
 ; 145
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 146
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-jump-direct g: 479)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 147
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-jump-direct g: 479)
 )
 
 ; 148
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 149
 (defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 150
+(defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 485 c:= 0)
+	(up-modify-goal 486 c:= 0)
+	(up-setup-cost-data 1 487)
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 497 c:= 1)
 	(up-modify-goal 496 g:- 497)
@@ -3690,49 +3463,56 @@
 	(up-modify-goal 496 c:max -1)
 	(up-modify-goal 496 c:+ 2)
 	(up-modify-goal 496 c:mod 2)
-	(up-modify-goal 509 g:= 496)
-)
-
-; 150
-(defrule
-	(up-compare-goal 509 c:== 0)
-=>
-	(up-jump-direct c: 152)
 )
 
 ; 151
 (defrule
 	(true)
 =>
-	(up-modify-goal 512 c:= 110)
-	(up-jump-direct c: 445)
+	(up-modify-goal 509 g:= 496)
 )
 
 ; 152
 (defrule
-	(true)
+	(up-compare-goal 509 c:== 0)
 =>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 153)
-	(up-jump-direct c: 442)
+	(up-jump-direct c: 154)
 )
 
 ; 153
 (defrule
 	(true)
 =>
+	(up-modify-goal 512 c:= 110)
+	(up-jump-direct c: 453)
+)
+
+; 154
+(defrule
+	(true)
+=>
+	(up-modify-goal 491 c:= 0)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 16)
+	(up-modify-goal 505 c:= 155)
+	(up-jump-direct c: 450)
+)
+
+; 155
+(defrule
+	(true)
+=>
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 479 c:= 156)
+	(up-modify-goal 479 c:= 158)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
 	(up-set-indirect-goal g: 502 g: 501)
 )
 
-; 154
+; 156
 (defrule
 	(up-compare-goal 480 c:>= 479)
 =>
@@ -3740,15 +3520,15 @@
 	(up-modify-goal 480 g:+ 510)
 )
 
-; 155
+; 157
 (defrule
 	(true)
 =>
 	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 186)
+	(up-jump-direct c: 188)
 )
 
-; 156
+; 158
 (defrule
 	(true)
 =>
@@ -3756,11 +3536,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 157)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 159)
+	(up-jump-direct c: 450)
 )
 
-; 157
+; 159
 (defrule
 	(true)
 =>
@@ -3775,44 +3555,44 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 158
+; 160
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 160)
-)
-
-; 159
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
-)
-
-; 160
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 161)
-	(up-jump-direct c: 442)
+	(up-jump-direct c: 162)
 )
 
 ; 161
 (defrule
 	(true)
 =>
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 487 c:= 0)
-	(up-modify-goal 479 c:= 162)
-	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 379)
+	(up-jump-direct g: 479)
 )
 
 ; 162
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 16)
+	(up-modify-goal 505 c:= 163)
+	(up-jump-direct c: 450)
+)
+
+; 163
+(defrule
+	(true)
+=>
+	(up-setup-cost-data 1 479)
+	(up-setup-cost-data 1 483)
+	(up-modify-goal 487 c:= 0)
+	(up-modify-goal 479 c:= 164)
+	(up-modify-goal 510 c:+ 16)
+	(up-jump-direct c: 384)
+)
+
+; 164
 (defrule
 	(true)
 =>
@@ -3820,11 +3600,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 163)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 165)
+	(up-jump-direct c: 450)
 )
 
-; 163
+; 165
 (defrule
 	(true)
 =>
@@ -3833,23 +3613,23 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 164)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 166)
+	(up-jump-direct c: 450)
 )
 
-; 164
+; 166
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 165)
+	(up-modify-goal 479 c:= 167)
 	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 390)
+	(up-jump-direct c: 397)
 )
 
-; 165
+; 167
 (defrule
 	(true)
 =>
@@ -3857,11 +3637,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 166)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 168)
+	(up-jump-direct c: 450)
 )
 
-; 166
+; 168
 (defrule
 	(true)
 =>
@@ -3869,23 +3649,23 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 167)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 169)
+	(up-jump-direct c: 450)
 )
 
-; 167
+; 169
 (defrule
 	(true)
 =>
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 479 c:= 168)
+	(up-modify-goal 479 c:= 170)
 	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 240)
+	(up-jump-direct c: 242)
 )
 
-; 168
+; 170
 (defrule
 	(true)
 =>
@@ -3893,11 +3673,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 169)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 171)
+	(up-jump-direct c: 450)
 )
 
-; 169
+; 171
 (defrule
 	(true)
 =>
@@ -3918,7 +3698,7 @@
 	(up-filter-include 6 -1 -1 -1)
 )
 
-; 170
+; 172
 (defrule
 	(true)
 =>
@@ -3939,7 +3719,7 @@
 	(up-modify-goal 489 g:= 498)
 )
 
-; 171
+; 173
 (defrule
 	(true)
 =>
@@ -3954,29 +3734,31 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 172
+; 174
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 174)
+	(up-jump-direct c: 176)
 )
 
-; 173
+; 175
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 174
+; 176
 (defrule
 	(true)
 =>
+	(up-modify-goal 491 c:= 0)
+	(up-modify-goal 492 c:= 0)
 	(up-modify-goal 508 c:= 491)
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 175
+; 177
 (defrule
 	(true)
 =>
@@ -3988,14 +3770,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 176
+; 178
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 185)
+	(up-jump-direct c: 187)
 )
 
-; 177
+; 179
 (defrule
 	(true)
 =>
@@ -4005,11 +3787,13 @@
 	(up-modify-goal 496 g:= 491)
 	(up-get-group-size g: 496 497)
 	(up-modify-goal 492 g:= 497)
+	(up-modify-goal 493 c:= 0)
+	(up-modify-goal 494 c:= 0)
 	(up-modify-goal 508 c:= 493)
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 178
+; 180
 (defrule
 	(true)
 =>
@@ -4021,14 +3805,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 179
+; 181
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 184)
+	(up-jump-direct c: 186)
 )
 
-; 180
+; 182
 (defrule
 	(true)
 =>
@@ -4039,11 +3823,11 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 181)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 183)
+	(up-jump-direct c: 450)
 )
 
-; 181
+; 183
 (defrule
 	(true)
 =>
@@ -4052,17 +3836,17 @@
 	(up-modify-goal 487 c:= 0)
 	(up-modify-goal 488 c:= 0)
 	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 479 c:= 182)
+	(up-modify-goal 479 c:= 184)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 15)
 	(up-modify-goal 502 c:= 480)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 401)
+	(up-jump-direct c: 408)
 )
 
-; 182
+; 184
 (defrule
 	(true)
 =>
@@ -4070,56 +3854,57 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 183)
-	(up-jump-direct c: 442)
-)
-
-; 183
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 493)
-	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 493 g:= 496)
-	(up-jump-direct c: 178)
-)
-
-; 184
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 491)
-	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 491 g:= 496)
-	(up-jump-direct c: 175)
+	(up-modify-goal 505 c:= 185)
+	(up-jump-direct c: 450)
 )
 
 ; 185
 (defrule
 	(true)
 =>
-	(up-jump-direct g: 479)
+	(up-modify-goal 496 g:= 493)
+	(up-modify-goal 496 c:+ 1)
+	(up-modify-goal 493 g:= 496)
+	(up-jump-direct c: 180)
 )
 
 ; 186
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-modify-goal 496 g:= 491)
+	(up-modify-goal 496 c:+ 1)
+	(up-modify-goal 491 g:= 496)
+	(up-jump-direct c: 177)
 )
 
 ; 187
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct g: 479)
 )
 
 ; 188
 (defrule
 	(true)
 =>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 189
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 190
+(defrule
+	(true)
+=>
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 501 g:= 480)
 	(up-modify-goal 501 c:+ 2)
 	(up-modify-goal 502 c:= 475)
@@ -4128,25 +3913,28 @@
 	(up-jump-direct g: 479)
 )
 
-; 189
+; 191
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 190
+; 192
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 191
+; 193
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-setup-cost-data 1 482)
 	(up-get-search-state 496)
 	(up-modify-goal 482 g:= 496)
 	(up-modify-goal 483 g:= 497)
@@ -4161,22 +3949,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 192
+; 194
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 194)
+	(up-jump-direct c: 196)
 )
 
-; 193
+; 195
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 111)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 194
+; 196
 (defrule
 	(true)
 =>
@@ -4185,26 +3973,26 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 195)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 197)
+	(up-jump-direct c: 450)
 )
 
-; 195
+; 197
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 196)
+	(up-modify-goal 479 c:= 198)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 3)
 	(up-modify-goal 502 c:= 480)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 7)
-	(up-jump-direct c: 371)
+	(up-jump-direct c: 376)
 )
 
-; 196
+; 198
 (defrule
 	(true)
 =>
@@ -4212,11 +4000,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 197)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 199)
+	(up-jump-direct c: 450)
 )
 
-; 197
+; 199
 (defrule
 	(true)
 =>
@@ -4237,7 +4025,7 @@
 	(up-modify-goal 502 c:= 496)
 )
 
-; 198
+; 200
 (defrule
 	(true)
 =>
@@ -4252,25 +4040,28 @@
 	(up-jump-direct g: 479)
 )
 
-; 199
+; 201
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 200
+; 202
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 201
+; 203
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-setup-cost-data 1 482)
 	(up-get-search-state 496)
 	(up-modify-goal 482 g:= 496)
 	(up-modify-goal 483 g:= 497)
@@ -4285,22 +4076,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 202
+; 204
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 204)
+	(up-jump-direct c: 206)
 )
 
-; 203
+; 205
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 111)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 204
+; 206
 (defrule
 	(true)
 =>
@@ -4309,26 +4100,26 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 205)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 207)
+	(up-jump-direct c: 450)
 )
 
-; 205
+; 207
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 206)
+	(up-modify-goal 479 c:= 208)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 3)
 	(up-modify-goal 502 c:= 480)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 7)
-	(up-jump-direct c: 371)
+	(up-jump-direct c: 376)
 )
 
-; 206
+; 208
 (defrule
 	(true)
 =>
@@ -4336,11 +4127,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 207)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 209)
+	(up-jump-direct c: 450)
 )
 
-; 207
+; 209
 (defrule
 	(true)
 =>
@@ -4361,7 +4152,7 @@
 	(up-modify-goal 502 c:= 496)
 )
 
-; 208
+; 210
 (defrule
 	(true)
 =>
@@ -4376,25 +4167,27 @@
 	(up-jump-direct g: 479)
 )
 
-; 209
+; 211
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 210
+; 212
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 211
+; 213
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-setup-cost-data 1 481)
 	(up-modify-goal 501 g:= 480)
 	(up-modify-goal 502 c:= 496)
 	(up-get-indirect-goal g: 501 504)
@@ -4408,33 +4201,33 @@
 	(up-modify-goal 501 c:= 481)
 	(up-modify-goal 502 g:= 480)
 	(up-modify-goal 502 c:+ 2)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
 )
 
-; 212
+; 214
 (defrule
 	(true)
 =>
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
 	(up-jump-direct g: 479)
 )
 
-; 213
+; 215
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 214
+; 216
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 215
+; 217
 (defrule
 	(true)
 =>
@@ -4443,82 +4236,38 @@
 	(up-jump-direct g: 479)
 )
 
-; 216
+; 218
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 217
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
-; 218
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 479 c:= 219)
-	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 224)
-)
-
 ; 219
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 475 g:= 475)
-	(up-jump-direct g: 479)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 220
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 221
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
-; 222
-(defrule
-	(true)
-=>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 479 c:= 223)
-	(up-modify-goal 480 c:= 3)
+	(up-modify-goal 479 c:= 221)
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 224)
+	(up-jump-direct c: 226)
 )
 
-; 223
+; 221
 (defrule
 	(true)
 =>
@@ -4531,55 +4280,103 @@
 	(up-jump-direct g: 479)
 )
 
-; 224
+; 222
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 225
+; 223
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
+)
+
+; 224
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-setup-cost-data 1 479)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 479 c:= 225)
+	(up-modify-goal 480 c:= 3)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 226)
+)
+
+; 225
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 475 g:= 475)
+	(up-jump-direct g: 479)
 )
 
 ; 226
 (defrule
 	(true)
 =>
-	(up-modify-goal 508 c:= 481)
-	(up-set-indirect-goal g: 508 c: 0)
-	(up-modify-goal 508 c:= 482)
-	(up-set-indirect-goal g: 508 c: 0)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 227
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 496 g:= 482)
-	(up-modify-goal 497 g:= 432)
-	(up-modify-goal 497 g:- 496)
-	(up-modify-goal 497 c:max 0)
-	(up-modify-goal 497 c:min 1)
-	(up-modify-goal 509 g:= 497)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 228
 (defrule
-	(up-compare-goal 509 c:== 0)
+	(true)
 =>
-	(up-jump-direct c: 234)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 508 c:= 481)
+	(up-set-indirect-goal g: 508 c: 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 508 c:= 482)
+	(up-set-indirect-goal g: 508 c: 0)
 )
 
 ; 229
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 432)
+	(up-modify-goal 496 g:= 482)
+	(up-modify-goal 497 g:= 434)
+	(up-modify-goal 497 g:- 496)
+	(up-modify-goal 497 c:max 0)
+	(up-modify-goal 497 c:min 1)
+	(up-modify-goal 509 g:= 497)
+)
+
+; 230
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 236)
+)
+
+; 231
+(defrule
+	(true)
+=>
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 501 c:= 434)
 	(up-modify-goal 505 g:= 482)
 	(up-modify-goal 505 c:* 1)
 	(up-modify-goal 505 c:+ 1)
@@ -4593,24 +4390,24 @@
 	(up-modify-goal 496 c:min 1)
 	(up-modify-goal 496 c:max -1)
 	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 496 c:mod 2)
-)
-
-; 230
-(defrule
-	(true)
-=>
-	(up-modify-goal 509 g:= 496)
-)
-
-; 231
-(defrule
-	(up-compare-goal 509 c:== 0)
-=>
-	(up-jump-direct c: 233)
 )
 
 ; 232
+(defrule
+	(true)
+=>
+	(up-modify-goal 496 c:mod 2)
+	(up-modify-goal 509 g:= 496)
+)
+
+; 233
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 235)
+)
+
+; 234
 (defrule
 	(true)
 =>
@@ -4619,17 +4416,17 @@
 	(up-modify-goal 481 g:= 496)
 )
 
-; 233
+; 235
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 482)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 482 g:= 496)
-	(up-jump-direct c: 227)
+	(up-jump-direct c: 229)
 )
 
-; 234
+; 236
 (defrule
 	(true)
 =>
@@ -4637,89 +4434,26 @@
 	(up-jump-direct g: 479)
 )
 
-; 235
+; 237
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 236
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
-; 237
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 239)
-	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 501 c:+ 1)
-)
-
 ; 238
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 502 c:= 481)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 245)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 239
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 2)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 475 g:= 475)
-	(up-jump-direct g: 479)
-)
-
-; 240
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 241
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
-; 242
-(defrule
-	(true)
-=>
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
@@ -4731,24 +4465,24 @@
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 244)
-	(up-modify-goal 480 c:= 3)
+	(up-modify-goal 479 c:= 241)
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 501 c:+ 1)
 )
 
-; 243
+; 240
 (defrule
 	(true)
 =>
+	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 481)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 245)
+	(up-jump-direct c: 247)
 )
 
-; 244
+; 241
 (defrule
 	(true)
 =>
@@ -4765,55 +4499,125 @@
 	(up-jump-direct g: 479)
 )
 
-; 245
+; 242
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 246
+; 243
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
+)
+
+; 244
+(defrule
+	(true)
+=>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-setup-cost-data 1 479)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 479 c:= 246)
+	(up-modify-goal 480 c:= 3)
+	(up-modify-goal 501 g:= 510)
+)
+
+; 245
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:= 481)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 510 c:+ 2)
+	(up-jump-direct c: 247)
+)
+
+; 246
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 2)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 475 g:= 475)
+	(up-jump-direct g: 479)
 )
 
 ; 247
 (defrule
 	(true)
 =>
-	(up-modify-goal 508 c:= 482)
-	(up-set-indirect-goal g: 508 c: 0)
-	(up-modify-goal 508 c:= 483)
-	(up-set-indirect-goal g: 508 c: 0)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 248
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 496 g:= 483)
-	(up-modify-goal 497 g:= 432)
-	(up-modify-goal 497 g:- 496)
-	(up-modify-goal 497 c:max 0)
-	(up-modify-goal 497 c:min 1)
-	(up-modify-goal 509 g:= 497)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 249
 (defrule
-	(up-compare-goal 509 c:== 0)
+	(true)
 =>
-	(up-jump-direct c: 258)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 508 c:= 482)
+	(up-set-indirect-goal g: 508 c: 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 508 c:= 483)
+	(up-set-indirect-goal g: 508 c: 0)
 )
 
 ; 250
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 432)
+	(up-modify-goal 496 g:= 483)
+	(up-modify-goal 497 g:= 434)
+	(up-modify-goal 497 g:- 496)
+	(up-modify-goal 497 c:max 0)
+	(up-modify-goal 497 c:min 1)
+	(up-modify-goal 509 g:= 497)
+)
+
+; 251
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 260)
+)
+
+; 252
+(defrule
+	(true)
+=>
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 501 c:= 434)
 	(up-modify-goal 505 g:= 483)
 	(up-modify-goal 505 c:* 1)
 	(up-modify-goal 505 c:+ 1)
@@ -4827,24 +4631,24 @@
 	(up-modify-goal 496 c:min 1)
 	(up-modify-goal 496 c:max -1)
 	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 496 c:mod 2)
-)
-
-; 251
-(defrule
-	(true)
-=>
-	(up-modify-goal 509 g:= 496)
-)
-
-; 252
-(defrule
-	(up-compare-goal 509 c:== 0)
-=>
-	(up-jump-direct c: 257)
 )
 
 ; 253
+(defrule
+	(true)
+=>
+	(up-modify-goal 496 c:mod 2)
+	(up-modify-goal 509 g:= 496)
+)
+
+; 254
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 259)
+)
+
+; 255
 (defrule
 	(true)
 =>
@@ -4858,14 +4662,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 254
+; 256
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 256)
+	(up-jump-direct c: 258)
 )
 
-; 255
+; 257
 (defrule
 	(true)
 =>
@@ -4876,7 +4680,7 @@
 	(up-jump-direct g: 479)
 )
 
-; 256
+; 258
 (defrule
 	(true)
 =>
@@ -4885,83 +4689,84 @@
 	(up-modify-goal 482 g:= 496)
 )
 
-; 257
+; 259
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 483)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 483 g:= 496)
-	(up-jump-direct c: 248)
-)
-
-; 258
-(defrule
-	(true)
-=>
-	(up-modify-goal 512 c:= 112)
-	(up-jump-direct c: 445)
-)
-
-; 259
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
+	(up-jump-direct c: 250)
 )
 
 ; 260
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-modify-goal 512 c:= 112)
+	(up-jump-direct c: 453)
 )
 
 ; 261
 (defrule
 	(true)
 =>
-	(up-jump-direct g: 479)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 262
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 263
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct g: 479)
 )
 
 ; 264
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-modify-goal 503 c:= 8)
-	(up-modify-goal 505 c:= 265)
-	(up-jump-direct c: 442)
+	(up-modify-goal 511 g:max 510)
 )
 
 ; 265
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 266)
-	(up-modify-goal 510 c:+ 8)
-	(up-jump-direct c: 213)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 266
+(defrule
+	(true)
+=>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 8)
+	(up-modify-goal 505 c:= 267)
+	(up-jump-direct c: 450)
+)
+
+; 267
+(defrule
+	(true)
+=>
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 268)
+	(up-modify-goal 510 c:+ 8)
+	(up-jump-direct c: 215)
+)
+
+; 268
 (defrule
 	(true)
 =>
@@ -4969,20 +4774,24 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 8)
-	(up-modify-goal 505 c:= 267)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 269)
+	(up-jump-direct c: 450)
 )
 
-; 267
+; 269
 (defrule
 	(true)
 =>
 	(up-modify-goal 480 g:= 475)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 508 c:= 481)
 	(up-set-indirect-goal g: 508 c: 1)
 )
 
-; 268
+; 270
 (defrule
 	(true)
 =>
@@ -4995,14 +4804,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 269
+; 271
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 281)
+	(up-jump-direct c: 283)
 )
 
-; 270
+; 272
 (defrule
 	(true)
 =>
@@ -5010,7 +4819,7 @@
 	(up-modify-goal 497 c:= 1)
 	(up-modify-goal 496 g:- 497)
 	(up-modify-goal 482 g:= 496)
-	(up-modify-goal 508 c:= 432)
+	(up-modify-goal 508 c:= 434)
 	(up-modify-goal 505 g:= 482)
 	(up-modify-goal 505 c:* 1)
 	(up-modify-goal 505 c:+ 1)
@@ -5021,18 +4830,20 @@
 	(up-modify-goal 497 c:= 0)
 )
 
-; 271
+; 273
 (defrule
 	(player-in-game focus-player)
 =>
 	(up-modify-goal 497 c:= 1)
 )
 
-; 272
+; 274
 (defrule
 	(true)
 =>
 	(up-modify-goal 483 g:= 497)
+	(up-modify-goal 485 c:= 0)
+	(up-modify-goal 486 c:= 0)
 	(up-modify-goal 496 g:= 483)
 	(up-modify-goal 497 c:= 1)
 	(up-modify-goal 496 g:- 497)
@@ -5045,14 +4856,14 @@
 	(up-modify-goal 497 g:= 480)
 	(up-modify-goal 496 g:- 497)
 	(up-modify-goal 496 c:min 1)
-	(up-modify-goal 496 c:max -1)
-	(up-modify-goal 496 c:+ 1)
 )
 
-; 273
+; 275
 (defrule
 	(true)
 =>
+	(up-modify-goal 496 c:max -1)
+	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 496 c:mod 2)
 	(up-modify-goal 486 g:= 496)
 	(up-modify-goal 496 g:= 485)
@@ -5061,21 +4872,21 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 274
+; 276
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 276)
+	(up-jump-direct c: 278)
 )
 
-; 275
+; 277
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 280)
+	(up-jump-direct c: 282)
 )
 
-; 276
+; 278
 (defrule
 	(true)
 =>
@@ -5084,27 +4895,27 @@
 	(up-modify-goal 496 c:= 0)
 )
 
-; 277
+; 279
 (defrule
 	(players-stance focus-player 1)
 =>
 	(up-modify-goal 496 c:= 1)
 )
 
-; 278
+; 280
 (defrule
 	(players-stance focus-player 3)
 =>
 	(up-modify-goal 496 c:= 3)
 )
 
-; 279
+; 281
 (defrule
 	(true)
 =>
 	(up-modify-goal 484 g:= 496)
 	(up-modify-goal 501 c:= 484)
-	(up-modify-goal 502 c:= 432)
+	(up-modify-goal 502 c:= 434)
 	(up-modify-goal 505 g:= 482)
 	(up-modify-goal 505 c:* 1)
 	(up-modify-goal 505 c:+ 1)
@@ -5113,70 +4924,74 @@
 	(up-set-indirect-goal g: 502 g: 504)
 )
 
-; 280
+; 282
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 481 g:= 496)
-	(up-jump-direct c: 268)
+	(up-jump-direct c: 270)
 )
 
-; 281
+; 283
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 282
+; 284
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 283
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
-; 284
-(defrule
-	(true)
-=>
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 0)
-)
-
 ; 285
 (defrule
-	(true)
+	(up-compare-goal 511 c:> 434)
 =>
-	(up-modify-goal 496 g:= 480)
-	(up-modify-goal 497 g:= 441)
-	(up-modify-goal 497 g:- 496)
-	(up-modify-goal 497 c:max 0)
-	(up-modify-goal 497 c:min 1)
-	(up-modify-goal 509 g:= 497)
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
 )
 
 ; 286
 (defrule
-	(up-compare-goal 509 c:== 0)
+	(true)
 =>
-	(up-jump-direct c: 291)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 508 c:= 480)
+	(up-set-indirect-goal g: 508 c: 0)
 )
 
 ; 287
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 441)
+	(up-modify-goal 496 g:= 480)
+	(up-modify-goal 497 g:= 443)
+	(up-modify-goal 497 g:- 496)
+	(up-modify-goal 497 c:max 0)
+	(up-modify-goal 497 c:min 1)
+	(up-modify-goal 509 g:= 497)
+)
+
+; 288
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 293)
+)
+
+; 289
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 443)
 	(up-modify-goal 505 g:= 480)
 	(up-modify-goal 505 c:* 3)
 	(up-modify-goal 505 c:+ 1)
@@ -5193,7 +5008,7 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 288
+; 290
 (defrule
 	(true)
 =>
@@ -5203,7 +5018,7 @@
 	(up-modify-goal 496 g:+ 497)
 	(up-modify-goal 481 g:= 496)
 	(up-modify-goal 501 c:= 481)
-	(up-modify-goal 502 c:= 441)
+	(up-modify-goal 502 c:= 443)
 	(up-modify-goal 505 g:= 480)
 	(up-modify-goal 505 c:* 3)
 	(up-modify-goal 505 c:+ 1)
@@ -5214,7 +5029,7 @@
 	(up-modify-goal 502 c:+ 1)
 )
 
-; 289
+; 291
 (defrule
 	(true)
 =>
@@ -5226,62 +5041,62 @@
 	(up-set-indirect-goal g: 502 g: 504)
 )
 
-; 290
+; 292
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 480 g:= 496)
-	(up-jump-direct c: 285)
+	(up-jump-direct c: 287)
 )
 
-; 291
+; 293
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 292
+; 294
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 293
+; 295
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 294
+; 296
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 295)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 297)
+	(up-jump-direct c: 450)
 )
 
-; 295
+; 297
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-setup-cost-data 1 483)
 	(up-setup-cost-data 1 487)
-	(up-modify-goal 479 c:= 296)
+	(up-modify-goal 479 c:= 298)
 	(up-modify-goal 510 c:+ 5)
-	(up-jump-direct c: 317)
+	(up-jump-direct c: 321)
 )
 
-; 296
+; 298
 (defrule
 	(true)
 =>
@@ -5289,42 +5104,46 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 297)
-	(up-jump-direct c: 442)
-)
-
-; 297
-(defrule
-	(true)
-=>
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 0)
-)
-
-; 298
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 480)
-	(up-modify-goal 497 g:= 441)
-	(up-modify-goal 497 g:- 496)
-	(up-modify-goal 497 c:max 0)
-	(up-modify-goal 497 c:min 1)
-	(up-modify-goal 509 g:= 497)
+	(up-modify-goal 505 c:= 299)
+	(up-jump-direct c: 450)
 )
 
 ; 299
 (defrule
-	(up-compare-goal 509 c:== 0)
+	(true)
 =>
-	(up-jump-direct c: 316)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 508 c:= 480)
+	(up-set-indirect-goal g: 508 c: 0)
 )
 
 ; 300
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 441)
+	(up-modify-goal 496 g:= 480)
+	(up-modify-goal 497 g:= 443)
+	(up-modify-goal 497 g:- 496)
+	(up-modify-goal 497 c:max 0)
+	(up-modify-goal 497 c:min 1)
+	(up-modify-goal 509 g:= 497)
+)
+
+; 301
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 320)
+)
+
+; 302
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 443)
 	(up-modify-goal 505 g:= 480)
 	(up-modify-goal 505 c:* 3)
 	(up-modify-goal 505 c:+ 1)
@@ -5341,7 +5160,7 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 301
+; 303
 (defrule
 	(true)
 =>
@@ -5356,35 +5175,35 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 302
+; 304
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 315)
+	(up-jump-direct c: 317)
 )
 
-; 303
+; 305
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 304)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 306)
+	(up-jump-direct c: 450)
 )
 
-; 304
+; 306
 (defrule
 	(true)
 =>
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 305)
+	(up-modify-goal 479 c:= 307)
 	(up-modify-goal 510 c:+ 5)
-	(up-jump-direct c: 368)
+	(up-jump-direct c: 373)
 )
 
-; 305
+; 307
 (defrule
 	(true)
 =>
@@ -5392,36 +5211,36 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 306)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 308)
+	(up-jump-direct c: 450)
 )
 
-; 306
+; 308
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 307)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 309)
+	(up-jump-direct c: 450)
 )
 
-; 307
+; 309
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 310)
+	(up-modify-goal 479 c:= 312)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 2)
 	(up-modify-goal 502 c:= 480)
 	(up-set-indirect-goal g: 502 g: 501)
 )
 
-; 308
+; 310
 (defrule
 	(up-compare-goal 480 c:>= 479)
 =>
@@ -5429,15 +5248,15 @@
 	(up-modify-goal 480 g:+ 510)
 )
 
-; 309
+; 311
 (defrule
 	(true)
 =>
 	(up-modify-goal 510 c:+ 5)
-	(up-jump-direct c: 209)
+	(up-jump-direct c: 211)
 )
 
-; 310
+; 312
 (defrule
 	(true)
 =>
@@ -5445,22 +5264,22 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 311)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 313)
+	(up-jump-direct c: 450)
 )
 
-; 311
+; 313
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 312)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 314)
+	(up-jump-direct c: 450)
 )
 
-; 312
+; 314
 (defrule
 	(true)
 =>
@@ -5468,7 +5287,7 @@
 	(up-setup-cost-data 1 483)
 	(up-setup-cost-data 1 487)
 	(up-setup-cost-data 1 491)
-	(up-modify-goal 479 c:= 314)
+	(up-modify-goal 479 c:= 316)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 2)
 	(up-modify-goal 502 c:= 480)
@@ -5481,7 +5300,7 @@
 	(up-modify-goal 501 c:+ 1)
 )
 
-; 313
+; 315
 (defrule
 	(true)
 =>
@@ -5489,10 +5308,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 5)
-	(up-jump-direct c: 147)
+	(up-jump-direct c: 148)
 )
 
-; 314
+; 316
 (defrule
 	(true)
 =>
@@ -5500,65 +5319,94 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 5)
-	(up-modify-goal 505 c:= 315)
-	(up-jump-direct c: 442)
-)
-
-; 315
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 480)
-	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 480 g:= 496)
-	(up-jump-direct c: 298)
-)
-
-; 316
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
+	(up-modify-goal 505 c:= 317)
+	(up-jump-direct c: 450)
 )
 
 ; 317
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
+	(up-modify-goal 501 c:= 481)
+	(up-modify-goal 502 c:= 443)
+	(up-modify-goal 505 g:= 480)
+	(up-modify-goal 505 c:* 3)
+	(up-modify-goal 505 c:+ 1)
+	(up-modify-goal 502 g:+ 505)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
 )
 
 ; 318
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(true)
 =>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-set-indirect-goal g: 502 g: 504)
 )
 
 ; 319
 (defrule
 	(true)
 =>
-	(up-full-reset-search)
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 320)
-	(up-jump-direct c: 442)
+	(up-modify-goal 496 g:= 480)
+	(up-modify-goal 496 c:+ 1)
+	(up-modify-goal 480 g:= 496)
+	(up-jump-direct c: 300)
 )
 
 ; 320
 (defrule
 	(true)
 =>
-	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 321)
-	(up-modify-goal 510 c:+ 12)
-	(up-jump-direct c: 368)
+	(up-jump-direct g: 479)
 )
 
 ; 321
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 322
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 323
+(defrule
+	(true)
+=>
+	(up-setup-cost-data 1 480)
+	(up-full-reset-search)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 12)
+	(up-modify-goal 505 c:= 324)
+	(up-jump-direct c: 450)
+)
+
+; 324
+(defrule
+	(true)
+=>
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 325)
+	(up-modify-goal 510 c:+ 12)
+	(up-jump-direct c: 373)
+)
+
+; 325
 (defrule
 	(true)
 =>
@@ -5566,11 +5414,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 322)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 326)
+	(up-jump-direct c: 450)
 )
 
-; 322
+; 326
 (defrule
 	(true)
 =>
@@ -5591,29 +5439,35 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 323
+; 327
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 325)
+	(up-jump-direct c: 329)
 )
 
-; 324
+; 328
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 325
+; 329
 (defrule
 	(true)
 =>
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 485 c:= 0)
+	(up-modify-goal 486 c:= 0)
+	(up-modify-goal 487 c:= 0)
+	(up-modify-goal 488 c:= 0)
+	(up-modify-goal 489 c:= 0)
 	(up-modify-goal 508 c:= 484)
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 326
+; 330
 (defrule
 	(true)
 =>
@@ -5625,19 +5479,20 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 327
+; 331
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 346)
+	(up-jump-direct c: 350)
 )
 
-; 328
+; 332
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 484)
 	(up-set-target-object 1 g: 496)
+	(up-modify-goal 490 c:= 0)
 	(up-get-object-data 12 496)
 	(up-modify-goal 490 g:= 496)
 	(up-modify-goal 496 g:= 490)
@@ -5648,21 +5503,21 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 329
+; 333
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 331)
+	(up-jump-direct c: 335)
 )
 
-; 330
+; 334
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 345)
+	(up-jump-direct c: 349)
 )
 
-; 331
+; 335
 (defrule
 	(true)
 =>
@@ -5671,11 +5526,11 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 332)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 336)
+	(up-jump-direct c: 450)
 )
 
-; 332
+; 336
 (defrule
 	(true)
 =>
@@ -5683,14 +5538,14 @@
 	(up-setup-cost-data 1 483)
 	(up-modify-goal 487 c:= 0)
 	(up-modify-goal 488 c:= 0)
-	(up-modify-goal 479 c:= 333)
+	(up-modify-goal 479 c:= 337)
 	(up-modify-goal 480 c:= 1)
 	(up-modify-goal 481 c:= 100)
 	(up-modify-goal 510 c:+ 12)
-	(up-jump-direct c: 347)
+	(up-jump-direct c: 351)
 )
 
-; 333
+; 337
 (defrule
 	(true)
 =>
@@ -5698,11 +5553,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 334)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 338)
+	(up-jump-direct c: 450)
 )
 
-; 334
+; 338
 (defrule
 	(true)
 =>
@@ -5717,25 +5572,25 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 335
+; 339
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 337)
+	(up-jump-direct c: 341)
 )
 
-; 336
+; 340
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 345)
+	(up-jump-direct c: 349)
 )
 
-; 337
+; 341
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 441)
+	(up-modify-goal 501 c:= 443)
 	(up-modify-goal 505 g:= 486)
 	(up-modify-goal 505 c:* 3)
 	(up-modify-goal 505 c:+ 1)
@@ -5752,7 +5607,7 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 338
+; 342
 (defrule
 	(true)
 =>
@@ -5760,11 +5615,11 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 339)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 343)
+	(up-jump-direct c: 450)
 )
 
-; 339
+; 343
 (defrule
 	(true)
 =>
@@ -5772,14 +5627,14 @@
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 485 c:= 0)
-	(up-modify-goal 479 c:= 342)
+	(up-modify-goal 479 c:= 346)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 8)
 	(up-modify-goal 502 c:= 480)
 	(up-set-indirect-goal g: 502 g: 501)
 )
 
-; 340
+; 344
 (defrule
 	(up-compare-goal 480 c:>= 479)
 =>
@@ -5787,7 +5642,7 @@
 	(up-modify-goal 480 g:+ 510)
 )
 
-; 341
+; 345
 (defrule
 	(true)
 =>
@@ -5797,10 +5652,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 12)
-	(up-jump-direct c: 189)
+	(up-jump-direct c: 191)
 )
 
-; 342
+; 346
 (defrule
 	(true)
 =>
@@ -5808,16 +5663,16 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 343)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 347)
+	(up-jump-direct c: 450)
 )
 
-; 343
+; 347
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 487)
-	(up-modify-goal 502 c:= 441)
+	(up-modify-goal 502 c:= 443)
 	(up-modify-goal 505 g:= 486)
 	(up-modify-goal 505 c:* 3)
 	(up-modify-goal 505 c:+ 1)
@@ -5833,77 +5688,83 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 344
+; 348
 (defrule
 	(true)
 =>
 	(up-set-indirect-goal g: 502 g: 504)
 )
 
-; 345
+; 349
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 484)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 484 g:= 496)
-	(up-jump-direct c: 326)
-)
-
-; 346
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
-)
-
-; 347
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 348
-(defrule
-	(up-compare-goal 511 c:> 432)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
-)
-
-; 349
-(defrule
-	(true)
-=>
-	(up-modify-goal 508 c:= 482)
-	(up-set-indirect-goal g: 508 c: 0)
+	(up-jump-direct c: 330)
 )
 
 ; 350
 (defrule
 	(true)
 =>
+	(up-jump-direct g: 479)
+)
+
+; 351
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 352
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 453)
+)
+
+; 353
+(defrule
+	(true)
+=>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 485 c:= 0)
+	(up-modify-goal 508 c:= 482)
+	(up-set-indirect-goal g: 508 c: 0)
+)
+
+; 354
+(defrule
+	(true)
+=>
 	(up-modify-goal 496 g:= 482)
-	(up-modify-goal 497 g:= 441)
+	(up-modify-goal 497 g:= 443)
 	(up-modify-goal 497 g:- 496)
 	(up-modify-goal 497 c:max 0)
 	(up-modify-goal 497 c:min 1)
 	(up-modify-goal 509 g:= 497)
 )
 
-; 351
+; 355
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 367)
+	(up-jump-direct c: 372)
 )
 
-; 352
+; 356
 (defrule
 	(true)
 =>
-	(up-modify-goal 501 c:= 441)
+	(up-modify-goal 501 c:= 443)
 	(up-modify-goal 505 g:= 482)
 	(up-modify-goal 505 c:* 3)
 	(up-modify-goal 505 c:+ 1)
@@ -5920,11 +5781,13 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 353
+; 357
 (defrule
 	(true)
 =>
 	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 486 c:= 0)
+	(up-modify-goal 487 c:= 0)
 	(up-modify-goal 496 g:= 484)
 	(up-modify-goal 497 g:= 480)
 	(up-modify-goal 496 g:- 497)
@@ -5933,27 +5796,34 @@
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 496 c:mod 2)
 	(up-modify-goal 486 g:= 496)
+	(up-modify-goal 488 c:= 0)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 354)
-	(up-jump-direct c: 442)
 )
 
-; 354
+; 358
+(defrule
+	(true)
+=>
+	(up-modify-goal 505 c:= 359)
+	(up-jump-direct c: 450)
+)
+
+; 359
 (defrule
 	(true)
 =>
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 479 c:= 357)
+	(up-modify-goal 479 c:= 362)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 4)
 	(up-modify-goal 502 c:= 480)
 	(up-set-indirect-goal g: 502 g: 501)
 )
 
-; 355
+; 360
 (defrule
 	(up-compare-goal 480 c:>= 479)
 =>
@@ -5961,15 +5831,15 @@
 	(up-modify-goal 480 g:+ 510)
 )
 
-; 356
+; 361
 (defrule
 	(true)
 =>
 	(up-modify-goal 510 c:+ 10)
-	(up-jump-direct c: 186)
+	(up-jump-direct c: 188)
 )
 
-; 357
+; 362
 (defrule
 	(true)
 =>
@@ -5977,11 +5847,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 358)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 363)
+	(up-jump-direct c: 450)
 )
 
-; 358
+; 363
 (defrule
 	(true)
 =>
@@ -5998,14 +5868,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 359
+; 364
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 362)
+	(up-jump-direct c: 367)
 )
 
-; 360
+; 365
 (defrule
 	(true)
 =>
@@ -6013,14 +5883,14 @@
 	(up-jump-direct g: 479)
 )
 
-; 361
+; 366
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 366)
+	(up-jump-direct c: 371)
 )
 
-; 362
+; 367
 (defrule
 	(true)
 =>
@@ -6034,20 +5904,20 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 363
+; 368
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 366)
+	(up-jump-direct c: 371)
 )
 
-; 364
+; 369
 (defrule
 	(true)
 =>
 	(up-modify-goal 484 g:= 480)
 	(up-modify-goal 501 c:= 483)
-	(up-modify-goal 502 c:= 441)
+	(up-modify-goal 502 c:= 443)
 	(up-modify-goal 505 g:= 482)
 	(up-modify-goal 505 c:* 3)
 	(up-modify-goal 505 c:+ 1)
@@ -6062,7 +5932,7 @@
 	(up-modify-goal 502 c:+ 1)
 )
 
-; 365
+; 370
 (defrule
 	(true)
 =>
@@ -6072,17 +5942,17 @@
 	(up-jump-direct g: 479)
 )
 
-; 366
+; 371
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 482)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 482 g:= 496)
-	(up-jump-direct c: 350)
+	(up-jump-direct c: 354)
 )
 
-; 367
+; 372
 (defrule
 	(true)
 =>
@@ -6091,22 +5961,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 368
+; 373
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 369
+; 374
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 370
+; 375
 (defrule
 	(true)
 =>
@@ -6123,30 +5993,33 @@
 	(up-jump-direct g: 479)
 )
 
-; 371
+; 376
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 372
+; 377
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 373
+; 378
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 508 c:= 481)
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 374
+; 379
 (defrule
 	(true)
 =>
@@ -6158,14 +6031,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 375
+; 380
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 378)
+	(up-jump-direct c: 383)
 )
 
-; 376
+; 381
 (defrule
 	(true)
 =>
@@ -6179,42 +6052,45 @@
 	(up-remove-objects 1 -1 g:== 496)
 )
 
-; 377
+; 382
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 481 g:= 496)
-	(up-jump-direct c: 374)
+	(up-jump-direct c: 379)
 )
 
-; 378
+; 383
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 379
+; 384
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 380
+; 385
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 381
+; 386
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-setup-cost-data 1 482)
 	(up-get-search-state 496)
 	(up-modify-goal 482 g:= 496)
 	(up-modify-goal 483 g:= 497)
@@ -6227,17 +6103,23 @@
 	(up-modify-goal 496 c:max -1)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 496 c:mod 2)
+)
+
+; 387
+(defrule
+	(true)
+=>
 	(up-modify-goal 509 g:= 496)
 )
 
-; 382
+; 388
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 384)
+	(up-jump-direct c: 390)
 )
 
-; 383
+; 389
 (defrule
 	(true)
 =>
@@ -6246,15 +6128,16 @@
 	(up-jump-direct g: 479)
 )
 
-; 384
+; 390
 (defrule
 	(true)
 =>
+	(up-modify-goal 486 c:= 0)
 	(up-modify-goal 508 c:= 486)
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 385
+; 391
 (defrule
 	(true)
 =>
@@ -6266,44 +6149,52 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 386
+; 392
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 389)
+	(up-jump-direct c: 396)
 )
 
-; 387
+; 393
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 486)
 	(up-set-target-object 1 g: 496)
+	(up-modify-goal 487 c:= 0)
 	(up-get-object-data 8 496)
 	(up-modify-goal 487 g:= 496)
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 497 g:= 487)
 	(up-modify-goal 496 g:+ 497)
 	(up-modify-goal 480 g:= 496)
+	(up-modify-goal 487 c:= 0)
 	(up-get-object-data 9 496)
 	(up-modify-goal 487 g:= 496)
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 497 g:= 487)
 	(up-modify-goal 496 g:+ 497)
+)
+
+; 394
+(defrule
+	(true)
+=>
 	(up-modify-goal 481 g:= 496)
 )
 
-; 388
+; 395
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 486)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 486 g:= 496)
-	(up-jump-direct c: 385)
+	(up-jump-direct c: 391)
 )
 
-; 389
+; 396
 (defrule
 	(true)
 =>
@@ -6320,25 +6211,27 @@
 	(up-jump-direct g: 479)
 )
 
-; 390
+; 397
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 391
+; 398
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 392
+; 399
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-setup-cost-data 1 481)
 	(up-modify-goal 508 c:= 480)
 	(up-set-indirect-goal g: 508 c: 0)
 	(up-get-search-state 496)
@@ -6348,7 +6241,7 @@
 	(up-modify-goal 484 g:= 499)
 )
 
-; 393
+; 400
 (defrule
 	(true)
 =>
@@ -6360,14 +6253,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 394
+; 401
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 400)
+	(up-jump-direct c: 407)
 )
 
-; 395
+; 402
 (defrule
 	(true)
 =>
@@ -6388,7 +6281,7 @@
 	(up-modify-goal 496 g:- 497)
 )
 
-; 396
+; 403
 (defrule
 	(true)
 =>
@@ -6398,28 +6291,28 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 397
+; 404
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 399)
+	(up-jump-direct c: 406)
 )
 
-; 398
+; 405
+(defrule
+	(true)
+=>
+	(up-jump-direct c: 407)
+)
+
+; 406
 (defrule
 	(true)
 =>
 	(up-jump-direct c: 400)
 )
 
-; 399
-(defrule
-	(true)
-=>
-	(up-jump-direct c: 393)
-)
-
-; 400
+; 407
 (defrule
 	(true)
 =>
@@ -6427,25 +6320,30 @@
 	(up-jump-direct g: 479)
 )
 
-; 401
+; 408
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 402
+; 409
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 403
+; 410
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-setup-cost-data 1 483)
+	(up-modify-goal 487 c:= 0)
 	(up-modify-goal 496 c:= 100)
 	(up-get-precise-time 0 497)
 	(generate-random-number 32767)
@@ -6456,42 +6354,42 @@
 	(up-modify-goal 497 g:+ 498)
 	(generate-random-number 32767)
 	(up-get-fact 33 0 498)
+)
+
+; 411
+(defrule
+	(true)
+=>
 	(up-modify-goal 497 g:+ 498)
 	(up-modify-goal 497 g:mod 496)
 	(up-modify-goal 487 g:= 497)
 	(up-modify-goal 496 g:= 487)
 	(up-modify-goal 497 c:= 10)
-)
-
-; 404
-(defrule
-	(true)
-=>
 	(up-modify-goal 497 g:- 496)
 	(up-modify-goal 497 c:max 0)
 	(up-modify-goal 497 c:min 1)
 	(up-modify-goal 509 g:= 497)
 )
 
-; 405
+; 412
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 409)
+	(up-jump-direct c: 416)
 )
 
-; 406
+; 413
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 407)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 414)
+	(up-jump-direct c: 450)
 )
 
-; 407
+; 414
 (defrule
 	(true)
 =>
@@ -6499,7 +6397,7 @@
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 485 c:= 0)
-	(up-modify-goal 479 c:= 408)
+	(up-modify-goal 479 c:= 415)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6508,10 +6406,10 @@
 	(up-modify-goal 481 c:= 0)
 	(up-modify-goal 482 c:= -1)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 37)
+	(up-jump-direct c: 38)
 )
 
-; 408
+; 415
 (defrule
 	(true)
 =>
@@ -6519,29 +6417,29 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 409)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 416)
+	(up-jump-direct c: 450)
 )
 
-; 409
+; 416
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 410)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 417)
+	(up-jump-direct c: 450)
 )
 
-; 410
+; 417
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 411)
+	(up-modify-goal 479 c:= 418)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6549,10 +6447,10 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 481 c:= 0)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 26)
+	(up-jump-direct c: 27)
 )
 
-; 411
+; 418
 (defrule
 	(true)
 =>
@@ -6560,15 +6458,17 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 412)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 419)
+	(up-jump-direct c: 450)
 )
 
-; 412
+; 419
 (defrule
 	(true)
 =>
 	(up-modify-goal 481 g:= 475)
+	(up-modify-goal 487 c:= 0)
+	(up-modify-goal 488 c:= 0)
 	(up-modify-goal 496 g:= 481)
 	(up-set-target-by-id g: 496)
 	(up-get-object-data 0 497)
@@ -6578,17 +6478,18 @@
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 496 c:mod 2)
 	(up-modify-goal 487 g:= 496)
+	(up-modify-goal 489 c:= 0)
 	(up-modify-goal 496 c:= 100)
 	(up-get-precise-time 0 497)
-	(generate-random-number 32767)
-	(up-get-fact 33 0 498)
-	(up-modify-goal 497 g:+ 498)
 )
 
-; 413
+; 420
 (defrule
 	(true)
 =>
+	(generate-random-number 32767)
+	(up-get-fact 33 0 498)
+	(up-modify-goal 497 g:+ 498)
 	(generate-random-number 32767)
 	(up-get-fact 33 0 498)
 	(up-modify-goal 497 g:+ 498)
@@ -6601,52 +6502,53 @@
 	(up-modify-goal 497 c:= 75)
 	(up-modify-goal 497 g:- 496)
 	(up-modify-goal 497 c:max 0)
-	(up-modify-goal 497 c:min 1)
-	(up-modify-goal 488 g:= 497)
-	(up-modify-goal 496 g:= 487)
 )
 
-; 414
+; 421
 (defrule
 	(true)
 =>
+	(up-modify-goal 497 c:min 1)
+	(up-modify-goal 488 g:= 497)
+	(up-modify-goal 496 g:= 487)
 	(up-modify-goal 497 g:= 488)
 	(up-modify-goal 496 g:* 497)
 	(up-modify-goal 509 g:= 496)
 )
 
-; 415
+; 422
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 417)
+	(up-jump-direct c: 424)
 )
 
-; 416
+; 423
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 417
+; 424
 (defrule
 	(true)
 =>
+	(up-modify-goal 487 c:= 0)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 418)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 425)
+	(up-jump-direct c: 450)
 )
 
-; 418
+; 425
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 419)
+	(up-modify-goal 479 c:= 426)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6658,10 +6560,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 435)
+	(up-jump-direct c: 442)
 )
 
-; 419
+; 426
 (defrule
 	(true)
 =>
@@ -6669,11 +6571,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 420)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 427)
+	(up-jump-direct c: 450)
 )
 
-; 420
+; 427
 (defrule
 	(true)
 =>
@@ -6687,11 +6589,14 @@
 	(up-modify-goal 484 g:= 497)
 	(up-modify-goal 485 g:= 498)
 	(up-modify-goal 486 g:= 499)
+	(up-modify-goal 487 c:= 0)
+	(up-modify-goal 488 c:= 0)
+	(up-modify-goal 489 c:= 0)
 	(up-modify-goal 508 c:= 487)
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 421
+; 428
 (defrule
 	(true)
 =>
@@ -6703,14 +6608,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 422
+; 429
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 430)
+	(up-jump-direct c: 437)
 )
 
-; 423
+; 430
 (defrule
 	(true)
 =>
@@ -6721,17 +6626,17 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 424)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 431)
+	(up-jump-direct c: 450)
 )
 
-; 424
+; 431
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 425)
+	(up-modify-goal 479 c:= 432)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6743,10 +6648,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 435)
+	(up-jump-direct c: 442)
 )
 
-; 425
+; 432
 (defrule
 	(true)
 =>
@@ -6754,11 +6659,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 426)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 433)
+	(up-jump-direct c: 450)
 )
 
-; 426
+; 433
 (defrule
 	(true)
 =>
@@ -6771,14 +6676,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 427
+; 434
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 429)
+	(up-jump-direct c: 436)
 )
 
-; 428
+; 435
 (defrule
 	(true)
 =>
@@ -6786,28 +6691,28 @@
 	(up-modify-goal 482 g:= 489)
 )
 
-; 429
+; 436
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 487)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 487 g:= 496)
-	(up-jump-direct c: 421)
+	(up-jump-direct c: 428)
 )
 
-; 430
+; 437
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 431)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 438)
+	(up-jump-direct c: 450)
 )
 
-; 431
+; 438
 (defrule
 	(true)
 =>
@@ -6815,7 +6720,7 @@
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 485 c:= 0)
-	(up-modify-goal 479 c:= 433)
+	(up-modify-goal 479 c:= 440)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6828,16 +6733,16 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 432
+; 439
 (defrule
 	(true)
 =>
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 37)
+	(up-jump-direct c: 38)
 )
 
-; 433
+; 440
 (defrule
 	(true)
 =>
@@ -6845,36 +6750,42 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 434)
-	(up-jump-direct c: 442)
+	(up-modify-goal 505 c:= 441)
+	(up-jump-direct c: 450)
 )
 
-; 434
+; 441
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 435
+; 442
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 436
+; 443
 (defrule
-	(up-compare-goal 511 c:> 432)
+	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 445)
+	(up-jump-direct c: 453)
 )
 
-; 437
+; 444
 (defrule
 	(true)
 =>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 485 c:= 0)
 	(up-modify-goal 496 g:= 481)
 	(up-set-target-by-id g: 496)
 	(up-get-object-data 0 497)
@@ -6884,20 +6795,26 @@
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 496 c:mod 2)
 	(up-modify-goal 485 g:= 496)
+)
+
+; 445
+(defrule
+	(true)
+=>
 	(up-modify-goal 497 g:= 485)
 	(up-modify-goal 496 c:= 1)
 	(up-modify-goal 496 g:- 497)
 	(up-modify-goal 509 g:= 496)
 )
 
-; 438
+; 446
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 440)
+	(up-jump-direct c: 448)
 )
 
-; 439
+; 447
 (defrule
 	(true)
 =>
@@ -6906,7 +6823,7 @@
 	(up-jump-direct g: 479)
 )
 
-; 440
+; 448
 (defrule
 	(true)
 =>
@@ -6923,14 +6840,16 @@
 	(up-set-target-point 496)
 	(up-modify-goal 496 g:= 481)
 	(up-set-target-by-id g: 496)
-	(up-get-object-data 44 496)
-	(up-modify-goal 486 g:= 496)
+	(up-modify-goal 485 c:= 0)
+	(up-modify-goal 486 c:= 0)
 )
 
-; 441
+; 449
 (defrule
 	(true)
 =>
+	(up-get-object-data 44 496)
+	(up-modify-goal 486 g:= 496)
 	(up-modify-goal 496 c:= 100)
 	(up-modify-goal 497 g:= 486)
 	(up-modify-goal 496 g:* 497)
@@ -6943,14 +6862,14 @@
 	(up-jump-direct g: 479)
 )
 
-; 442
+; 450
 (defrule
 	(up-compare-goal 503 c:== 0)
 =>
-	(up-jump-direct c: 444)
+	(up-jump-direct c: 452)
 )
 
-; 443
+; 451
 (defrule
 	(true)
 =>
@@ -6959,108 +6878,108 @@
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:+ 1)
 	(up-modify-goal 503 c:- 1)
-	(up-jump-direct c: 442)
+	(up-jump-direct c: 450)
 )
 
-; 444
+; 452
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 505)
 )
 
-; 445
+; 453
 (defrule
 	(up-compare-goal 512 c:== 1)
 =>
 	(chat-to-all "ERROR: STACK OVERFLOW")
 )
 
-; 446
+; 454
 (defrule
 	(up-compare-goal 512 c:== 101)
 =>
 	(chat-to-all "ERROR: Invalid custom object data")
 )
 
-; 447
+; 455
 (defrule
 	(up-compare-goal 512 c:== 102)
 =>
 	(chat-to-all "ERROR: Allocation size < 0")
 )
 
-; 448
+; 456
 (defrule
 	(up-compare-goal 512 c:== 103)
 =>
 	(chat-to-all "ERROR: Memory index < 0")
 )
 
-; 449
+; 457
 (defrule
 	(up-compare-goal 512 c:== 104)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 5")
 )
 
-; 450
+; 458
 (defrule
 	(up-compare-goal 512 c:== 105)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 4")
 )
 
-; 451
+; 459
 (defrule
 	(up-compare-goal 512 c:== 106)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 3")
 )
 
-; 452
+; 460
 (defrule
 	(up-compare-goal 512 c:== 107)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 2")
 )
 
-; 453
+; 461
 (defrule
 	(up-compare-goal 512 c:== 108)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 1")
 )
 
-; 454
+; 462
 (defrule
 	(up-compare-goal 512 c:== 109)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 0")
 )
 
-; 455
+; 463
 (defrule
 	(up-compare-goal 512 c:== 110)
 =>
 	(chat-to-all "ERROR: Not extermination group")
 )
 
-; 456
+; 464
 (defrule
 	(up-compare-goal 512 c:== 111)
 =>
 	(chat-to-all "ERROR: Group local list full")
 )
 
-; 457
+; 465
 (defrule
 	(up-compare-goal 512 c:== 112)
 =>
 	(chat-to-all "ERROR: Invalid player index")
 )
 
-; 458
+; 466
 (defrule
 	(true)
 =>

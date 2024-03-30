@@ -40,8 +40,7 @@ namespace AgeSharp.Scripting.Compiler
             {
                 sb.AppendLine($"#load-if-defined {symbol}");
                 sb.AppendLine($"(defconst SYM-{symbol} 1)");
-                sb.AppendLine("#end-if");
-                sb.AppendLine($"#load-if-not-defined {symbol}");
+                sb.AppendLine("#else");
                 sb.AppendLine($"(defconst SYM-{symbol} 0)");
                 sb.AppendLine("#end-if");
                 sb.AppendLine();

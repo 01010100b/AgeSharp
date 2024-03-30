@@ -105,11 +105,11 @@ namespace AgeSharp.Scripting.Compiler
 
             // first register is return addr
 
-            var max = 1;
+            var max = 1 + GlobalsCount;
 
             foreach (var block in method.GetAllBlocks())
             {
-                max = Math.Max(max, 1 + block.Scope.GetAllScopedVariables().Sum(x => x.Size));
+                max = Math.Max(max, 1 + block.Scope.FullSize);
             }
 
             return max - GlobalsCount;

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using Type = AgeSharp.Scripting.Language.Type;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
@@ -86,7 +87,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
             instructions.Add(new JumpFactInstruction(Memory.MaxStackSpaceUsed, ">=", 0, label_postinit));
             instructions.AddRange(Utils.Clear(Settings.MinGoal, Settings.MaxGoal - Settings.MinGoal + 1));
-            instructions.AddRange(InitializeArrays(Script.GlobalScope));
+            instructions.AddRange(InitializeVariables(Script.GlobalScope));
 
             instructions.Add(label_postinit);
             instructions.Add(new JumpFactInstruction($"up-compare-goal {Memory.Error} c:> {ERROR_NONE}", LabelError));
@@ -102,7 +103,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
 
             instructions.AddRange(Utils.CompileUtils(Memory));
-
             instructions.Add(LabelError);
 
             foreach (var exception in ExceptionStrings.OrderBy(x => x.Value))
@@ -110,10 +110,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 var message = exception.Key;
                 var id = exception.Value;
 
-                instructions.Add(new RuleInstruction($"up-compare-goal {Memory.Error} c:== {id}",
-                [
-                    $"chat-to-all \"ERROR: {message}\""
-                ]));
+                instructions.Add(new RuleInstruction($"up-compare-goal {Memory.Error} c:== {id}", $"chat-to-all \"ERROR: {message}\""));
             }
 
             instructions.Add(LabelEnd);
@@ -133,10 +130,10 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             instructions.Add(MethodLabels[method]);
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.MaxStackSpaceUsed} g:max {Memory.StackPtr}"));
             instructions.Add(new RuleInstruction($"up-compare-goal {Memory.MaxStackSpaceUsed} c:> {Memory.StackLimit}",
-            [
-                $"up-modify-goal {Memory.Error} c:= {ERROR_STACKOVERFLOW}",
-                $"up-jump-direct c: {LabelError.Label}"
-            ]));
+                [
+                    $"up-modify-goal {Memory.Error} c:= {ERROR_STACKOVERFLOW}",
+                    $"up-jump-direct c: {LabelError.Label}"
+                ]));
 
             instructions.AddRange(CompileBlock(method, method.Block, null, null));
 
@@ -146,7 +143,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         private List<Instruction> CompileBlock(Method method, Block block, LabelInstruction? label_break, LabelInstruction? label_continue)
         {
             var instructions = new List<Instruction>();
-            instructions.AddRange(InitializeArrays(block.Scope));
+            instructions.AddRange(InitializeVariables(block.Scope));
 
             foreach (var statement in block.Statements)
             {
@@ -196,7 +193,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                     var label_end = new LabelInstruction();
                     var label_next = new LabelInstruction();
 
-                    instructions.AddRange(InitializeArrays(loop.Scope));
+                    instructions.AddRange(InitializeVariables(loop.Scope));
                     instructions.AddRange(CompileBlock(method, loop.Before, null, null));
                     instructions.Add(label_repeat);
                     instructions.AddRange(CompileExpression(method, new Address(PrimitiveType.Bool, Memory.ConditionGoal, false), loop.Condition));
@@ -374,19 +371,24 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             return instructions;
         }
 
-        private List<Instruction> InitializeArrays(Scope scope)
+        private List<Instruction> InitializeVariables(Scope scope)
         {
             // first goal of array is length
 
             var instructions = new List<Instruction>();
 
-            foreach (var array in scope.Variables.Where(x => x.Type is ArrayType))
+            foreach (var variable in scope.Variables)
             {
-                var addr = Memory.GetAddress(array);
-                var length = ((ArrayType)array.Type).Length;
-
+                var addr = Memory.GetAddress(variable);
                 Debug.Assert(addr.IsDirect);
-                instructions.Add(new CommandInstruction($"up-modify-goal {addr.DirectGoal} c:= {length}"));
+
+                instructions.AddRange(Utils.Clear(addr.DirectGoal, variable.Size));
+
+                if (variable.Type is ArrayType)
+                {
+                    var length = ((ArrayType)variable.Type).Length;
+                    instructions.Add(new CommandInstruction($"up-modify-goal {addr.DirectGoal} c:= {length}"));
+                }
             }
 
             return instructions;

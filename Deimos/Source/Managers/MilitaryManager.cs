@@ -45,6 +45,8 @@ namespace Deimos.Source.Managers
                     group.FilterLocalSearchList();
                     Extermination.Perform(group);
                 }
+
+                Groups[i] = group;
             }
         }
 

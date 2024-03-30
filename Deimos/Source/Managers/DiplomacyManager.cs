@@ -12,7 +12,7 @@ namespace Deimos.Source.Managers
     internal class DiplomacyManager
     {
         [AgeGlobal]
-        private static Array<Int> PlayerStances = new(8);
+        private static readonly Array<Int> PlayerStances = new(8);
 
         [AgeMethod]
         public static Int GetMyPlayerNumber()

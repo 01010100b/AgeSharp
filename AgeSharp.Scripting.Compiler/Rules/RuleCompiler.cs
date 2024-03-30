@@ -12,7 +12,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
 {
     internal class RuleCompiler(IEnumerable<Instruction> instructions, Settings settings)
     {
-        private IEnumerable<Instruction> Instructions { get; } = instructions.ToList();
+        private List<Instruction> Instructions { get; } = instructions.ToList();
         private Settings Settings { get; } = settings;
 
         public List<Rule> Compile()

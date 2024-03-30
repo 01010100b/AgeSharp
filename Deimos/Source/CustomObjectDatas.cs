@@ -15,7 +15,7 @@ namespace Deimos.Source
 
     internal class CustomObjectDatas
     {
-        private const int CUSTOM_DATAS = 3;
+        private const int CUSTOM_DATAS = 1;
 
         [AgeGlobal]
         private static readonly Array<Int> CustomDataPtrs = new(CUSTOM_DATAS);

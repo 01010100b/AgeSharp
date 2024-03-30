@@ -5,6 +5,7 @@ using Type = AgeSharp.Scripting.Language.Type;
 using AgeSharp.Scripting.Language.Expressions;
 using System.Diagnostics;
 using AgeSharp.Scripting.Compiler.Intrinsics.Math;
+using System.Reflection;
 
 namespace AgeSharp.Scripting.Compiler
 {
@@ -267,6 +268,35 @@ namespace AgeSharp.Scripting.Compiler
             instructions.Add(new JumpInstruction(MemCpyLabel));
             instructions.Add(label_return);
 
+            return instructions;
+        }
+
+        public static List<Instruction> GetBinarySearch(Memory memory, string fact, int goal)
+        {
+            const int MIN = 0;
+            const int MAX = 1000;
+
+            var instructions = new List<Instruction>();
+            var label_repeat = new LabelInstruction();
+            var label_end = new LabelInstruction();
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils0} c:= {MIN}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils1} c:= {MAX}"));
+
+            instructions.Add(label_repeat);
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} g:= {memory.Utils1}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} g:- {memory.Utils0}"));
+            instructions.Add(new JumpFactInstruction($"up-compare-goal {memory.Utils2} c:<= 1", label_end));
+
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} g:= {memory.Utils0}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} g:+ {memory.Utils1}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} c:z/ 2"));
+            instructions.Add(new RuleInstruction($"{fact} g:>= {memory.Utils2}", $"up-modify-goal {memory.Utils0} g:= {memory.Utils2}"));
+            instructions.Add(new RuleInstruction($"{fact} g:< {memory.Utils2}", $"up-modify-goal {memory.Utils1} g:= {memory.Utils2}"));
+            instructions.Add(new JumpInstruction(label_repeat));
+
+            instructions.Add(label_end);
+            instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:= {memory.Utils0}"));
+            
             return instructions;
         }
 
