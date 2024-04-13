@@ -21,6 +21,7 @@ namespace Deimos.Source
         {
             TestBitwise();
             TestPoints();
+            Int t = TestInline(123, 456);
         }
 
         [AgeMethod]
@@ -64,6 +65,19 @@ namespace Deimos.Source
         private static void TestPoints()
         {
             Point a;
+        }
+
+        [AgeMethod]
+        private static Int TestInline(Int a, Int b)
+        {
+            if (a > b)
+            {
+                return 111;
+            }
+            else
+            {
+                return 222;
+            }
         }
     }
 }

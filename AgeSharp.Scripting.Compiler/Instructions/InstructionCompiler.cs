@@ -28,6 +28,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         private Memory Memory { get; } = memory;
         private Settings Settings { get; } = settings;
         private Dictionary<Method, LabelInstruction> MethodLabels { get; } = [];
+        private Dictionary<Block, LabelInstruction> BlockSkipLabels { get; } = [];
         private Dictionary<string, int> ExceptionStrings { get; } = [];
 
         public List<Instruction> Compile()
@@ -80,6 +81,16 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             foreach (var method in methods)
             {
                 MethodLabels.Add(method, new());
+            }
+
+            BlockSkipLabels.Clear();
+
+            foreach (var skip in methods.SelectMany(x => x.GetAllBlocks().SelectMany(x => x.Statements).OfType<SkipStatement>()))
+            {
+                if (!BlockSkipLabels.ContainsKey(skip.Block))
+                {
+                    BlockSkipLabels.Add(skip.Block, new());
+                }
             }
 
             var instructions = new List<Instruction>();
@@ -150,6 +161,10 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 if (statement is Block innerblock)
                 {
                     instructions.AddRange(CompileBlock(method, innerblock, label_break, label_continue));
+                }
+                else if (statement is SkipStatement skip)
+                {
+                    instructions.Add(new JumpInstruction(BlockSkipLabels[skip.Block]));
                 }
                 else if (statement is AssignStatement assign)
                 {
@@ -236,6 +251,11 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 }
             }
 
+            if (BlockSkipLabels.TryGetValue(block, out LabelInstruction? label))
+            {
+                instructions.Add(label);
+            }
+
             return instructions;
         }
 
@@ -261,7 +281,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
                 return instructions;
             }
-            if (expression is AccessorExpression ae)
+            else if (expression is AccessorExpression ae)
             {
                 if (result is null)
                 {
@@ -327,11 +347,12 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         {
             var instructions = new List<Instruction>();
             var par_addr = Memory.GetAddress(parameter);
+            Debug.Assert(par_addr.IsDirect);
 
             if (argument is ConstExpression argc)
             {
                 Throw.If<NotSupportedException>(parameter.Type is RefType, $"Can not assign const to ref parameter {parameter.Name}");
-                instructions.Add(new CommandInstruction($"up-modify-goal {par_addr.Goal} c:= {argc.Value}"));
+                instructions.Add(new CommandInstruction($"up-modify-goal {par_addr.DirectGoal} c:= {argc.Value}"));
 
                 return instructions;
             }
@@ -384,9 +405,9 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
                 instructions.AddRange(Utils.Clear(addr.DirectGoal, variable.Size));
 
-                if (variable.Type is ArrayType)
+                if (variable.Type is ArrayType type)
                 {
-                    var length = ((ArrayType)variable.Type).Length;
+                    var length = type.Length;
                     instructions.Add(new CommandInstruction($"up-modify-goal {addr.DirectGoal} c:= {length}"));
                 }
             }

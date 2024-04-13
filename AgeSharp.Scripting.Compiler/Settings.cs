@@ -15,6 +15,7 @@ namespace AgeSharp.Scripting.Compiler
         public int MaxGoal { get; set; } = 512;
         public int MaxRuleCommands { get; set; } = 16;
         public bool CompileUnusedMethods { get; set; } = true;
+        public double InlineThreshold { get; set; } = 5;
         public List<string> SystemSymbols { get; } = GetStandardSymbols();
 
         public void Validate()

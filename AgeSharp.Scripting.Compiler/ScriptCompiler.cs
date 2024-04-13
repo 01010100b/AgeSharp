@@ -41,6 +41,7 @@ namespace AgeSharp.Scripting.Compiler
             script.Validate();
             settings.Validate();
             Transformer.Transform(script, settings);
+            Inliner.Inline(script, settings);
 
             var memory = new Memory(script, settings);
 

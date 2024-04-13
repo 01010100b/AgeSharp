@@ -13,6 +13,8 @@ namespace AgeSharp.Scripting.Compiler
 {
     internal static class Transformer
     {
+        // array indices and call arguments are at most direct variable accesses
+
         public static void Transform(Script script, Settings settings)
         {
             foreach (var method in script.Methods.Where(x => x is not Intrinsic))
