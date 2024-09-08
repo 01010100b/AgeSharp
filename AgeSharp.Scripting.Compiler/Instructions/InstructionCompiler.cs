@@ -125,6 +125,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
             }
 
             instructions.Add(LabelEnd);
+            InstructionOptimizer.Optimize(instructions);
 
             return instructions;
         }
