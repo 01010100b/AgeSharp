@@ -1,16 +1,8 @@
 ﻿using AgeSharp.Common;
 using AgeSharp.Scripting.Language;
-using AgeSharp.Scripting.Language.Statements;
 using AgeSharp.Scripting.Language.Types;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Type = AgeSharp.Scripting.Language.Type;
 
 namespace AgeSharp.Scripting.SharpParser
@@ -48,7 +40,7 @@ namespace AgeSharp.Scripting.SharpParser
             if (IsArrayType(named))
             {
                 var etype = named.TypeArguments.Single();
-                
+
                 if (etype is not INamedTypeSymbol enamed)
                 {
                     throw new NotSupportedException($"Array type {symbol.Name} when element type {etype.Name} is not named type.");

@@ -1,11 +1,4 @@
-﻿using AgeSharp.Common;
-using AgeSharp.Scripting.Language;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Type = AgeSharp.Scripting.Language.Type;
 
 namespace AgeSharp.Scripting.Compiler

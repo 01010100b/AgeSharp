@@ -2,12 +2,6 @@
 using AgeSharp.Scripting.Language.Types;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.SharpParser
 {
@@ -31,7 +25,7 @@ namespace AgeSharp.Scripting.SharpParser
                 var type = new CompoundType(symbol.ToString()!);
                 parse.Script.AddType(type);
                 parse.AddType(symbol, type);
-                
+
             }
 
             foreach (var symbol in types)

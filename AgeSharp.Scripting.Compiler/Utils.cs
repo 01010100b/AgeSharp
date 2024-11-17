@@ -1,11 +1,7 @@
 ﻿using AgeSharp.Scripting.Compiler.Instructions;
-using AgeSharp.Scripting.Language.Types;
-using AgeSharp.Scripting.Language;
-using Type = AgeSharp.Scripting.Language.Type;
 using AgeSharp.Scripting.Language.Expressions;
+using AgeSharp.Scripting.Language.Types;
 using System.Diagnostics;
-using AgeSharp.Scripting.Compiler.Intrinsics.Math;
-using System.Reflection;
 
 namespace AgeSharp.Scripting.Compiler
 {
@@ -33,7 +29,7 @@ namespace AgeSharp.Scripting.Compiler
                     from++;
                     length--;
                 }
-                
+
             }
 
             return instructions;
@@ -162,7 +158,7 @@ namespace AgeSharp.Scripting.Compiler
                         var ptraddr = new Address(PrimitiveType.Void, memory.Utils5, true);
                         instructions.AddRange(MemCpy(memory, from, ptraddr, trt.ReferencedType.Size));
                     }
-                    
+
                 }
                 else
                 {
@@ -245,7 +241,7 @@ namespace AgeSharp.Scripting.Compiler
 
             instructions.AddRange(GetPointer(memory, from, memory.Utils0));
             instructions.AddRange(GetPointer(memory, to, memory.Utils1));
-            
+
             if (length < 5)
             {
                 for (int i = 0; i < length; i++)
@@ -271,16 +267,13 @@ namespace AgeSharp.Scripting.Compiler
             return instructions;
         }
 
-        public static List<Instruction> GetBinarySearch(Memory memory, string fact, int goal)
+        public static List<Instruction> GetBinarySearch(Memory memory, string fact, int goal, int min = 0, int max = 1000)
         {
-            const int MIN = 0;
-            const int MAX = 1000;
-
             var instructions = new List<Instruction>();
             var label_repeat = new LabelInstruction();
             var label_end = new LabelInstruction();
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils0} c:= {MIN}"));
-            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils1} c:= {MAX}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils0} c:= {min}"));
+            instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils1} c:= {max}"));
 
             instructions.Add(label_repeat);
             instructions.Add(new CommandInstruction($"up-modify-goal {memory.Utils2} g:= {memory.Utils1}"));
@@ -296,7 +289,7 @@ namespace AgeSharp.Scripting.Compiler
 
             instructions.Add(label_end);
             instructions.Add(new CommandInstruction($"up-modify-goal {goal} g:= {memory.Utils0}"));
-            
+
             return instructions;
         }
 

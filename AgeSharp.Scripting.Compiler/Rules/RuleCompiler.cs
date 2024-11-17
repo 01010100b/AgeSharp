@@ -1,12 +1,5 @@
-﻿using AgeSharp.Common;
-using AgeSharp.Scripting.Compiler.Instructions;
-using System;
-using System.Collections.Generic;
+﻿using AgeSharp.Scripting.Compiler.Instructions;
 using System.Diagnostics;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Rules
 {
@@ -16,7 +9,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
         private Settings Settings { get; } = settings;
 
         public List<Rule> Compile()
-        { 
+        {
             var rules = new List<Rule>();
             var current = new Rule();
 
@@ -61,7 +54,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
                         rules.Add(current);
                         current = new();
                     }
-                    
+
                     current.Facts.Add(jf.Fact);
                     current.Actions.Add($"up-jump-direct c: {jf.Label.Label}");
                     rules.Add(current);

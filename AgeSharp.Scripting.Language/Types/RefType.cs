@@ -1,11 +1,4 @@
-﻿using AgeSharp.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AgeSharp.Scripting.Language.Types
+﻿namespace AgeSharp.Scripting.Language.Types
 {
     public class RefType(Type type) : Type($"ref {type.Name}")
     {

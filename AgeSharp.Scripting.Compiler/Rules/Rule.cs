@@ -1,9 +1,4 @@
-﻿using AgeSharp.Scripting.Language;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace AgeSharp.Scripting.Compiler.Rules
 {
@@ -21,7 +16,7 @@ namespace AgeSharp.Scripting.Compiler.Rules
         public override string ToString()
         {
             var sb = new StringBuilder();
-            
+
             foreach (var comment in Comments)
             {
                 sb.AppendLine($"; {comment}");

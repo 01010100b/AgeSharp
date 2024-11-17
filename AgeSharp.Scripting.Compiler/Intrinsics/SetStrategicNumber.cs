@@ -1,12 +1,6 @@
-﻿using AgeSharp.Common;
-using AgeSharp.Scripting.Compiler.Instructions;
+﻿using AgeSharp.Scripting.Compiler.Instructions;
 using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Expressions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics
 {

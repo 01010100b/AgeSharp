@@ -1,10 +1,5 @@
 ﻿using AgeSharp.Common;
 using AgeSharp.Scripting.SharpParser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
 namespace Deimos.Source.Utils
@@ -23,13 +18,13 @@ namespace Deimos.Source.Utils
             }
 
             var current_target = CustomObjectDatas.Get(id, CustomObjectData.TARGET);
-            
+
             if (ObjectExists(current_target) && GetRandom(100) < 75)
             {
                 // too expensive to retarget everyone every tick
                 return;
             }
-            
+
             var current_score = GetTargetScore(id, current_target) + CURRENT_TARGET_SCORE;
 
             var search_state = GetSearchState();

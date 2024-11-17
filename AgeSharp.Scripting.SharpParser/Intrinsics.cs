@@ -1,10 +1,4 @@
 ﻿using AgeSharp.Common;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.SharpParser
 {
@@ -26,7 +20,7 @@ namespace AgeSharp.Scripting.SharpParser
         #endregion
 
         #region Math
-        
+
         public static Bool Equals(Int a, Int b) => throw new Exception();
         public static Bool NotEquals(Int a, Int b) => throw new Exception();
         public static Bool LessThan(Int a, Int b) => throw new Exception();
@@ -57,7 +51,7 @@ namespace AgeSharp.Scripting.SharpParser
         #endregion
 
         #region DUC
-        
+
         public static void FullResetSearch() => throw new Exception();
         public static void ResetFilters() => throw new Exception();
         public static void ResetSearch(Bool local_index, Bool local_list, Bool remote_index, Bool remote_list) => throw new Exception();
@@ -86,14 +80,14 @@ namespace AgeSharp.Scripting.SharpParser
         #endregion
 
         #region Players
-        
+
         public static Int GetPlayerFact(Int player, FactId fact, Int parameter) => throw new Exception();
         public static Int GetPlayerStance(Int player) => throw new Exception();
 
         #endregion
 
         #region Points
-        
+
         public static Bool EqualsPoint(Point a, Point b) => throw new Exception();
         public static Bool NotEqualsPoint(Point a, Point b) => throw new Exception();
         public static Point AddPoint(Point a, Point b) => throw new Exception();

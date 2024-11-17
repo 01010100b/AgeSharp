@@ -1,11 +1,6 @@
 ﻿using AgeSharp.Scripting.Compiler.Instructions;
-using AgeSharp.Scripting.Language.Expressions;
 using AgeSharp.Scripting.Language;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AgeSharp.Scripting.Language.Expressions;
 
 namespace AgeSharp.Scripting.Compiler.Intrinsics.Math
 {

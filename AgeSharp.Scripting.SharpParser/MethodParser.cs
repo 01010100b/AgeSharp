@@ -7,15 +7,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace AgeSharp.Scripting.SharpParser
 {
@@ -33,7 +24,7 @@ namespace AgeSharp.Scripting.SharpParser
                 {
                     var symbol = model.GetDeclaredSymbol(method) ?? throw new Exception($"Can not find symbol for method {method.Identifier.ValueText}.");
                     var attr = symbol.GetAttributes().FirstOrDefault(x => x.AttributeClass!.Name == nameof(AgeMethodAttribute));
-                    
+
                     if (attr is null)
                     {
                         continue;
@@ -70,7 +61,7 @@ namespace AgeSharp.Scripting.SharpParser
             if (return_type is ArrayType) throw new NotSupportedException($"Method {name} returns array.");
 
             var method = new Method(parse.Script) { Name = name, ReturnType = return_type };
-            
+
             if (!symbol.IsStatic)
             {
                 var type = parse.Script.GetRefType(parse.GetType(symbol.ContainingType));
@@ -83,7 +74,7 @@ namespace AgeSharp.Scripting.SharpParser
                 var pname = parameter.Name;
                 var type = parse.GetType(parameter.Type);
                 var isref = type is ArrayType;
-                
+
                 if (parameter.HasExplicitDefaultValue) throw new NotSupportedException($"Method {name} parameter {pname} has default value.");
 
                 switch (parameter.RefKind)
@@ -98,7 +89,7 @@ namespace AgeSharp.Scripting.SharpParser
                 {
                     type = parse.Script.GetRefType(type);
                 }
-                
+
                 var v = new Variable(pname, type);
                 method.AddParameter(v);
                 parse.AddParameter(parameter, v);
@@ -321,7 +312,7 @@ namespace AgeSharp.Scripting.SharpParser
                 if (create.Type!.ToString() != "AgeSharp.Scripting.SharpParser.AgeException") throw new NotSupportedException($"Throw {thrw.Syntax} not AgeException.");
                 if (create.Arguments.Single().Value is not ILiteralOperation literal) throw new NotSupportedException($"Throw {thrw.Syntax} argument not a string literal.");
                 if (!literal.ConstantValue.HasValue) throw new NotSupportedException($"Throw {thrw.Syntax} argument not a constant.");
-                
+
                 var message = (string)literal.ConstantValue.Value!;
                 block.Statements.Add(new ThrowStatement(block.Scope, message));
             }
@@ -430,7 +421,7 @@ namespace AgeSharp.Scripting.SharpParser
                         {
                             if (i != 0) throw new NotSupportedException($"Call to method {m.Name} with string literal not as first argument.");
                             if (!literal.ConstantValue.HasValue) throw new NotSupportedException($"String literal must be constant.");
-                            
+
                             var lit = (string)literal.ConstantValue.Value!;
                             callexpr = new CallExpression(m, lit);
                         }
@@ -538,7 +529,7 @@ namespace AgeSharp.Scripting.SharpParser
                 if (type is ArrayType)
                 {
                     if (init is null) throw new NotSupportedException($"Array {name} without init.");
-                    
+
                     if (init.Value is IObjectCreationOperation create)
                     {
                         var value = create.Arguments.Single().Value;

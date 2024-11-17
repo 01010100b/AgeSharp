@@ -1,11 +1,6 @@
 ﻿using AgeSharp.Common;
 using AgeSharp.Scripting.SharpParser;
 using Deimos.Source.Groups;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static AgeSharp.Scripting.SharpParser.Intrinsics;
 
 namespace Deimos.Source.Managers
@@ -72,7 +67,7 @@ namespace Deimos.Source.Managers
                     // only ranged units for now
                     continue;
                 }
-                
+
                 var id = GetObjectData(ObjectData.ID);
                 var group_id = GetOrAssignGroup(GROUP_EXTERMINATION, 100);
 
@@ -93,7 +88,7 @@ namespace Deimos.Source.Managers
             for (Int i = 0; i < Groups.Length; i++)
             {
                 var group = Groups[i];
-                
+
                 if (group.Type == type && group.GetCount() < max_count)
                 {
                     return i;

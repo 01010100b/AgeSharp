@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace AgeSharp.Common
 {
     public static class Throw
     {
         public static void IfNull<T>([NotNull] object? obj, string message) where T : Exception => If<T>(obj is null, message);
-        public static void IfNotNull<T>(object? obj, string message) where T : Exception => If<T>(obj is not null, message);
 
         public static void If<T>([DoesNotReturnIf(true)] bool condition, string message) where T : Exception
         {

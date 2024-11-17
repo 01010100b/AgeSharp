@@ -1,9 +1,5 @@
 ﻿using AgeSharp.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Types
 {
@@ -16,7 +12,7 @@ namespace AgeSharp.Scripting.Language.Types
         {
             if (Fields.Select(x => x.Name).Contains(field.Name)) throw new Exception($"Type {Name} already has field {field.Name}.");
 
-            ((List<Field>) Fields).Add(field);
+            ((List<Field>)Fields).Add(field);
         }
 
         public int GetOffset(Field field)

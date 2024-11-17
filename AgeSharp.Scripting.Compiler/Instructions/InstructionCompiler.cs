@@ -1,18 +1,9 @@
 ﻿using AgeSharp.Common;
-using AgeSharp.Scripting.Compiler.Intrinsics.Math;
 using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Expressions;
 using AgeSharp.Scripting.Language.Statements;
 using AgeSharp.Scripting.Language.Types;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Type = AgeSharp.Scripting.Language.Type;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
@@ -28,7 +19,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
         private Memory Memory { get; } = memory;
         private Settings Settings { get; } = settings;
         private Dictionary<Method, LabelInstruction> MethodLabels { get; } = [];
-        private Dictionary<Block, LabelInstruction> BlockSkipLabels { get; } = [];
         private Dictionary<string, int> ExceptionStrings { get; } = [];
 
         public List<Instruction> Compile()
@@ -83,16 +73,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 MethodLabels.Add(method, new());
             }
 
-            BlockSkipLabels.Clear();
-
-            foreach (var skip in methods.SelectMany(x => x.GetAllBlocks().SelectMany(x => x.Statements).OfType<SkipStatement>()))
-            {
-                if (!BlockSkipLabels.ContainsKey(skip.Block))
-                {
-                    BlockSkipLabels.Add(skip.Block, new());
-                }
-            }
-
             var instructions = new List<Instruction>();
             var label_postinit = new LabelInstruction();
 
@@ -102,7 +82,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
             instructions.Add(label_postinit);
             instructions.Add(new JumpFactInstruction($"up-compare-goal {Memory.Error} c:> {ERROR_NONE}", LabelError));
-            
+
             instructions.AddRange(Utils.Clear(Memory.RegistersBase, Memory.RegistersCount));
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:= {Memory.InitialStackPtr}"));
             instructions.Add(new CommandInstruction($"up-modify-goal {Memory.ReturnAddressGoal} c:= {LabelEnd.Label}"));
@@ -162,10 +142,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 if (statement is Block innerblock)
                 {
                     instructions.AddRange(CompileBlock(method, innerblock, label_break, label_continue));
-                }
-                else if (statement is SkipStatement skip)
-                {
-                    instructions.Add(new JumpInstruction(BlockSkipLabels[skip.Block]));
                 }
                 else if (statement is AssignStatement assign)
                 {
@@ -252,11 +228,6 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 }
             }
 
-            if (BlockSkipLabels.TryGetValue(block, out LabelInstruction? label))
-            {
-                instructions.Add(label);
-            }
-
             return instructions;
         }
 
@@ -329,7 +300,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 instructions.Add(label_return);
                 instructions.Add(new CommandInstruction($"up-modify-goal {Memory.StackPtr} c:- {caller_registercount}"));
                 instructions.AddRange(Utils.MemCpy(Memory, stack_addr, registers_addr, caller_registercount));
-                
+
                 if (result is not null)
                 {
                     var call_result_addr = new Address(call.Method.ReturnType, Memory.CallResultBase, false);

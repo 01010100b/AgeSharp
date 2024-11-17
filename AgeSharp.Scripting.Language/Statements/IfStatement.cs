@@ -1,9 +1,5 @@
 ﻿using AgeSharp.Scripting.Language.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Statements
 {
@@ -36,7 +32,7 @@ namespace AgeSharp.Scripting.Language.Statements
         public override void Validate()
         {
             if (Condition.Type != PrimitiveType.Bool) throw new NotSupportedException($"If condition does not have type Bool.");
-            
+
             ValidateExpression(Condition);
         }
 

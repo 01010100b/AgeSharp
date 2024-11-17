@@ -111,7 +111,7 @@ class Program
         {
             File.Delete(file);
         }
-        
+
         File.WriteAllText(file, result.ToString());
         var psinfo = new ProcessStartInfo() { FileName = file, UseShellExecute = true };
         Process.Start(psinfo);

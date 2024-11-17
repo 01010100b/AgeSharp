@@ -2,12 +2,7 @@
 using AgeSharp.Scripting.Compiler.Rules;
 using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Expressions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler
 {

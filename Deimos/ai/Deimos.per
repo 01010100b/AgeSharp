@@ -1977,7 +1977,7 @@
 (defrule
 	(up-compare-goal 512 c:> 0)
 =>
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
 ; 14
@@ -1989,7 +1989,7 @@
 	(up-setup-cost-data 1 487)
 	(up-setup-cost-data 1 491)
 	(up-modify-goal 510 c:= 1)
-	(up-modify-goal 479 c:= 471)
+	(up-modify-goal 479 c:= 470)
 	(up-modify-goal 511 g:max 510)
 )
 
@@ -1998,7 +1998,7 @@
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
 ; 16
@@ -2022,23 +2022,21 @@
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 21)
+	(up-jump-direct c: 20)
 )
 
 ; 18
 (defrule
 	(true)
 =>
-	(xs-script-call "Memory_Initialize")
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 479 c:= 19)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 51)
+	(up-jump-direct c: 67)
 )
 
 ; 19
@@ -2050,91 +2048,42 @@
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 479 c:= 20)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 301)
 )
 
 ; 20
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 21)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 107)
 )
 
 ; 21
 (defrule
 	(true)
 =>
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
+	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 479 c:= 22)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 123)
+	(up-jump-direct c: 63)
 )
 
 ; 22
-(defrule
-	(true)
-=>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 23)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 284)
-)
-
-; 23
-(defrule
-	(true)
-=>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 487 c:= 0)
-	(up-modify-goal 488 c:= 0)
-	(up-modify-goal 479 c:= 25)
-	(up-modify-goal 510 c:+ 1)
-)
-
-; 24
-(defrule
-	(true)
-=>
-	(up-jump-direct c: 310)
-)
-
-; 25
 (defrule
 	(true)
 =>
@@ -2150,14 +2099,14 @@
 	(up-set-indirect-goal g: 508 c: 1)
 )
 
-; 26
+; 23
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 28)
+	(up-jump-direct c: 25)
 )
 
-; 27
+; 24
 (defrule
 	(true)
 =>
@@ -2167,7 +2116,7 @@
 	(up-chat-data-to-self "Duration %d" g: 496)
 )
 
-; 28
+; 25
 (defrule
 	(true)
 =>
@@ -2177,22 +2126,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 29
+; 26
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 30
+; 27
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 31
+; 28
 (defrule
 	(true)
 =>
@@ -2213,7 +2162,7 @@
 	(up-modify-goal 496 g:- 497)
 )
 
-; 32
+; 29
 (defrule
 	(true)
 =>
@@ -2227,22 +2176,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 33
+; 30
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 35)
+	(up-jump-direct c: 32)
 )
 
-; 34
+; 31
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 101)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 35
+; 32
 (defrule
 	(true)
 =>
@@ -2258,18 +2207,18 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 6)
-	(up-modify-goal 505 c:= 36)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 33)
+	(up-jump-direct c: 454)
 )
 
-; 36
+; 33
 (defrule
 	(true)
 =>
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 479 c:= 38)
+	(up-modify-goal 479 c:= 35)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 4)
 	(up-modify-goal 502 c:= 480)
@@ -2283,14 +2232,14 @@
 	(up-modify-goal 510 c:+ 6)
 )
 
-; 37
+; 34
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 99)
+	(up-jump-direct c: 95)
 )
 
-; 38
+; 35
 (defrule
 	(true)
 =>
@@ -2298,11 +2247,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 6)
-	(up-modify-goal 505 c:= 39)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 36)
+	(up-jump-direct c: 454)
 )
 
-; 39
+; 36
 (defrule
 	(true)
 =>
@@ -2310,22 +2259,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 40
+; 37
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 41
+; 38
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 42
+; 39
 (defrule
 	(true)
 =>
@@ -2346,7 +2295,7 @@
 	(up-modify-goal 497 g:= 471)
 )
 
-; 43
+; 40
 (defrule
 	(true)
 =>
@@ -2361,22 +2310,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 44
+; 41
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 46)
+	(up-jump-direct c: 43)
 )
 
-; 45
+; 42
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 101)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 46
+; 43
 (defrule
 	(true)
 =>
@@ -2392,16 +2341,16 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 47)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 44)
+	(up-jump-direct c: 454)
 )
 
-; 47
+; 44
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 49)
+	(up-modify-goal 479 c:= 46)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 5)
 	(up-modify-goal 502 c:= 480)
@@ -2417,17 +2366,17 @@
 	(up-modify-goal 502 c:= 482)
 )
 
-; 48
+; 45
 (defrule
 	(true)
 =>
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 7)
-	(up-jump-direct c: 105)
+	(up-jump-direct c: 101)
 )
 
-; 49
+; 46
 (defrule
 	(true)
 =>
@@ -2435,33 +2384,33 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 50)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 47)
+	(up-jump-direct c: 454)
 )
 
-; 50
+; 47
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 51
+; 48
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 52
+; 49
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 53
+; 50
 (defrule
 	(true)
 =>
@@ -2470,7 +2419,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 54
+; 51
 (defrule
 	(true)
 =>
@@ -2482,14 +2431,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 55
+; 52
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 59)
+	(up-jump-direct c: 56)
 )
 
-; 56
+; 53
 (defrule
 	(true)
 =>
@@ -2503,13 +2452,13 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 479 c:= 57)
+	(up-modify-goal 479 c:= 54)
 	(up-modify-goal 480 c:= 100000)
 	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 90)
+	(up-jump-direct c: 86)
 )
 
-; 57
+; 54
 (defrule
 	(true)
 =>
@@ -2530,7 +2479,7 @@
 	(up-modify-goal 502 g:+ 505)
 )
 
-; 58
+; 55
 (defrule
 	(true)
 =>
@@ -2539,13 +2488,36 @@
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 480 g:= 496)
-	(up-jump-direct c: 54)
+	(up-jump-direct c: 51)
+)
+
+; 56
+(defrule
+	(true)
+=>
+	(up-jump-direct g: 479)
+)
+
+; 57
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 58
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 457)
 )
 
 ; 59
 (defrule
 	(true)
 =>
+	(up-modify-goal 475 g:= 473)
 	(up-jump-direct g: 479)
 )
 
@@ -2561,14 +2533,16 @@
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
 ; 62
 (defrule
 	(true)
 =>
-	(up-modify-goal 475 g:= 473)
+	(up-modify-goal 496 g:= 474)
+	(up-get-precise-time 496 497)
+	(up-modify-goal 475 g:= 497)
 	(up-jump-direct g: 479)
 )
 
@@ -2584,35 +2558,10 @@
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
 ; 65
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 g:= 474)
-	(up-get-precise-time 496 497)
-	(up-modify-goal 475 g:= 497)
-	(up-jump-direct g: 479)
-)
-
-; 66
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 67
-(defrule
-	(up-compare-goal 511 c:> 434)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
-)
-
-; 68
 (defrule
 	(true)
 =>
@@ -2620,14 +2569,54 @@
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 69)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 66)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 284)
+	(up-jump-direct c: 78)
+)
+
+; 66
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-jump-direct g: 479)
+)
+
+; 67
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 68
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 457)
 )
 
 ; 69
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 70)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 83)
+)
+
+; 70
 (defrule
 	(true)
 =>
@@ -2640,19 +2629,11 @@
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 487 c:= 0)
-	(up-modify-goal 488 c:= 0)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 479 c:= 71)
 	(up-modify-goal 510 c:+ 1)
-)
-
-; 70
-(defrule
-	(true)
-=>
-	(up-jump-direct c: 310)
+	(up-jump-direct c: 48)
 )
 
 ; 71
@@ -2664,41 +2645,17 @@
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-jump-direct g: 479)
-)
-
-; 72
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 73
-(defrule
-	(up-compare-goal 511 c:> 434)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
-)
-
-; 74
-(defrule
-	(true)
-=>
-	(xs-script-call "Memory_Initialize")
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 479 c:= 75)
+	(up-modify-goal 479 c:= 72)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 51)
+	(up-jump-direct c: 73)
 )
 
-; 75
+; 72
 (defrule
 	(true)
 =>
@@ -2707,15 +2664,36 @@
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
+	(up-jump-direct g: 479)
+)
+
+; 73
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 74
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 457)
+)
+
+; 75
+(defrule
+	(true)
+=>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 479 c:= 0)
 	(up-modify-goal 479 c:= 76)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 301)
+	(up-jump-direct c: 269)
 )
 
 ; 76
@@ -2727,85 +2705,63 @@
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-jump-direct g: 479)
-)
-
-; 77
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 78
-(defrule
-	(up-compare-goal 511 c:> 434)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
-)
-
-; 79
-(defrule
-	(true)
-=>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 479 c:= 80)
+	(up-modify-goal 479 c:= 77)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 301)
+	(up-jump-direct c: 292)
+)
+
+; 77
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-jump-direct g: 479)
+)
+
+; 78
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 79
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 457)
 )
 
 ; 80
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 1)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-jump-direct g: 479)
+	(up-setup-cost-data 1 479)
+	(up-setup-cost-data 1 483)
+	(up-modify-goal 479 c:= 81)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 272)
 )
 
 ; 81
 (defrule
 	(true)
 =>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 82
-(defrule
-	(up-compare-goal 511 c:> 434)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
-)
-
-; 83
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 84)
-	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 284)
-)
-
-; 84
-(defrule
-	(true)
-=>
 	(up-modify-goal 510 c:- 1)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
@@ -2816,21 +2772,13 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 487 c:= 0)
-	(up-modify-goal 488 c:= 0)
-	(up-modify-goal 479 c:= 86)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 479 c:= 82)
 	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 301)
 )
 
-; 85
-(defrule
-	(true)
-=>
-	(up-jump-direct c: 310)
-)
-
-; 86
+; 82
 (defrule
 	(true)
 =>
@@ -2842,22 +2790,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 87
+; 83
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 88
+; 84
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 89
+; 85
 (defrule
 	(true)
 =>
@@ -2865,22 +2813,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 90
+; 86
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 91
+; 87
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 92
+; 88
 (defrule
 	(true)
 =>
@@ -2893,22 +2841,22 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 93
+; 89
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 95)
+	(up-jump-direct c: 91)
 )
 
-; 94
+; 90
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 102)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 95
+; 91
 (defrule
 	(true)
 =>
@@ -2920,22 +2868,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 96
+; 92
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 97
+; 93
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 98
+; 94
 (defrule
 	(true)
 =>
@@ -2946,22 +2894,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 99
+; 95
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 100
+; 96
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 101
+; 97
 (defrule
 	(true)
 =>
@@ -2975,22 +2923,22 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 102
+; 98
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 104)
+	(up-jump-direct c: 100)
 )
 
-; 103
+; 99
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 103)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 104
+; 100
 (defrule
 	(true)
 =>
@@ -3004,22 +2952,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 105
+; 101
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 106
+; 102
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 107
+; 103
 (defrule
 	(true)
 =>
@@ -3034,22 +2982,22 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 108
+; 104
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 110)
+	(up-jump-direct c: 106)
 )
 
-; 109
+; 105
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 103)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 110
+; 106
 (defrule
 	(true)
 =>
@@ -3060,6 +3008,48 @@
 	(up-modify-goal 496 g:= 482)
 	(up-modify-sn 452 g:= 496)
 	(xs-script-call "Memory_SetValue")
+	(up-jump-direct g: 479)
+)
+
+; 107
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 108
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 457)
+)
+
+; 109
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 479 c:= 110)
+	(up-modify-goal 510 c:+ 1)
+	(up-jump-direct c: 111)
+)
+
+; 110
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 1)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
 	(up-jump-direct g: 479)
 )
 
@@ -3075,7 +3065,7 @@
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
 ; 113
@@ -3091,31 +3081,17 @@
 	(up-modify-goal 502 c:+ 1)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
+	(up-setup-cost-data 1 479)
+	(up-modify-goal 479 c:= 114)
+	(up-modify-goal 510 c:+ 2)
+	(up-jump-direct c: 119)
 )
 
 ; 114
 (defrule
 	(true)
 =>
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 115)
-	(up-modify-goal 510 c:+ 4)
-	(up-jump-direct c: 135)
-)
-
-; 115
-(defrule
-	(true)
-=>
-	(up-modify-goal 510 c:- 4)
+	(up-modify-goal 510 c:- 2)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
@@ -3124,133 +3100,33 @@
 	(up-modify-goal 502 c:+ 1)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-)
-
-; 116
-(defrule
-	(true)
-=>
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 482 c:= 0)
-	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 482 c:= 0)
-	(up-modify-goal 508 c:= 482)
-	(up-set-indirect-goal g: 508 c: 456)
-	(up-modify-goal 508 c:= 481)
-	(up-set-indirect-goal g: 508 c: 123)
-	(up-modify-goal 496 g:= 481)
-	(up-modify-goal 497 g:= 482)
-	(up-modify-goal 496 g:- 497)
-	(up-modify-goal 496 c:max 0)
-	(up-modify-goal 496 c:min 1)
-)
-
-; 117
-(defrule
-	(true)
-=>
-	(up-modify-goal 509 g:= 496)
-)
-
-; 118
-(defrule
-	(up-compare-goal 509 c:== 0)
-=>
-	(up-jump-direct c: 121)
-)
-
-; 119
-(defrule
-	(true)
-=>
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 111)
-	(up-jump-direct c: 122)
-)
-
-; 120
-(defrule
-	(true)
-=>
-	(up-jump-direct c: 122)
-)
-
-; 121
-(defrule
-	(true)
-=>
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 222)
-)
-
-; 122
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
-)
-
-; 123
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 124
-(defrule
-	(up-compare-goal 511 c:> 434)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
-)
-
-; 125
-(defrule
-	(true)
-=>
-	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
 )
 
-; 126
+; 115
 (defrule
 	(true)
 =>
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 127)
-	(up-modify-goal 510 c:+ 4)
-	(up-jump-direct c: 135)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 479 c:= 116)
+	(up-modify-goal 510 c:+ 2)
+	(up-jump-direct c: 146)
 )
 
-; 127
+; 116
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 4)
+	(up-modify-goal 510 c:- 2)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-get-indirect-goal g: 501 504)
@@ -3259,96 +3135,63 @@
 	(up-modify-goal 502 c:+ 1)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:+ 1)
 )
 
-; 128
+; 117
 (defrule
 	(true)
 =>
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 482 c:= 0)
-	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 482 c:= 0)
-	(up-modify-goal 508 c:= 482)
-	(up-set-indirect-goal g: 508 c: 456)
-	(up-modify-goal 508 c:= 481)
-	(up-set-indirect-goal g: 508 c: 123)
-	(up-modify-goal 496 g:= 481)
-	(up-modify-goal 497 g:= 482)
-	(up-modify-goal 496 g:- 497)
-	(up-modify-goal 496 c:max 0)
-	(up-modify-goal 496 c:min 1)
+	(up-modify-goal 479 c:= 118)
+	(up-modify-goal 480 c:= 123)
+	(up-modify-goal 481 c:= 456)
+	(up-modify-goal 510 c:+ 2)
+	(up-jump-direct c: 149)
 )
 
-; 129
+; 118
 (defrule
 	(true)
 =>
-	(up-modify-goal 509 g:= 496)
-)
-
-; 130
-(defrule
-	(up-compare-goal 509 c:== 0)
-=>
-	(up-jump-direct c: 133)
-)
-
-; 131
-(defrule
-	(true)
-=>
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 111)
-	(up-jump-direct c: 134)
-)
-
-; 132
-(defrule
-	(true)
-=>
-	(up-jump-direct c: 134)
-)
-
-; 133
-(defrule
-	(true)
-=>
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 222)
-)
-
-; 134
-(defrule
-	(true)
-=>
+	(up-modify-goal 510 c:- 2)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 480 g:= 475)
 	(up-jump-direct g: 479)
 )
 
-; 135
+; 119
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 136
+; 120
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 137
+; 121
 (defrule
 	(true)
 =>
@@ -3369,7 +3212,7 @@
 	(up-modify-goal 496 c:min 1)
 )
 
-; 138
+; 122
 (defrule
 	(true)
 =>
@@ -3379,22 +3222,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 139
+; 123
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 141)
+	(up-jump-direct c: 125)
 )
 
-; 140
+; 124
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 109)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 141
+; 125
 (defrule
 	(true)
 =>
@@ -3415,22 +3258,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 142
+; 126
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 144)
+	(up-jump-direct c: 128)
 )
 
-; 143
+; 127
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 108)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 144
+; 128
 (defrule
 	(true)
 =>
@@ -3449,22 +3292,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 145
+; 129
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 147)
+	(up-jump-direct c: 131)
 )
 
-; 146
+; 130
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 107)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 147
+; 131
 (defrule
 	(true)
 =>
@@ -3485,7 +3328,7 @@
 	(up-modify-goal 496 c:max -1)
 )
 
-; 148
+; 132
 (defrule
 	(true)
 =>
@@ -3494,22 +3337,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 149
+; 133
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 151)
+	(up-jump-direct c: 135)
 )
 
-; 150
+; 134
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 106)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 151
+; 135
 (defrule
 	(true)
 =>
@@ -3518,7 +3361,7 @@
 	(up-modify-goal 497 c:= 7)
 )
 
-; 152
+; 136
 (defrule
 	(up-compare-goal 497 c:> 0)
 =>
@@ -3527,7 +3370,7 @@
 	(up-jump-rule -1)
 )
 
-; 153
+; 137
 (defrule
 	(true)
 =>
@@ -3542,22 +3385,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 154
+; 138
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 156)
+	(up-jump-direct c: 140)
 )
 
-; 155
+; 139
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 105)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 156
+; 140
 (defrule
 	(true)
 =>
@@ -3566,7 +3409,7 @@
 	(up-modify-goal 497 c:= 1)
 )
 
-; 157
+; 141
 (defrule
 	(up-compare-goal 497 c:> 0)
 =>
@@ -3575,7 +3418,7 @@
 	(up-jump-rule -1)
 )
 
-; 158
+; 142
 (defrule
 	(true)
 =>
@@ -3590,44 +3433,44 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 159
+; 143
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 161)
+	(up-jump-direct c: 145)
 )
 
-; 160
+; 144
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 104)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 161
+; 145
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 162
+; 146
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 163
+; 147
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 164
+; 148
 (defrule
 	(true)
 =>
@@ -3636,22 +3479,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 165
+; 149
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 166
+; 150
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 167
+; 151
 (defrule
 	(true)
 =>
@@ -3665,14 +3508,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 168
+; 152
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 171)
+	(up-jump-direct c: 155)
 )
 
-; 169
+; 153
 (defrule
 	(true)
 =>
@@ -3681,14 +3524,14 @@
 	(up-jump-direct g: 479)
 )
 
-; 170
+; 154
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 172)
+	(up-jump-direct c: 156)
 )
 
-; 171
+; 155
 (defrule
 	(true)
 =>
@@ -3697,22 +3540,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 172
+; 156
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 173
+; 157
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 174
+; 158
 (defrule
 	(true)
 =>
@@ -3733,96 +3576,70 @@
 	(up-modify-goal 496 c:mod 2)
 )
 
-; 175
+; 159
 (defrule
 	(true)
 =>
 	(up-modify-goal 509 g:= 496)
 )
 
-; 176
+; 160
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 178)
+	(up-jump-direct c: 162)
 )
 
-; 177
+; 161
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 110)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 178
+; 162
 (defrule
 	(true)
 =>
 	(up-modify-goal 491 c:= 0)
-	(up-modify-goal 492 c:= 0)
-	(up-modify-goal 501 c:= 480)
-	(up-modify-goal 502 c:= 492)
-	(up-set-indirect-goal g: 502 g: 501)
-	(up-modify-goal 501 g:= 492)
-	(up-modify-goal 501 c:+ 2)
-	(up-modify-goal 502 c:= 491)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 496 g:= 491)
-	(up-modify-goal 497 c:= 0)
-	(up-modify-goal 496 g:- 497)
-	(up-modify-goal 496 c:min 1)
-	(up-modify-goal 496 c:max -1)
-)
-
-; 179
-(defrule
-	(true)
-=>
-	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 496 c:mod 2)
-	(up-modify-goal 509 g:= 496)
-)
-
-; 180
-(defrule
-	(up-compare-goal 509 c:== 0)
-=>
-	(up-jump-direct c: 182)
-)
-
-; 181
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
-)
-
-; 182
-(defrule
-	(true)
-=>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 183)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 163)
+	(up-jump-direct c: 454)
 )
 
-; 183
+; 163
 (defrule
 	(true)
 =>
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-modify-goal 487 c:= 0)
-	(up-modify-goal 479 c:= 184)
-	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 390)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 479 c:= 166)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:= 480)
+	(up-set-indirect-goal g: 502 g: 501)
 )
 
-; 184
+; 164
+(defrule
+	(up-compare-goal 480 c:>= 479)
+=>
+	(up-modify-goal 480 c:- 479)
+	(up-modify-goal 480 g:+ 510)
+)
+
+; 165
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:+ 16)
+	(up-jump-direct c: 196)
+)
+
+; 166
 (defrule
 	(true)
 =>
@@ -3830,11 +3647,75 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 185)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 167)
+	(up-jump-direct c: 454)
 )
 
-; 185
+; 167
+(defrule
+	(true)
+=>
+	(up-modify-goal 491 g:= 475)
+	(up-modify-goal 496 g:= 491)
+	(up-modify-goal 497 c:= 0)
+	(up-modify-goal 496 g:- 497)
+	(up-modify-goal 496 c:min 1)
+	(up-modify-goal 496 c:max -1)
+	(up-modify-goal 496 c:+ 1)
+	(up-modify-goal 496 c:mod 2)
+	(up-modify-goal 509 g:= 496)
+)
+
+; 168
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 170)
+)
+
+; 169
+(defrule
+	(true)
+=>
+	(up-jump-direct g: 479)
+)
+
+; 170
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 16)
+	(up-modify-goal 505 c:= 171)
+	(up-jump-direct c: 454)
+)
+
+; 171
+(defrule
+	(true)
+=>
+	(up-setup-cost-data 1 479)
+	(up-setup-cost-data 1 483)
+	(up-modify-goal 487 c:= 0)
+	(up-modify-goal 479 c:= 172)
+	(up-modify-goal 510 c:+ 16)
+	(up-jump-direct c: 389)
+)
+
+; 172
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 16)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 503 c:= 16)
+	(up-modify-goal 505 c:= 173)
+	(up-jump-direct c: 454)
+)
+
+; 173
 (defrule
 	(true)
 =>
@@ -3843,23 +3724,23 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 186)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 174)
+	(up-jump-direct c: 454)
 )
 
-; 186
+; 174
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 187)
+	(up-modify-goal 479 c:= 175)
 	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 402)
+	(up-jump-direct c: 401)
 )
 
-; 187
+; 175
 (defrule
 	(true)
 =>
@@ -3867,44 +3748,35 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 188)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 176)
+	(up-jump-direct c: 454)
 )
 
-; 188
+; 176
 (defrule
 	(true)
 =>
 	(up-modify-goal 485 g:= 475)
-	(up-modify-goal 491 c:= 0)
-	(up-modify-goal 508 c:= 491)
-	(up-set-indirect-goal g: 508 c: 0)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 189)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 177)
+	(up-jump-direct c: 454)
 )
 
-; 189
+; 177
 (defrule
 	(true)
 =>
-	(up-setup-cost-data 1 479)
-	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 190)
-	(up-modify-goal 480 c:= 3)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 501 c:+ 12)
-	(up-modify-goal 502 c:= 481)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 479 c:= 178)
+	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 267)
+	(up-jump-direct c: 250)
 )
 
-; 190
+; 178
 (defrule
 	(true)
 =>
@@ -3912,11 +3784,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 191)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 179)
+	(up-jump-direct c: 454)
 )
 
-; 191
+; 179
 (defrule
 	(true)
 =>
@@ -3937,7 +3809,7 @@
 	(up-filter-include 6 -1 -1 -1)
 )
 
-; 192
+; 180
 (defrule
 	(true)
 =>
@@ -3958,7 +3830,7 @@
 	(up-modify-goal 489 g:= 498)
 )
 
-; 193
+; 181
 (defrule
 	(true)
 =>
@@ -3973,21 +3845,21 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 194
+; 182
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 196)
+	(up-jump-direct c: 184)
 )
 
-; 195
+; 183
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 196
+; 184
 (defrule
 	(true)
 =>
@@ -3997,7 +3869,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 197
+; 185
 (defrule
 	(true)
 =>
@@ -4009,14 +3881,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 198
+; 186
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 207)
+	(up-jump-direct c: 195)
 )
 
-; 199
+; 187
 (defrule
 	(true)
 =>
@@ -4032,7 +3904,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 200
+; 188
 (defrule
 	(true)
 =>
@@ -4044,14 +3916,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 201
+; 189
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 206)
+	(up-jump-direct c: 194)
 )
 
-; 202
+; 190
 (defrule
 	(true)
 =>
@@ -4062,11 +3934,11 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 203)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 191)
+	(up-jump-direct c: 454)
 )
 
-; 203
+; 191
 (defrule
 	(true)
 =>
@@ -4075,17 +3947,17 @@
 	(up-modify-goal 487 c:= 0)
 	(up-modify-goal 488 c:= 0)
 	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 479 c:= 204)
+	(up-modify-goal 479 c:= 192)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 15)
 	(up-modify-goal 502 c:= 480)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 16)
-	(up-jump-direct c: 413)
+	(up-jump-direct c: 412)
 )
 
-; 204
+; 192
 (defrule
 	(true)
 =>
@@ -4093,53 +3965,53 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 16)
-	(up-modify-goal 505 c:= 205)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 193)
+	(up-jump-direct c: 454)
 )
 
-; 205
+; 193
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 493)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 493 g:= 496)
-	(up-jump-direct c: 200)
+	(up-jump-direct c: 188)
 )
 
-; 206
+; 194
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 491)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 491 g:= 496)
-	(up-jump-direct c: 197)
+	(up-jump-direct c: 185)
 )
 
-; 207
+; 195
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 208
+; 196
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 209
+; 197
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 210
+; 198
 (defrule
 	(true)
 =>
@@ -4152,22 +4024,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 211
+; 199
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 212
+; 200
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 213
+; 201
 (defrule
 	(true)
 =>
@@ -4188,22 +4060,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 214
+; 202
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 216)
+	(up-jump-direct c: 204)
 )
 
-; 215
+; 203
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 111)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 216
+; 204
 (defrule
 	(true)
 =>
@@ -4212,26 +4084,26 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 217)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 205)
+	(up-jump-direct c: 454)
 )
 
-; 217
+; 205
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 218)
+	(up-modify-goal 479 c:= 206)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 3)
 	(up-modify-goal 502 c:= 480)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 7)
-	(up-jump-direct c: 383)
+	(up-jump-direct c: 382)
 )
 
-; 218
+; 206
 (defrule
 	(true)
 =>
@@ -4239,11 +4111,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 219)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 207)
+	(up-jump-direct c: 454)
 )
 
-; 219
+; 207
 (defrule
 	(true)
 =>
@@ -4264,7 +4136,7 @@
 	(up-modify-goal 502 c:= 496)
 )
 
-; 220
+; 208
 (defrule
 	(true)
 =>
@@ -4279,22 +4151,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 221
+; 209
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 222
+; 210
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 223
+; 211
 (defrule
 	(true)
 =>
@@ -4315,22 +4187,22 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 224
+; 212
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 226)
+	(up-jump-direct c: 214)
 )
 
-; 225
+; 213
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 111)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 226
+; 214
 (defrule
 	(true)
 =>
@@ -4339,26 +4211,26 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 227)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 215)
+	(up-jump-direct c: 454)
 )
 
-; 227
+; 215
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
-	(up-modify-goal 479 c:= 228)
+	(up-modify-goal 479 c:= 216)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 3)
 	(up-modify-goal 502 c:= 480)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 7)
-	(up-jump-direct c: 383)
+	(up-jump-direct c: 382)
 )
 
-; 228
+; 216
 (defrule
 	(true)
 =>
@@ -4366,11 +4238,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 7)
-	(up-modify-goal 505 c:= 229)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 217)
+	(up-jump-direct c: 454)
 )
 
-; 229
+; 217
 (defrule
 	(true)
 =>
@@ -4391,7 +4263,7 @@
 	(up-modify-goal 502 c:= 496)
 )
 
-; 230
+; 218
 (defrule
 	(true)
 =>
@@ -4406,22 +4278,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 231
+; 219
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 232
+; 220
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 233
+; 221
 (defrule
 	(true)
 =>
@@ -4442,7 +4314,7 @@
 	(up-modify-goal 502 c:+ 2)
 )
 
-; 234
+; 222
 (defrule
 	(true)
 =>
@@ -4451,22 +4323,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 235
+; 223
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 236
+; 224
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 237
+; 225
 (defrule
 	(true)
 =>
@@ -4475,22 +4347,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 238
+; 226
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 239
+; 227
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 240
+; 228
 (defrule
 	(true)
 =>
@@ -4500,13 +4372,13 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 479 c:= 241)
+	(up-modify-goal 479 c:= 229)
 	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 246)
+	(up-jump-direct c: 234)
 )
 
-; 241
+; 229
 (defrule
 	(true)
 =>
@@ -4519,22 +4391,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 242
+; 230
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 243
+; 231
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 244
+; 232
 (defrule
 	(true)
 =>
@@ -4544,13 +4416,13 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 479 c:= 245)
+	(up-modify-goal 479 c:= 233)
 	(up-modify-goal 480 c:= 3)
 	(up-modify-goal 510 c:+ 1)
-	(up-jump-direct c: 246)
+	(up-jump-direct c: 234)
 )
 
-; 245
+; 233
 (defrule
 	(true)
 =>
@@ -4563,22 +4435,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 246
+; 234
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 247
+; 235
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 248
+; 236
 (defrule
 	(true)
 =>
@@ -4591,7 +4463,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 249
+; 237
 (defrule
 	(true)
 =>
@@ -4603,14 +4475,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 250
+; 238
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 256)
+	(up-jump-direct c: 244)
 )
 
-; 251
+; 239
 (defrule
 	(true)
 =>
@@ -4631,7 +4503,7 @@
 	(up-modify-goal 496 c:+ 1)
 )
 
-; 252
+; 240
 (defrule
 	(true)
 =>
@@ -4639,14 +4511,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 253
+; 241
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 255)
+	(up-jump-direct c: 243)
 )
 
-; 254
+; 242
 (defrule
 	(true)
 =>
@@ -4655,17 +4527,17 @@
 	(up-modify-goal 481 g:= 496)
 )
 
-; 255
+; 243
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 482)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 482 g:= 496)
-	(up-jump-direct c: 249)
+	(up-jump-direct c: 237)
 )
 
-; 256
+; 244
 (defrule
 	(true)
 =>
@@ -4673,22 +4545,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 257
+; 245
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 258
+; 246
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 259
+; 247
 (defrule
 	(true)
 =>
@@ -4704,12 +4576,12 @@
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 261)
+	(up-modify-goal 479 c:= 249)
 	(up-modify-goal 480 c:= 0)
 	(up-modify-goal 501 g:= 510)
 )
 
-; 260
+; 248
 (defrule
 	(true)
 =>
@@ -4718,10 +4590,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 267)
+	(up-jump-direct c: 255)
 )
 
-; 261
+; 249
 (defrule
 	(true)
 =>
@@ -4738,22 +4610,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 262
+; 250
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 263
+; 251
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 264
+; 252
 (defrule
 	(true)
 =>
@@ -4769,12 +4641,12 @@
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 266)
+	(up-modify-goal 479 c:= 254)
 	(up-modify-goal 480 c:= 3)
 	(up-modify-goal 501 g:= 510)
 )
 
-; 265
+; 253
 (defrule
 	(true)
 =>
@@ -4783,10 +4655,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 2)
-	(up-jump-direct c: 267)
+	(up-jump-direct c: 255)
 )
 
-; 266
+; 254
 (defrule
 	(true)
 =>
@@ -4803,22 +4675,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 267
+; 255
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 268
+; 256
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 269
+; 257
 (defrule
 	(true)
 =>
@@ -4832,7 +4704,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 270
+; 258
 (defrule
 	(true)
 =>
@@ -4844,14 +4716,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 271
+; 259
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 280)
+	(up-jump-direct c: 268)
 )
 
-; 272
+; 260
 (defrule
 	(true)
 =>
@@ -4872,7 +4744,7 @@
 	(up-modify-goal 496 c:+ 1)
 )
 
-; 273
+; 261
 (defrule
 	(true)
 =>
@@ -4880,14 +4752,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 274
+; 262
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 279)
+	(up-jump-direct c: 267)
 )
 
-; 275
+; 263
 (defrule
 	(true)
 =>
@@ -4901,14 +4773,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 276
+; 264
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 278)
+	(up-jump-direct c: 266)
 )
 
-; 277
+; 265
 (defrule
 	(true)
 =>
@@ -4919,7 +4791,7 @@
 	(up-jump-direct g: 479)
 )
 
-; 278
+; 266
 (defrule
 	(true)
 =>
@@ -4928,68 +4800,100 @@
 	(up-modify-goal 482 g:= 496)
 )
 
-; 279
+; 267
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 483)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 483 g:= 496)
-	(up-jump-direct c: 270)
+	(up-jump-direct c: 258)
 )
 
-; 280
+; 268
 (defrule
 	(true)
 =>
 	(up-modify-goal 512 c:= 112)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 281
+; 269
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 282
+; 270
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 283
+; 271
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 284
+; 272
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 285
+; 273
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 286
+; 274
 (defrule
 	(true)
 =>
 	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 496 c:= my-player-number)
-	(up-modify-goal 480 g:= 496)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 8)
+	(up-modify-goal 505 c:= 275)
+	(up-jump-direct c: 454)
+)
+
+; 275
+(defrule
+	(true)
+=>
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 479 c:= 276)
+	(up-modify-goal 510 c:+ 8)
+	(up-jump-direct c: 223)
+)
+
+; 276
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 8)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 503 c:= 8)
+	(up-modify-goal 505 c:= 277)
+	(up-jump-direct c: 454)
+)
+
+; 277
+(defrule
+	(true)
+=>
+	(up-modify-goal 480 g:= 475)
 	(up-modify-goal 481 c:= 0)
 	(up-modify-goal 482 c:= 0)
 	(up-modify-goal 483 c:= 0)
@@ -4998,7 +4902,7 @@
 	(up-set-indirect-goal g: 508 c: 1)
 )
 
-; 287
+; 278
 (defrule
 	(true)
 =>
@@ -5011,14 +4915,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 288
+; 279
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 300)
+	(up-jump-direct c: 291)
 )
 
-; 289
+; 280
 (defrule
 	(true)
 =>
@@ -5037,14 +4941,14 @@
 	(up-modify-goal 497 c:= 0)
 )
 
-; 290
+; 281
 (defrule
 	(player-in-game focus-player)
 =>
 	(up-modify-goal 497 c:= 1)
 )
 
-; 291
+; 282
 (defrule
 	(true)
 =>
@@ -5065,7 +4969,7 @@
 	(up-modify-goal 496 c:min 1)
 )
 
-; 292
+; 283
 (defrule
 	(true)
 =>
@@ -5079,21 +4983,21 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 293
+; 284
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 295)
+	(up-jump-direct c: 286)
 )
 
-; 294
+; 285
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 299)
+	(up-jump-direct c: 290)
 )
 
-; 295
+; 286
 (defrule
 	(true)
 =>
@@ -5102,21 +5006,21 @@
 	(up-modify-goal 496 c:= 0)
 )
 
-; 296
+; 287
 (defrule
 	(players-stance focus-player 1)
 =>
 	(up-modify-goal 496 c:= 1)
 )
 
-; 297
+; 288
 (defrule
 	(players-stance focus-player 3)
 =>
 	(up-modify-goal 496 c:= 3)
 )
 
-; 298
+; 289
 (defrule
 	(true)
 =>
@@ -5131,14 +5035,125 @@
 	(up-set-indirect-goal g: 502 g: 504)
 )
 
-; 299
+; 290
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 481 g:= 496)
-	(up-jump-direct c: 287)
+	(up-jump-direct c: 278)
+)
+
+; 291
+(defrule
+	(true)
+=>
+	(up-jump-direct g: 479)
+)
+
+; 292
+(defrule
+	(true)
+=>
+	(up-modify-goal 511 g:max 510)
+)
+
+; 293
+(defrule
+	(up-compare-goal 511 c:> 434)
+=>
+	(up-modify-goal 512 c:= 1)
+	(up-jump-direct c: 457)
+)
+
+; 294
+(defrule
+	(true)
+=>
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 481 c:= 0)
+	(up-modify-goal 482 c:= 0)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 508 c:= 480)
+	(up-set-indirect-goal g: 508 c: 0)
+)
+
+; 295
+(defrule
+	(true)
+=>
+	(up-modify-goal 496 g:= 480)
+	(up-modify-goal 497 g:= 443)
+	(up-modify-goal 497 g:- 496)
+	(up-modify-goal 497 c:max 0)
+	(up-modify-goal 497 c:min 1)
+	(up-modify-goal 509 g:= 497)
+)
+
+; 296
+(defrule
+	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 300)
+)
+
+; 297
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 443)
+	(up-modify-goal 505 g:= 480)
+	(up-modify-goal 505 c:* 3)
+	(up-modify-goal 505 c:+ 1)
+	(up-modify-goal 501 g:+ 505)
+	(up-modify-goal 502 c:= 481)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
+)
+
+; 298
+(defrule
+	(true)
+=>
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 496 g:= 480)
+	(up-modify-goal 497 c:= 1)
+	(up-modify-goal 496 g:+ 497)
+	(up-modify-goal 481 g:= 496)
+	(up-modify-goal 501 c:= 481)
+	(up-modify-goal 502 c:= 443)
+	(up-modify-goal 505 g:= 480)
+	(up-modify-goal 505 c:* 3)
+	(up-modify-goal 505 c:+ 1)
+	(up-modify-goal 502 g:+ 505)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+)
+
+; 299
+(defrule
+	(true)
+=>
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 501 c:+ 1)
+	(up-modify-goal 502 c:+ 1)
+	(up-get-indirect-goal g: 501 504)
+	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 496 g:= 480)
+	(up-modify-goal 496 c:+ 1)
+	(up-modify-goal 480 g:= 496)
+	(up-jump-direct c: 295)
 )
 
 ; 300
@@ -5160,156 +5175,45 @@
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
 ; 303
 (defrule
 	(true)
 =>
-	(up-modify-goal 480 c:= 0)
-	(up-modify-goal 481 c:= 0)
-	(up-modify-goal 482 c:= 0)
-	(up-modify-goal 483 c:= 0)
-	(up-modify-goal 508 c:= 480)
-	(up-set-indirect-goal g: 508 c: 0)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 304)
+	(up-jump-direct c: 454)
 )
 
 ; 304
 (defrule
 	(true)
 =>
-	(up-modify-goal 496 g:= 480)
-	(up-modify-goal 497 g:= 443)
-	(up-modify-goal 497 g:- 496)
-	(up-modify-goal 497 c:max 0)
-	(up-modify-goal 497 c:min 1)
-	(up-modify-goal 509 g:= 497)
+	(up-setup-cost-data 1 479)
+	(up-setup-cost-data 1 483)
+	(up-setup-cost-data 1 487)
+	(up-modify-goal 479 c:= 305)
+	(up-modify-goal 510 c:+ 5)
+	(up-jump-direct c: 327)
 )
 
 ; 305
 (defrule
-	(up-compare-goal 509 c:== 0)
+	(true)
 =>
-	(up-jump-direct c: 309)
+	(up-modify-goal 510 c:- 5)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 306)
+	(up-jump-direct c: 454)
 )
 
 ; 306
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 443)
-	(up-modify-goal 505 g:= 480)
-	(up-modify-goal 505 c:* 3)
-	(up-modify-goal 505 c:+ 1)
-	(up-modify-goal 501 g:+ 505)
-	(up-modify-goal 502 c:= 481)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-)
-
-; 307
-(defrule
-	(true)
-=>
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 496 g:= 480)
-	(up-modify-goal 497 c:= 1)
-	(up-modify-goal 496 g:+ 497)
-	(up-modify-goal 481 g:= 496)
-	(up-modify-goal 501 c:= 481)
-	(up-modify-goal 502 c:= 443)
-	(up-modify-goal 505 g:= 480)
-	(up-modify-goal 505 c:* 3)
-	(up-modify-goal 505 c:+ 1)
-	(up-modify-goal 502 g:+ 505)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-)
-
-; 308
-(defrule
-	(true)
-=>
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 501 c:+ 1)
-	(up-modify-goal 502 c:+ 1)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 496 g:= 480)
-	(up-modify-goal 496 c:+ 1)
-	(up-modify-goal 480 g:= 496)
-	(up-jump-direct c: 304)
-)
-
-; 309
-(defrule
-	(true)
-=>
-	(up-jump-direct g: 479)
-)
-
-; 310
-(defrule
-	(true)
-=>
-	(up-modify-goal 511 g:max 510)
-)
-
-; 311
-(defrule
-	(up-compare-goal 511 c:> 434)
-=>
-	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
-)
-
-; 312
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 479)
-	(up-modify-goal 502 g:= 510)
-	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 313)
-	(up-jump-direct c: 455)
-)
-
-; 313
-(defrule
-	(true)
-=>
-	(up-setup-cost-data 1 479)
-	(up-setup-cost-data 1 483)
-	(up-setup-cost-data 1 487)
-	(up-modify-goal 479 c:= 314)
-	(up-modify-goal 510 c:+ 10)
-	(up-jump-direct c: 332)
-)
-
-; 314
-(defrule
-	(true)
-=>
-	(up-modify-goal 510 c:- 10)
-	(up-modify-goal 501 g:= 510)
-	(up-modify-goal 502 c:= 479)
-	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 315)
-	(up-jump-direct c: 455)
-)
-
-; 315
 (defrule
 	(true)
 =>
@@ -5321,7 +5225,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 316
+; 307
 (defrule
 	(true)
 =>
@@ -5333,14 +5237,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 317
+; 308
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 331)
+	(up-jump-direct c: 326)
 )
 
-; 318
+; 309
 (defrule
 	(true)
 =>
@@ -5361,7 +5265,7 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 319
+; 310
 (defrule
 	(true)
 =>
@@ -5376,84 +5280,111 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 320
+; 311
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 329)
+	(up-jump-direct c: 324)
 )
 
-; 321
+; 312
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
-	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 322)
-	(up-jump-direct c: 455)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 313)
+	(up-jump-direct c: 454)
 )
 
-; 322
+; 313
 (defrule
 	(true)
 =>
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 323)
-	(up-modify-goal 510 c:+ 10)
-	(up-jump-direct c: 380)
+	(up-modify-goal 479 c:= 314)
+	(up-modify-goal 510 c:+ 5)
+	(up-jump-direct c: 379)
 )
 
-; 323
+; 314
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 10)
+	(up-modify-goal 510 c:- 5)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
-	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 324)
-	(up-jump-direct c: 455)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 315)
+	(up-jump-direct c: 454)
 )
 
-; 324
+; 315
 (defrule
 	(true)
 =>
-	(up-modify-goal 484 c:= 0)
-	(up-setup-cost-data 1 485)
-	(up-modify-goal 501 c:= 481)
-	(up-modify-goal 502 c:= 484)
-	(up-set-indirect-goal g: 502 g: 501)
-	(up-modify-goal 501 g:= 484)
-	(up-modify-goal 502 c:= 496)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
-	(up-remove-objects 1 73 g:!= 496)
-	(up-get-search-state 496)
-	(up-modify-goal 485 g:= 496)
-	(up-modify-goal 486 g:= 497)
-	(up-modify-goal 487 g:= 498)
-	(up-modify-goal 488 g:= 499)
-)
-
-; 325
-(defrule
-	(true)
-=>
-	(up-modify-goal 501 c:= 485)
-	(up-modify-goal 502 g:= 484)
-	(up-modify-goal 502 c:+ 2)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
-	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 326)
-	(up-jump-direct c: 455)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 316)
+	(up-jump-direct c: 454)
 )
 
-; 326
+; 316
+(defrule
+	(true)
+=>
+	(up-setup-cost-data 1 479)
+	(up-modify-goal 483 c:= 0)
+	(up-modify-goal 484 c:= 0)
+	(up-modify-goal 479 c:= 319)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 501 c:+ 2)
+	(up-modify-goal 502 c:= 480)
+	(up-set-indirect-goal g: 502 g: 501)
+)
+
+; 317
+(defrule
+	(up-compare-goal 480 c:>= 479)
+=>
+	(up-modify-goal 480 c:- 479)
+	(up-modify-goal 480 g:+ 510)
+)
+
+; 318
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:+ 5)
+	(up-jump-direct c: 219)
+)
+
+; 319
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 5)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 320)
+	(up-jump-direct c: 454)
+)
+
+; 320
+(defrule
+	(true)
+=>
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 321)
+	(up-jump-direct c: 454)
+)
+
+; 321
 (defrule
 	(true)
 =>
@@ -5461,7 +5392,7 @@
 	(up-setup-cost-data 1 483)
 	(up-setup-cost-data 1 487)
 	(up-setup-cost-data 1 491)
-	(up-modify-goal 479 c:= 328)
+	(up-modify-goal 479 c:= 323)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 2)
 	(up-modify-goal 502 c:= 480)
@@ -5474,30 +5405,30 @@
 	(up-modify-goal 501 c:+ 1)
 )
 
-; 327
+; 322
 (defrule
 	(true)
 =>
 	(up-modify-goal 502 c:+ 1)
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
-	(up-modify-goal 510 c:+ 10)
-	(up-jump-direct c: 172)
+	(up-modify-goal 510 c:+ 5)
+	(up-jump-direct c: 156)
 )
 
-; 328
+; 323
 (defrule
 	(true)
 =>
-	(up-modify-goal 510 c:- 10)
+	(up-modify-goal 510 c:- 5)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
-	(up-modify-goal 503 c:= 10)
-	(up-modify-goal 505 c:= 329)
-	(up-jump-direct c: 455)
+	(up-modify-goal 503 c:= 5)
+	(up-modify-goal 505 c:= 324)
+	(up-jump-direct c: 454)
 )
 
-; 329
+; 324
 (defrule
 	(true)
 =>
@@ -5518,7 +5449,7 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 330
+; 325
 (defrule
 	(true)
 =>
@@ -5526,32 +5457,32 @@
 	(up-modify-goal 496 g:= 480)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 480 g:= 496)
-	(up-jump-direct c: 316)
+	(up-jump-direct c: 307)
 )
 
-; 331
+; 326
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 332
+; 327
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 333
+; 328
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 334
+; 329
 (defrule
 	(true)
 =>
@@ -5560,21 +5491,21 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 335)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 330)
+	(up-jump-direct c: 454)
 )
 
-; 335
+; 330
 (defrule
 	(true)
 =>
 	(up-modify-goal 479 c:= 0)
-	(up-modify-goal 479 c:= 336)
+	(up-modify-goal 479 c:= 331)
 	(up-modify-goal 510 c:+ 12)
-	(up-jump-direct c: 380)
+	(up-jump-direct c: 379)
 )
 
-; 336
+; 331
 (defrule
 	(true)
 =>
@@ -5582,11 +5513,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 337)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 332)
+	(up-jump-direct c: 454)
 )
 
-; 337
+; 332
 (defrule
 	(true)
 =>
@@ -5607,21 +5538,21 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 338
+; 333
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 340)
+	(up-jump-direct c: 335)
 )
 
-; 339
+; 334
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 340
+; 335
 (defrule
 	(true)
 =>
@@ -5635,7 +5566,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 341
+; 336
 (defrule
 	(true)
 =>
@@ -5647,14 +5578,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 342
+; 337
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 361)
+	(up-jump-direct c: 356)
 )
 
-; 343
+; 338
 (defrule
 	(true)
 =>
@@ -5671,21 +5602,21 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 344
+; 339
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 346)
+	(up-jump-direct c: 341)
 )
 
-; 345
+; 340
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 360)
+	(up-jump-direct c: 355)
 )
 
-; 346
+; 341
 (defrule
 	(true)
 =>
@@ -5694,11 +5625,11 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 347)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 342)
+	(up-jump-direct c: 454)
 )
 
-; 347
+; 342
 (defrule
 	(true)
 =>
@@ -5706,15 +5637,14 @@
 	(up-setup-cost-data 1 483)
 	(up-modify-goal 487 c:= 0)
 	(up-modify-goal 488 c:= 0)
-	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 479 c:= 348)
+	(up-modify-goal 479 c:= 343)
 	(up-modify-goal 480 c:= 1)
 	(up-modify-goal 481 c:= 100)
 	(up-modify-goal 510 c:+ 12)
-	(up-jump-direct c: 362)
+	(up-jump-direct c: 357)
 )
 
-; 348
+; 343
 (defrule
 	(true)
 =>
@@ -5722,11 +5652,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 349)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 344)
+	(up-jump-direct c: 454)
 )
 
-; 349
+; 344
 (defrule
 	(true)
 =>
@@ -5741,21 +5671,21 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 350
+; 345
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 352)
+	(up-jump-direct c: 347)
 )
 
-; 351
+; 346
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 360)
+	(up-jump-direct c: 355)
 )
 
-; 352
+; 347
 (defrule
 	(true)
 =>
@@ -5776,7 +5706,7 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 353
+; 348
 (defrule
 	(true)
 =>
@@ -5784,11 +5714,11 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 354)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 349)
+	(up-jump-direct c: 454)
 )
 
-; 354
+; 349
 (defrule
 	(true)
 =>
@@ -5796,14 +5726,14 @@
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 485 c:= 0)
-	(up-modify-goal 479 c:= 357)
+	(up-modify-goal 479 c:= 352)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 8)
 	(up-modify-goal 502 c:= 480)
 	(up-set-indirect-goal g: 502 g: 501)
 )
 
-; 355
+; 350
 (defrule
 	(up-compare-goal 480 c:>= 479)
 =>
@@ -5811,7 +5741,7 @@
 	(up-modify-goal 480 g:+ 510)
 )
 
-; 356
+; 351
 (defrule
 	(true)
 =>
@@ -5821,10 +5751,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 12)
-	(up-jump-direct c: 211)
+	(up-jump-direct c: 199)
 )
 
-; 357
+; 352
 (defrule
 	(true)
 =>
@@ -5832,11 +5762,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 12)
-	(up-modify-goal 505 c:= 358)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 353)
+	(up-jump-direct c: 454)
 )
 
-; 358
+; 353
 (defrule
 	(true)
 =>
@@ -5857,46 +5787,46 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 359
+; 354
 (defrule
 	(true)
 =>
 	(up-set-indirect-goal g: 502 g: 504)
 )
 
-; 360
+; 355
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 484)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 484 g:= 496)
-	(up-jump-direct c: 341)
+	(up-jump-direct c: 336)
 )
 
-; 361
+; 356
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 362
+; 357
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 363
+; 358
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 364
+; 359
 (defrule
 	(true)
 =>
@@ -5910,7 +5840,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 365
+; 360
 (defrule
 	(true)
 =>
@@ -5922,14 +5852,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 366
+; 361
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 379)
+	(up-jump-direct c: 378)
 )
 
-; 367
+; 362
 (defrule
 	(true)
 =>
@@ -5950,7 +5880,7 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 368
+; 363
 (defrule
 	(true)
 =>
@@ -5966,21 +5896,65 @@
 	(up-modify-goal 496 c:mod 2)
 	(up-modify-goal 486 g:= 496)
 	(up-modify-goal 488 c:= 0)
-	(up-modify-goal 489 c:= 0)
-	(up-modify-goal 501 c:= 483)
-	(up-modify-goal 502 c:= 489)
+	(up-modify-goal 501 c:= 479)
+	(up-modify-goal 502 g:= 510)
+	(up-modify-goal 503 c:= 10)
+)
+
+; 364
+(defrule
+	(true)
+=>
+	(up-modify-goal 505 c:= 365)
+	(up-jump-direct c: 454)
+)
+
+; 365
+(defrule
+	(true)
+=>
+	(up-modify-goal 479 c:= 0)
+	(up-modify-goal 480 c:= 0)
+	(up-modify-goal 479 c:= 368)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 501 c:+ 4)
+	(up-modify-goal 502 c:= 480)
+	(up-set-indirect-goal g: 502 g: 501)
+)
+
+; 366
+(defrule
+	(up-compare-goal 480 c:>= 479)
+=>
+	(up-modify-goal 480 c:- 479)
+	(up-modify-goal 480 g:+ 510)
+)
+
+; 367
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:+ 10)
+	(up-jump-direct c: 196)
+)
+
+; 368
+(defrule
+	(true)
+=>
+	(up-modify-goal 510 c:- 10)
+	(up-modify-goal 501 g:= 510)
+	(up-modify-goal 502 c:= 479)
+	(up-modify-goal 503 c:= 10)
+	(up-modify-goal 505 c:= 369)
+	(up-jump-direct c: 454)
 )
 
 ; 369
 (defrule
 	(true)
 =>
-	(up-set-indirect-goal g: 502 g: 501)
-	(up-modify-goal 501 g:= 489)
-	(up-modify-goal 501 c:+ 2)
-	(up-modify-goal 502 c:= 488)
-	(up-get-indirect-goal g: 501 504)
-	(up-set-indirect-goal g: 502 g: 504)
+	(up-modify-goal 488 g:= 475)
 	(up-modify-goal 496 g:= 488)
 	(up-modify-goal 497 g:= 481)
 	(up-modify-goal 497 g:- 496)
@@ -5990,23 +5964,17 @@
 	(up-modify-goal 496 g:= 486)
 	(up-modify-goal 497 g:= 487)
 	(up-modify-goal 496 g:* 497)
+	(up-modify-goal 509 g:= 496)
 )
 
 ; 370
 (defrule
-	(true)
+	(up-compare-goal 509 c:== 0)
 =>
-	(up-modify-goal 509 g:= 496)
+	(up-jump-direct c: 373)
 )
 
 ; 371
-(defrule
-	(up-compare-goal 509 c:== 0)
-=>
-	(up-jump-direct c: 374)
-)
-
-; 372
 (defrule
 	(true)
 =>
@@ -6014,14 +5982,14 @@
 	(up-jump-direct g: 479)
 )
 
-; 373
+; 372
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 378)
+	(up-jump-direct c: 377)
 )
 
-; 374
+; 373
 (defrule
 	(true)
 =>
@@ -6035,14 +6003,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 375
+; 374
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 378)
+	(up-jump-direct c: 377)
 )
 
-; 376
+; 375
 (defrule
 	(true)
 =>
@@ -6063,7 +6031,7 @@
 	(up-modify-goal 502 c:+ 1)
 )
 
-; 377
+; 376
 (defrule
 	(true)
 =>
@@ -6073,17 +6041,17 @@
 	(up-jump-direct g: 479)
 )
 
-; 378
+; 377
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 482)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 482 g:= 496)
-	(up-jump-direct c: 365)
+	(up-jump-direct c: 360)
 )
 
-; 379
+; 378
 (defrule
 	(true)
 =>
@@ -6092,22 +6060,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 380
+; 379
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 381
+; 380
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 382
+; 381
 (defrule
 	(true)
 =>
@@ -6124,22 +6092,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 383
+; 382
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 384
+; 383
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 385
+; 384
 (defrule
 	(true)
 =>
@@ -6150,7 +6118,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 386
+; 385
 (defrule
 	(true)
 =>
@@ -6162,14 +6130,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 387
+; 386
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 389)
+	(up-jump-direct c: 388)
 )
 
-; 388
+; 387
 (defrule
 	(true)
 =>
@@ -6184,32 +6152,32 @@
 	(up-modify-goal 496 g:= 481)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 481 g:= 496)
-	(up-jump-direct c: 386)
+	(up-jump-direct c: 385)
 )
 
-; 389
+; 388
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 390
+; 389
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 391
+; 390
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 392
+; 391
 (defrule
 	(true)
 =>
@@ -6230,21 +6198,21 @@
 	(up-modify-goal 496 c:mod 2)
 )
 
-; 393
+; 392
 (defrule
 	(true)
 =>
 	(up-modify-goal 509 g:= 496)
 )
 
-; 394
+; 393
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 396)
+	(up-jump-direct c: 395)
 )
 
-; 395
+; 394
 (defrule
 	(true)
 =>
@@ -6253,7 +6221,7 @@
 	(up-jump-direct g: 479)
 )
 
-; 396
+; 395
 (defrule
 	(true)
 =>
@@ -6262,7 +6230,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 397
+; 396
 (defrule
 	(true)
 =>
@@ -6274,14 +6242,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 398
+; 397
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 401)
+	(up-jump-direct c: 400)
 )
 
-; 399
+; 398
 (defrule
 	(true)
 =>
@@ -6302,7 +6270,7 @@
 	(up-modify-goal 496 g:+ 497)
 )
 
-; 400
+; 399
 (defrule
 	(true)
 =>
@@ -6310,10 +6278,10 @@
 	(up-modify-goal 496 g:= 486)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 486 g:= 496)
-	(up-jump-direct c: 397)
+	(up-jump-direct c: 396)
 )
 
-; 401
+; 400
 (defrule
 	(true)
 =>
@@ -6330,22 +6298,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 402
+; 401
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 403
+; 402
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 404
+; 403
 (defrule
 	(true)
 =>
@@ -6360,7 +6328,7 @@
 	(up-modify-goal 484 g:= 499)
 )
 
-; 405
+; 404
 (defrule
 	(true)
 =>
@@ -6372,14 +6340,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 406
+; 405
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 412)
+	(up-jump-direct c: 411)
 )
 
-; 407
+; 406
 (defrule
 	(true)
 =>
@@ -6400,7 +6368,7 @@
 	(up-modify-goal 496 g:- 497)
 )
 
-; 408
+; 407
 (defrule
 	(true)
 =>
@@ -6410,9 +6378,16 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 409
+; 408
 (defrule
 	(up-compare-goal 509 c:== 0)
+=>
+	(up-jump-direct c: 410)
+)
+
+; 409
+(defrule
+	(true)
 =>
 	(up-jump-direct c: 411)
 )
@@ -6421,17 +6396,10 @@
 (defrule
 	(true)
 =>
-	(up-jump-direct c: 412)
+	(up-jump-direct c: 404)
 )
 
 ; 411
-(defrule
-	(true)
-=>
-	(up-jump-direct c: 405)
-)
-
-; 412
 (defrule
 	(true)
 =>
@@ -6439,22 +6407,22 @@
 	(up-jump-direct g: 479)
 )
 
-; 413
+; 412
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 414
+; 413
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 415
+; 414
 (defrule
 	(true)
 =>
@@ -6475,7 +6443,7 @@
 	(up-get-fact 33 0 498)
 )
 
-; 416
+; 415
 (defrule
 	(true)
 =>
@@ -6490,25 +6458,25 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 417
+; 416
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 421)
+	(up-jump-direct c: 420)
 )
 
-; 418
+; 417
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 419)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 418)
+	(up-jump-direct c: 454)
 )
 
-; 419
+; 418
 (defrule
 	(true)
 =>
@@ -6516,7 +6484,7 @@
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 485 c:= 0)
-	(up-modify-goal 479 c:= 420)
+	(up-modify-goal 479 c:= 419)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6525,10 +6493,10 @@
 	(up-modify-goal 481 c:= 0)
 	(up-modify-goal 482 c:= -1)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 40)
+	(up-jump-direct c: 37)
 )
 
-; 420
+; 419
 (defrule
 	(true)
 =>
@@ -6536,29 +6504,29 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 421)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 420)
+	(up-jump-direct c: 454)
 )
 
-; 421
+; 420
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 422)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 421)
+	(up-jump-direct c: 454)
 )
 
-; 422
+; 421
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
-	(up-modify-goal 479 c:= 423)
+	(up-modify-goal 479 c:= 422)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6566,10 +6534,10 @@
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 481 c:= 0)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 29)
+	(up-jump-direct c: 26)
 )
 
-; 423
+; 422
 (defrule
 	(true)
 =>
@@ -6577,11 +6545,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 424)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 423)
+	(up-jump-direct c: 454)
 )
 
-; 424
+; 423
 (defrule
 	(true)
 =>
@@ -6602,7 +6570,7 @@
 	(up-get-precise-time 0 497)
 )
 
-; 425
+; 424
 (defrule
 	(true)
 =>
@@ -6623,7 +6591,7 @@
 	(up-modify-goal 497 c:max 0)
 )
 
-; 426
+; 425
 (defrule
 	(true)
 =>
@@ -6635,21 +6603,21 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 427
+; 426
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 429)
+	(up-jump-direct c: 428)
 )
 
-; 428
+; 427
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 429
+; 428
 (defrule
 	(true)
 =>
@@ -6657,17 +6625,17 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 430)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 429)
+	(up-jump-direct c: 454)
 )
 
-; 430
+; 429
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 431)
+	(up-modify-goal 479 c:= 430)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6679,10 +6647,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 447)
+	(up-jump-direct c: 446)
 )
 
-; 431
+; 430
 (defrule
 	(true)
 =>
@@ -6690,11 +6658,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 432)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 431)
+	(up-jump-direct c: 454)
 )
 
-; 432
+; 431
 (defrule
 	(true)
 =>
@@ -6715,7 +6683,7 @@
 	(up-set-indirect-goal g: 508 c: 0)
 )
 
-; 433
+; 432
 (defrule
 	(true)
 =>
@@ -6727,14 +6695,14 @@
 	(up-modify-goal 509 g:= 497)
 )
 
-; 434
+; 433
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 442)
+	(up-jump-direct c: 441)
 )
 
-; 435
+; 434
 (defrule
 	(true)
 =>
@@ -6745,17 +6713,17 @@
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 436)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 435)
+	(up-jump-direct c: 454)
 )
 
-; 436
+; 435
 (defrule
 	(true)
 =>
 	(up-setup-cost-data 1 479)
 	(up-setup-cost-data 1 483)
-	(up-modify-goal 479 c:= 437)
+	(up-modify-goal 479 c:= 436)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6767,10 +6735,10 @@
 	(up-get-indirect-goal g: 501 504)
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 447)
+	(up-jump-direct c: 446)
 )
 
-; 437
+; 436
 (defrule
 	(true)
 =>
@@ -6778,11 +6746,11 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 438)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 437)
+	(up-jump-direct c: 454)
 )
 
-; 438
+; 437
 (defrule
 	(true)
 =>
@@ -6795,14 +6763,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 439
+; 438
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 441)
+	(up-jump-direct c: 440)
 )
 
-; 440
+; 439
 (defrule
 	(true)
 =>
@@ -6810,28 +6778,28 @@
 	(up-modify-goal 482 g:= 489)
 )
 
-; 441
+; 440
 (defrule
 	(true)
 =>
 	(up-modify-goal 496 g:= 487)
 	(up-modify-goal 496 c:+ 1)
 	(up-modify-goal 487 g:= 496)
-	(up-jump-direct c: 433)
+	(up-jump-direct c: 432)
 )
 
-; 442
+; 441
 (defrule
 	(true)
 =>
 	(up-modify-goal 501 c:= 479)
 	(up-modify-goal 502 g:= 510)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 443)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 442)
+	(up-jump-direct c: 454)
 )
 
-; 443
+; 442
 (defrule
 	(true)
 =>
@@ -6839,7 +6807,7 @@
 	(up-modify-goal 483 c:= 0)
 	(up-modify-goal 484 c:= 0)
 	(up-modify-goal 485 c:= 0)
-	(up-modify-goal 479 c:= 445)
+	(up-modify-goal 479 c:= 444)
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:= 480)
@@ -6852,16 +6820,16 @@
 	(up-get-indirect-goal g: 501 504)
 )
 
-; 444
+; 443
 (defrule
 	(true)
 =>
 	(up-set-indirect-goal g: 502 g: 504)
 	(up-modify-goal 510 c:+ 11)
-	(up-jump-direct c: 40)
+	(up-jump-direct c: 37)
 )
 
-; 445
+; 444
 (defrule
 	(true)
 =>
@@ -6869,33 +6837,33 @@
 	(up-modify-goal 501 g:= 510)
 	(up-modify-goal 502 c:= 479)
 	(up-modify-goal 503 c:= 11)
-	(up-modify-goal 505 c:= 446)
-	(up-jump-direct c: 455)
+	(up-modify-goal 505 c:= 445)
+	(up-jump-direct c: 454)
 )
 
-; 446
+; 445
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 479)
 )
 
-; 447
+; 446
 (defrule
 	(true)
 =>
 	(up-modify-goal 511 g:max 510)
 )
 
-; 448
+; 447
 (defrule
 	(up-compare-goal 511 c:> 434)
 =>
 	(up-modify-goal 512 c:= 1)
-	(up-jump-direct c: 458)
+	(up-jump-direct c: 457)
 )
 
-; 449
+; 448
 (defrule
 	(true)
 =>
@@ -6916,7 +6884,7 @@
 	(up-modify-goal 485 g:= 496)
 )
 
-; 450
+; 449
 (defrule
 	(true)
 =>
@@ -6926,14 +6894,14 @@
 	(up-modify-goal 509 g:= 496)
 )
 
-; 451
+; 450
 (defrule
 	(up-compare-goal 509 c:== 0)
 =>
-	(up-jump-direct c: 453)
+	(up-jump-direct c: 452)
 )
 
-; 452
+; 451
 (defrule
 	(true)
 =>
@@ -6942,7 +6910,7 @@
 	(up-jump-direct g: 479)
 )
 
-; 453
+; 452
 (defrule
 	(true)
 =>
@@ -6963,7 +6931,7 @@
 	(up-modify-goal 486 c:= 0)
 )
 
-; 454
+; 453
 (defrule
 	(true)
 =>
@@ -6981,14 +6949,14 @@
 	(up-jump-direct g: 479)
 )
 
-; 455
+; 454
 (defrule
 	(up-compare-goal 503 c:== 0)
 =>
-	(up-jump-direct c: 457)
+	(up-jump-direct c: 456)
 )
 
-; 456
+; 455
 (defrule
 	(true)
 =>
@@ -6997,108 +6965,108 @@
 	(up-modify-goal 501 c:+ 1)
 	(up-modify-goal 502 c:+ 1)
 	(up-modify-goal 503 c:- 1)
-	(up-jump-direct c: 455)
+	(up-jump-direct c: 454)
 )
 
-; 457
+; 456
 (defrule
 	(true)
 =>
 	(up-jump-direct g: 505)
 )
 
-; 458
+; 457
 (defrule
 	(up-compare-goal 512 c:== 1)
 =>
 	(chat-to-all "ERROR: STACK OVERFLOW")
 )
 
-; 459
+; 458
 (defrule
 	(up-compare-goal 512 c:== 101)
 =>
 	(chat-to-all "ERROR: Invalid custom object data")
 )
 
-; 460
+; 459
 (defrule
 	(up-compare-goal 512 c:== 102)
 =>
 	(chat-to-all "ERROR: Allocation size < 0")
 )
 
-; 461
+; 460
 (defrule
 	(up-compare-goal 512 c:== 103)
 =>
 	(chat-to-all "ERROR: Memory index < 0")
 )
 
-; 462
+; 461
 (defrule
 	(up-compare-goal 512 c:== 104)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 5")
 )
 
-; 463
+; 462
 (defrule
 	(up-compare-goal 512 c:== 105)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 4")
 )
 
-; 464
+; 463
 (defrule
 	(up-compare-goal 512 c:== 106)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 3")
 )
 
-; 465
+; 464
 (defrule
 	(up-compare-goal 512 c:== 107)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 2")
 )
 
-; 466
+; 465
 (defrule
 	(up-compare-goal 512 c:== 108)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 1")
 )
 
-; 467
+; 466
 (defrule
 	(up-compare-goal 512 c:== 109)
 =>
 	(chat-to-all "ERROR: Fail Bitwise 0")
 )
 
-; 468
+; 467
 (defrule
 	(up-compare-goal 512 c:== 110)
 =>
 	(chat-to-all "ERROR: Not extermination group")
 )
 
-; 469
+; 468
 (defrule
 	(up-compare-goal 512 c:== 111)
 =>
 	(chat-to-all "ERROR: Group local list full")
 )
 
-; 470
+; 469
 (defrule
 	(up-compare-goal 512 c:== 112)
 =>
 	(chat-to-all "ERROR: Invalid player index")
 )
 
-; 471
+; 470
 (defrule
 	(true)
 =>

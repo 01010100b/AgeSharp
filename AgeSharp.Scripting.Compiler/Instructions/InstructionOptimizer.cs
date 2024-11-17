@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AgeSharp.Scripting.Compiler.Instructions
+﻿namespace AgeSharp.Scripting.Compiler.Instructions
 {
     internal static class InstructionOptimizer
     {
@@ -79,7 +72,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
                 }
             }
 
-            instructions.RemoveAll(x => labels.Contains(x));
+            instructions.RemoveAll(labels.Contains);
         }
 
         private static void RemovePointlessJumps(List<Instruction> instructions)

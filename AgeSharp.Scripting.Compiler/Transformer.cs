@@ -1,13 +1,8 @@
-﻿using AgeSharp.Scripting.Language.Expressions;
+﻿using AgeSharp.Scripting.Language;
+using AgeSharp.Scripting.Language.Expressions;
 using AgeSharp.Scripting.Language.Statements;
 using AgeSharp.Scripting.Language.Types;
-using AgeSharp.Scripting.Language;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler
 {
@@ -71,7 +66,7 @@ namespace AgeSharp.Scripting.Compiler
 
                     to.Statements.Add(statement);
                 }
-                
+
                 foreach (var variable in from.Scope.Variables)
                 {
                     to.Scope.AddVariable(variable);
@@ -100,7 +95,7 @@ namespace AgeSharp.Scripting.Compiler
                 var before = new Block(scoping_block.Scope);
                 var body = new Block(scoping_block.Scope);
                 var atloopbottom = new Block(scoping_block.Scope);
-                
+
                 move(loop.ScopingBlock, scoping_block);
                 move(loop.Before, before);
                 move(loop.Body, body);
@@ -146,7 +141,7 @@ namespace AgeSharp.Scripting.Compiler
                 if (NeedsExpressionTransform(loop.Condition))
                 {
                     return true;
-                }    
+                }
             }
             else if (statement is ReturnStatement ret)
             {
@@ -259,7 +254,7 @@ namespace AgeSharp.Scripting.Compiler
             }
             else if (expression is CallExpression call)
             {
-                for (int i = 0; i <  call.Arguments.Count; i++)
+                for (int i = 0; i < call.Arguments.Count; i++)
                 {
                     var arg = call.Arguments[i];
 

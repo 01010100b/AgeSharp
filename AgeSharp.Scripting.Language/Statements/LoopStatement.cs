@@ -1,10 +1,5 @@
 ﻿using AgeSharp.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Language.Statements
 {
@@ -23,7 +18,7 @@ namespace AgeSharp.Scripting.Language.Statements
             Throw.If<NotImplementedException>(!condition_at_top, "Condition at bottom not yet implemented.");
             Condition = condition;
             ConditionAtTop = condition_at_top;
-            ScopingBlock = scoping_block; 
+            ScopingBlock = scoping_block;
             Before = before;
             Body = body;
             AtLoopBottom = at_loop_bottom;

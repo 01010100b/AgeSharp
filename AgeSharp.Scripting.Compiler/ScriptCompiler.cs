@@ -1,15 +1,7 @@
 ﻿using AgeSharp.Scripting.Compiler.Instructions;
 using AgeSharp.Scripting.Compiler.Rules;
 using AgeSharp.Scripting.Language;
-using AgeSharp.Scripting.Language.Expressions;
-using AgeSharp.Scripting.Language.Statements;
 using AgeSharp.Scripting.Language.Types;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.Compiler
 {

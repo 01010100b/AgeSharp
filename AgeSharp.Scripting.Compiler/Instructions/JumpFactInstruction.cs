@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace AgeSharp.Scripting.Compiler.Instructions
 {
@@ -25,7 +20,7 @@ namespace AgeSharp.Scripting.Compiler.Instructions
 
         public JumpFactInstruction(string fact, LabelInstruction label) : base()
         {
-            Fact = fact ;
+            Fact = fact;
             Label = label;
         }
     }

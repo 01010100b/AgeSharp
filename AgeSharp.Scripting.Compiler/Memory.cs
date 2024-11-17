@@ -1,11 +1,6 @@
 ﻿using AgeSharp.Scripting.Language;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace AgeSharp.Scripting.Compiler
 {
@@ -24,7 +19,7 @@ namespace AgeSharp.Scripting.Compiler
         public int Utils1 { get; }
         public int Utils0 { get; }
         public int Intr4 { get; }
-        public int Intr3 {  get; }
+        public int Intr3 { get; }
         public int Intr2 { get; }
         public int Intr1 { get; }
         public int Intr0 { get; }

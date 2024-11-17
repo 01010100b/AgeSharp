@@ -4,13 +4,7 @@ using AgeSharp.Scripting.Language;
 using AgeSharp.Scripting.Language.Types;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgeSharp.Scripting.SharpParser
 {
@@ -28,7 +22,7 @@ namespace AgeSharp.Scripting.SharpParser
             var references = GetNetCoreReferences();
             references.Add(MetadataReference.CreateFromFile(typeof(Parser).Assembly.Location));
             references.Add(MetadataReference.CreateFromFile(typeof(SearchSource).Assembly.Location));
-            
+
             var compilation = CSharpCompilation.Create("MyCompilation", trees, references);
             var script = ScriptCompiler.CreateScript();
             var parse = new Parse(script, compilation);
@@ -44,7 +38,7 @@ namespace AgeSharp.Scripting.SharpParser
 
             var intrinsics = compilation.GetTypeByMetadataName("AgeSharp.Scripting.SharpParser.Intrinsics");
             Debug.Assert(intrinsics is not null);
-            
+
             foreach (var intrinsic in intrinsics.GetMembers().OfType<IMethodSymbol>())
             {
                 var method = script.Methods.Single(x => x.Name == intrinsic.Name);
